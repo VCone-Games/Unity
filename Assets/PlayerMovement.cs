@@ -7,23 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     private InputAction jumpAction;
     private InputAction moveAction;
-
-    [Space][SerializeField] private InputActionAsset myActionsAsset;
-
+    private Rigidbody2D myRigidbody;
+    private bool jumping;
+    private float coyoteTimer;
     private float horizontalMovement;
 
+    [Space][SerializeField] private InputActionAsset myActionsAsset;
     [SerializeField] private float horizontalSpeed = 7;
     [SerializeField] private float jumpForce = 15;
-
-    private Rigidbody2D myRigidbody;
-
     [SerializeField] private bool isGrounded;
-    private bool jumping;
-
-
     [SerializeField] private float coyoteTime = 0.2f;
-    private float coyoteTimer;
-
     [SerializeField] private float bonusAirTimeInterval = 1;
 
 
@@ -47,25 +40,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-       
-
-      
 
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         coyoteTimer = isGrounded ? coyoteTime : coyoteTimer - Time.deltaTime;
 
         myRigidbody.velocity = new Vector2(horizontalMovement * horizontalSpeed, myRigidbody.velocity.y);
-        if (!isGrounded && myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
+
+        if (!isGrounded)
         {
-            myRigidbody.gravityScale = 1.5f;
-        }
-        else
-        {
-            myRigidbody.gravityScale = 3;
+            if (myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
+            {
+                myRigidbody.gravityScale = 1.5f;
+            }
+            else
+            {
+                myRigidbody.gravityScale = 3;
+            }
         }
     }
 
