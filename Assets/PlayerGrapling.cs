@@ -19,6 +19,10 @@ public class PlayerGrapling : MonoBehaviour
     private bool isGrappling;
 
     [SerializeField] private float grapplerSpeed = 10;
+    [SerializeField] AnimationCurve graplingAnimationCurve;
+    [SerializeField] private float graplingDuration = 2f;
+    private float graplingElapsedTime;
+    private float graplingPercentageComplete;
 
 
     // Start is called before the first frame update
@@ -49,11 +53,16 @@ public class PlayerGrapling : MonoBehaviour
             {
                 isGrappling = false;
                 grappledObject = null;
+                this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                graplingElapsedTime = 0;
+                graplingPercentageComplete = 0;
             }
             else
             {
                 direction.Normalize();
-                grappledObject.GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y, 0) * grapplerSpeed;
+                graplingElapsedTime += Time.deltaTime;
+                graplingPercentageComplete = graplingElapsedTime / graplingDuration;
+                grappledObject.GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y, 0) * graplingAnimationCurve.Evaluate(graplingPercentageComplete) * grapplerSpeed;
             }
             
         }
@@ -84,6 +93,7 @@ public class PlayerGrapling : MonoBehaviour
             Debug.Log(hit.collider.gameObject.tag);
             grappledObject = hit.collider.gameObject;
             isGrappling = true;
+            this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 }

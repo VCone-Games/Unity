@@ -392,7 +392,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 17.414017, z: 12}
+  m_LocalScale: {x: 24, y: 34.828033, z: 24}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1291495129}
@@ -1207,7 +1207,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myActionsAsset: {fileID: -944628639613478452, guid: 4687f2d226994b34ba607d228c5627ea, type: 3}
   graplingRange: 0
-  grapplerSpeed: 10
+  grapplerSpeed: 15
+  graplingAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2960668
+      value: 0.9986779
+      inSlope: 0.0024700419
+      outSlope: 0.0024700419
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2122952
+      outWeight: 0.060900275
+    - serializedVersion: 3
+      time: 0.58985126
+      value: 1.0008905
+      inSlope: 0.022272047
+      outSlope: 0.022272047
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07359491
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9925537
+      value: 0.30635834
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  graplingDuration: 1
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1331,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1523026638
 SpriteRenderer:
   m_ObjectHideFlags: 0
