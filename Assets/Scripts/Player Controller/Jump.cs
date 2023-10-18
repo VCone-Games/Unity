@@ -25,6 +25,8 @@ public class Jump : MonoBehaviour
 	Rigidbody2D myRigidbody;
 	Collider2D myCollider;
 
+	public bool IsGrounded { get { return isGrounded; } }
+
 	[Header("Jump layer mask")]
 	[SerializeField] LayerMask groundLayer;
 
