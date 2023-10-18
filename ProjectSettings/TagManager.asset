@@ -5,8 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
-  - Grabbable Object
-  - Grabbable Spot
   layers:
   - Default
   - TransparentFX
@@ -15,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - Grabbable Object
-  - Grabbable Spot
+  - 
+  - 
   - 
   - 
   - 
