@@ -19,6 +19,7 @@ public class Jump : MonoBehaviour
 	[Header("Control variables")]
 	[SerializeField] bool jumping;
 	[SerializeField] bool isGrounded;
+	[SerializeField] bool keyPressed;
 	[SerializeField] float coyoteTimer;
 	[SerializeField] float bufferTimer;
 
@@ -43,20 +44,12 @@ public class Jump : MonoBehaviour
 	private void OnJump(InputAction.CallbackContext context)
 	{
 		bufferTimer = bufferTime;
-	}
-
-	void JumpMethod()
-	{
-		if (bufferTimer > 0.0f && coyoteTimer > 0.0f)
-		{
-			jumping = true;
-			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
-			coyoteTimer = 0;
-		}
+		keyPressed = true;
 	}
 
 	void OnJumpCanceled(InputAction.CallbackContext context)
 	{
+		keyPressed = false;
 		if (jumping)
 		{
 			jumping = false;
@@ -80,20 +73,14 @@ public class Jump : MonoBehaviour
 		JumpMethod();
 	}
 
-	/*
-	private void OnTriggerEnter2D(Collider2D other)
+	void JumpMethod()
 	{
-		if (other.gameObject.tag == "Floor")
+		if (keyPressed && (bufferTimer > 0.0f && coyoteTimer > 0.0f))
 		{
-			isGrounded = true;
+			jumping = true;
+			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+			coyoteTimer = 0;
 		}
 	}
 
-	private void OnTriggerExit2D(Collider2D other)
-	{
-		if (other.gameObject.tag == "Floor")
-		{
-			isGrounded = false;
-		}
-	}*/
 }
