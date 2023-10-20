@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,15 +14,17 @@ public class Jump : MonoBehaviour
 	[SerializeField] float jumpForce;
 	[SerializeField] float coyoteTime;
 	[SerializeField] float bufferTime;
+	[SerializeField] int maxJumps;
 	[SerializeField] float bonusAirTimeInterval;
 	[SerializeField] float raycastFeetLength;
 
 	[Header("Control variables")]
-	[SerializeField] bool jumping;
-	[SerializeField] bool isGrounded;
-	[SerializeField] bool keyPressed;
-	[SerializeField] float coyoteTimer;
-	[SerializeField] float bufferTimer;
+	[SerializeField][ReadOnly] bool jumping;
+	[SerializeField][ReadOnly] bool isGrounded;
+	[SerializeField][ReadOnly] bool keyPressed;
+	[SerializeField][ReadOnly] float coyoteTimer;
+	[SerializeField][ReadOnly] float bufferTimer;
+	[SerializeField][ReadOnly] int jumpCount;
 
 	Rigidbody2D myRigidbody;
 	Collider2D myCollider;
@@ -33,17 +36,24 @@ public class Jump : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		jumpReference.action.performed += OnJump;
 		jumpReference.action.canceled += OnJumpCanceled;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<Collider2D>();
-    }
+	}
 
 	private void OnJump(InputAction.CallbackContext context)
 	{
+
 		bufferTimer = bufferTime;
+		jumpCount++;
+		if (jumpCount < maxJumps)
+		{
+			coyoteTimer = coyoteTime;
+		}
+
 		keyPressed = true;
 	}
 
@@ -63,11 +73,29 @@ public class Jump : MonoBehaviour
 
 	// Update is called once per frame
 	void FixedUpdate()
-    {
+	{
 		isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
 			myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
 
-		coyoteTimer = isGrounded ? coyoteTime : coyoteTimer - Time.deltaTime;
+		if (isGrounded)
+		{
+			coyoteTimer = coyoteTime;
+			jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
+		}
+		else
+		{
+			coyoteTimer -= Time.deltaTime;
+
+			if (myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
+			{
+				myRigidbody.gravityScale = 1.5f;
+			}
+			else
+			{
+				myRigidbody.gravityScale = 3;
+			}
+		}
+
 		bufferTimer -= Time.deltaTime;
 
 		JumpMethod();
@@ -79,7 +107,6 @@ public class Jump : MonoBehaviour
 		{
 			jumping = true;
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
-			coyoteTimer = 0;
 		}
 	}
 

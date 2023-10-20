@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 987364150}
   - component: {fileID: 987364149}
   - component: {fileID: 987364152}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 1096437169}
   - component: {fileID: 1096437168}
   - component: {fileID: 1096437171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (2)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1053,9 +1053,10 @@ GameObject:
   - component: {fileID: 1291495127}
   - component: {fileID: 1291495126}
   - component: {fileID: 1291495130}
-  - component: {fileID: 1291495131}
   - component: {fileID: 1291495132}
   - component: {fileID: 1291495133}
+  - component: {fileID: 1291495134}
+  - component: {fileID: 1291495135}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1205,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 4687f2d226994b34ba607d228c5627ea, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1271,24 +1272,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1291495131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291495125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b8cb43d68379a449758e7ee4d82b75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myActionsAsset: {fileID: -944628639613478452, guid: 4687f2d226994b34ba607d228c5627ea, type: 3}
-  horizontalSpeed: 7
-  jumpForce: 15
-  isGrounded: 0
-  coyoteTime: 0.05
-  bonusAirTimeInterval: 1
 --- !u!61 &1291495132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1341,7 +1324,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291495125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96f4296d875df03469c9caf2b64f58c2, type: 3}
   m_Name: 
@@ -1392,6 +1375,47 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   graplingDuration: 1
+--- !u!114 &1291495134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291495125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb5e5eb10d64254b9448290656421e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  shootReference: {fileID: -6108951953813829766, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  movementSpeed: 10
+--- !u!114 &1291495135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291495125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bfbb9c65a4fd5448c8b7acaf56ef01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpReference: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  jumpForce: 15
+  coyoteTime: 0.2
+  bufferTime: 0.5
+  bonusAirTimeInterval: 1.5
+  raycastFeetLength: 0.1
+  jumping: 0
+  isGrounded: 0
+  keyPressed: 0
+  coyoteTimer: 0
+  bufferTimer: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1597,7 @@ GameObject:
   - component: {fileID: 1910548152}
   - component: {fileID: 1910548154}
   - component: {fileID: 1910548155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Floor
   m_Icon: {fileID: 0}
