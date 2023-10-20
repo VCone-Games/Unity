@@ -17,8 +17,10 @@ public class HorizontalMovement : MonoBehaviour
     bool forceAplied;
     float playerDirection;
     Rigidbody2D myRigidbody;
+    Vector3 myLocalScale;
 
-    Jump jump;
+    Jump jumpReference;
+    AirDash dashReference;
 
 
     // Start is called before the first frame update
@@ -28,10 +30,12 @@ public class HorizontalMovement : MonoBehaviour
         movementReference.action.canceled += OnRelease;
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        jump = GetComponent<Jump>();
+        jumpReference = GetComponent<Jump>();
+        dashReference = GetComponent<AirDash>();
+
         //PRUEBA DE FUERZAS
         shootReference.action.performed += Test;
-       
+        myLocalScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
 	private void Test(InputAction.CallbackContext context)
@@ -54,14 +58,21 @@ public class HorizontalMovement : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
-        if (jump.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO ESTÉ LISTO
+        if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO ESTÉ LISTO
         {
             forceAplied = false;
         }
 
+        if (dashReference.IsDashing) return;
+            
         if (!forceAplied || keyPressed)
         {
             myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
+            if (playerDirection != 0)
+            {
+                transform.localScale = new Vector3(playerDirection * myLocalScale.x, myLocalScale.y, myLocalScale.z);
+            }
+
             forceAplied = false;
         }
         else if (forceAplied && !keyPressed)
