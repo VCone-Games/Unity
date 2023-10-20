@@ -4,8 +4,16 @@ using UnityEngine;
 
 public abstract class AHookable : MonoBehaviour, IHookable
 {
-    [SerializeField] private float hookedSpeed;
-    [SerializeField] private float hookedTime;
-    [SerializeField] private AnimationCurve animationCurve;
+    [SerializeField] protected float hookedSpeed;
+    [SerializeField] protected float hookedTime;
+    [SerializeField] protected AnimationCurve animationCurve;
+
+    [SerializeField] protected GameObject playerGameObject;
+
+    [SerializeField] protected Vector2 hookDirection;
+    [SerializeField] protected float minimumDistance;
+
+    protected float hookingElapsedTime;
+    protected float hookingPercentageComplete;
     abstract public void Hooked();
 }

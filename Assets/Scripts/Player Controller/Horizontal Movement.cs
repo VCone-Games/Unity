@@ -14,7 +14,7 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] float movementSpeed;
 
     bool keyPressed;
-    bool forceAplied;
+    public bool isHooking;
     float playerDirection;
     Rigidbody2D myRigidbody;
 
@@ -36,19 +36,25 @@ public class HorizontalMovement : MonoBehaviour
 
 	private void Test(InputAction.CallbackContext context)
 	{
-        forceAplied = true;
+        isHooking = true;
 	}
 
 	private void OnPressed(InputAction.CallbackContext context)
 	{
-		playerDirection = movementReference.action.ReadValue<float>();
-        keyPressed = true;
+        if(!isHooking)
+        {
+            playerDirection = movementReference.action.ReadValue<float>();
+            keyPressed = true;
+        }
 	}
 
 	private void OnRelease(InputAction.CallbackContext context)
 	{
-		playerDirection = 0.0f;
-        keyPressed = false;
+        if(!isHooking)
+        {
+            playerDirection = 0.0f;
+            keyPressed = false;
+        }
 	}
 
 	// Update is called once per frame
@@ -56,15 +62,15 @@ public class HorizontalMovement : MonoBehaviour
     {
         if (jump.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO ESTÉ LISTO
         {
-            forceAplied = false;
+            isHooking = false;
         }
 
-        if (!forceAplied || keyPressed)
+        if (!isHooking || keyPressed)
         {
             myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
-            forceAplied = false;
+            isHooking = false;
         }
-        else if (forceAplied && !keyPressed)
+        else if (isHooking && !keyPressed)
         {
             myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
 
