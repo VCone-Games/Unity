@@ -1,5 +1,5 @@
 {
-    "name": "My project",
+    "name": "Input System",
     "maps": [
         {
             "name": "Player",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grapling Shoot",
+                    "name": "Hook Shoot",
                     "type": "Button",
                     "id": "581c5f27-7315-4029-a332-9ea83d47311e",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Grapling Aim ",
+                    "name": "Hook Aim ",
                     "type": "Value",
                     "id": "881ef2b6-c947-4393-87b1-8b837439a182",
                     "expectedControlType": "Vector2",
@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Grapling Aim + Shoot ",
+                    "name": "Hook Aim + Shoot ",
                     "type": "Value",
                     "id": "70987641-e2ef-4114-bcb9-a6fd934fd3d8",
                     "expectedControlType": "Vector2",
@@ -125,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Grapling Shoot",
+                    "action": "Hook Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -136,7 +136,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Grapling Aim ",
+                    "action": "Hook Aim ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Grapling Aim + Shoot ",
+                    "action": "Hook Aim + Shoot ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

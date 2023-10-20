@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IHookable 
 {
-    public void Hooked() { }
+    public void Hooked();
+
+    public void Unhook();
+    public int getWeight();
 }

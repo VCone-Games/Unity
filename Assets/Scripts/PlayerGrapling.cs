@@ -35,7 +35,7 @@ public class PlayerGrapling : MonoBehaviour
 
         graplingRange = transform.GetChild(0).transform.lossyScale.x * 0.5f;
 
-        graplingAimAction = myActionsAsset.FindAction("Player/Grapling Aim ");
+        graplingAimAction = myActionsAsset.FindAction("Player/Grapling Aim");
         graplingShootAction = myActionsAsset.FindAction("Player/Grapling Shoot");
         graplingShootAimAction = myActionsAsset.FindAction("Player/Grapling Aim + Shoot");
 

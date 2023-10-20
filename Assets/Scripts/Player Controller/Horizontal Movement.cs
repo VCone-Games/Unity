@@ -72,7 +72,7 @@ public class HorizontalMovement : MonoBehaviour
         }
         else if (isHooking && !keyPressed)
         {
-            myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
 
         }
 
