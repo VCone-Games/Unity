@@ -2,73 +2,87 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Hook : MonoBehaviour
 {
     //INPUT ACTIONS VARIABLES
-    [Space][SerializeField] private InputActionAsset myActionsAsset;
-    private InputAction graplingShootAction;
-    private InputAction graplingAimAction;
-    private InputAction graplingShootAimAction;
+    [Header("Input system")]
+    [SerializeField] private InputActionReference graplingShootReference;
+    [SerializeField] private InputActionReference graplingAimReference;
+    [SerializeField] private InputActionReference graplingShootAimReference;
+
 
     //MOUSE COORDINATES
-    private Vector2 mousePositionInScreen;
-    private Vector2 mousePositionInWorld;
+    [Header("Mouse Coordinates")]
+    [SerializeField][ReadOnly] private Vector2 mousePositionInScreen;
+    [SerializeField][ReadOnly] private Vector2 mousePositionInWorld;
 
     //HOOK PARAMETERS
-    private float hookRange;
-    [SerializeField] private float projectileSpeed;
-    Vector3 shootDirection;
-    [SerializeField] private float hookingSpeed = 10;
+    [Header("Hook Parameters")]
+    [SerializeField] private GameObject hookRangeRepresentation;
+    [SerializeField] private float hookRange;
+    [SerializeField] private float hookProjectileSpeed;
+    [SerializeField] private float hookingSpeed;
+    [SerializeField] private float hookingDuration;
     [SerializeField] AnimationCurve hookingAnimationCurve;
-    [SerializeField] private float hookingDuration = 2f;
-    private float hookElapsedTime;
-    private float hookPercentageComplete;
+    [SerializeField] private float hookCoolDownTime;
+    [SerializeField] private float distanceToUnhook;
+    Vector3 shootDirection;
+
 
     //HOOK LOGIC VARIABLES
-    private bool isHooking;
-    [SerializeField] private bool hookLanded;
-    private float hookCoolDownTime;
-    private float hookCoolDownTimer;
+    [Header("Hook Control Variables")]
+    [SerializeField][ReadOnly] private bool isHooking;
+    [SerializeField][ReadOnly] private bool hookLanded;
+    [SerializeField][ReadOnly] private bool hookFailed;
+    [SerializeField][ReadOnly] private float hookCoolDownTimer;
+    private float hookElapsedTime;
+    private float hookPercentageComplete;
+    private Vector3 collisionPoint;
 
+    //GAMEOBJECTS
+    [Header("Hook Projectile Prefab Selector")]
     [SerializeField] private GameObject hookPrefab;
     private GameObject hookProjectile;
 
-    [SerializeField] private GameObject hookedGameObject;
+    [Header("Hooked GameObject")]
+    [SerializeField][ReadOnly] private GameObject hookedGameObject;
 
-    private Rigidbody2D myRigidbody2D;
-    private Rigidbody2D hookedRigidBody2D;
+    //RIGIDBODIES
+    private Rigidbody2D myRigidbody;
+    private Rigidbody2D hookedRigidBody;
 
     void Start()
     {
-        //LOCATE INPUT ACTIONS
-        graplingAimAction = myActionsAsset.FindAction("Player/Hook Aim ");
-        graplingShootAction = myActionsAsset.FindAction("Player/Hook Shoot");
-        graplingShootAimAction = myActionsAsset.FindAction("Player/Hook Aim + Shoot ");
-
         //ASIGN ACTIONS TO CODE
-        graplingAimAction.performed += OnMouseMovement;
-        graplingShootAction.performed += OnMouseShoot;
+        graplingAimReference.action.performed += OnMouseMovement;
+        graplingShootReference.action.performed += OnMouseShoot;
 
+        hookRangeRepresentation.transform.localScale = new Vector3(hookRange * 2, hookRange * 2, hookRange * 2);
+        hookRangeRepresentation.transform.SetParent(transform, false);
+        //hookRange = transform.GetChild(0).transform.lossyScale.x * 0.5f;
 
-        hookRange = transform.GetChild(0).transform.lossyScale.x * 0.5f;
-
-        myRigidbody2D = GetComponent<Rigidbody2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
     }
 
 
     void FixedUpdate()
     {
-        if (isHooking && !hookLanded)
+        if (isHooking && !hookLanded && !hookFailed)
         {
             HookProjectileMovementAndCollision();
 
         }
-        else if (isHooking && hookLanded)
+        else if (isHooking && hookLanded && !hookFailed)
         {
             HookingInteraction();
+        }
+        else if (hookFailed)
+        {
+            RetractHook();
         }
     }
 
@@ -77,61 +91,101 @@ public class Hook : MonoBehaviour
         Vector3 distance = transform.position - hookProjectile.transform.position;
         if (distance.magnitude > hookRange)
         {
-            Destroy(hookProjectile);
-            isHooking = false;
-            shootDirection = Vector3.zero;
+            hookFailed = true;
+            hookProjectile.GetComponent<Collider2D>().enabled = false;
         }
         else
         {
-            hookProjectile.transform.position += shootDirection * projectileSpeed * Time.deltaTime;
-            RaycastHit2D hit = Physics2D.Raycast(hookProjectile.transform.position, shootDirection, 0.01f, ~LayerMask.GetMask("Player"));
+            //Debug.Log("MOVIENDO hacia " + shootDirection);
+            hookProjectile.transform.position += shootDirection * hookProjectileSpeed * Time.fixedDeltaTime;
+
+            RaycastHit2D hit = Physics2D.Raycast(hookProjectile.transform.position, shootDirection, 0.1f, ~LayerMask.GetMask("Player"));
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<IHookable>() == null)
+            {
+                hookFailed = true;
+                hookProjectile.GetComponent<Collider2D>().enabled = false;
+            }
+
             if (hit.collider != null && hit.collider.gameObject.GetComponent<IHookable>() != null)
             {
+                //Debug.Log("ME CHOCO");
                 hookLanded = true;
                 hookedGameObject = hit.collider.gameObject;
-                hookedRigidBody2D = GetComponent<Rigidbody2D>();
+                hookedRigidBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
                 hookedGameObject.GetComponent<IHookable>().Hooked();
+                hookProjectile.AddComponent<FixedJoint2D>();
+                hookProjectile.GetComponent<FixedJoint2D>().connectedBody = hookedRigidBody;
+                hookedGameObject.layer = 9;
+
             }
         }
+    }
+
+    void RetractHook()
+    {
+        Vector2 direction = new Vector2(transform.position.x - hookProjectile.transform.position.x, transform.position.y - hookProjectile.transform.position.y);
+
+        if (direction.magnitude < 1)
+        {
+            Destroy(hookProjectile);
+            isHooking = false;
+            shootDirection = Vector3.zero;
+            hookFailed = false;
+        }
+        direction.Normalize();
+        hookProjectile.GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y, 0) * hookProjectileSpeed;
     }
 
     void HookingInteraction()
     {
         Vector2 direction = new Vector2(transform.position.x - hookedGameObject.transform.position.x, transform.position.y - hookedGameObject.transform.position.y);
-        Debug.Log(direction);
-        if (direction.magnitude < 1)
+
+        if (direction.magnitude < distanceToUnhook)
         {
             isHooking = false;
 
-            hookedGameObject.GetComponent<IHookable>().Unhook();
-            
+            Time.timeScale = 1;
 
-            myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-            hookedGameObject = null;
-            hookedRigidBody2D = null;
-            hookElapsedTime = 0;
-            hookPercentageComplete = 0;
+            hookedGameObject.GetComponent<IHookable>().Unhook();
+
+            ResetAfterHooking();
+
         }
         else
         {
             direction.Normalize();
             hookElapsedTime += Time.deltaTime;
             hookPercentageComplete = hookElapsedTime / hookingDuration;
+
+            Time.timeScale = hookingAnimationCurve.Evaluate(hookPercentageComplete);
             switch (hookedGameObject.GetComponent<IHookable>().getWeight())
             {
                 case 0:
-                    myRigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-                    hookedRigidBody2D.velocity = new Vector3(direction.x, direction.y, 0) * hookingAnimationCurve.Evaluate(hookPercentageComplete) * hookingSpeed;
+                    //myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                    hookedRigidBody.velocity = new Vector3(direction.x, direction.y, 0) * hookingSpeed;
+
                     break;
                 case 1:
-                    hookedRigidBody2D.velocity = new Vector3(direction.x, direction.y, 0) * hookingAnimationCurve.Evaluate(hookPercentageComplete) * hookingSpeed;
-                    myRigidbody2D.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingAnimationCurve.Evaluate(hookPercentageComplete) * hookingSpeed;
+                    hookedRigidBody.velocity = new Vector3(direction.x, direction.y, 0) * hookingSpeed * 0.5f;
+                    myRigidbody.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingSpeed * 0.5f;
                     break;
                 case 2:
-                    myRigidbody2D.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingAnimationCurve.Evaluate(hookPercentageComplete) * hookingSpeed;
+                    myRigidbody.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingSpeed;
                     break;
             }
         }
+    }
+
+    void ResetAfterHooking()
+    {
+        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        hookedGameObject = null;
+        hookedRigidBody = null;
+        hookElapsedTime = 0;
+        hookPercentageComplete = 0;
+        hookLanded = false;
+
+        Destroy(hookProjectile);
     }
 
     private void OnMouseMovement(InputAction.CallbackContext context)
@@ -155,7 +209,15 @@ public class Hook : MonoBehaviour
     }
 
 
+    public bool HookLanded()
+    {
+        return hookLanded;
+    }
 
+    public GameObject getHookedObject()
+    {
+        return hookedGameObject;
+    }
 
 
 }

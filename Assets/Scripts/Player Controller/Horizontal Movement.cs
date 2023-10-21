@@ -65,16 +65,16 @@ public class HorizontalMovement : MonoBehaviour
             isHooking = false;
         }
 
-        if (!isHooking || keyPressed)
-        {
-            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
+       // if (!isHooking || keyPressed)
+       // {
+            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y + 0.001f);
             isHooking = false;
-        }
-        else if (isHooking && !keyPressed)
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
-
-        }
+       // }
+       // else if (isHooking && !keyPressed)
+       // {
+       //     myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
+       //
+       // }
 
     }
 

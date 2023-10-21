@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightEnemy : MonoBehaviour, IHookable
+public class MediumEnemy : MonoBehaviour, IHookable
 {
-    [SerializeField] private int weight = 0;
+    private int weight = 1;
     private Rigidbody2D myRigidbody;
     private bool beingHooked;
-   
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -15,7 +15,7 @@ public class LightEnemy : MonoBehaviour, IHookable
 
     void Update()
     {
-        
+
     }
 
     public int getWeight()
