@@ -26,7 +26,6 @@ public class Jump : MonoBehaviour
 	[Header("Control variables")]
 	[SerializeField][ReadOnly] bool jumping;
 	[SerializeField][ReadOnly] bool isGrounded;
-    [SerializeField][ReadOnly] bool isWalled;
     [SerializeField][ReadOnly] bool keyPressed;
 	[SerializeField][ReadOnly] float coyoteTimer;
 	[SerializeField][ReadOnly] float bufferTimer;
@@ -37,7 +36,6 @@ public class Jump : MonoBehaviour
 
 	public bool IsGrounded { get { return isGrounded; } }
 
-	public bool IsWalled { get { return isWalled; } set { isWalled = value; } }
 	public float NormalGravityScale {  get { return normalGravityScale; } }
 
 
@@ -114,7 +112,7 @@ public class Jump : MonoBehaviour
 
 	void JumpMethod()
 	{
-		if (keyPressed && ((bufferTimer > 0.0f && coyoteTimer > 0.0f) || isWalled))
+		if (keyPressed && ((bufferTimer > 0.0f && coyoteTimer > 0.0f)))
 		{
 			jumping = true;
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);

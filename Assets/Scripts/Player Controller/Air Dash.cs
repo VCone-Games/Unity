@@ -31,11 +31,10 @@ public class AirDash : MonoBehaviour
     {
         dashReference.action.performed += OnDashing;  
 		jumpReference = GetComponent<Jump>();
+		normalGravityScale = jumpReference.NormalGravityScale;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
-
-		normalGravityScale = GetComponent<Jump>().NormalGravityScale;
-    }
+	}
 
 	private void OnDashing(InputAction.CallbackContext context)
 	{

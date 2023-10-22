@@ -6,99 +6,109 @@ using UnityEngine.InputSystem;
 
 public class HorizontalMovement : MonoBehaviour
 {
-    [Header("Input system")]
-    [SerializeField] InputActionReference movementReference;
-    [SerializeField] InputActionReference shootReference;
+	[Header("Input system")]
+	[SerializeField] InputActionReference movementReference;
+	[SerializeField] InputActionReference shootReference;
 
-    [Header("Movement params")]
-    [SerializeField] float movementSpeed;
+	[Header("Movement params")]
+	[SerializeField] float movementSpeed;
 
-    bool keyPressed;
-    public bool isHooking;
-    float playerDirection;
-    bool facingRight = true;
-    Rigidbody2D myRigidbody;
+	[SerializeField] bool avalibleMovement;
 
-    Jump jumpReference;
-    AirDash dashReference;
+	bool keyPressed;
+	public bool isHooking;
+	[SerializeField] float playerDirection;
+	bool facingRight = true;
+	Rigidbody2D myRigidbody;
+
+	Jump jumpReference;
+	AirDash dashReference;
+	Wallgrab wallGrabReference;
+
+	public bool IsFacingRight { get { return facingRight; } set { facingRight = value; } }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        movementReference.action.performed += OnPressed;
-        movementReference.action.canceled += OnRelease;
-        myRigidbody = GetComponent<Rigidbody2D>();
+	// Start is called before the first frame update
+	void Start()
+	{
+		movementReference.action.performed += OnPressed;
+		movementReference.action.canceled += OnRelease;
+		myRigidbody = GetComponent<Rigidbody2D>();
 
-        jumpReference = GetComponent<Jump>();
-        dashReference = GetComponent<AirDash>();
+		jumpReference = GetComponent<Jump>();
+		dashReference = GetComponent<AirDash>();
+		wallGrabReference = GetComponent<Wallgrab>();
 
-        //PRUEBA DE FUERZAS
-        shootReference.action.performed += Test;
-    }
+		//PRUEBA DE FUERZAS
+		shootReference.action.performed += Test;
+	}
 
-    private void Test(InputAction.CallbackContext context)
-    {
-        isHooking = true;
-    }
+	private void Test(InputAction.CallbackContext context)
+	{
+		isHooking = true;
+	}
 
-    private void OnPressed(InputAction.CallbackContext context)
-    {
-        if (!isHooking)
-        {
-            playerDirection = movementReference.action.ReadValue<float>();
+	private void OnPressed(InputAction.CallbackContext context)
+	{
+		if (!isHooking)
+		{
+			playerDirection = movementReference.action.ReadValue<float>();
 
-            if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
-            {
-                if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-                facingRight = false;
-            }
+			if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
+			{
+				if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
+				{
+					transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+				}
+				facingRight = false;
+			}
 
-            else //SI MUEVE HACIA DERECHA   
-            {
-                if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-                facingRight = true;
-            }
-            keyPressed = true;
-        }
-    }
+			else //SI MUEVE HACIA DERECHA   
+			{
+				if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
+				{
+					transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+				}
+				facingRight = true;
+			}
+			keyPressed = true;
+		}
+	}
 
-    private void OnRelease(InputAction.CallbackContext context)
-    {
-        if (!isHooking)
-        {
-            playerDirection = 0.0f;
-            keyPressed = false;
-        }
-    }
+	private void OnRelease(InputAction.CallbackContext context)
+	{
+		if (!isHooking)
+		{
+			playerDirection = 0.0f;
+			keyPressed = false;
+		}
+	}
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO EST� LISTO
-        {
-            isHooking = false;
-        }
+	// Update is called once per frame
+	void FixedUpdate()
+	{
+		if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO EST? LISTO
+		{
+			isHooking = false;
+		}
 
-        if (dashReference.IsDashing) return;
+		if (dashReference.IsDashing || wallGrabReference.JumpWall)
+		{
+			avalibleMovement = false;
+			return;
+		}
 
-        if (!isHooking || keyPressed)
-        {
-            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
+		if (!isHooking || keyPressed)
+		{
+			myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
+			avalibleMovement = true;
+			isHooking = false;
+		}
+		//else if (isHooking && !keyPressed)
+		//{
+		//    myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
+		//
+		//}
 
-            isHooking = false;
-        }
-        //else if (isHooking && !keyPressed)
-        //{
-        //    myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
-        //
-        //}
-
-    }
+	}
 }
