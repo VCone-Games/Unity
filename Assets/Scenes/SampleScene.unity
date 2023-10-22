@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parryReference: {fileID: 4080458920108112001, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   aimReference: {fileID: 8003593690241759918, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  parryDistance: 2
+  parryDistance: 1.65
   parryForce: 13
   mousePositionInScreen: {x: 0, y: 0}
   mousePositionInWorld: {x: 0, y: 0}
