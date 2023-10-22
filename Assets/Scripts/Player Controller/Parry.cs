@@ -25,11 +25,13 @@ public class Parry : MonoBehaviour
 
     private bool parrySuccess;
 
-    private float parryKnockbackX;
     [SerializeField] private float parryKnockBackTimer;
     [SerializeField] private float parryKnockbackTime;
 
     [SerializeField] private Rigidbody2D myRigidbody;
+
+    HorizontalMovement horizontalMovementReference;
+    AirDash dashReference;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +39,24 @@ public class Parry : MonoBehaviour
         parryReference.action.performed += OnParry;
         parryReference.action.canceled += OffParry;
         aimReference.action.performed += OnMouseMovement;
+
+        horizontalMovementReference = GetComponent<HorizontalMovement>();
+        dashReference = GetComponent<AirDash>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(parryKnockBackTimer > 0)
+        {
+            parryKnockBackTimer -= Time.deltaTime;
+            if(parryKnockBackTimer < 0)
+            {
+                horizontalMovementReference.EnableMovementInput();
+                dashReference.EnableDashInput();
+            }
+
+        }
     }
 
     private void OnMouseMovement(InputAction.CallbackContext context)
@@ -78,6 +93,12 @@ public class Parry : MonoBehaviour
         Rigidbody2D parriedRigidBody = hookedObject.GetComponent<Rigidbody2D>();
 
         Time.timeScale = 1;
+
+        horizontalMovementReference.DisableMovementInput();
+        dashReference.DisableDashInput();
+
+        parryKnockBackTimer = parryKnockbackTime;
+
         hookedObject.GetComponent<IHookable>().AfterParry();
         switch (hookedObject.GetComponent<IHookable>().GetWeight())
         {

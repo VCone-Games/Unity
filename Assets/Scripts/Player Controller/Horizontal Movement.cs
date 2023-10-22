@@ -13,86 +13,90 @@ public class HorizontalMovement : MonoBehaviour
     [Header("Movement params")]
     [SerializeField] float movementSpeed;
 
-    bool keyPressed;
-    public bool isHooking;
+    bool movementInputPressed;
+    bool DISABLED;
+
     float playerDirection;
     bool facingRight = true;
     Rigidbody2D myRigidbody;
 
     Jump jumpReference;
     AirDash dashReference;
-
+    Hook hookReference;
 
     // Start is called before the first frame update
     void Start()
     {
         movementReference.action.performed += OnPressed;
         movementReference.action.canceled += OnRelease;
+
         myRigidbody = GetComponent<Rigidbody2D>();
 
         jumpReference = GetComponent<Jump>();
         dashReference = GetComponent<AirDash>();
+        hookReference = GetComponent<Hook>();
 
-        //PRUEBA DE FUERZAS
-        shootReference.action.performed += Test;
-    }
-
-    private void Test(InputAction.CallbackContext context)
-    {
-        isHooking = true;
+        // //PRUEBA DE FUERZAS
+        // shootReference.action.performed += Test;
     }
 
     private void OnPressed(InputAction.CallbackContext context)
     {
-        if (!isHooking)
+        movementInputPressed = true;
+        playerDirection = movementReference.action.ReadValue<float>();
+
+        SpriteDirectionManager();
+    }
+
+    private void SpriteDirectionManager()
+    {
+        if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
         {
-            playerDirection = movementReference.action.ReadValue<float>();
-
-            if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
+            if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
             {
-                if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-                facingRight = false;
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
+            facingRight = false;
+        }
 
-            else //SI MUEVE HACIA DERECHA   
+        else //SI MUEVE HACIA DERECHA   
+        {
+            if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
             {
-                if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
-                {
-                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                }
-                facingRight = true;
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
-            keyPressed = true;
+            facingRight = true;
         }
     }
 
     private void OnRelease(InputAction.CallbackContext context)
     {
-        if (!isHooking)
-        {
-            playerDirection = 0.0f;
-            keyPressed = false;
-        }
+        movementInputPressed = false;
     }
+
+    public void DisableMovementInput()
+    {
+        movementReference.action.Disable();
+        DISABLED = true;    
+    }
+    public void EnableMovementInput()
+    {
+        movementReference.action.Enable();
+        DISABLED = false;
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO EST� LISTO
+        if (DISABLED) return;
+        if (movementInputPressed)
         {
-            isHooking = false;
+            myRigidbody.velocity = new Vector2(movementSpeed * playerDirection, myRigidbody.velocity.y);
         }
-
-        if (dashReference.IsDashing) return;
-
-        if (!isHooking || keyPressed)
+        else 
         {
-            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
-
-            isHooking = false;
+            myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
         }
         //else if (isHooking && !keyPressed)
         //{

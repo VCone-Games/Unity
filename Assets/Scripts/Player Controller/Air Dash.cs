@@ -24,6 +24,9 @@ public class AirDash : MonoBehaviour
     Jump jumpReference;
 	Rigidbody2D myRigidbody;
 
+	private bool DISABLED;
+
+
 	public bool IsDashing {  get { return isDashing; } }
 
 	// Start is called before the first frame update
@@ -34,12 +37,16 @@ public class AirDash : MonoBehaviour
 
 		myRigidbody = GetComponent<Rigidbody2D>();
 
-		normalGravityScale = GetComponent<Jump>().NormalGravityScale;
+		normalGravityScale = jumpReference.NormalGravityScale;
+
+		//GetComponent<HorizontalMovement>().enabled = false;
+       // GetComponent<HorizontalMovement>().enabled = true;
     }
 
 	private void OnDashing(InputAction.CallbackContext context)
 	{
-		if (!hasDashed)
+        if (DISABLED) return;
+        if (!hasDashed)
 		{
 			isDashing = true;
 			hasDashed = true;
@@ -78,5 +85,16 @@ public class AirDash : MonoBehaviour
 
 
 
+    }
+
+    public void DisableDashInput()
+    {
+        dashReference.action.Disable();
+        DISABLED = true;
+    }
+    public void EnableDashInput()
+    {
+        dashReference.action.Enable();
+        DISABLED = false;
     }
 }
