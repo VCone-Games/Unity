@@ -34,6 +34,9 @@ public class AirDash : MonoBehaviour
 		normalGravityScale = jumpReference.NormalGravityScale;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
+
+		GetComponent<HorizontalMovement>().enabled = false;
+		GetComponent<HorizontalMovement>().enabled = false;
 	}
 
 	private void OnDashing(InputAction.CallbackContext context)

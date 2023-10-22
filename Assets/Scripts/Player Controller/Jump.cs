@@ -34,6 +34,8 @@ public class Jump : MonoBehaviour
 	Rigidbody2D myRigidbody;
 	Collider2D myCollider;
 
+	public bool IsJumping { get { return jumping; } set { jumping = value; } }
+
 	public bool IsGrounded { get { return isGrounded; } }
 
 	public float NormalGravityScale {  get { return normalGravityScale; } }
@@ -69,6 +71,7 @@ public class Jump : MonoBehaviour
 		keyPressed = false;
 		if (jumping)
 		{
+			Debug.Log("CANCELANDO SALTO");
 			jumping = false;
 
 			if (myRigidbody.velocity.y < 0) return;

@@ -18,7 +18,7 @@ public class HorizontalMovement : MonoBehaviour
 	bool keyPressed;
 	public bool isHooking;
 	[SerializeField] float playerDirection;
-	bool facingRight = true;
+	[SerializeField] bool facingRight = true;
 	Rigidbody2D myRigidbody;
 
 	Jump jumpReference;
