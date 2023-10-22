@@ -51,15 +51,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Wall Grab",
-                    "type": "Button",
-                    "id": "7f8fe9a3-696c-49e6-ab4f-2207556b3958",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "e86e8948-8208-41f1-b04d-8627fcc16b15",
@@ -191,19 +182,19 @@
                 },
                 {
                     "name": "",
-                    "id": "33f4bd2b-7d91-489e-bc73-1afbdacd2abb",
-                    "path": "<Keyboard>/ctrl",
+                    "id": "78c80a53-73cb-4ed5-9c9e-74b8d111edca",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Wall Grab",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "78c80a53-73cb-4ed5-9c9e-74b8d111edca",
-                    "path": "<Keyboard>/shift",
+                    "id": "aa65000f-ecc2-4590-bee9-91fedcd88d7a",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

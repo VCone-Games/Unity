@@ -38,12 +38,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-    }
-
-
     void FixedUpdate()
     {
         coyoteTimer = isGrounded ? coyoteTime : coyoteTimer - Time.deltaTime;

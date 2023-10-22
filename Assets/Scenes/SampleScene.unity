@@ -1535,13 +1535,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1291495125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bb5e5eb10d64254b9448290656421e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 42adeb7a4832bcd47accf3f19ab5eaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   shootReference: {fileID: -6108951953813829766, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   movementSpeed: 7
+  avalibleMovement: 0
   isHooking: 0
+  playerDirection: 0
 --- !u!114 &1291495135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1568,7 +1570,6 @@ MonoBehaviour:
     m_Bits: 128
   jumping: 0
   isGrounded: 0
-  isWalled: 0
   keyPressed: 0
   coyoteTimer: 0
   bufferTimer: 0
@@ -1688,13 +1689,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabWallReference: {fileID: 2624732889372013233, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  jumpReference: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   distanceMax: 0.1
+  jumpWallForce: 15
+  ForceAddX: 4
+  jumpWallTime: 0.2
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  isGrabbingWall: 0
+  jumpWall: 0
   wantsToGrabWall: 0
+  isGrabbingWall: 0
   isPressingWall: 0
+  isJumpingLeft: 0
+  isJumpingRight: 0
+  jumpWallTimer: 0
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0

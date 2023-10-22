@@ -34,14 +34,13 @@ public class AirDash : MonoBehaviour
     {
         dashReference.action.performed += OnDashing;  
 		jumpReference = GetComponent<Jump>();
+		normalGravityScale = jumpReference.NormalGravityScale;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
 
-		normalGravityScale = jumpReference.NormalGravityScale;
-
-		//GetComponent<HorizontalMovement>().enabled = false;
-       // GetComponent<HorizontalMovement>().enabled = true;
-    }
+		GetComponent<HorizontalMovement>().enabled = false;
+		GetComponent<HorizontalMovement>().enabled = false;
+	}
 
 	private void OnDashing(InputAction.CallbackContext context)
 	{

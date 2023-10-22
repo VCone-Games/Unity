@@ -23,22 +23,22 @@ public class Jump : MonoBehaviour
     [Header("Jump layerMask")]
     [SerializeField] LayerMask groundLayer;
 
-    [Header("Control variables")]
-    [SerializeField][ReadOnly] bool jumping;
-    [SerializeField][ReadOnly] bool isGrounded;
-    [SerializeField][ReadOnly] bool isWalled;
-    [SerializeField][ReadOnly] bool jumpInputPressed;
-    [SerializeField][ReadOnly] float coyoteTimer;
-    [SerializeField][ReadOnly] float bufferTimer;
-    [SerializeField][ReadOnly] int jumpCount;
+	[Header("Control variables")]
+	[SerializeField][ReadOnly] bool jumping;
+	[SerializeField][ReadOnly] bool isGrounded;
+    [SerializeField][ReadOnly] bool keyPressed;
+	[SerializeField][ReadOnly] float coyoteTimer;
+	[SerializeField][ReadOnly] float bufferTimer;
+	[SerializeField][ReadOnly] int jumpCount;
 
     Rigidbody2D myRigidbody;
     Collider2D myCollider;
 
-    public bool IsGrounded { get { return isGrounded; } }
+	public bool IsJumping { get { return jumping; } set { jumping = value; } }
 
-    public bool IsWalled { get { return isWalled; } set { isWalled = value; } }
-    public float NormalGravityScale { get { return normalGravityScale; } }
+	public bool IsGrounded { get { return isGrounded; } }
+
+	public float NormalGravityScale {  get { return normalGravityScale; } }
 
 
     // Start is called before the first frame update
