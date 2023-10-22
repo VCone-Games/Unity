@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class Wallgrab : MonoBehaviour
 {
-
 	[Header("Input system")]
 	[SerializeField] InputActionReference wallJumpReference;
 
