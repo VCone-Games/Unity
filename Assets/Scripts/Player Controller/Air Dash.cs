@@ -39,7 +39,7 @@ public class AirDash : MonoBehaviour
 		myRigidbody = GetComponent<Rigidbody2D>();
 
 		GetComponent<HorizontalMovement>().enabled = false;
-		GetComponent<HorizontalMovement>().enabled = false;
+		GetComponent<HorizontalMovement>().enabled = true;
 	}
 
 	private void OnDashing(InputAction.CallbackContext context)
@@ -59,6 +59,7 @@ public class AirDash : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
+		if (DISABLED) return;
         if(dashTimer > 0.0f)
 		{
 			myRigidbody.gravityScale = 0;

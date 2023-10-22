@@ -399,9 +399,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 2
   myRigidbody: {fileID: 750904697}
-  afterParriedTime: 0
+  afterParriedTime: 0.5
   afterParriedTimer: 0
-  layerNoPlayer: 0
+  layerNoPlayer: 9
   defaultLayer: 0
 --- !u!70 &750904696
 CapsuleCollider2D:
@@ -463,7 +463,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &750904698
 SpriteRenderer:
@@ -714,7 +714,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &942268331
 SpriteRenderer:
@@ -1538,12 +1538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42adeb7a4832bcd47accf3f19ab5eaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  shootReference: {fileID: -6108951953813829766, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  movementActionReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   movementSpeed: 7
-  avalibleMovement: 0
-  isHooking: 0
-  playerDirection: 0
 --- !u!114 &1291495135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1570,7 +1566,7 @@ MonoBehaviour:
     m_Bits: 128
   jumping: 0
   isGrounded: 0
-  keyPressed: 0
+  jumpInputPressed: 0
   coyoteTimer: 0
   bufferTimer: 0
   jumpCount: 0
@@ -1593,7 +1589,7 @@ MonoBehaviour:
   mousePositionInWorld: {x: 0, y: 0}
   hookRangeRepresentation: {fileID: 810806837}
   hookRange: 7
-  hookProjectileSpeed: 20
+  hookProjectileSpeed: 10
   hookingSpeed: 50
   hookingDuration: 0.5
   hookingAnimationCurve:
@@ -1609,8 +1605,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.21540418
-      value: 0.09841478
+      time: 0.5020163
+      value: 0.09548509
       inSlope: -0.017342255
       outSlope: -0.017342255
       tangentMode: 0
@@ -1652,7 +1648,7 @@ MonoBehaviour:
   parryReference: {fileID: 4080458920108112001, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   aimReference: {fileID: 8003593690241759918, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   parryDistance: 2
-  parryForce: 20
+  parryForce: 13
   mousePositionInScreen: {x: 0, y: 0}
   mousePositionInWorld: {x: 0, y: 0}
   parryKnockBackTimer: 0
@@ -1688,7 +1684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6ba2b9eb6727545b736236b973f517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabWallReference: {fileID: 2624732889372013233, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   jumpReference: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   distanceMax: 0.1
   jumpWallForce: 15
@@ -1698,9 +1693,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   jumpWall: 0
-  wantsToGrabWall: 0
   isGrabbingWall: 0
-  isPressingWall: 0
+  leftWall: 0
+  rightWall: 0
   isJumpingLeft: 0
   isJumpingRight: 0
   jumpWallTimer: 0
@@ -1784,7 +1779,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1523026638
 SpriteRenderer:

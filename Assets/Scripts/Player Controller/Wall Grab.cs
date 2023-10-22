@@ -12,28 +12,30 @@ public class Wallgrab : MonoBehaviour
 	[SerializeField] InputActionReference jumpReference;
 
 	[Header("Params")]
-	[SerializeField] float distanceMax;
-	[SerializeField] float jumpWallForce;
-	[SerializeField] float ForceAddX;
-	[SerializeField] float jumpWallTime;
+	[SerializeField] private float distanceMax;
+	[SerializeField] private float jumpWallForce;
+	[SerializeField] private float ForceAddX;
+	[SerializeField] private float jumpWallTime;
 
 	[Header("Wall Layermask")]
 	[SerializeField] LayerMask wallLayer;
 
 	[Header("Control variables")]
-	[SerializeField][ReadOnly] bool jumpWall;
-	[SerializeField][ReadOnly] bool isGrabbingWall;
-	[SerializeField][ReadOnly] bool leftWall;
-	[SerializeField][ReadOnly] bool rightWall;
-	[SerializeField][ReadOnly] bool isJumpingLeft;
-	[SerializeField][ReadOnly] bool isJumpingRight;
-	[SerializeField][ReadOnly] float jumpWallTimer;
+	[SerializeField][ReadOnly] private bool jumpWall;
+	[SerializeField][ReadOnly] private bool isGrabbingWall;
+	[SerializeField][ReadOnly] private bool leftWall;
+	[SerializeField][ReadOnly] private bool rightWall;
+	[SerializeField][ReadOnly] private bool isJumpingLeft;
+	[SerializeField][ReadOnly] private bool isJumpingRight;
+	[SerializeField][ReadOnly] private float jumpWallTimer;
 
-	Rigidbody2D myRigidbody;
-	Collider2D myCollider;
-	Jump jumpScript;
+    private Rigidbody2D myRigidbody;
+    private Collider2D myCollider;
+    private Jump jumpScript;
 
-	HorizontalMovement horizontalMovementReference;
+    private bool DISABLED;
+
+    HorizontalMovement horizontalMovementReference;
 
 	public bool JumpWall { get { return jumpWall; } set { jumpWall = true; } }
 
@@ -66,13 +68,15 @@ public class Wallgrab : MonoBehaviour
 
 			jumpWallTimer = jumpWallTime;
 			jumpWall = true;
-			jumpScript.IsJumping = true;
+            horizontalMovementReference.DisableMovementInput();
+            jumpScript.IsJumping = true;
 		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate()
     {
+		if(DISABLED) return;
 
 		leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
 		rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
@@ -92,6 +96,7 @@ public class Wallgrab : MonoBehaviour
 
 		if (jumpWall && jumpScript.IsJumping)
 		{
+
 			if (leftWall || isJumpingLeft)
 			{
 				myRigidbody.velocity = new Vector2(jumpWallForce + ForceAddX, jumpWallForce);
@@ -111,8 +116,19 @@ public class Wallgrab : MonoBehaviour
 			jumpWall = false;
 			isJumpingLeft = false;
 			isJumpingRight = false;
+			horizontalMovementReference.EnableMovementInput();
 		}
     }
 
 
+    public void DisableWallGrabInput()
+    {
+        jumpReference.action.Disable();
+        DISABLED = true;
+    }
+    public void EnableWallGrabInput()
+    {
+        jumpReference.action.Enable();
+        DISABLED = false;
+    }
 }

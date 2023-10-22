@@ -53,6 +53,9 @@ public class Hook : MonoBehaviour
 
     //RIGIDBODIES
     private Rigidbody2D myRigidbody;
+    private HorizontalMovement horizontalMovementComponent;
+    private AirDash dashComponent;
+    private Wallgrab wallGrabComponent;
     private Rigidbody2D hookedRigidBody;
 
     void Start()
@@ -66,6 +69,9 @@ public class Hook : MonoBehaviour
         //hookRange = transform.GetChild(0).transform.lossyScale.x * 0.5f;
 
         myRigidbody = GetComponent<Rigidbody2D>();
+        horizontalMovementComponent = GetComponent<HorizontalMovement>();
+        dashComponent = GetComponent<AirDash>();
+        wallGrabComponent = GetComponent<Wallgrab>();
     }
 
 
@@ -97,7 +103,8 @@ public class Hook : MonoBehaviour
         else
         {
             //Debug.Log("MOVIENDO hacia " + shootDirection);
-            hookProjectile.transform.position += shootDirection * hookProjectileSpeed * Time.fixedDeltaTime;
+            //hookProjectile.transform.position += shootDirection * hookProjectileSpeed * Time.fixedDeltaTime;
+            hookProjectile.GetComponent<Rigidbody2D>().velocity = new Vector2(shootDirection.x * hookProjectileSpeed, shootDirection.y * hookProjectileSpeed);
 
             RaycastHit2D hit = Physics2D.Raycast(hookProjectile.transform.position, shootDirection, 0.1f, ~LayerMask.GetMask("Player"));
             if (hit.collider != null && hit.collider.gameObject.GetComponent<IHookable>() == null)
@@ -141,18 +148,26 @@ public class Hook : MonoBehaviour
 
         if ((direction.magnitude < distanceToUnhook))
         {
-            hookedGameObject.GetComponent<IHookable>().Unhook();
+
             ResetAfterHooking();
+            horizontalMovementComponent.EnableMovementInput();
+            dashComponent.EnableDashInput();
+            wallGrabComponent.EnableWallGrabInput();
 
         }
         else if (hookedGameObject.GetComponent<IHookable>().HasBeenParried())
         {
-            hookedGameObject.GetComponent<IHookable>().Unhook();
+
             ResetAfterHooking();
         }
         else
         {
             direction.Normalize();
+
+            horizontalMovementComponent.DisableMovementInput();
+            dashComponent.DisableDashInput();
+            wallGrabComponent.DisableWallGrabInput();
+
             if (!hookedGameObject.GetComponent<IHookable>().IsBeingParried())
             {
                 hookElapsedTime += Time.deltaTime;
@@ -180,6 +195,8 @@ public class Hook : MonoBehaviour
 
     void ResetAfterHooking()
     {
+        hookedGameObject.GetComponent<IHookable>().Unhook();
+
         Time.timeScale = 1;
         isHooking = false;
         //myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;

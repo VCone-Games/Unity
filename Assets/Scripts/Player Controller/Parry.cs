@@ -30,8 +30,9 @@ public class Parry : MonoBehaviour
 
     [SerializeField] private Rigidbody2D myRigidbody;
 
-    HorizontalMovement horizontalMovementReference;
-    AirDash dashReference;
+    private HorizontalMovement horizontalMovementComponent;
+    private AirDash dashComponent;
+    private Wallgrab wallGrabComponent;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +41,9 @@ public class Parry : MonoBehaviour
         parryReference.action.canceled += OffParry;
         aimReference.action.performed += OnMouseMovement;
 
-        horizontalMovementReference = GetComponent<HorizontalMovement>();
-        dashReference = GetComponent<AirDash>();
+        horizontalMovementComponent = GetComponent<HorizontalMovement>();
+        dashComponent = GetComponent<AirDash>();
+        wallGrabComponent = GetComponent<Wallgrab>();
     }
 
     // Update is called once per frame
@@ -52,8 +54,9 @@ public class Parry : MonoBehaviour
             parryKnockBackTimer -= Time.deltaTime;
             if(parryKnockBackTimer < 0)
             {
-                horizontalMovementReference.EnableMovementInput();
-                dashReference.EnableDashInput();
+                horizontalMovementComponent.EnableMovementInput();
+                dashComponent.EnableDashInput();
+                wallGrabComponent.EnableWallGrabInput();
             }
 
         }
@@ -94,8 +97,9 @@ public class Parry : MonoBehaviour
 
         Time.timeScale = 1;
 
-        horizontalMovementReference.DisableMovementInput();
-        dashReference.DisableDashInput();
+        horizontalMovementComponent.DisableMovementInput();
+        dashComponent.DisableDashInput();
+        wallGrabComponent.DisableWallGrabInput();
 
         parryKnockBackTimer = parryKnockbackTime;
 

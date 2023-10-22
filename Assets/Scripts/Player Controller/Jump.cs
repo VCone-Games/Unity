@@ -26,7 +26,7 @@ public class Jump : MonoBehaviour
 	[Header("Control variables")]
 	[SerializeField][ReadOnly] bool jumping;
 	[SerializeField][ReadOnly] bool isGrounded;
-    [SerializeField][ReadOnly] bool keyPressed;
+    [SerializeField][ReadOnly] bool jumpInputPressed;
 	[SerializeField][ReadOnly] float coyoteTimer;
 	[SerializeField][ReadOnly] float bufferTimer;
 	[SerializeField][ReadOnly] int jumpCount;
@@ -118,7 +118,7 @@ public class Jump : MonoBehaviour
 
     void JumpMethod()
     {
-        if ((bufferTimer > 0.0f && coyoteTimer > 0.0f) || isWalled)
+        if ((bufferTimer > 0.0f && coyoteTimer > 0.0f))
         {
             // GetComponent<HorizontalMovement>().DisableMovementInput();
             jumping = true;
