@@ -7,43 +7,47 @@ using UnityEngine.InputSystem;
 public class HorizontalMovement : MonoBehaviour
 {
     [Header("Input system")]
-    [SerializeField] InputActionReference movementReference;
-    [SerializeField] InputActionReference shootReference;
+    [SerializeField] private InputActionReference movementActionReference;
+
 
     [Header("Movement params")]
-    [SerializeField] float movementSpeed;
+    [SerializeField] private float movementSpeed;
 
-    bool movementInputPressed;
-    bool DISABLED;
+    private bool movementInputPressed;
+    private bool DISABLED;
 
-    float playerDirection;
-    bool facingRight = true;
-    Rigidbody2D myRigidbody;
+    private float playerDirection;
+    private bool facingRight = true;
+    private Rigidbody2D myRigidbody;
 
-    Jump jumpReference;
-    AirDash dashReference;
-    Hook hookReference;
+    private Jump jumpComponent;
+    private AirDash dashComponent;
+    private Hook hookComponent;
 
-    // Start is called before the first frame update
+    public bool IsFacingRight
+    {
+        get { return facingRight; }
+        set { facingRight = value; }
+    }
+
+ 
     void Start()
     {
-        movementReference.action.performed += OnPressed;
-        movementReference.action.canceled += OnRelease;
+        movementActionReference.action.performed += OnPressed;
+        movementActionReference.action.canceled += OnRelease;
 
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        jumpReference = GetComponent<Jump>();
-        dashReference = GetComponent<AirDash>();
-        hookReference = GetComponent<Hook>();
+        jumpComponent = GetComponent<Jump>();
+        dashComponent = GetComponent<AirDash>();
+        hookComponent = GetComponent<Hook>();
 
-        // //PRUEBA DE FUERZAS
-        // shootReference.action.performed += Test;
     }
 
     private void OnPressed(InputAction.CallbackContext context)
     {
         movementInputPressed = true;
-        playerDirection = movementReference.action.ReadValue<float>();
+        playerDirection = movementActionReference.action.ReadValue<float>();
 
         SpriteDirectionManager();
     }
@@ -76,12 +80,12 @@ public class HorizontalMovement : MonoBehaviour
 
     public void DisableMovementInput()
     {
-        movementReference.action.Disable();
-        DISABLED = true;    
+        movementActionReference.action.Disable();
+        DISABLED = true;
     }
     public void EnableMovementInput()
     {
-        movementReference.action.Enable();
+        movementActionReference.action.Enable();
         DISABLED = false;
     }
 
@@ -94,7 +98,7 @@ public class HorizontalMovement : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(movementSpeed * playerDirection, myRigidbody.velocity.y);
         }
-        else 
+        else
         {
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
         }
