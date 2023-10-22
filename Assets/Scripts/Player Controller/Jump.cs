@@ -18,6 +18,9 @@ public class Jump : MonoBehaviour
 	[SerializeField] float bonusAirTimeInterval;
 	[SerializeField] float raycastFeetLength;
 
+	[Header("Jump layerMask")]
+	[SerializeField] LayerMask groundLayer;
+
 	[Header("Control variables")]
 	[SerializeField][ReadOnly] bool jumping;
 	[SerializeField][ReadOnly] bool isGrounded;
@@ -31,8 +34,7 @@ public class Jump : MonoBehaviour
 
 	public bool IsGrounded { get { return isGrounded; } }
 
-	[Header("Jump layer mask")]
-	[SerializeField] LayerMask groundLayer;
+
 
 	// Start is called before the first frame update
 	void Start()

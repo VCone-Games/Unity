@@ -17,8 +17,10 @@ public class HorizontalMovement : MonoBehaviour
     public bool isHooking;
     float playerDirection;
     Rigidbody2D myRigidbody;
+    Vector3 myLocalScale;
 
-    Jump jump;
+    Jump jumpReference;
+    AirDash dashReference;
 
 
     // Start is called before the first frame update
@@ -28,10 +30,12 @@ public class HorizontalMovement : MonoBehaviour
         movementReference.action.canceled += OnRelease;
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        jump = GetComponent<Jump>();
+        jumpReference = GetComponent<Jump>();
+        dashReference = GetComponent<AirDash>();
+
         //PRUEBA DE FUERZAS
         shootReference.action.performed += Test;
-       
+        myLocalScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
 	private void Test(InputAction.CallbackContext context)
@@ -60,21 +64,28 @@ public class HorizontalMovement : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate()
     {
-        if (jump.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO ESTÉ LISTO
+        if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO ESTï¿½ LISTO
         {
             isHooking = false;
         }
 
-       // if (!isHooking || keyPressed)
-       // {
-            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y + 0.001f);
-            isHooking = false;
-       // }
-       // else if (isHooking && !keyPressed)
-       // {
-       //     myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, myRigidbody.velocity.y);
-       //
-       // }
+        if (dashReference.IsDashing) return;
+            
+        if (!forceAplied || keyPressed)
+        {
+            myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
+            if (playerDirection != 0)
+            {
+                transform.localScale = new Vector3(playerDirection * myLocalScale.x, myLocalScale.y, myLocalScale.z);
+            }
+
+            forceAplied = false;
+        }
+        else if (forceAplied && !keyPressed)
+        {
+            myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
+
+        }
 
     }
 
