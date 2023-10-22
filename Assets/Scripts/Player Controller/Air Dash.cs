@@ -19,7 +19,9 @@ public class AirDash : MonoBehaviour
     [SerializeField] bool hasDashed;
     [SerializeField] float dashTimer;
 
-	Jump jumpReference;
+    private float normalGravityScale;
+
+    Jump jumpReference;
 	Rigidbody2D myRigidbody;
 
 	public bool IsDashing {  get { return isDashing; } }
@@ -31,6 +33,8 @@ public class AirDash : MonoBehaviour
 		jumpReference = GetComponent<Jump>();
 
 		myRigidbody = GetComponent<Rigidbody2D>();
+
+		normalGravityScale = GetComponent<Jump>().NormalGravityScale;
     }
 
 	private void OnDashing(InputAction.CallbackContext context)
@@ -40,6 +44,7 @@ public class AirDash : MonoBehaviour
 			isDashing = true;
 			hasDashed = true;
 			dashTimer = dashDuration;
+			myRigidbody.velocity = Vector2.zero;
 		}
 	}
 
@@ -50,6 +55,7 @@ public class AirDash : MonoBehaviour
     {
         if(dashTimer > 0.0f)
 		{
+			myRigidbody.gravityScale = 0;
 			if (transform.localScale.x < 0.0f)
 				myRigidbody.velocity = new Vector2(-dashForce, myRigidbody.velocity.y);
 			else
@@ -59,6 +65,7 @@ public class AirDash : MonoBehaviour
 		}
 		else if (dashTimer <= 0.0f) 
 		{
+			myRigidbody.gravityScale = normalGravityScale;
 			isDashing = false;
 			myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 		}

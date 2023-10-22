@@ -16,8 +16,8 @@ public class HorizontalMovement : MonoBehaviour
     bool keyPressed;
     public bool isHooking;
     float playerDirection;
+    bool facingRight = true;
     Rigidbody2D myRigidbody;
-    Vector3 myLocalScale;
 
     Jump jumpReference;
     AirDash dashReference;
@@ -35,34 +35,51 @@ public class HorizontalMovement : MonoBehaviour
 
         //PRUEBA DE FUERZAS
         shootReference.action.performed += Test;
-        myLocalScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
-	private void Test(InputAction.CallbackContext context)
-	{
+    private void Test(InputAction.CallbackContext context)
+    {
         isHooking = true;
-	}
+    }
 
-	private void OnPressed(InputAction.CallbackContext context)
-	{
-        if(!isHooking)
+    private void OnPressed(InputAction.CallbackContext context)
+    {
+        if (!isHooking)
         {
             playerDirection = movementReference.action.ReadValue<float>();
+
+            if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
+            {
+                if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
+                {
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
+                facingRight = false;
+            }
+
+            else //SI MUEVE HACIA DERECHA   
+            {
+                if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
+                {
+                    transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                }
+                facingRight = true;
+            }
             keyPressed = true;
         }
-	}
+    }
 
-	private void OnRelease(InputAction.CallbackContext context)
-	{
-        if(!isHooking)
+    private void OnRelease(InputAction.CallbackContext context)
+    {
+        if (!isHooking)
         {
             playerDirection = 0.0f;
             keyPressed = false;
         }
-	}
+    }
 
-	// Update is called once per frame
-	void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
         if (jumpReference.IsGrounded) //PLACE HOLDER A ESPERA DE QUE EL GANCHO EST� LISTO
         {
@@ -70,24 +87,18 @@ public class HorizontalMovement : MonoBehaviour
         }
 
         if (dashReference.IsDashing) return;
-            
-        if (!forceAplied || keyPressed)
+
+        if (!isHooking || keyPressed)
         {
             myRigidbody.velocity = new Vector2(playerDirection * movementSpeed, myRigidbody.velocity.y);
-            if (playerDirection != 0)
-            {
-                transform.localScale = new Vector3(playerDirection * myLocalScale.x, myLocalScale.y, myLocalScale.z);
-            }
 
-            forceAplied = false;
+            isHooking = false;
         }
-        else if (forceAplied && !keyPressed)
-        {
-            myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
-
-        }
+        //else if (isHooking && !keyPressed)
+        //{
+        //    myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
+        //
+        //}
 
     }
-
-
 }

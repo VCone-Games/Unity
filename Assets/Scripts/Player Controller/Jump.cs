@@ -17,6 +17,8 @@ public class Jump : MonoBehaviour
 	[SerializeField] int maxJumps;
 	[SerializeField] float bonusAirTimeInterval;
 	[SerializeField] float raycastFeetLength;
+	[SerializeField] float bonusAirTimeGravityScale;
+	[SerializeField] float normalGravityScale;
 
 	[Header("Jump layerMask")]
 	[SerializeField] LayerMask groundLayer;
@@ -24,7 +26,8 @@ public class Jump : MonoBehaviour
 	[Header("Control variables")]
 	[SerializeField][ReadOnly] bool jumping;
 	[SerializeField][ReadOnly] bool isGrounded;
-	[SerializeField][ReadOnly] bool keyPressed;
+    [SerializeField][ReadOnly] bool isWalled;
+    [SerializeField][ReadOnly] bool keyPressed;
 	[SerializeField][ReadOnly] float coyoteTimer;
 	[SerializeField][ReadOnly] float bufferTimer;
 	[SerializeField][ReadOnly] int jumpCount;
@@ -34,6 +37,8 @@ public class Jump : MonoBehaviour
 
 	public bool IsGrounded { get { return isGrounded; } }
 
+	public bool IsWalled { get { return isWalled; } set { isWalled = value; } }
+	public float NormalGravityScale {  get { return normalGravityScale; } }
 
 
 	// Start is called before the first frame update
@@ -44,7 +49,9 @@ public class Jump : MonoBehaviour
 
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<Collider2D>();
-	}
+
+        myRigidbody.gravityScale = normalGravityScale;
+    }
 
 	private void OnJump(InputAction.CallbackContext context)
 	{
@@ -79,6 +86,8 @@ public class Jump : MonoBehaviour
 		isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
 			myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
 
+		if (GetComponent<AirDash>().IsDashing) return;
+
 		if (isGrounded)
 		{
 			coyoteTimer = coyoteTime;
@@ -90,11 +99,11 @@ public class Jump : MonoBehaviour
 
 			if (myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
 			{
-				myRigidbody.gravityScale = 1.5f;
+				myRigidbody.gravityScale = bonusAirTimeGravityScale;
 			}
 			else
 			{
-				myRigidbody.gravityScale = 3;
+				myRigidbody.gravityScale = normalGravityScale;
 			}
 		}
 
@@ -105,7 +114,7 @@ public class Jump : MonoBehaviour
 
 	void JumpMethod()
 	{
-		if (keyPressed && (bufferTimer > 0.0f && coyoteTimer > 0.0f))
+		if (keyPressed && ((bufferTimer > 0.0f && coyoteTimer > 0.0f) || isWalled))
 		{
 			jumping = true;
 			myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);

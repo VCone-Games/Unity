@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Player
   - Ground
-  - Hook Projectile
-  - Hooked Object
+  - Wall
+  - LayerNoPlayer
   - 
   - 
   - 

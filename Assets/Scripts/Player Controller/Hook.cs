@@ -10,9 +10,9 @@ public class Hook : MonoBehaviour
 {
     //INPUT ACTIONS VARIABLES
     [Header("Input system")]
-    [SerializeField] private InputActionReference graplingShootReference;
-    [SerializeField] private InputActionReference graplingAimReference;
-    [SerializeField] private InputActionReference graplingShootAimReference;
+    [SerializeField] private InputActionReference hookShootReference;
+    [SerializeField] private InputActionReference hookAimReference;
+    [SerializeField] private InputActionReference hookShootAimReference;
 
 
     //MOUSE COORDINATES
@@ -58,8 +58,8 @@ public class Hook : MonoBehaviour
     void Start()
     {
         //ASIGN ACTIONS TO CODE
-        graplingAimReference.action.performed += OnMouseMovement;
-        graplingShootReference.action.performed += OnMouseShoot;
+        hookAimReference.action.performed += OnMouseMovement;
+        hookShootReference.action.performed += OnMouseShoot;
 
         hookRangeRepresentation.transform.localScale = new Vector3(hookRange * 2, hookRange * 2, hookRange * 2);
         hookRangeRepresentation.transform.SetParent(transform, false);
@@ -111,11 +111,10 @@ public class Hook : MonoBehaviour
                 //Debug.Log("ME CHOCO");
                 hookLanded = true;
                 hookedGameObject = hit.collider.gameObject;
-                hookedRigidBody = hit.collider.gameObject.GetComponent<Rigidbody2D>();
+                hookedRigidBody = hookedGameObject.GetComponent<Rigidbody2D>();
                 hookedGameObject.GetComponent<IHookable>().Hooked();
                 hookProjectile.AddComponent<FixedJoint2D>();
                 hookProjectile.GetComponent<FixedJoint2D>().connectedBody = hookedRigidBody;
-                hookedGameObject.layer = 9;
 
             }
         }
@@ -140,37 +139,40 @@ public class Hook : MonoBehaviour
     {
         Vector2 direction = new Vector2(transform.position.x - hookedGameObject.transform.position.x, transform.position.y - hookedGameObject.transform.position.y);
 
-        if (direction.magnitude < distanceToUnhook)
+        if ((direction.magnitude < distanceToUnhook))
         {
-            isHooking = false;
-
-            Time.timeScale = 1;
-
             hookedGameObject.GetComponent<IHookable>().Unhook();
-
             ResetAfterHooking();
 
+        }
+        else if (hookedGameObject.GetComponent<IHookable>().HasBeenParried())
+        {
+            hookedGameObject.GetComponent<IHookable>().Unhook();
+            ResetAfterHooking();
         }
         else
         {
             direction.Normalize();
-            hookElapsedTime += Time.deltaTime;
-            hookPercentageComplete = hookElapsedTime / hookingDuration;
+            if (!hookedGameObject.GetComponent<IHookable>().IsBeingParried())
+            {
+                hookElapsedTime += Time.deltaTime;
+                hookPercentageComplete = hookElapsedTime / hookingDuration;
 
-            Time.timeScale = hookingAnimationCurve.Evaluate(hookPercentageComplete);
-            switch (hookedGameObject.GetComponent<IHookable>().getWeight())
+                Time.timeScale = hookingAnimationCurve.Evaluate(hookPercentageComplete);
+            }
+
+            switch (hookedGameObject.GetComponent<IHookable>().GetWeight())
             {
                 case 0:
                     //myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                    hookedRigidBody.velocity = new Vector3(direction.x, direction.y, 0) * hookingSpeed;
-
+                    hookedRigidBody.velocity = new Vector2(direction.x, direction.y) * hookingSpeed;
                     break;
                 case 1:
-                    hookedRigidBody.velocity = new Vector3(direction.x, direction.y, 0) * hookingSpeed * 0.5f;
-                    myRigidbody.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingSpeed * 0.5f;
+                    hookedRigidBody.velocity = new Vector2(direction.x, direction.y) * hookingSpeed * 0.5f;
+                    myRigidbody.velocity = new Vector2(-direction.x, -direction.y) * hookingSpeed * 0.5f;
                     break;
                 case 2:
-                    myRigidbody.velocity = new Vector3(-direction.x, -direction.y, 0) * hookingSpeed;
+                    myRigidbody.velocity = new Vector2(-direction.x, -direction.y) * hookingSpeed;
                     break;
             }
         }
@@ -178,7 +180,9 @@ public class Hook : MonoBehaviour
 
     void ResetAfterHooking()
     {
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        Time.timeScale = 1;
+        isHooking = false;
+        //myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         hookedGameObject = null;
         hookedRigidBody = null;
         hookElapsedTime = 0;

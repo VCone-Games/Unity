@@ -57,7 +57,14 @@ public class Wallgrab : MonoBehaviour
 		{
 			myRigidbody.velocity = Vector2.zero;
 			isGrabbingWall = true;
+			GetComponent<Jump>().IsWalled = true;
 		}
+		else
+		{
+			isPressingWall = false;
+			GetComponent<Jump>().IsWalled = false;
+
+        }
     }
 
 
