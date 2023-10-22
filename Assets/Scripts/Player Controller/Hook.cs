@@ -51,12 +51,14 @@ public class Hook : MonoBehaviour
     [Header("Hooked GameObject")]
     [SerializeField][ReadOnly] private GameObject hookedGameObject;
 
-    //RIGIDBODIES
     private Rigidbody2D myRigidbody;
     private HorizontalMovement horizontalMovementComponent;
     private AirDash dashComponent;
     private Wallgrab wallGrabComponent;
     private Rigidbody2D hookedRigidBody;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask projectileLayer;
+
 
     void Start()
     {
@@ -103,18 +105,21 @@ public class Hook : MonoBehaviour
         else
         {
             //Debug.Log("MOVIENDO hacia " + shootDirection);
-            //hookProjectile.transform.position += shootDirection * hookProjectileSpeed * Time.fixedDeltaTime;
-            hookProjectile.GetComponent<Rigidbody2D>().velocity = new Vector2(shootDirection.x * hookProjectileSpeed, shootDirection.y * hookProjectileSpeed);
+            hookProjectile.transform.position += shootDirection * hookProjectileSpeed * Time.fixedDeltaTime;
 
-            RaycastHit2D hit = Physics2D.Raycast(hookProjectile.transform.position, shootDirection, 0.1f, ~LayerMask.GetMask("Player"));
+   
+
+            RaycastHit2D hit = Physics2D.Raycast(hookProjectile.transform.position, shootDirection, 0.1f, ~playerLayer);
+
             if (hit.collider != null && hit.collider.gameObject.GetComponent<IHookable>() == null)
             {
+                Debug.Log("CAGASTE");
                 hookFailed = true;
                 hookProjectile.GetComponent<Collider2D>().enabled = false;
             }
-
             if (hit.collider != null && hit.collider.gameObject.GetComponent<IHookable>() != null)
             {
+                Debug.Log(" NO CAGASTE");
                 //Debug.Log("ME CHOCO");
                 hookLanded = true;
                 hookedGameObject = hit.collider.gameObject;
@@ -122,8 +127,9 @@ public class Hook : MonoBehaviour
                 hookedGameObject.GetComponent<IHookable>().Hooked();
                 hookProjectile.AddComponent<FixedJoint2D>();
                 hookProjectile.GetComponent<FixedJoint2D>().connectedBody = hookedRigidBody;
-
+           
             }
+
         }
     }
 
@@ -139,7 +145,7 @@ public class Hook : MonoBehaviour
             hookFailed = false;
         }
         direction.Normalize();
-        hookProjectile.GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y, 0) * hookProjectileSpeed;
+        hookedRigidBody.velocity = new Vector3(direction.x, direction.y, 0) * hookProjectileSpeed;
     }
 
     void HookingInteraction()
@@ -227,6 +233,7 @@ public class Hook : MonoBehaviour
 
 
         hookProjectile = Instantiate(hookPrefab, transform.position, Quaternion.identity);
+        hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
     }
 
 

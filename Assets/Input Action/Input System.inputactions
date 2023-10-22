@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Wall Jump",
+                    "type": "Button",
+                    "id": "ae259d69-ea6f-4fa9-bb73-dcd871347391",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -186,7 +195,7 @@
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -197,7 +206,7 @@
                     "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -210,6 +219,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df7e77b8-56dd-42fd-b878-ba5c13ef0b06",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wall Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac778902-834d-4957-8e3e-2089e3de3222",
+                    "path": "<SwitchProControllerHID>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wall Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "987a61c4-74b6-47d4-8a9d-67323a29b325",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wall Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

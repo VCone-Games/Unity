@@ -9,7 +9,7 @@ public class Wallgrab : MonoBehaviour
 {
 
 	[Header("Input system")]
-	[SerializeField] InputActionReference jumpReference;
+	[SerializeField] InputActionReference wallJumpReference;
 
 	[Header("Params")]
 	[SerializeField] private float distanceMax;
@@ -33,22 +33,25 @@ public class Wallgrab : MonoBehaviour
     private Collider2D myCollider;
     private Jump jumpScript;
 
-    private bool DISABLED;
+    [SerializeField] private bool DISABLED;
 
     HorizontalMovement horizontalMovementReference;
+	AirDash airDashMovementReference;
 
 	public bool JumpWall { get { return jumpWall; } set { jumpWall = true; } }
 
 	// Start is called before the first frame update
 	void Start()
     {
-		jumpReference.action.performed += WallJump;
+		wallJumpReference.action.performed += WallJump;
 
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myCollider = GetComponent<Collider2D>();
 		jumpScript = GetComponent<Jump>();
 
 		horizontalMovementReference = GetComponent<HorizontalMovement>();
+		airDashMovementReference = GetComponent<AirDash>();
+
     }
 
 	private void WallJump(InputAction.CallbackContext context)
@@ -68,7 +71,11 @@ public class Wallgrab : MonoBehaviour
 
 			jumpWallTimer = jumpWallTime;
 			jumpWall = true;
+
             horizontalMovementReference.DisableMovementInput();
+			airDashMovementReference.DisableDashInput();
+
+
             jumpScript.IsJumping = true;
 		}
 	}
@@ -117,18 +124,19 @@ public class Wallgrab : MonoBehaviour
 			isJumpingLeft = false;
 			isJumpingRight = false;
 			horizontalMovementReference.EnableMovementInput();
+			airDashMovementReference.EnableDashInput();
 		}
     }
 
 
     public void DisableWallGrabInput()
     {
-        jumpReference.action.Disable();
+        wallJumpReference.action.Disable();
         DISABLED = true;
     }
     public void EnableWallGrabInput()
     {
-        jumpReference.action.Enable();
+        wallJumpReference.action.Enable();
         DISABLED = false;
     }
 }

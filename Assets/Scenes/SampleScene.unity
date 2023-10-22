@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 2
   myRigidbody: {fileID: 750904697}
-  afterParriedTime: 0.5
+  afterParriedTime: 1
   afterParriedTimer: 0
   layerNoPlayer: 9
   defaultLayer: 0
@@ -464,7 +464,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &750904698
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 750904694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.85, y: 1.7, z: 0}
+  m_LocalPosition: {x: 6.33, y: 6.07, z: 0}
   m_LocalScale: {x: 0.3636, y: 0.3636, z: 0.3636}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   mousePositionInWorld: {x: 0, y: 0}
   hookRangeRepresentation: {fileID: 810806837}
   hookRange: 7
-  hookProjectileSpeed: 10
+  hookProjectileSpeed: 15
   hookingSpeed: 50
   hookingDuration: 0.5
   hookingAnimationCurve:
@@ -1633,6 +1633,12 @@ MonoBehaviour:
   hookCoolDownTimer: 0
   hookPrefab: {fileID: 7953474213004086225, guid: 74207256fd9995049aaefc6586b20e3f, type: 3}
   hookedGameObject: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1291495137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,8 +1690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6ba2b9eb6727545b736236b973f517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpReference: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  distanceMax: 0.1
+  wallJumpReference: {fileID: 7738735177705242144, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  distanceMax: 0.2
   jumpWallForce: 15
   ForceAddX: 4
   jumpWallTime: 0.2
@@ -1699,6 +1705,7 @@ MonoBehaviour:
   isJumpingLeft: 0
   isJumpingRight: 0
   jumpWallTimer: 0
+  DISABLED: 0
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0
