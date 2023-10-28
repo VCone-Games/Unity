@@ -172,7 +172,7 @@
                     "id": "1dca4227-3f4a-4610-aa22-90b1e73b7c23",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.5,max=0.8)",
                     "groups": "Gamepad",
                     "action": "Hook Aim + Shoot ",
                     "isComposite": false,
@@ -185,6 +185,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b18cb6fe-7f0a-4b50-9159-2a2168062ba3",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -207,6 +218,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c881a1fc-d9e4-4f47-af19-458c4aff9ab2",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -248,6 +270,17 @@
                     "name": "",
                     "id": "987a61c4-74b6-47d4-8a9d-67323a29b325",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wall Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "502311ae-8506-4ca1-bbb4-b39ebf40d062",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

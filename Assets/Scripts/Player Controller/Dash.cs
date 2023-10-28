@@ -4,11 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AirDash : MonoBehaviour
+public class Dash : MonoBehaviour
 {
+    [Header("Is Disabled")]
+    private bool DISABLED;
 
     [Header("Input system")]
     [SerializeField] InputActionReference dashReference;
+
+    [Header("Player Components")]
+    [SerializeField] private Rigidbody2D myRigidbody;
+    [SerializeField] private Jump jumpReference;
+    [SerializeField] private HorizontalMovement horizontalMovementComponent;
+    [SerializeField] private WallGrab wallGrabComponent;
 
     [Header("Dash params")]
     [SerializeField] float dashForce;
@@ -18,34 +26,24 @@ public class AirDash : MonoBehaviour
     [SerializeField] bool isDashing;
     [SerializeField] bool hasDashed;
     [SerializeField] float dashTimer;
-
     private float normalGravityScale;
 
-    Jump jumpReference;
-    Rigidbody2D myRigidbody;
-
-    private bool DISABLED;
-
-    private HorizontalMovement horizontalMovementComponent;
-    private Wallgrab wallGrabComponent;
+    
 
 
-    public bool IsDashing { get { return isDashing; } }
+
+    public bool IsDashing
+    {
+        get { return isDashing; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         dashReference.action.performed += OnDashing;
-        jumpReference = GetComponent<Jump>();
-        normalGravityScale = jumpReference.NormalGravityScale;
-
-        myRigidbody = GetComponent<Rigidbody2D>();
-
-        horizontalMovementComponent = GetComponent<HorizontalMovement>();
+        normalGravityScale = myRigidbody.gravityScale;
         horizontalMovementComponent.enabled = false;
         horizontalMovementComponent.enabled = true;
-
-        wallGrabComponent = GetComponent<Wallgrab>();
     }
 
     private void OnDashing(InputAction.CallbackContext context)
@@ -65,13 +63,14 @@ public class AirDash : MonoBehaviour
     void FixedUpdate()
     {
         if (DISABLED) return;
+
         if (dashTimer > 0.0f)
         {
             horizontalMovementComponent.DisableMovementInput();
             wallGrabComponent.DisableWallGrabInput();
 
             myRigidbody.gravityScale = 0;
-            if (transform.localScale.x < 0.0f)
+            if (!horizontalMovementComponent.IsFacingRight)
                 myRigidbody.velocity = new Vector2(-dashForce, myRigidbody.velocity.y);
             else
                 myRigidbody.velocity = new Vector2(dashForce, myRigidbody.velocity.y);
@@ -88,7 +87,7 @@ public class AirDash : MonoBehaviour
             wallGrabComponent.EnableWallGrabInput();
         }
 
-        if (dashTimer <= 0.0f && jumpReference.IsGrounded)
+        if (dashTimer <= 0.0f && (jumpReference.IsGrounded || wallGrabComponent.IsGrabbingWall))
         {
             isDashing = false;
             hasDashed = false;

@@ -6,23 +6,26 @@ using UnityEngine.InputSystem;
 
 public class HorizontalMovement : MonoBehaviour
 {
+    [Header("Is Disabled")]
+    [SerializeField] private bool DISABLED;
+
     [Header("Input system")]
     [SerializeField] private InputActionReference movementActionReference;
 
 
     [Header("Movement params")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] private bool moving;
+    [SerializeField] private float movementDirection;
+    [SerializeField] private bool facingRight = true;
 
-    private bool movementInputPressed;
-    private bool DISABLED;
 
-    private float playerDirection;
-    private bool facingRight = true;
-    private Rigidbody2D myRigidbody;
-
-    private Jump jumpComponent;
-    private AirDash dashComponent;
-    private Hook hookComponent;
+    [Header("Player Component")]
+    [SerializeField] private Rigidbody2D myRigidbody;
+    [SerializeField] private Jump jumpComponent;
+    [SerializeField] private Dash dashComponent;
+    [SerializeField] private Hook hookComponent;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public bool IsFacingRight
     {
@@ -30,52 +33,60 @@ public class HorizontalMovement : MonoBehaviour
         set { facingRight = value; }
     }
 
- 
+
     void Start()
     {
         movementActionReference.action.performed += OnPressed;
         movementActionReference.action.canceled += OnRelease;
 
-        myRigidbody = GetComponent<Rigidbody2D>();
-
-        jumpComponent = GetComponent<Jump>();
-        dashComponent = GetComponent<AirDash>();
-        hookComponent = GetComponent<Hook>();
+        // myRigidbody = GetComponent<Rigidbody2D>();
+        //
+        // jumpComponent = GetComponent<Jump>();
+        // dashComponent = GetComponent<AirDash>();
+        // hookComponent = GetComponent<Hook>();
 
     }
 
     private void OnPressed(InputAction.CallbackContext context)
     {
-        movementInputPressed = true;
-        playerDirection = movementActionReference.action.ReadValue<float>();
-
-        SpriteDirectionManager();
+        moving = true;
+        movementDirection = movementActionReference.action.ReadValue<float>();
+        if (movementDirection < 0)
+        {
+            SpriteFlipManager(false);
+        }
+        if(movementDirection > 0)
+        {
+            SpriteFlipManager(true);
+        }
+ 
     }
 
-    private void SpriteDirectionManager()
+    public void SpriteFlipManager(bool isFacingRight)
     {
-        if (playerDirection < 0) //SI MUEVE HACIA IZQUIERDA
-        {
-            if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
-            {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            }
-            facingRight = false;
-        }
-
-        else //SI MUEVE HACIA DERECHA   
-        {
-            if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
-            {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            }
-            facingRight = true;
-        }
+        //if (movementDirection < 0 || direction == 1) //SI MUEVE HACIA IZQUIERDA
+        //{
+        //    if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
+        //    {
+        //        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        //    }
+        //    facingRight = false;
+        //}
+        //
+        //else if(movementDirection > 0 || direction == 2)//SI MUEVE HACIA DERECHA   
+        //{
+        //    if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
+        //    {
+        //        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        //    }
+        //    facingRight = true;
+        //}
+        facingRight = isFacingRight;
     }
 
     private void OnRelease(InputAction.CallbackContext context)
     {
-        movementInputPressed = false;
+        moving = false;
     }
 
     public void DisableMovementInput()
@@ -93,20 +104,24 @@ public class HorizontalMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (DISABLED) return;
-        if (movementInputPressed)
+        if (facingRight)
         {
-            myRigidbody.velocity = new Vector2(movementSpeed * playerDirection, myRigidbody.velocity.y);
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        if (DISABLED) return;
+        if (moving)
+        {
+            myRigidbody.velocity = new Vector2(movementSpeed * movementDirection, myRigidbody.velocity.y);
         }
         else
         {
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
         }
-        //else if (isHooking && !keyPressed)
-        //{
-        //    myRigidbody.velocity = new Vector2(Vector2.right.x * movementSpeed, myRigidbody.velocity.y);
-        //
-        //}
 
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HookableEnemy : MonoBehaviour, IHookable
+public class HookableEnemy : MonoBehaviour
 {
     [SerializeField] private int weight;
     [SerializeField] private Rigidbody2D myRigidbody;

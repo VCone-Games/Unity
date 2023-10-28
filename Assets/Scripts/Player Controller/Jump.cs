@@ -7,38 +7,57 @@ using UnityEngine.InputSystem;
 
 public class Jump : MonoBehaviour
 {
+    [Header("Is Disabled")]
+    private bool DISABLED;
+    private bool disableBonusAirTime;
+
     [Header("Input system")]
-    [SerializeField] InputActionReference jumpReference;
+    [SerializeField] private InputActionReference jumpReference;
+
+    [Header("Player Components")]
+    [SerializeField] private Rigidbody2D myRigidbody;
+    [SerializeField] private Collider2D myCollider;
+    [SerializeField] private WallGrab grabWallComponent;
 
     [Header("Jump params")]
-    [SerializeField] float jumpForce;
-    [SerializeField] float coyoteTime;
-    [SerializeField] float bufferTime;
-    [SerializeField] int maxJumps;
-    [SerializeField] float bonusAirTimeInterval;
-    [SerializeField] float raycastFeetLength;
-    [SerializeField] float bonusAirTimeGravityScale;
-    [SerializeField] float normalGravityScale;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float coyoteTime;
+    [SerializeField] private float bufferTime;
+    [SerializeField] private int maxJumps;
+    [SerializeField] private float bonusAirTimeInterval;
+    [SerializeField] private float raycastFeetLength;
+    [SerializeField] private float bonusAirTimeGravityScale;
+    [SerializeField] private float normalGravityScale;
 
     [Header("Jump layerMask")]
-    [SerializeField] LayerMask groundLayer;
+    [SerializeField] private LayerMask groundLayer;
 
-	[Header("Control variables")]
-	[SerializeField][ReadOnly] bool jumping;
-	[SerializeField][ReadOnly] bool isGrounded;
-    [SerializeField][ReadOnly] bool jumpInputPressed;
-	[SerializeField][ReadOnly] float coyoteTimer;
-	[SerializeField][ReadOnly] float bufferTimer;
-	[SerializeField][ReadOnly] int jumpCount;
+    [Header("Control variables")]
+    [SerializeField] private bool jumping;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool jumpInputPressed;
+    [SerializeField] private float coyoteTimer;
+    [SerializeField] private float bufferTimer;
+    [SerializeField] private int jumpCount;
 
-    Rigidbody2D myRigidbody;
-    Collider2D myCollider;
 
-	public bool IsJumping { get { return jumping; } set { jumping = value; } }
 
-	public bool IsGrounded { get { return isGrounded; } }
 
-	public float NormalGravityScale {  get { return normalGravityScale; } }
+    public bool IsJumping
+    {
+        get { return jumping; }
+        set { jumping = value; }
+    }
+
+    public bool IsGrounded
+    {
+        get { return isGrounded; }
+    }
+
+    public float NormalGravityScale
+    {
+        get { return normalGravityScale; }
+    }
 
 
     // Start is called before the first frame update
@@ -47,10 +66,7 @@ public class Jump : MonoBehaviour
         jumpReference.action.performed += OnJump;
         jumpReference.action.canceled += OnJumpCanceled;
 
-        myRigidbody = GetComponent<Rigidbody2D>();
-        myCollider = GetComponent<Collider2D>();
-
-        myRigidbody.gravityScale = normalGravityScale;
+        normalGravityScale = myRigidbody.gravityScale;
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -83,12 +99,14 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (DISABLED) return;
+
         isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
             myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
 
-        if (GetComponent<AirDash>().IsDashing) return;
+        if (GetComponent<Dash>().IsDashing) return;
 
-        if (isGrounded)
+        if (isGrounded || grabWallComponent.IsGrabbingWall)
         {
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
@@ -97,14 +115,18 @@ public class Jump : MonoBehaviour
         {
             coyoteTimer -= Time.deltaTime;
 
-            if (myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
+            if (!disableBonusAirTime)
             {
-                myRigidbody.gravityScale = bonusAirTimeGravityScale;
+                if (myRigidbody.velocity.y <= bonusAirTimeInterval && -bonusAirTimeInterval <= myRigidbody.velocity.y)
+                {
+                    myRigidbody.gravityScale = bonusAirTimeGravityScale;
+                }
+                else
+                {
+                    myRigidbody.gravityScale = normalGravityScale;
+                }
             }
-            else
-            {
-                myRigidbody.gravityScale = normalGravityScale;
-            }
+
         }
 
         bufferTimer -= Time.deltaTime;
@@ -124,6 +146,26 @@ public class Jump : MonoBehaviour
             jumping = true;
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
         }
+    }
+
+    public void DisableJumpInput()
+    {
+        jumpReference.action.Disable();
+        DISABLED = true;
+    }
+    public void EnableJumpInput()
+    {
+        jumpReference.action.Enable();
+        DISABLED = false;
+    }
+
+    public void DisableBonusAirTime()
+    {
+        disableBonusAirTime = true;
+    }
+    public void EnableBonusAirTime()
+    {
+        disableBonusAirTime = false;
     }
 
 }

@@ -1,130 +1,137 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Wallgrab : MonoBehaviour
+public class WallGrab : MonoBehaviour
 {
-	[Header("Input system")]
-	[SerializeField] InputActionReference wallJumpReference;
-
-	[Header("Params")]
-	[SerializeField] private float distanceMax;
-	[SerializeField] private float jumpWallForce;
-	[SerializeField] private float ForceAddX;
-	[SerializeField] private float jumpWallTime;
-
-	[Header("Wall Layermask")]
-	[SerializeField] LayerMask wallLayer;
-
-	[Header("Control variables")]
-	[SerializeField][ReadOnly] private bool jumpWall;
-	[SerializeField][ReadOnly] private bool isGrabbingWall;
-	[SerializeField][ReadOnly] private bool leftWall;
-	[SerializeField][ReadOnly] private bool rightWall;
-	[SerializeField][ReadOnly] private bool isJumpingLeft;
-	[SerializeField][ReadOnly] private bool isJumpingRight;
-	[SerializeField][ReadOnly] private float jumpWallTimer;
-
-    private Rigidbody2D myRigidbody;
-    private Collider2D myCollider;
-    private Jump jumpScript;
-
+    [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
 
-    HorizontalMovement horizontalMovementReference;
-	AirDash airDashMovementReference;
+    [Header("Input system")]
+    [SerializeField] InputActionReference wallJumpReference;
 
-	public bool JumpWall { get { return jumpWall; } set { jumpWall = true; } }
+    [Header("Player Components")]
+    [SerializeField] private Rigidbody2D myRigidbody;
+    [SerializeField] private Collider2D myCollider;
+    [SerializeField] private Jump jumpComponent;
+    [SerializeField] private HorizontalMovement horizontalMovementReference;
+    [SerializeField] private Dash airDashMovementReference;
 
-	// Start is called before the first frame update
-	void Start()
+    [Header("Parameters")]
+    [SerializeField] private float distanceMax;
+    [SerializeField] private float jumpWallForce;
+    [SerializeField] private float ForceAddX;
+    [SerializeField] private float jumpWallTime;
+    [SerializeField] private float wallGravity;
+    [SerializeField] private float normalGravityScale;
+
+    [Header("Wall Layermask")]
+    [SerializeField] LayerMask wallLayer;
+
+    [Header("Control variables")]
+    [SerializeField] private bool jumpWall;
+    [SerializeField] private bool isGrabbingWall;
+    [SerializeField] private bool leftWall;
+    [SerializeField] private bool rightWall;
+    [SerializeField] private bool isJumpingLeft;
+    [SerializeField] private bool isJumpingRight;
+    [SerializeField] private float jumpWallTimer;
+
+
+    public bool IsGrabbingWall
     {
-		wallJumpReference.action.performed += WallJump;
-
-		myRigidbody = GetComponent<Rigidbody2D>();
-		myCollider = GetComponent<Collider2D>();
-		jumpScript = GetComponent<Jump>();
-
-		horizontalMovementReference = GetComponent<HorizontalMovement>();
-		airDashMovementReference = GetComponent<AirDash>();
-
+        get { return isGrabbingWall; }
     }
 
-	private void WallJump(InputAction.CallbackContext context)
-	{
-		if (isGrabbingWall)
-		{
-			if (rightWall)
-			{
-				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-				horizontalMovementReference.IsFacingRight = false;
-			}
-			if (leftWall)
-			{
-				transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-				horizontalMovementReference.IsFacingRight = true;
-			}
+    public bool JumpWall
+    {
+        get { return jumpWall; }
+        set { jumpWall = true; }
+    }
 
-			jumpWallTimer = jumpWallTime;
-			jumpWall = true;
+    // Start is called before the first frame update
+    void Start()
+    {
+        wallJumpReference.action.performed += WallJump;
+        normalGravityScale = myRigidbody.gravityScale;
+    }
+
+    private void WallJump(InputAction.CallbackContext context)
+    {
+        if (isGrabbingWall)
+        {
+            if (rightWall)
+            {
+                //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                horizontalMovementReference.SpriteFlipManager(false);
+            }
+            if (leftWall)
+            {
+                //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                horizontalMovementReference.SpriteFlipManager(true);
+            }
+
+            jumpWallTimer = jumpWallTime;
+            jumpWall = true;
 
             horizontalMovementReference.DisableMovementInput();
-			airDashMovementReference.DisableDashInput();
+            airDashMovementReference.DisableDashInput();
 
 
-            jumpScript.IsJumping = true;
-		}
-	}
+            jumpComponent.IsJumping = true;
+        }
+    }
 
-	// Update is called once per frame
-	void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-		if(DISABLED) return;
+        if (DISABLED) return;
 
-		leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
-		rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
+        leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
+        rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
 
 
-		if (!jumpScript.IsGrounded && (leftWall || rightWall))
-		{
-			myRigidbody.velocity = Vector2.zero;
-			isGrabbingWall = true;
-		}
-		else
-		{
-			leftWall = false;
-			rightWall = false;
-			isGrabbingWall = false;
-		}
+        if (!jumpComponent.IsGrounded && (leftWall || rightWall))
+        {
+            myRigidbody.velocity = Vector3.zero;
+            myRigidbody.gravityScale = wallGravity;
+            jumpComponent.DisableBonusAirTime();
+            isGrabbingWall = true;
+        }
+        else
+        {
+            leftWall = false;
+            rightWall = false;
+            isGrabbingWall = false;
+            jumpComponent.EnableBonusAirTime();
+        }
 
-		if (jumpWall && jumpScript.IsJumping)
-		{
+        if (jumpWall && jumpComponent.IsJumping)
+        {
 
-			if (leftWall || isJumpingLeft)
-			{
-				myRigidbody.velocity = new Vector2(jumpWallForce + ForceAddX, jumpWallForce);
-				isJumpingLeft = true;
-			}
-			else if (rightWall || isJumpingRight)
-			{
-				myRigidbody.velocity = new Vector2(-jumpWallForce + ForceAddX, jumpWallForce);
-				isJumpingRight = true;
-			}
+            if (leftWall || isJumpingLeft)
+            {
+                myRigidbody.velocity = new Vector2(jumpWallForce + ForceAddX, jumpWallForce);
+                isJumpingLeft = true;
+            }
+            else if (rightWall || isJumpingRight)
+            {
+                myRigidbody.velocity = new Vector2(-jumpWallForce + ForceAddX, jumpWallForce);
+                isJumpingRight = true;
+            }
 
-			jumpWallTimer -= Time.deltaTime;
-		}
+            jumpWallTimer -= Time.deltaTime;
+        }
 
-		if (jumpWallTimer <= 0.0f || !jumpScript.IsJumping)
-		{
-			jumpWall = false;
-			isJumpingLeft = false;
-			isJumpingRight = false;
-			horizontalMovementReference.EnableMovementInput();
-			airDashMovementReference.EnableDashInput();
-		}
+        if (jumpWallTimer <= 0.0f || !jumpComponent.IsJumping)
+        {
+            jumpWall = false;
+            isJumpingLeft = false;
+            isJumpingRight = false;
+            horizontalMovementReference.EnableMovementInput();
+            airDashMovementReference.EnableDashInput();
+        }
     }
 
 
