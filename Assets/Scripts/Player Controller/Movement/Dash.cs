@@ -28,10 +28,6 @@ public class Dash : MonoBehaviour
     [SerializeField] float dashTimer;
     private float normalGravityScale;
 
-    
-
-
-
     public bool IsDashing
     {
         get { return isDashing; }
