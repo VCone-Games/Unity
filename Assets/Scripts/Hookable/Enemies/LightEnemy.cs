@@ -42,6 +42,7 @@ public class LightEnemy : MonoBehaviour, IHookable
             if (parryKnockbackTimer < 0)
             {
                 Debug.Log("UNHOOKING POR PARRY");
+                gameObject.layer = 0;
                 Unhook();
             }
         }
@@ -51,13 +52,16 @@ public class LightEnemy : MonoBehaviour, IHookable
         }
     }
 
-    private void ParryingInteraction()
+    private void ParryingAction()
     {
-        playerRigidbody.velocity = parryDirection;
+        playerGO.GetComponent<Parry>().parryEffects();
+
+        myRigidbody.velocity = parryDirection;
         Debug.Log("PARRIED: " + parryDirection);
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
+        gameObject.layer = 9;
         Destroy(hookProjectile);
     }
 
@@ -65,7 +69,7 @@ public class LightEnemy : MonoBehaviour, IHookable
     {
         vectorToPlayer = playerTransform.position - transform.position;
         vectorToPlayer.Normalize();
-        playerRigidbody.velocity = hookingSpeed * -vectorToPlayer;
+        myRigidbody.velocity = hookingSpeed * vectorToPlayer;
     }
 
     public void Hooked(GameObject hookProjectile, float hoookingSpeed)
@@ -73,8 +77,8 @@ public class LightEnemy : MonoBehaviour, IHookable
         isHooked = true;
         this.hookProjectile = hookProjectile;
         this.hookingSpeed = hoookingSpeed;
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Unhook()
@@ -107,7 +111,7 @@ public class LightEnemy : MonoBehaviour, IHookable
         {
             parrying = true;
             Debug.Log(parrying);
-            ParryingInteraction();
+            ParryingAction();
         }
     }
 

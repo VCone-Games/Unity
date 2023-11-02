@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,10 +9,15 @@ using UnityEngine.UIElements;
 
 public class Parry : MonoBehaviour
 {
-
+    [Header("Input Actions")]
     [SerializeField] private InputActionReference parryReference;
     [SerializeField] private InputActionReference hookAimMouseReference;
     [SerializeField] private InputActionReference hookAimGamepadReference;
+
+
+    [Header("Player Components")]
+    [SerializeField] private Dash dashComponent;
+    [SerializeField] private Jump jumpComponent;
 
     //AIM REPRESENTATION
     [Header("AIM REPRESENTATION")]
@@ -37,9 +43,10 @@ public class Parry : MonoBehaviour
     //PARRY LOGIC VARIABLES
     [Header("Parry Logic Variables")]
     [SerializeField] private float parryTimer;
-
+    [SerializeField] private bool Disabled;
     [SerializeField] private GameObject hookedObject;
     [SerializeField] private IHookable hookableComponent;
+
 
     private float hookingRange;
 
@@ -57,15 +64,15 @@ public class Parry : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(parryTimer > 0)
+        if (parryTimer > 0)
         {
             parryTimer -= Time.fixedDeltaTime;
-            if(parryTimer < 0)
+            if (parryTimer < 0)
             {
                 hookableComponent.SetParried(false);
             }
-        }    
-    } 
+        }
+    }
 
     private void OnParry(InputAction.CallbackContext context)
     {
@@ -95,15 +102,18 @@ public class Parry : MonoBehaviour
     public void DisableParry()
     {
         parryReference.action.Disable();
+        Disabled = true;
     }
 
     public void EnableParry()
     {
         parryReference.action.Enable();
+        Disabled = false;
     }
 
     private void OnControllerAim(InputAction.CallbackContext context)
     {
+        if (Disabled) return;
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
@@ -115,11 +125,20 @@ public class Parry : MonoBehaviour
 
     private void OnMouseMovement(InputAction.CallbackContext context)
     {
+        if (Disabled) return;
         mousePositionInScreen = context.ReadValue<Vector2>();
         mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
         shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
         aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
     }
 
+
+    public void parryEffects()
+    {
+        CameraShaker.Instance.ShakeOnce(2f, 20f, .1f, 0.7f);
+        TimeStop.instance.StopTime(0.05f, 13f, 0.15f);
+        dashComponent.HasParred = true;
+        jumpComponent.HasParred = true;
+    }
 
 }

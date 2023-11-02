@@ -42,6 +42,7 @@ public class HeavyEnemy : MonoBehaviour, IHookable
             if (parryKnockbackTimer < 0)
             {
                 Debug.Log("UNHOOKING POR PARRY");
+                gameObject.layer = 0;
                 Unhook();
             }
         }
@@ -51,13 +52,16 @@ public class HeavyEnemy : MonoBehaviour, IHookable
         }
     }
 
-    private void ParryingInteraction()
+    private void ParryingAction()
     {
+        playerGO.GetComponent<Parry>().parryEffects();
+
         playerRigidbody.velocity = parryDirection;
         Debug.Log("PARRIED: " + parryDirection);
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
+        gameObject.layer = 9;
         Destroy(hookProjectile);
     }
 
@@ -107,7 +111,7 @@ public class HeavyEnemy : MonoBehaviour, IHookable
         {
             parrying = true;
             Debug.Log(parrying);
-            ParryingInteraction();
+            ParryingAction();
         }
     }
 

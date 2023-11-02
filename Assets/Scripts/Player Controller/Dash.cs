@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +26,12 @@ public class Dash : MonoBehaviour
     [Header("Control variables")]
     [SerializeField] bool isDashing;
     [SerializeField] bool hasDashed;
+    [SerializeField] bool hasParred;
     [SerializeField] float dashTimer;
     private float normalGravityScale;
 
+
+    public bool HasParred { set { hasParred = value; } }
     
 
 
@@ -48,12 +52,16 @@ public class Dash : MonoBehaviour
 
     private void OnDashing(InputAction.CallbackContext context)
     {
-        if (!hasDashed)
+        if (!hasDashed || hasParred)
         {
+            hasParred = false;
+            CameraShaker.Instance.ShakeOnce(1f, 30f, .1f, 0.3f);
             isDashing = true;
             hasDashed = true;
             dashTimer = dashDuration;
             myRigidbody.velocity = Vector2.zero;
+            myRigidbody.gravityScale = 0;
+            myRigidbody.velocity = Vector3.zero;
         }
     }
 
@@ -69,7 +77,7 @@ public class Dash : MonoBehaviour
             horizontalMovementComponent.DisableMovementInput();
             wallGrabComponent.DisableWallGrabInput();
 
-            myRigidbody.gravityScale = 0;
+
             if (!horizontalMovementComponent.IsFacingRight)
                 myRigidbody.velocity = new Vector2(-dashForce, myRigidbody.velocity.y);
             else
@@ -91,6 +99,7 @@ public class Dash : MonoBehaviour
         {
             isDashing = false;
             hasDashed = false;
+ 
 
             horizontalMovementComponent.EnableMovementInput();
             wallGrabComponent.EnableWallGrabInput();

@@ -114,9 +114,12 @@ public class Hook : MonoBehaviour
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
-        shootDirection = controllerAim;
-        aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
-
+        if (controllerAim.magnitude > 0.5f)
+        {
+            shootDirection = controllerAim;
+            aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
+        }
+      
 
     }
 
@@ -184,6 +187,8 @@ public class Hook : MonoBehaviour
 
     public void SomethingHooked(GameObject hookedObject)
     {
+        TimeStop.instance.StopTime(0.05f, 13f, 0.15f);
+
         hookingUnstuckTimer = -1;
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;

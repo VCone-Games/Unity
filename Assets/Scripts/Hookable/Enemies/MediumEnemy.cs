@@ -1,3 +1,5 @@
+
+using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +44,7 @@ public class MediumEnemy : MonoBehaviour, IHookable
             if (parryKnockbackTimer < 0)
             {
                 Debug.Log("UNHOOKING POR PARRY");
+                gameObject.layer = 0;
                 Unhook();
             }
         }
@@ -51,15 +54,18 @@ public class MediumEnemy : MonoBehaviour, IHookable
         }
     }
 
-    private void ParryingInteraction()
+    private void ParryingAction()
     {
-        playerRigidbody.velocity = parryDirection;
-        myRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z);
+        playerGO.GetComponent<Parry>().parryEffects();
+
+        myRigidbody.velocity = parryDirection;
+        playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z);
 
         Debug.Log("PARRIED: " + parryDirection);
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
+        gameObject.layer = 9;
         Destroy(hookProjectile);
     }
 
@@ -108,7 +114,7 @@ public class MediumEnemy : MonoBehaviour, IHookable
         {
             parrying = true;
             Debug.Log(parrying);
-            ParryingInteraction();
+            ParryingAction();
         }
     }
 

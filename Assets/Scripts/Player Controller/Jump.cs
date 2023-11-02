@@ -39,6 +39,10 @@ public class Jump : MonoBehaviour
     [SerializeField] private float coyoteTimer;
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
+    [SerializeField] private bool hasParred;
+
+
+    public bool HasParred { set { hasParred = value; } }
 
 
 
@@ -75,8 +79,9 @@ public class Jump : MonoBehaviour
 
         bufferTimer = bufferTime;
         jumpCount++;
-        if (jumpCount < maxJumps)
+        if (jumpCount < maxJumps || hasParred)
         {
+            hasParred = false;
             coyoteTimer = coyoteTime;
         }
 
