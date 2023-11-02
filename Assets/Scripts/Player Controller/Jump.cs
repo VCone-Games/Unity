@@ -113,7 +113,8 @@ public class Jump : MonoBehaviour
         }
         else
         {
-            coyoteTimer -= Time.deltaTime;
+            if (coyoteTimer > 0)
+                coyoteTimer -= Time.deltaTime;
 
             if (!disableBonusAirTime)
             {

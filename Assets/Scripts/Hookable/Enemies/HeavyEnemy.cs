@@ -7,22 +7,28 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     [Header("Player Components")]
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Rigidbody2D playerRigidbody;
+    [SerializeField] private GameObject playerGO;
 
     [Header("My Components")]
     [SerializeField] private Rigidbody2D myRigidbody;
 
+    [Header("Parry variables")]
+    [SerializeField] private bool isParried;
+    [SerializeField] private bool parrying;
+    [SerializeField] private float parryKnockbackTime;
+    [SerializeField] public float parryKnockbackTimer;
+
     [Header("Other Variables")]
     [SerializeField] private bool isHooked;
     [SerializeField] private Vector3 vectorToPlayer;
-    [SerializeField] private float distanceToUnhook;
-    [SerializeField] private bool unhooking;
     [SerializeField] private GameObject hookProjectile;
     [SerializeField] private float hookingSpeed;
+    [SerializeField] private Vector3 parryDirection;
 
 
     void Start()
     {
-        GameObject playerGO = GameObject.FindWithTag("Player");
+        playerGO = GameObject.FindWithTag("Player");
         playerTransform = playerGO.transform;
         playerRigidbody = playerGO.GetComponent<Rigidbody2D>();
     }
@@ -30,26 +36,41 @@ public class HeavyEnemy : MonoBehaviour, IHookable
 
     void FixedUpdate()
     {
-        if (isHooked)
+        if (parryKnockbackTimer > 0)
         {
-            if (unhooking)
+            parryKnockbackTimer -= Time.fixedDeltaTime;
+            if (parryKnockbackTimer < 0)
             {
+                Debug.Log("UNHOOKING POR PARRY");
                 Unhook();
             }
-            else
-            {
-                vectorToPlayer = playerTransform.position - transform.position;
-                vectorToPlayer.Normalize();
-                playerRigidbody.velocity = hookingSpeed * -vectorToPlayer;
-            }
-
+        }
+        else if (isHooked && !parrying)
+        {
+            HookingInteraction();
         }
     }
 
-    public void Hooked(float distanceToUnhook, GameObject hookProjectile, float hoookingSpeed)
+    private void ParryingInteraction()
+    {
+        playerRigidbody.velocity = parryDirection;
+        Debug.Log("PARRIED: " + parryDirection);
+        isParried = false;
+        parrying = false;
+        parryKnockbackTimer = parryKnockbackTime;
+        Destroy(hookProjectile);
+    }
+
+    private void HookingInteraction()
+    {
+        vectorToPlayer = playerTransform.position - transform.position;
+        vectorToPlayer.Normalize();
+        playerRigidbody.velocity = hookingSpeed * -vectorToPlayer;
+    }
+
+    public void Hooked(GameObject hookProjectile, float hoookingSpeed)
     {
         isHooked = true;
-        this.distanceToUnhook = distanceToUnhook;
         this.hookProjectile = hookProjectile;
         this.hookingSpeed = hoookingSpeed;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -59,9 +80,15 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     public void Unhook()
     {
         if (!isHooked) return;
-        unhooking = false;
-        hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
-        distanceToUnhook = 0;
+        Debug.Log("UNHOOKING EN METODO UNHOOK TU PUTA MADRE");
+        if(hookProjectile != null)
+        {
+            hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
+        }
+        else
+        {
+            playerGO.GetComponent<Hook>().HookDestroyed();
+        }
         hookProjectile = null;
         hookingSpeed = 0;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -72,9 +99,26 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     {
         if (!isHooked) return;
 
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !isParried)
         {
-            unhooking = true;
+            Unhook();
         }
+        else if (collision.gameObject.tag == "Player" && isParried)
+        {
+            parrying = true;
+            Debug.Log(parrying);
+            ParryingInteraction();
+        }
+    }
+
+    public void Parried(Vector3 direction, float knockbackTime)
+    {
+        parryDirection = direction;
+        parryKnockbackTime = knockbackTime;
+    }
+
+    public void SetParried(bool parried)
+    {
+        isParried = parried;
     }
 }

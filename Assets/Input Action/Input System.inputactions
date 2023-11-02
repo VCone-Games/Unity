@@ -24,16 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Hook Shoot",
-                    "type": "Button",
-                    "id": "581c5f27-7315-4029-a332-9ea83d47311e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Hook Aim ",
+                    "name": "Hook Aim Mouse",
                     "type": "Value",
                     "id": "881ef2b6-c947-4393-87b1-8b837439a182",
                     "expectedControlType": "Vector2",
@@ -42,13 +33,31 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Hook Aim + Shoot ",
+                    "name": "Hook Shoot Mouse",
+                    "type": "Button",
+                    "id": "581c5f27-7315-4029-a332-9ea83d47311e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hook Aim Gamepad",
                     "type": "Value",
-                    "id": "70987641-e2ef-4114-bcb9-a6fd934fd3d8",
+                    "id": "49120b23-c544-48cb-b89a-c13dd2391f4f",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Hook Shoot Gamepad",
+                    "type": "Button",
+                    "id": "664d050d-94ee-4a0a-bdd9-8915cf0a9911",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -127,20 +136,9 @@
                     "name": "",
                     "id": "9d058e69-4a10-4c80-a568-370e0995e6ea",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b92845e9-3c6f-46cc-9018-0948fbf5f293",
-                    "path": "<SwitchProControllerHID>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -152,29 +150,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Hook Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "95e520d5-276b-4776-b9e8-bb404784f1f6",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Hook Aim ",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1dca4227-3f4a-4610-aa22-90b1e73b7c23",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "StickDeadzone(min=0.5,max=0.8)",
-                    "groups": "Gamepad",
-                    "action": "Hook Aim + Shoot ",
+                    "action": "Hook Shoot Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -236,10 +212,21 @@
                 {
                     "name": "",
                     "id": "07ad50f8-be8e-400b-a064-d769b36b9f9b",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14719f5c-d374-4636-9031-fe2787e4a21d",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -285,6 +272,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Wall Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87d4576e-7ba9-4654-944b-650ef3e37f0c",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook Aim Gamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f33e464d-d763-4e17-9017-409d8b508901",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook Shoot Gamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95e520d5-276b-4776-b9e8-bb404784f1f6",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Hook Aim Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

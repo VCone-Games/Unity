@@ -8,9 +8,11 @@ public class Hook : MonoBehaviour
 {
     //INPUT ACTIONS VARIABLES
     [Header("Input system")]
-    [SerializeField] private InputActionReference hookShootReference;
-    [SerializeField] private InputActionReference hookAimReference;
-    [SerializeField] private InputActionReference hookShootAimReference;
+    [SerializeField] private InputActionReference hookShootMouseReference;
+    [SerializeField] private InputActionReference hookAimMouseReference;
+
+    [SerializeField] private InputActionReference hookShootGamepadReference;
+    [SerializeField] private InputActionReference hookAimGamepadReference;
 
     //PLAYER COMPONENTS
     [Header("Player Components")]
@@ -36,7 +38,6 @@ public class Hook : MonoBehaviour
     //JOYSTICK AIM COORDINATES
     [Header("Controller Aim Variables")]
     [SerializeField] private Vector2 controllerAim;
-    [SerializeField] private bool readyToShoot;
 
     //HOOK RANGE REPRESENTATION
     [Header("Hook Range Representation")]
@@ -44,13 +45,12 @@ public class Hook : MonoBehaviour
 
     //HOOK PARAMETERS
     [Header("Hook Parameters")]
-    [SerializeField] private float hookingRange;
+    [SerializeField] public float hookingRange;
     [SerializeField] private float hookProjectileSpeed;
     [SerializeField] private float hookingSpeed;
     [SerializeField] private float hookingMaxDuration;
     [SerializeField] private float hookCooldDown;
-    [SerializeField] private float hookingDuration;
-    [SerializeField] AnimationCurve hookingAnimationCurve;
+
     [SerializeField] private float unhookDistance;
 
 
@@ -73,17 +73,20 @@ public class Hook : MonoBehaviour
     //OTHER VARIABLES
     [Header("Other Variables")]
     [SerializeField] private Vector3 shootDirection;
-    [SerializeField] private float hookElapsedTime;
-    [SerializeField] private float hookPercentageComplete;
+
 
 
 
     void Start()
     {
-        hookAimReference.action.performed += OnMouseMovement;
-        hookShootReference.action.performed += OnMouseShoot;
-        hookShootAimReference.action.performed += OnControllerAim;
-        hookShootAimReference.action.canceled += OnControllerShoot;
+        hookAimMouseReference.action.performed += OnMouseMovement;
+        hookShootMouseReference.action.performed += OnMouseShoot;
+
+        hookAimGamepadReference.action.performed += OnControllerAim;
+        hookShootGamepadReference.action.performed += OnControllerShoot;
+
+        //hookShootControllerReference.action.Disable();
+        //hookAimControllerReference.action.Disable();
 
         hookRangeRepresentation.transform.localScale = new Vector3(hookingRange * 2, hookingRange * 2, hookingRange * 2);
         hookRangeRepresentation.transform.SetParent(transform, false);
@@ -92,12 +95,12 @@ public class Hook : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(hookingUnstuckTimer > 0)
+        if (hookingUnstuckTimer > 0)
         {
             hookingUnstuckTimer -= Time.fixedDeltaTime;
-            if(hookingUnstuckTimer < 0)
+            if (hookingUnstuckTimer < 0)
             {
-                hookedObject.GetComponent<IHookable>().Unhook();
+               // hookedObject.GetComponent<IHookable>().Unhook();
             }
         }
         if (hookCoolDownTimer > 0)
@@ -109,23 +112,21 @@ public class Hook : MonoBehaviour
     private void OnControllerAim(InputAction.CallbackContext context)
     {
         controllerAim = context.ReadValue<Vector2>();
-        controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
+        //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
-        if (controllerAim.magnitude > 0.75f)
-        {
-            shootDirection = controllerAim;
-            aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
-            readyToShoot = true;
-        } 
+        shootDirection = controllerAim;
+        aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
+
+
     }
 
     private void OnControllerShoot(InputAction.CallbackContext context)
     {
-        if (shootingHook || !readyToShoot || hookCoolDownTimer > 0) return;
+        if (shootingHook || hookCoolDownTimer > 0) return;
 
         hookCoolDownTimer = hookCooldDown;
         shootingHook = true;
-        readyToShoot = false;
+
         Shoot(shootDirection);
     }
 
@@ -173,18 +174,26 @@ public class Hook : MonoBehaviour
         dashComponent.EnableDashInput();
         wallGrabComponent.EnableWallGrabInput();
         jumpComponent.EnableJumpInput();
+
         parryComponent.DisableParry();
+        hookShootGamepadReference.action.Enable();
+        hookShootMouseReference.action.Enable();
+
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void SomethingHooked(GameObject hookedObject)
     {
+        hookingUnstuckTimer = -1;
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;
 
-        hookedObject.GetComponent<IHookable>().Hooked(unhookDistance, hookProjectile, hookingSpeed);
+        hookedObject.GetComponent<IHookable>().Hooked( hookProjectile, hookingSpeed);
 
+        hookShootGamepadReference.action.Disable();
+        hookShootMouseReference.action.Disable();
         parryComponent.EnableParry();
+
         parryComponent.SetHookedObject(hookedObject);
         hookingUnstuckTimer = hookingMaxDuration;
 

@@ -548,6 +548,7 @@ GameObject:
   - component: {fileID: 961659081}
   - component: {fileID: 961659080}
   - component: {fileID: 961659079}
+  - component: {fileID: 961659086}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -569,13 +570,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   playerRigidbody: {fileID: 0}
+  playerGO: {fileID: 0}
   myRigidbody: {fileID: 961659083}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
-  distanceToUnhook: 0
-  unhooking: 0
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
 --- !u!70 &961659080
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -679,7 +684,7 @@ Rigidbody2D:
   m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -758,6 +763,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961659086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961659078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 961659083}
+  maxSpeed: 20
+  dashComponent: {fileID: 0}
 --- !u!1 &987364148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,13 +1242,12 @@ GameObject:
   - component: {fileID: 1291495126}
   - component: {fileID: 1291495130}
   - component: {fileID: 1291495135}
-  - component: {fileID: 1291495136}
-  - component: {fileID: 1291495137}
   - component: {fileID: 1291495138}
   - component: {fileID: 1291495139}
   - component: {fileID: 1291495140}
   - component: {fileID: 1291495141}
   - component: {fileID: 1291495142}
+  - component: {fileID: 1291495143}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1478,30 +1497,6 @@ MonoBehaviour:
   coyoteTimer: 0
   bufferTimer: 0
   jumpCount: 0
---- !u!114 &1291495136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291495125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9ee45385531ed4c95277459bc15b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1291495137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291495125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e873d5351994b499fda9e0ecfc5589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1291495138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,9 +1589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9639aa725d56b0f49bcf14737b57943d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookShootReference: {fileID: -6108951953813829766, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  hookAimReference: {fileID: 8003593690241759918, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  hookShootAimReference: {fileID: 2365099543386789029, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  hookShootMouseReference: {fileID: -6108951953813829766, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  hookAimMouseReference: {fileID: 8003593690241759918, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  hookShootGamepadReference: {fileID: 1267267361922255308, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  hookAimGamepadReference: {fileID: -7025021694697865410, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   myRigidbody: {fileID: 1291495127}
   horizontalMovementComponent: {fileID: 1291495140}
   dashComponent: {fileID: 1291495139}
@@ -1614,20 +1610,12 @@ MonoBehaviour:
   mousePositionInScreen: {x: 0, y: 0}
   mousePositionInWorld: {x: 0, y: 0}
   controllerAim: {x: 0, y: 0}
-  readyToShoot: 0
   hookRangeRepresentation: {fileID: 810806837}
   hookingRange: 5
   hookProjectileSpeed: 25
-  hookingSpeed: 25
+  hookingSpeed: 15
   hookingMaxDuration: 0.5
   hookCooldDown: 1
-  hookingDuration: 0
-  hookingAnimationCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   unhookDistance: 0.9
   hookingUnstuckTimer: 0
   hookCoolDownTimer: 0
@@ -1637,8 +1625,6 @@ MonoBehaviour:
   hookPrefab: {fileID: 7953474213004086225, guid: 74207256fd9995049aaefc6586b20e3f, type: 3}
   hookedObject: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
-  hookElapsedTime: 0
-  hookPercentageComplete: 0
 --- !u!114 &1291495142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,9 +1638,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parryReference: {fileID: 4080458920108112001, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  aimReference: {fileID: 0}
-  parryDistance: 2
+  hookAimMouseReference: {fileID: 8003593690241759918, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  hookAimGamepadReference: {fileID: -7025021694697865410, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  aimRepresentation: {fileID: 57885878}
+  shootDirection: {x: 0, y: 0, z: 0}
+  mousePositionInScreen: {x: 0, y: 0}
+  mousePositionInWorld: {x: 0, y: 0}
+  controllerAim: {x: 0, y: 0}
+  parryDistance: 3
+  parryForce: 100
+  parryTime: 0.5
+  parryKnockbackTime: 0.5
+  parryTimer: 0
   hookedObject: {fileID: 0}
+--- !u!114 &1291495143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291495125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 1291495127}
+  maxSpeed: 20
+  dashComponent: {fileID: 1291495139}
 --- !u!1 &1366919373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1681,7 @@ GameObject:
   - component: {fileID: 1366919376}
   - component: {fileID: 1366919375}
   - component: {fileID: 1366919374}
+  - component: {fileID: 1366919381}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -1691,13 +1703,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   playerRigidbody: {fileID: 0}
+  playerGO: {fileID: 0}
   myRigidbody: {fileID: 1366919378}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
-  distanceToUnhook: 0
-  unhooking: 0
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
 --- !u!70 &1366919375
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1730,8 +1746,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0084994, y: -0.004249372}
-  m_Size: {x: 1.5099654, y: 2.501466}
+  m_Offset: {x: 0.0006209637, y: 0.0075697573}
+  m_Size: {x: 1.7305819, y: 2.7457209}
   m_Direction: 0
 --- !u!114 &1366919376
 MonoBehaviour:
@@ -1801,7 +1817,7 @@ Rigidbody2D:
   m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1812,7 +1828,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!212 &1366919379
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1874,12 +1890,27 @@ Transform:
   m_GameObject: {fileID: 1366919373}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.932, y: 1.225, z: 0}
+  m_LocalPosition: {x: 8.1, y: 4.76, z: 0}
   m_LocalScale: {x: 0.3636, y: 0.3636, z: 0.3636}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1366919381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366919373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 1366919378}
+  maxSpeed: 20
+  dashComponent: {fileID: 0}
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +1983,7 @@ Rigidbody2D:
   m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2062,13 +2093,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerGO: {fileID: 0}
   myRigidbody: {fileID: 1523026637}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
-  distanceToUnhook: 0
-  unhooking: 0
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
 --- !u!70 &1523026642
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
