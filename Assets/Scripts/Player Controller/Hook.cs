@@ -19,6 +19,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private Dash dashComponent;
     [SerializeField] private WallGrab wallGrabComponent;
     [SerializeField] private Jump jumpComponent;
+    [SerializeField] private Parry parryComponent;
     [SerializeField] private Rigidbody2D hookedRigidBody;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask projectileLayer;
@@ -47,7 +48,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private float hookProjectileSpeed;
     [SerializeField] private float hookingSpeed;
     [SerializeField] private float hookingMaxDuration;
-
+    [SerializeField] private float hookCooldDown;
     [SerializeField] private float hookingDuration;
     [SerializeField] AnimationCurve hookingAnimationCurve;
     [SerializeField] private float unhookDistance;
@@ -55,7 +56,8 @@ public class Hook : MonoBehaviour
 
     //HOOK LOGIC VARIABLES
     [Header("Hook Control Variables")]
-    [SerializeField] private float hookingTimer;
+    [SerializeField] private float hookingUnstuckTimer;
+    [SerializeField] private float hookCoolDownTimer;
     [SerializeField] private bool shootingHook;
     [SerializeField] private bool hookLanded;
     [SerializeField] private bool hookFailed;
@@ -90,13 +92,17 @@ public class Hook : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(hookingTimer > 0)
+        if(hookingUnstuckTimer > 0)
         {
-            hookingTimer -= Time.fixedDeltaTime;
-            if(hookingTimer < 0)
+            hookingUnstuckTimer -= Time.fixedDeltaTime;
+            if(hookingUnstuckTimer < 0)
             {
                 hookedObject.GetComponent<IHookable>().Unhook();
             }
+        }
+        if (hookCoolDownTimer > 0)
+        {
+            hookCoolDownTimer -= Time.fixedDeltaTime;
         }
     }
 
@@ -115,7 +121,9 @@ public class Hook : MonoBehaviour
 
     private void OnControllerShoot(InputAction.CallbackContext context)
     {
-        if (shootingHook || !readyToShoot) return;
+        if (shootingHook || !readyToShoot || hookCoolDownTimer > 0) return;
+
+        hookCoolDownTimer = hookCooldDown;
         shootingHook = true;
         readyToShoot = false;
         Shoot(shootDirection);
@@ -131,7 +139,9 @@ public class Hook : MonoBehaviour
 
     private void OnMouseShoot(InputAction.CallbackContext context)
     {
-        if (shootingHook) return;
+        if (shootingHook || hookCoolDownTimer > 0) return;
+
+        hookCoolDownTimer = hookCooldDown;
 
         shootingHook = true;
 
@@ -163,6 +173,7 @@ public class Hook : MonoBehaviour
         dashComponent.EnableDashInput();
         wallGrabComponent.EnableWallGrabInput();
         jumpComponent.EnableJumpInput();
+        parryComponent.DisableParry();
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
@@ -170,7 +181,12 @@ public class Hook : MonoBehaviour
     {
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;
+
         hookedObject.GetComponent<IHookable>().Hooked(unhookDistance, hookProjectile, hookingSpeed);
-        hookingTimer = hookingMaxDuration;
+
+        parryComponent.EnableParry();
+        parryComponent.SetHookedObject(hookedObject);
+        hookingUnstuckTimer = hookingMaxDuration;
+
     }
 }

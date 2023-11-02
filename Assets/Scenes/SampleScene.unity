@@ -1228,6 +1228,7 @@ GameObject:
   - component: {fileID: 1291495139}
   - component: {fileID: 1291495140}
   - component: {fileID: 1291495141}
+  - component: {fileID: 1291495142}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1601,6 +1602,7 @@ MonoBehaviour:
   dashComponent: {fileID: 1291495139}
   wallGrabComponent: {fileID: 1291495138}
   jumpComponent: {fileID: 1291495135}
+  parryComponent: {fileID: 1291495142}
   hookedRigidBody: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -1618,6 +1620,7 @@ MonoBehaviour:
   hookProjectileSpeed: 25
   hookingSpeed: 25
   hookingMaxDuration: 0.5
+  hookCooldDown: 1
   hookingDuration: 0
   hookingAnimationCurve:
     serializedVersion: 2
@@ -1626,7 +1629,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   unhookDistance: 0.9
-  hookingTimer: 0
+  hookingUnstuckTimer: 0
+  hookCoolDownTimer: 0
   shootingHook: 0
   hookLanded: 0
   hookFailed: 0
@@ -1635,6 +1639,22 @@ MonoBehaviour:
   shootDirection: {x: 0, y: 0, z: 0}
   hookElapsedTime: 0
   hookPercentageComplete: 0
+--- !u!114 &1291495142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291495125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859c01eb96cc5194db702e1d84aeb951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryReference: {fileID: 4080458920108112001, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  aimReference: {fileID: 0}
+  parryDistance: 2
+  hookedObject: {fileID: 0}
 --- !u!1 &1366919373
 GameObject:
   m_ObjectHideFlags: 0
