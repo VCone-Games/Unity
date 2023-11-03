@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 4045875522114413722}
   projectileTransform: {fileID: 6707406114752567600}
-  playerTransform: {fileID: 0}
+  hookGunTransform: {fileID: 0}
 --- !u!1 &7953474213004086225
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.49999997
+  m_Radius: 0.71
 --- !u!50 &23231249089080911
 Rigidbody2D:
   serializedVersion: 4

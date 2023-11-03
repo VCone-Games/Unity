@@ -2756,7 +2756,7 @@ MonoBehaviour:
   parryDistance: 3
   parryForce: 20
   parryTime: 0.25
-  parryKnockbackTime: 0.3
+  parryKnockbackTime: 0.2
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}
