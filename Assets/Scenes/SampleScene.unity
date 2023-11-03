@@ -385,12 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 335351437}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!70 &335351436
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1032,7 +1026,6 @@ GameObject:
   - component: {fileID: 961659084}
   - component: {fileID: 961659083}
   - component: {fileID: 961659082}
-  - component: {fileID: 961659081}
   - component: {fileID: 961659080}
   - component: {fileID: 961659079}
   - component: {fileID: 961659086}
@@ -1103,24 +1096,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0084994, y: -0.004249372}
   m_Size: {x: 1.5099654, y: 2.501466}
   m_Direction: 0
---- !u!114 &961659081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961659078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 961659083}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!70 &961659082
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1375,12 +1350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 970586917}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!70 &970586916
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1770,12 +1739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 1077707768}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!70 &1077707767
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2887,12 +2850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 1366919378}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!70 &1366919377
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3334,12 +3291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5685e992f38aaec4abc3fce69ce10f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weight: 0
-  myRigidbody: {fileID: 1523026637}
-  afterParriedTime: 1
-  afterParriedTimer: 0
-  layerNoPlayer: 9
-  defaultLayer: 0
 --- !u!114 &1523026641
 MonoBehaviour:
   m_ObjectHideFlags: 0
