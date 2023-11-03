@@ -26,6 +26,9 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private Dash dashComponent;
     [SerializeField] private Hook hookComponent;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject hookGun;
+    [SerializeField] Vector3 initialGunPosition;
+    [SerializeField] Vector3 invertedGunPosition;
 
     public bool IsFacingRight
     {
@@ -38,6 +41,10 @@ public class HorizontalMovement : MonoBehaviour
     {
         movementActionReference.action.performed += OnPressed;
         movementActionReference.action.canceled += OnRelease;
+
+        initialGunPosition = hookGun.transform.localPosition;
+        invertedGunPosition = initialGunPosition;
+        invertedGunPosition.x = -invertedGunPosition.x;
 
         // myRigidbody = GetComponent<Rigidbody2D>();
         //
@@ -107,10 +114,12 @@ public class HorizontalMovement : MonoBehaviour
         if (facingRight)
         {
             spriteRenderer.flipX = false;
+            hookGun.transform.localPosition = initialGunPosition;
         }
         else
         {
             spriteRenderer.flipX = true;
+            hookGun.transform.localPosition = invertedGunPosition;
         }
 
         if (DISABLED) return;

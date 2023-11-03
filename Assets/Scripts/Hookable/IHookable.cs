@@ -13,4 +13,6 @@ public interface IHookable
 
     public void SetParried(bool parried);
 
+    public bool IsParried();
+
 }

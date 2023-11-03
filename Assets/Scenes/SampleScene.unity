@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.1, y: 0.1, z: 0}
+  DefaultPosInfluence: {x: 0.1, y: 0, z: 0}
   DefaultRotInfluence: {x: 1, y: 1, z: 1}
   RestPositionOffset: {x: 0, y: 0, z: -15}
   RestRotationOffset: {x: 0, y: 0, z: 0}
@@ -2149,6 +2149,7 @@ Transform:
   m_Children:
   - {fileID: 519420032}
   - {fileID: 57885880}
+  - {fileID: 1491010791}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1291495130
@@ -2344,6 +2345,9 @@ MonoBehaviour:
   dashComponent: {fileID: 1291495139}
   hookComponent: {fileID: 0}
   spriteRenderer: {fileID: 1291495128}
+  hookGun: {fileID: 1491010790}
+  initialGunPosition: {x: 0, y: 0, z: 0}
+  invertedGunPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1291495141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,6 +2394,7 @@ MonoBehaviour:
   hookLanded: 0
   hookFailed: 0
   hookPrefab: {fileID: 7953474213004086225, guid: 74207256fd9995049aaefc6586b20e3f, type: 3}
+  hookGunPosition: {fileID: 1491010791}
   hookedObject: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1291495142
@@ -2416,7 +2421,7 @@ MonoBehaviour:
   controllerAim: {x: 0, y: 0}
   parryDistance: 3
   parryForce: 20
-  parryTime: 0.5
+  parryTime: 0.25
   parryKnockbackTime: 0.3
   parryTimer: 0
   Disabled: 0
@@ -2681,6 +2686,37 @@ MonoBehaviour:
   myRigidbody: {fileID: 1366919378}
   maxSpeed: 30
   dashComponent: {fileID: 0}
+--- !u!1 &1491010790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491010791}
+  m_Layer: 6
+  m_Name: hook gun
+  m_TagString: HookGun
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491010791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491010790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.389, y: 0.477, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1291495129}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523026635
 GameObject:
   m_ObjectHideFlags: 0

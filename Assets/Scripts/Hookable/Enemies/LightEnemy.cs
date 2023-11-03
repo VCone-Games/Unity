@@ -125,4 +125,8 @@ public class LightEnemy : MonoBehaviour, IHookable
     {
         isParried = parried;
     }
+    public bool IsParried()
+    {
+        return isParried;
+    }
 }

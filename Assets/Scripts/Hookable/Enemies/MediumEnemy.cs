@@ -128,4 +128,8 @@ public class MediumEnemy : MonoBehaviour, IHookable
     {
         isParried = parried;
     }
+    public bool IsParried()
+    {
+        return isParried;
+    }
 }

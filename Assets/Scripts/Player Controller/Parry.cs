@@ -135,8 +135,8 @@ public class Parry : MonoBehaviour
 
     public void parryEffects()
     {
-        CameraShaker.Instance.ShakeOnce(2f, 20f, .1f, 0.7f);
-        TimeStop.instance.StopTime(0.05f, 13f, 0.15f);
+        CameraShaker.Instance.ShakeOnce(1.5f, 10f, .1f, 0.7f);
+        TimeStop.instance.StopTime(0.05f, 13f, 0.25f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;
     }
