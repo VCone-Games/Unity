@@ -34,7 +34,9 @@ public class HealthUI : MonoBehaviour
 		{
 			AllHearthsGameObject[i].SetActive(true);
 			currentHearth++;
-		}
+            RawImage hearthColor = AllHearthsGameObject[i].GetComponent<RawImage>();
+			hearthColor.color = Color.red;
+        }
 
 		healthManagerComponent.EventUpdateHealth += UpdateHealUI;
 	}
