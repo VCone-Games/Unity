@@ -40,12 +40,14 @@ public class Parry : MonoBehaviour
     [SerializeField] private float parryTime;
     [SerializeField] private float parryKnockbackTime;
 
+
     //PARRY LOGIC VARIABLES
     [Header("Parry Logic Variables")]
     [SerializeField] private float parryTimer;
     [SerializeField] private bool Disabled;
     [SerializeField] private GameObject hookedObject;
     [SerializeField] private IHookable hookableComponent;
+    [SerializeField] private bool parryReady;
 
 
     private float hookingRange;
@@ -76,16 +78,9 @@ public class Parry : MonoBehaviour
 
     private void OnParry(InputAction.CallbackContext context)
     {
-        // Vector3 distance = transform.position - hookedObject.transform.position;
-        // if (distance.magnitude < parryDistance)
-        // {
-        //
-        //     shootDirection.Normalize();
-        //     Debug.Log("parried");
-        //     hookableComponent.Unhook();
-        //     hookableComponent.Parried(shootDirection * parryForce);
-        //
-        // }
+        if (!parryReady) return;
+
+        parryReady = false;
         parryTimer = parryTime;
         shootDirection.Normalize();
         hookableComponent.Parried(shootDirection * parryForce, parryKnockbackTime);
@@ -103,12 +98,14 @@ public class Parry : MonoBehaviour
     {
         parryReference.action.Disable();
         Disabled = true;
+        parryReady = false;
     }
 
     public void EnableParry()
     {
         parryReference.action.Enable();
         Disabled = false;
+        parryReady = true;
     }
 
     private void OnControllerAim(InputAction.CallbackContext context)

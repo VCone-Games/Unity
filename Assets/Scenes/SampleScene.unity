@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 335351437}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!114 &335351433
 MonoBehaviour:
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 961659083}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!1 &970586911
 GameObject:
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 970586917}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!114 &970586913
 MonoBehaviour:
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1077707768}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!114 &1077707764
 MonoBehaviour:
@@ -2652,10 +2652,12 @@ MonoBehaviour:
   wallGrabComponent: {fileID: 1291495138}
   dashForce: 50
   dashDuration: 0.1
+  coolDownDuration: 1
   isDashing: 0
   hasDashed: 0
   hasParred: 0
   dashTimer: 0
+  coolDownTimer: 0
 --- !u!114 &1291495140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2760,6 +2762,7 @@ MonoBehaviour:
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}
+  parryReady: 0
 --- !u!114 &1291495143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,7 +3035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1366919378}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!1 &1369784317
 GameObject:
@@ -3410,7 +3413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1523026637}
-  maxSpeed: 30
+  maxSpeed: 20
   dashComponent: {fileID: 0}
 --- !u!1 &1725185644
 GameObject:

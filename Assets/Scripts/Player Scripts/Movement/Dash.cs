@@ -22,12 +22,14 @@ public class Dash : MonoBehaviour
     [Header("Dash params")]
     [SerializeField] float dashForce;
     [SerializeField] float dashDuration;
+    [SerializeField] float coolDownDuration;
 
     [Header("Control variables")]
     [SerializeField] bool isDashing;
     [SerializeField] bool hasDashed;
     [SerializeField] bool hasParred;
     [SerializeField] float dashTimer;
+    [SerializeField] float coolDownTimer;
     private float normalGravityScale;
 
 
@@ -52,7 +54,7 @@ public class Dash : MonoBehaviour
 
     private void OnDashing(InputAction.CallbackContext context)
     {
-        if (!hasDashed || hasParred)
+        if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
             hasParred = false;
             CameraShaker.Instance.ShakeOnce(1f, 30f, .1f, 0.3f);
@@ -62,6 +64,7 @@ public class Dash : MonoBehaviour
             myRigidbody.velocity = Vector2.zero;
             myRigidbody.gravityScale = 0;
             myRigidbody.velocity = Vector3.zero;
+            coolDownTimer = coolDownDuration;
         }
     }
 
@@ -71,6 +74,11 @@ public class Dash : MonoBehaviour
     void FixedUpdate()
     {
         if (DISABLED) return;
+
+        if(coolDownTimer > 0)
+        {
+            coolDownTimer -= Time.fixedDeltaTime;
+        }
 
         if (dashTimer > 0.0f)
         {
