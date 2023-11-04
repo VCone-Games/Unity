@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Jump : MonoBehaviour
+public class Jump:MonoBehaviour
 {
     [Header("Is Disabled")]
     private bool DISABLED;
@@ -110,6 +110,7 @@ public class Jump : MonoBehaviour
             myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
 
         if (GetComponent<Dash>().IsDashing) return;
+
 
         if (isGrounded || grabWallComponent.IsGrabbingWall)
         {

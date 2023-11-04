@@ -18,6 +18,7 @@ public class Parry : MonoBehaviour
     [Header("Player Components")]
     [SerializeField] private Dash dashComponent;
     [SerializeField] private Jump jumpComponent;
+    [SerializeField] private HorizontalMovement horizontalMovementComponent;
 
     //AIM REPRESENTATION
     [Header("AIM REPRESENTATION")]
@@ -38,7 +39,7 @@ public class Parry : MonoBehaviour
     [SerializeField] private float parryDistance;
     [SerializeField] private float parryForce;
     [SerializeField] private float parryTime;
-    [SerializeField] private float parryKnockbackTime;
+    [SerializeField] public float parryKnockbackTime;
 
 
     //PARRY LOGIC VARIABLES
@@ -50,7 +51,7 @@ public class Parry : MonoBehaviour
     [SerializeField] private bool parryReady;
 
 
-    private float hookingRange;
+    [SerializeField] private float hookingRange;
 
     // Start is called before the first frame update
     void Start()
@@ -64,11 +65,11 @@ public class Parry : MonoBehaviour
         hookingRange = GetComponent<Hook>().hookingRange;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (parryTimer > 0)
         {
-            parryTimer -= Time.fixedDeltaTime;
+            parryTimer -= Time.deltaTime;
             if (parryTimer < 0)
             {
                 hookableComponent.SetParried(false);
@@ -113,9 +114,9 @@ public class Parry : MonoBehaviour
         if (Disabled) return;
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
-
-        shootDirection = controllerAim;
         aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
+        shootDirection = controllerAim;
+
 
 
     }
@@ -125,17 +126,19 @@ public class Parry : MonoBehaviour
         if (Disabled) return;
         mousePositionInScreen = context.ReadValue<Vector2>();
         mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
-        shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
         aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
+        shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
     }
 
 
-    public void parryEffects()
+    public void parryEffects(bool facingRight)
     {
-        CameraShaker.Instance.ShakeOnce(1.5f, 10f, .1f, 0.7f);
-        TimeStop.instance.StopTime(0.05f, 13f, 0.25f);
+        horizontalMovementComponent.IsFacingRight = facingRight;
+        CameraShaker.Instance.ShakeOnce(15f, 1f, .1f, 0.7f);
+        TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;
+
     }
 
 }

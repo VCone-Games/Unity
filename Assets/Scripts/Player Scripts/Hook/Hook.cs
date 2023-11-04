@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,6 +62,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private bool shootingHook;
     [SerializeField] private bool hookLanded;
     [SerializeField] private bool hookFailed;
+    [SerializeField] private bool disableAim;
 
     //GAMEOBJECTS
     [Header("Hook Projectile Prefab and GameObject")]
@@ -99,7 +101,11 @@ public class Hook : MonoBehaviour
         if (hookingUnstuckTimer > 0)
         {
             hookingUnstuckTimer -= Time.fixedDeltaTime;
-            if (hookingUnstuckTimer < 0 && !hookedObject.GetComponent<IHookable>().IsParried())
+            if (hookedObject.GetComponent<IHookable>().IsParried())
+            {
+                hookingUnstuckTimer = parryComponent.parryKnockbackTime;
+            }
+            if (hookingUnstuckTimer < 0)
             {
                 hookedObject.GetComponent<IHookable>().Unhook();
             }
@@ -112,6 +118,7 @@ public class Hook : MonoBehaviour
 
     private void OnControllerAim(InputAction.CallbackContext context)
     {
+        if (disableAim) return;
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
@@ -136,6 +143,7 @@ public class Hook : MonoBehaviour
 
     private void OnMouseMovement(InputAction.CallbackContext context)
     {
+        if (disableAim) return;
         mousePositionInScreen = context.ReadValue<Vector2>();
         mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
         aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
@@ -188,16 +196,19 @@ public class Hook : MonoBehaviour
         wallGrabComponent.EnableWallGrabInput();
         jumpComponent.EnableJumpInput();
 
-        parryComponent.DisableParry();
         hookShootGamepadReference.action.Enable();
         hookShootMouseReference.action.Enable();
+        disableAim = false;
+        
+        parryComponent.DisableParry();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void SomethingHooked(GameObject hookedObject)
     {
-        TimeStop.instance.StopTime(0.05f, 13f, 0.15f);
+        CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
+        TimeStop.instance.StopTime(0.05f, 15f, 1f);
 
         hookingUnstuckTimer = -1;
         this.hookedObject = hookedObject;
@@ -207,6 +218,8 @@ public class Hook : MonoBehaviour
 
         hookShootGamepadReference.action.Disable();
         hookShootMouseReference.action.Disable();
+        disableAim = true;
+
         parryComponent.EnableParry();
 
         parryComponent.SetHookedObject(hookedObject);

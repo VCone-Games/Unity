@@ -57,7 +57,7 @@ public class Dash : MonoBehaviour
         if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
             hasParred = false;
-            CameraShaker.Instance.ShakeOnce(1f, 30f, .1f, 0.3f);
+            CameraShaker.Instance.ShakeOnce(1f, 10f, .1f, 0.7f);
             isDashing = true;
             hasDashed = true;
             dashTimer = dashDuration;
