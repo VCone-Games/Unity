@@ -32,6 +32,9 @@ public class Dash : MonoBehaviour
     [SerializeField] float coolDownTimer;
     private float normalGravityScale;
 
+    [Header("Animator Variables")]
+    [SerializeField] private Animator animator;
+
 
     public bool HasParred { set { hasParred = value; } }
     
@@ -56,7 +59,9 @@ public class Dash : MonoBehaviour
     {
         if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
+            animator.SetBool("Is Dashing", true);
             hasParred = false;
+            TimeStop.instance.StopTime(0.05f, 20f, 0.3f);
             CameraShaker.Instance.ShakeOnce(1f, 10f, .1f, 0.7f);
             isDashing = true;
             hasDashed = true;
@@ -101,6 +106,7 @@ public class Dash : MonoBehaviour
 
             horizontalMovementComponent.EnableMovementInput();
             wallGrabComponent.EnableWallGrabInput();
+            animator.SetBool("Is Dashing", false);
         }
 
         if (dashTimer <= 0.0f && (jumpReference.IsGrounded || wallGrabComponent.IsGrabbingWall))

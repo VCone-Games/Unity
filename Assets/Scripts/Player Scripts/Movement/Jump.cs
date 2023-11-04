@@ -5,7 +5,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Jump:MonoBehaviour
+public class Jump : MonoBehaviour
 {
     [Header("Is Disabled")]
     private bool DISABLED;
@@ -40,6 +40,9 @@ public class Jump:MonoBehaviour
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
+
+    [Header("Animator Components")]
+    [SerializeField] private Animator animator;
 
 
     public bool HasParred { set { hasParred = value; } }
@@ -78,11 +81,15 @@ public class Jump:MonoBehaviour
         jumpInputPressed = true;
 
         bufferTimer = bufferTime;
-        jumpCount++;
+        if (coyoteTimer < 0)
+        {
+            jumpCount++;
+        }
         if (jumpCount < maxJumps || hasParred)
         {
             hasParred = false;
             coyoteTimer = coyoteTime;
+            animator.SetTrigger("Jump Trigger");
         }
 
     }
@@ -111,6 +118,15 @@ public class Jump:MonoBehaviour
 
         if (GetComponent<Dash>().IsDashing) return;
 
+        if (!isGrounded)
+        {
+            animator.SetBool("Is Airborne", true);
+        }
+        else
+        {
+            animator.SetBool("Is Airborne", false);
+        }
+
 
         if (isGrounded || grabWallComponent.IsGrabbingWall)
         {
@@ -136,7 +152,9 @@ public class Jump:MonoBehaviour
 
         }
 
-        bufferTimer -= Time.deltaTime;
+        if (bufferTimer > 0)
+            bufferTimer -= Time.deltaTime;
+
 
         if (jumpInputPressed)
         {

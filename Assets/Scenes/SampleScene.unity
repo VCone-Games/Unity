@@ -1521,8 +1521,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.018922329, y: -0.015907645}
-  m_Size: {x: 0.653532, y: 1.3313715}
+  m_Offset: {x: -0.037801027, y: -0.12720954}
+  m_Size: {x: 0.8250108, y: 1.7447789}
   m_Direction: 0
 --- !u!50 &1291495127
 Rigidbody2D:
@@ -1592,12 +1592,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 71e9833546223e74b91ca6685de04999, type: 3}
+  m_Sprite: {fileID: 1897044046, guid: 7d23758d787a7444f82dac4c43677ca5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 1.92, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1612,7 +1612,7 @@ Transform:
   m_GameObject: {fileID: 1291495125}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.17, y: -2.72, z: 0}
+  m_LocalPosition: {x: -6.17, y: -2.091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1733,6 +1733,7 @@ MonoBehaviour:
   bufferTimer: 0
   jumpCount: 0
   hasParred: 0
+  animator: {fileID: 1291495145}
 --- !u!114 &1291495138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,6 +1794,7 @@ MonoBehaviour:
   hasParred: 0
   dashTimer: 0
   coolDownTimer: 0
+  animator: {fileID: 1291495145}
 --- !u!114 &1291495140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,11 +1816,14 @@ MonoBehaviour:
   myRigidbody: {fileID: 1291495127}
   jumpComponent: {fileID: 1291495135}
   dashComponent: {fileID: 1291495139}
-  hookComponent: {fileID: 0}
+  hookComponent: {fileID: 1291495141}
   spriteRenderer: {fileID: 1291495128}
   hookGun: {fileID: 1491010790}
   initialGunPosition: {x: 0, y: 0, z: 0}
   invertedGunPosition: {x: 0, y: 0, z: 0}
+  animator: {fileID: 1291495145}
+  animationTimer: 0
+  animationCancelTime: 0.08
 --- !u!114 &1291495141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,7 +1945,7 @@ Animator:
   m_GameObject: {fileID: 1291495125}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 05f4c9c53144d1a4d85a102b31544b44, type: 2}
+  m_Controller: {fileID: 9100000, guid: 113ccb8bf776ecb42838de834d36aa0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

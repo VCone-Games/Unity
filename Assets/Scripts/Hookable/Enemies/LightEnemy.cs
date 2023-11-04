@@ -59,10 +59,9 @@ public class LightEnemy : MonoBehaviour, IHookable
         myRigidbody.velocity = parryDirection;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.25f;
-        if (Mathf.Abs(parryDirection.normalized.x) > 0.95)
-        {
-            playerRigidbody.velocity += new Vector2(0, 8);
-        }
+
+        playerRigidbody.velocity += new Vector2(0, 8);
+        
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
