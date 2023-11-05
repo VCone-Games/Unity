@@ -40,6 +40,8 @@ public class Jump : MonoBehaviour
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
+    [SerializeField] private bool coyoteJumped;
+    [SerializeField] private bool firstJump = true;
 
     [Header("Animator Components")]
     [SerializeField] private Animator animator;
@@ -81,9 +83,11 @@ public class Jump : MonoBehaviour
         jumpInputPressed = true;
 
         bufferTimer = bufferTime;
-        if (coyoteTimer < 0)
+        jumpCount++;
+        if (!isGrounded && !coyoteJumped && firstJump)
         {
-            jumpCount++;
+            jumpCount--;
+            coyoteJumped = true;
         }
         if (jumpCount < maxJumps || hasParred)
         {
@@ -132,6 +136,8 @@ public class Jump : MonoBehaviour
         {
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
+            coyoteJumped = false;
+            firstJump = true;
         }
         else
         {
@@ -170,6 +176,7 @@ public class Jump : MonoBehaviour
             // GetComponent<HorizontalMovement>().DisableMovementInput();
             jumping = true;
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+            firstJump = false;
         }
     }
 
