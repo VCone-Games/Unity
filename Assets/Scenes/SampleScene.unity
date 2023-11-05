@@ -1733,6 +1733,8 @@ MonoBehaviour:
   bufferTimer: 0
   jumpCount: 0
   hasParred: 0
+  coyoteJumped: 0
+  firstJump: 1
   animator: {fileID: 1291495145}
 --- !u!114 &1291495138
 MonoBehaviour:
@@ -1874,6 +1876,7 @@ MonoBehaviour:
   hookGunPosition: {fileID: 1491010791}
   hookedObject: {fileID: 0}
   shootDirection: {x: 0, y: 0, z: 0}
+  animator: {fileID: 1291495145}
 --- !u!114 &1291495142
 MonoBehaviour:
   m_ObjectHideFlags: 0

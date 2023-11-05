@@ -77,6 +77,9 @@ public class Hook : MonoBehaviour
     [Header("Other Variables")]
     [SerializeField] private Vector3 shootDirection;
 
+    [Header("Animation Variables")]
+    [SerializeField] private Animator animator;
+
 
 
 
@@ -191,6 +194,9 @@ public class Hook : MonoBehaviour
     public void HookDestroyed()
     {
         shootingHook = false;
+
+        animator.SetBool("Hooking", false);
+
         horizontalMovementComponent.EnableMovementInput();
         dashComponent.EnableDashInput();
         wallGrabComponent.EnableWallGrabInput();
@@ -209,6 +215,8 @@ public class Hook : MonoBehaviour
     {
         CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
         TimeStop.instance.StopTime(0.05f, 15f, 1f);
+
+        animator.SetBool("Hooking", true);
 
         hookingUnstuckTimer = -1;
         this.hookedObject = hookedObject;
