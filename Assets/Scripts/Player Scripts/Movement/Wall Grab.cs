@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallGrab : MonoBehaviour
+public class WallGrab :MonoBehaviour
 {
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;

@@ -54,10 +54,14 @@ public class LightEnemy : MonoBehaviour, IHookable
 
     private void ParryingAction()
     {
-        playerGO.GetComponent<Parry>().parryEffects();
+        playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
 
         myRigidbody.velocity = parryDirection;
-        Debug.Log("PARRIED: " + parryDirection);
+        playerRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.25f;
+
+        playerRigidbody.velocity += new Vector2(0, 8);
+        
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
@@ -84,7 +88,7 @@ public class LightEnemy : MonoBehaviour, IHookable
     public void Unhook()
     {
         if (!isHooked) return;
-        Debug.Log("UNHOOKING EN METODO UNHOOK TU PUTA MADRE");
+  
         if (hookProjectile != null)
         {
             hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
@@ -93,6 +97,7 @@ public class LightEnemy : MonoBehaviour, IHookable
         {
             playerGO.GetComponent<Hook>().HookDestroyed();
         }
+        myRigidbody.velocity *= new Vector3(0.75f, 1, 1);
         hookProjectile = null;
         hookingSpeed = 0;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;

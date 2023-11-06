@@ -152,6 +152,14 @@ MonoBehaviour:
   lineRenderer: {fileID: 4045875522114413722}
   projectileTransform: {fileID: 6707406114752567600}
   hookGunTransform: {fileID: 0}
+  numPoints: 6
+  realNumPoints: 0
+  waveLength: 5
+  waveHeight: 0.1
+  ropeVector: {x: 0, y: 0}
+  points: []
+  waveTime: 0.5
+  waveTimer: 0
 --- !u!1 &7953474213004086225
 GameObject:
   m_ObjectHideFlags: 0

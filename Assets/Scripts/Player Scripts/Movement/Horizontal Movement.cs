@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,11 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private GameObject hookGun;
     [SerializeField] Vector3 initialGunPosition;
     [SerializeField] Vector3 invertedGunPosition;
+
+    [Header("Animator Variables")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private float animationTimer;
+    [SerializeField] private float animationCancelTime;
 
     public bool IsFacingRight
     {
@@ -62,11 +68,10 @@ public class HorizontalMovement : MonoBehaviour
         {
             SpriteFlipManager(false);
         }
-        if(movementDirection > 0)
+        if (movementDirection > 0)
         {
             SpriteFlipManager(true);
         }
- 
     }
 
     public void SpriteFlipManager(bool isFacingRight)
@@ -125,12 +130,29 @@ public class HorizontalMovement : MonoBehaviour
         if (DISABLED) return;
         if (moving)
         {
+            if(jumpComponent.IsGrounded)
+            {
+                animator.SetBool("Running", true);
+                animationTimer = animationCancelTime;
+            }  
             myRigidbody.velocity = new Vector2(movementSpeed * movementDirection, myRigidbody.velocity.y);
         }
         else
         {
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
-        }
 
+        }
+    }
+
+    private void Update()
+    {
+        if (animationTimer > 0)
+        {
+            animationTimer -= Time.deltaTime;
+            if (animationTimer < 0)
+            {
+                animator.SetBool("Running", false);
+            }
+        }
     }
 }

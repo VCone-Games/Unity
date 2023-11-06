@@ -40,6 +40,11 @@ public class Jump : MonoBehaviour
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
+    [SerializeField] private bool coyoteJumped;
+    [SerializeField] private bool firstJump = true;
+
+    [Header("Animator Components")]
+    [SerializeField] private Animator animator;
 
 
     public bool HasParred { set { hasParred = value; } }
@@ -79,10 +84,16 @@ public class Jump : MonoBehaviour
 
         bufferTimer = bufferTime;
         jumpCount++;
+        if (!isGrounded && !coyoteJumped && firstJump)
+        {
+            jumpCount--;
+            coyoteJumped = true;
+        }
         if (jumpCount < maxJumps || hasParred)
         {
             hasParred = false;
             coyoteTimer = coyoteTime;
+            animator.SetTrigger("Jump Trigger");
         }
 
     }
@@ -111,10 +122,22 @@ public class Jump : MonoBehaviour
 
         if (GetComponent<Dash>().IsDashing) return;
 
+        if (!isGrounded)
+        {
+            animator.SetBool("Is Airborne", true);
+        }
+        else
+        {
+            animator.SetBool("Is Airborne", false);
+        }
+
+
         if (isGrounded || grabWallComponent.IsGrabbingWall)
         {
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
+            coyoteJumped = false;
+            firstJump = true;
         }
         else
         {
@@ -135,7 +158,9 @@ public class Jump : MonoBehaviour
 
         }
 
-        bufferTimer -= Time.deltaTime;
+        if (bufferTimer > 0)
+            bufferTimer -= Time.deltaTime;
+
 
         if (jumpInputPressed)
         {
@@ -151,6 +176,7 @@ public class Jump : MonoBehaviour
             // GetComponent<HorizontalMovement>().DisableMovementInput();
             jumping = true;
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+            firstJump = false;
         }
     }
 

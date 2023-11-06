@@ -43,7 +43,6 @@ public class MediumEnemy : MonoBehaviour, IHookable
             parryKnockbackTimer -= Time.fixedDeltaTime;
             if (parryKnockbackTimer < 0)
             {
-                Debug.Log("UNHOOKING POR PARRY");
                 gameObject.layer = 0;
                 Unhook();
             }
@@ -56,12 +55,16 @@ public class MediumEnemy : MonoBehaviour, IHookable
 
     private void ParryingAction()
     {
-        playerGO.GetComponent<Parry>().parryEffects();
+        playerGO.GetComponent<Parry>().parryEffects(-parryDirection.x > 0);
 
-        myRigidbody.velocity = parryDirection;
-        playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z);
+        myRigidbody.velocity = parryDirection * 0.85f;
+        playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.85f;
+        if (Mathf.Abs(parryDirection.normalized.x) > 0.95)
+        {
+            playerRigidbody.velocity += new Vector2(0, 8);
+        }
 
-        Debug.Log("PARRIED: " + parryDirection);
+        Debug.Log("PARRIED: " + parryDirection.normalized);
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
@@ -96,6 +99,7 @@ public class MediumEnemy : MonoBehaviour, IHookable
         {
             playerGO.GetComponent<Hook>().HookDestroyed();
         }
+        myRigidbody.velocity *= new Vector3(0.75f, 1 ,1);
         hookProjectile = null;
         hookingSpeed = 0;
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
