@@ -176,6 +176,8 @@ MonoBehaviour:
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
+  normalLayer: 0
+  noPlayerLayer: 9
 --- !u!70 &8360221258859475919
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

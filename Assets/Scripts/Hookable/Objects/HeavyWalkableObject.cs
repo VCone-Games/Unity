@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyEnemy : MonoBehaviour, IHookable
+public class HeavyWalkableObject : MonoBehaviour, IHookable
 {
     [Header("Player Components")]
     [SerializeField] private Transform playerTransform;
@@ -28,6 +28,7 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     [Header("Layers")]
     [SerializeField] private int normalLayer;
     [SerializeField] private int noPlayerLayer;
+
 
     void Start()
     {
@@ -59,7 +60,6 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     {
         playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
 
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerRigidbody.velocity = parryDirection;
         myRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.25f;
         if (Mathf.Abs(parryDirection.normalized.x) > 0.95)
@@ -94,7 +94,7 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     public void Unhook()
     {
         if (!isHooked) return;
-        Debug.Log("UNHOOKING EN METODO UNHOOK TU PUTA MADRE");
+
         if (hookProjectile != null)
         {
             hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
@@ -106,7 +106,7 @@ public class HeavyEnemy : MonoBehaviour, IHookable
         myRigidbody.velocity *= new Vector3(0.75f, 1, 1);
         hookProjectile = null;
         hookingSpeed = 0;
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         isHooked = false;
     }
 
@@ -136,7 +136,6 @@ public class HeavyEnemy : MonoBehaviour, IHookable
     {
         isParried = parried;
     }
-
     public bool IsParried()
     {
         return isParried;
