@@ -1,5 +1,3 @@
-
-using EZCameraShake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +25,9 @@ public class MediumEnemy : MonoBehaviour, IHookable
     [SerializeField] private float hookingSpeed;
     [SerializeField] private Vector3 parryDirection;
 
+    [Header("Layers")]
+    [SerializeField] private int normalLayer;
+    [SerializeField] private int noPlayerLayer;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class MediumEnemy : MonoBehaviour, IHookable
             parryKnockbackTimer -= Time.fixedDeltaTime;
             if (parryKnockbackTimer < 0)
             {
-                gameObject.layer = 0;
+                gameObject.layer = normalLayer;
                 Unhook();
             }
         }
@@ -68,7 +69,7 @@ public class MediumEnemy : MonoBehaviour, IHookable
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
-        gameObject.layer = 9;
+        gameObject.layer = noPlayerLayer;
         Destroy(hookProjectile);
     }
 

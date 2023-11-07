@@ -25,6 +25,10 @@ public class LightEnemy : MonoBehaviour, IHookable
     [SerializeField] private float hookingSpeed;
     [SerializeField] private Vector3 parryDirection;
 
+    [Header("Layers")]
+    [SerializeField] private int normalLayer;
+    [SerializeField] private int noPlayerLayer;
+
 
     void Start()
     {
@@ -42,7 +46,7 @@ public class LightEnemy : MonoBehaviour, IHookable
             if (parryKnockbackTimer < 0)
             {
                 Debug.Log("UNHOOKING POR PARRY");
-                gameObject.layer = 0;
+                gameObject.layer = normalLayer;
                 Unhook();
             }
         }
@@ -65,7 +69,7 @@ public class LightEnemy : MonoBehaviour, IHookable
         isParried = false;
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
-        gameObject.layer = 9;
+        gameObject.layer = noPlayerLayer;
         Destroy(hookProjectile);
     }
 

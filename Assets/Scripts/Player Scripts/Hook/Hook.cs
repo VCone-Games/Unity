@@ -40,9 +40,6 @@ public class Hook : MonoBehaviour
     [Header("Controller Aim Variables")]
     [SerializeField] private Vector2 controllerAim;
 
-    //HOOK RANGE REPRESENTATION
-    [Header("Hook Range Representation")]
-    [SerializeField] private GameObject hookRangeRepresentation;
 
     //HOOK PARAMETERS
     [Header("Hook Parameters")]
@@ -93,9 +90,6 @@ public class Hook : MonoBehaviour
 
         //hookShootControllerReference.action.Disable();
         //hookAimControllerReference.action.Disable();
-
-        hookRangeRepresentation.transform.localScale = new Vector3(hookingRange * 2, hookingRange * 2, hookingRange * 2);
-        hookRangeRepresentation.transform.SetParent(transform, false);
     }
 
 

@@ -211,6 +211,8 @@ MonoBehaviour:
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
+  normalLayer: 0
+  noPlayerLayer: 9
 --- !u!114 &5491876004549921255
 MonoBehaviour:
   m_ObjectHideFlags: 0
