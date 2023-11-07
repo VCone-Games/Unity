@@ -6,20 +6,20 @@ using UnityEngine;
 public abstract class EnemyBaseBehaviour : MonoBehaviour
 {
 
-    [Header("Player params")]
-    [SerializeField] protected GameObject playerObject;
-    [SerializeField] protected LayerMask playerLayer;
+	[Header("Player params")]
+	[SerializeField] protected GameObject playerObject;
+	[SerializeField] protected LayerMask playerLayer;
 
-    [Header("Enemy params")]
-    [SerializeField] protected float moveSpeed;
-    [SerializeField] protected float health;
-    [SerializeField] protected float damage;
+	[Header("Enemy params")]
+	[SerializeField] protected float moveSpeed;
+	[SerializeField] protected bool facingRight;
+	[SerializeField] protected SpriteRenderer mySpriteRenderer;
+	[SerializeField] protected float health;
+	[SerializeField] protected float damage;
 
 	protected enum TState { PATROL, CHASE, ATTACK, DIE }
 	[Header("State params")]
 	[SerializeField] protected TState tState;
-	[SerializeField] protected List<Transform> patrolPoints;
-	[SerializeField] protected float patrolDistanceToChangePoint;
 	[SerializeField] protected float visionRange;
 	[SerializeField] protected float chaseTime;
 	[SerializeField] protected float attackRange;
@@ -29,26 +29,27 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 	[SerializeField] protected Collider2D myCollider2D;
 
 	[Header("Control variables")]
-	[SerializeField] protected Transform currentPatrolPoint;
-	[SerializeField] protected int currentPatrolIndex = 0;
 	[SerializeField] protected bool isPlayerInSight = false;
 	[SerializeField] protected float chaseTimer;
-
-	protected void Start()
-	{
-		// Inicializa el primer punto de patrulla
-		currentPatrolPoint = patrolPoints[currentPatrolIndex];
-	}
 
 	protected abstract void Patrol();
 	protected abstract void Attack();
 
-	protected void Chase()
+	protected virtual void Chase()
 	{
 		// Persigue al jugador
 		chaseTimer -= Time.deltaTime;
 		Vector3 destiny = playerObject.transform.position - gameObject.transform.position;
-		myRigidbody2D.velocity = (destiny.x >= 0) ? new Vector2(moveSpeed, myRigidbody2D.velocity.y) : new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
+
+		if (destiny.x > 0)
+		{
+			myRigidbody2D.velocity = new Vector2(moveSpeed, myRigidbody2D.velocity.y);
+			facingRight = true;
+		} else
+		{
+			myRigidbody2D.velocity = new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
+			facingRight = false;
+		}
 
 		Debug.Log("Chase state");
 	}
@@ -75,7 +76,7 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	protected void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		CheckChangeState();
 
@@ -85,7 +86,6 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 				Patrol();
 				break;
 			case TState.CHASE:
-				
 				Chase();
 				break;
 			case TState.ATTACK:
@@ -97,11 +97,12 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 		}
 	}
 
-	protected void Awake()
+	protected virtual void Awake()
 	{
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
+		mySpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 }

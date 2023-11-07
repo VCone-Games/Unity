@@ -4,27 +4,27 @@ using UnityEngine;
 
 public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 {
+
+	[Header("Grounded params")]
+	[SerializeField] private Transform feet;
+	[SerializeField] private Vector2 initialFeetPos;
+	[SerializeField] private Vector2 inverseFeetPos;
+	[SerializeField] private float distance;
+	[SerializeField] private LayerMask groundLayer;
+	[SerializeField] private bool grounded;
+
 	protected override void Patrol()
 	{
-		// Si llega al punto de patrulla, avanza al siguiente
-		if (Vector3.Distance(transform.position, currentPatrolPoint.position) < patrolDistanceToChangePoint)
-		{
-			currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Count;
-			currentPatrolPoint = patrolPoints[currentPatrolIndex];
-			Debug.Log("Cambiando patrol point");
-		}
-
-		Vector3 destiny = currentPatrolPoint.position - gameObject.transform.position;
-		myRigidbody2D.velocity = (destiny.x >= 0) ? new Vector2(moveSpeed, myRigidbody2D.velocity.y) : new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
-
-		Debug.Log("Patrol state");
+		myRigidbody2D.velocity = (facingRight)?
+			new Vector2(moveSpeed, myRigidbody2D.velocity.y):
+			new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
 	}
 
 	protected override void CheckChangeState()
 	{
 		isPlayerInSight = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left, myCollider2D.bounds.extents.y + visionRange, playerLayer) ||
 			Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right, myCollider2D.bounds.extents.y + visionRange, playerLayer);
-		
+
 		if (isPlayerInSight)
 		{
 			chaseTimer = chaseTime;
@@ -33,8 +33,7 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 		{
 			ChangeState(TState.ATTACK);
 		}
-		else    // Si el jugador está dentro del rango de ataque, cambia a estado de ataque
-		if (isPlayerInSight || chaseTimer > 0.0f)
+		else if (isPlayerInSight || chaseTimer > 0.0f)
 		{
 			ChangeState(TState.CHASE);
 		}
@@ -42,5 +41,37 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 		{
 			ChangeState(TState.PATROL);
 		}
+	}
+
+	protected override void FixedUpdate()
+	{
+		base.FixedUpdate();
+
+		
+		if (facingRight)
+		{
+			mySpriteRenderer.flipX = false;
+			feet.localPosition = initialFeetPos;
+		}
+		else
+		{
+			mySpriteRenderer.flipX = true;
+			feet.localPosition = inverseFeetPos;
+		}
+
+		grounded = Physics2D.Raycast(feet.position, Vector2.down, distance, groundLayer);
+
+		if (!grounded)
+		{
+			facingRight = !facingRight;
+		}
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+		initialFeetPos = feet.localPosition;
+		inverseFeetPos = initialFeetPos;
+		inverseFeetPos.x = -inverseFeetPos.x;
 	}
 }
