@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallGrab :MonoBehaviour
+public class WallGrab : MonoBehaviour
 {
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
@@ -38,6 +38,8 @@ public class WallGrab :MonoBehaviour
     [SerializeField] private bool isJumpingRight;
     [SerializeField] private float jumpWallTimer;
 
+    [Header("Animator Variables")]
+    [SerializeField] private Animator animator;
 
     public bool IsGrabbingWall
     {
@@ -94,16 +96,21 @@ public class WallGrab :MonoBehaviour
 
         if (!jumpComponent.IsGrounded && (leftWall || rightWall))
         {
+            if (leftWall) horizontalMovementReference.IsFacingRight = true;
+            if (rightWall) horizontalMovementReference.IsFacingRight = false;
             myRigidbody.velocity = Vector3.zero;
             myRigidbody.gravityScale = wallGravity;
             jumpComponent.DisableBonusAirTime();
             isGrabbingWall = true;
+            animator.SetBool("isGrabbingWall", true);
         }
         else
         {
+            myRigidbody.gravityScale = normalGravityScale;
             leftWall = false;
             rightWall = false;
             isGrabbingWall = false;
+            animator.SetBool("isGrabbingWall", false);
             jumpComponent.EnableBonusAirTime();
         }
 

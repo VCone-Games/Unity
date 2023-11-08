@@ -326,7 +326,7 @@ MonoBehaviour:
   jumpComponent: {fileID: 6020110299800270841}
   horizontalMovementReference: {fileID: 6420582493142398911}
   airDashMovementReference: {fileID: 2202208010201464979}
-  distanceMax: 0.1
+  distanceMax: 0.05
   jumpWallForce: 12
   ForceAddX: 1.5
   jumpWallTime: 0.15
@@ -342,6 +342,7 @@ MonoBehaviour:
   isJumpingLeft: 0
   isJumpingRight: 0
   jumpWallTimer: 0
+  animator: {fileID: 5825470776390931862}
 --- !u!114 &2202208010201464979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,10 +474,12 @@ MonoBehaviour:
   parryDistance: 3
   parryForce: 25
   parryTime: 0.3
+  closeParryTime: 0
   parryKnockbackTime: 0.3
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}
+  hookableComponent: {fileID: 0}
   parryReady: 0
   hookingRange: 0
 --- !u!114 &1011480079229313769

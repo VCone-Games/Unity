@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6345190274633863346}
   - component: {fileID: 2043631844237520827}
   - component: {fileID: 211897220446722698}
-  - component: {fileID: 5061935155039989183}
   - component: {fileID: 5491876004549921255}
+  - component: {fileID: 3457009194831032903}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -186,33 +186,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0084994, y: -0.004249372}
   m_Size: {x: 1.5099654, y: 2.501466}
   m_Direction: 0
---- !u!114 &5061935155039989183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486055998925548718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc36de5e53420f04691311c122b97a17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  playerRigidbody: {fileID: 0}
-  playerGO: {fileID: 0}
-  myRigidbody: {fileID: 6345190274633863346}
-  isParried: 0
-  parrying: 0
-  parryKnockbackTime: 0
-  parryKnockbackTimer: 0
-  isHooked: 0
-  vectorToPlayer: {x: 0, y: 0, z: 0}
-  hookProjectile: {fileID: 0}
-  hookingSpeed: 0
-  parryDirection: {x: 0, y: 0, z: 0}
-  normalLayer: 0
-  noPlayerLayer: 9
 --- !u!114 &5491876004549921255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +201,32 @@ MonoBehaviour:
   myRigidbody: {fileID: 6345190274633863346}
   maxSpeed: 30
   dashComponent: {fileID: 0}
+--- !u!114 &3457009194831032903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486055998925548718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de8bbc9dc698e449a84e5da3b8cb3db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerGO: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0.3
+  parryKnockbackTimer: 0
+  closeParryTime: 0.2
+  closeParryTimer: 0
+  isHooked: 0
+  vectorToPlayer: {x: 0, y: 0, z: 0}
+  hookProjectile: {fileID: 0}
+  hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
+  normalLayer: 0
+  noPlayerLayer: 9
