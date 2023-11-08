@@ -80,7 +80,7 @@ public class WallGrab : MonoBehaviour
             horizontalMovementReference.DisableMovementInput();
             airDashMovementReference.DisableDashInput();
 
-
+            animator.SetTrigger("Jump Trigger");
             jumpComponent.IsJumping = true;
         }
     }
@@ -93,16 +93,18 @@ public class WallGrab : MonoBehaviour
         leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
         rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
 
+        animator.SetBool("isGrabbingWall", isGrabbingWall);
 
         if (!jumpComponent.IsGrounded && (leftWall || rightWall))
         {
-            if (leftWall) horizontalMovementReference.IsFacingRight = true;
-            if (rightWall) horizontalMovementReference.IsFacingRight = false;
             myRigidbody.velocity = Vector3.zero;
             myRigidbody.gravityScale = wallGravity;
             jumpComponent.DisableBonusAirTime();
             isGrabbingWall = true;
-            animator.SetBool("isGrabbingWall", true);
+
+            if (leftWall) horizontalMovementReference.IsFacingRight = true;
+            if (rightWall) horizontalMovementReference.IsFacingRight = false;
+
         }
         else
         {
@@ -110,7 +112,6 @@ public class WallGrab : MonoBehaviour
             leftWall = false;
             rightWall = false;
             isGrabbingWall = false;
-            animator.SetBool("isGrabbingWall", false);
             jumpComponent.EnableBonusAirTime();
         }
 
@@ -127,7 +128,6 @@ public class WallGrab : MonoBehaviour
                 myRigidbody.velocity = new Vector2(-jumpWallForce + ForceAddX, jumpWallForce);
                 isJumpingRight = true;
             }
-
             jumpWallTimer -= Time.deltaTime;
         }
 
