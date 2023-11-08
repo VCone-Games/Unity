@@ -21,7 +21,6 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 	[Header("State params")]
 	[SerializeField] protected TState tState;
 	[SerializeField] protected float visionRange;
-	[SerializeField] protected float chaseTime;
 	[SerializeField] protected float attackRange;
 
 	[Header("Own Components")]
@@ -30,7 +29,6 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 
 	[Header("Control variables")]
 	[SerializeField] protected bool isPlayerInSight = false;
-	[SerializeField] protected float chaseTimer;
 
 	protected abstract void Patrol();
 	protected abstract void Attack();

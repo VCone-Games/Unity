@@ -7,6 +7,9 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 
 	[Header("Grounded params")]
 	[SerializeField] private Transform feet;
+	[SerializeField] protected float chaseTime;
+	[SerializeField] protected float chaseTimer;
+
 	[SerializeField] private Vector2 initialFeetPos;
 	[SerializeField] private Vector2 inverseFeetPos;
 	[SerializeField] private float distance;
