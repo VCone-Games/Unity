@@ -15,9 +15,29 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 
 	protected override void Patrol()
 	{
-		myRigidbody2D.velocity = (facingRight)?
-			new Vector2(moveSpeed, myRigidbody2D.velocity.y):
+		myRigidbody2D.velocity = (facingRight) ?
+			new Vector2(moveSpeed, myRigidbody2D.velocity.y) :
 			new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
+	}
+
+	protected override void Chase()
+	{
+		// Persigue al jugador
+		chaseTimer -= Time.deltaTime;
+		Vector3 destiny = playerObject.transform.position - gameObject.transform.position;
+
+		if (destiny.x > 0)
+		{
+			myRigidbody2D.velocity = new Vector2(moveSpeed, myRigidbody2D.velocity.y);
+			facingRight = true;
+		}
+		else
+		{
+			myRigidbody2D.velocity = new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
+			facingRight = false;
+		}
+
+		Debug.Log("Chase state");
 	}
 
 	protected override void CheckChangeState()
@@ -47,7 +67,7 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 	{
 		base.FixedUpdate();
 
-		
+
 		if (facingRight)
 		{
 			mySpriteRenderer.flipX = false;

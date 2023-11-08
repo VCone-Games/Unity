@@ -35,24 +35,8 @@ public abstract class EnemyBaseBehaviour : MonoBehaviour
 	protected abstract void Patrol();
 	protected abstract void Attack();
 
-	protected virtual void Chase()
-	{
-		// Persigue al jugador
-		chaseTimer -= Time.deltaTime;
-		Vector3 destiny = playerObject.transform.position - gameObject.transform.position;
+	protected abstract void Chase();
 
-		if (destiny.x > 0)
-		{
-			myRigidbody2D.velocity = new Vector2(moveSpeed, myRigidbody2D.velocity.y);
-			facingRight = true;
-		} else
-		{
-			myRigidbody2D.velocity = new Vector2(-moveSpeed, myRigidbody2D.velocity.y);
-			facingRight = false;
-		}
-
-		Debug.Log("Chase state");
-	}
 	protected void ChangeState(TState newState)
 	{
 		tState = newState;
