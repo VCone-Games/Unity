@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthEnemyManager : MonoBehaviour
+public abstract class HealthEnemyManager : MonoBehaviour
 {
     [Header("Health enemy params")]
-    [SerializeField] private int max_health;
-    [SerializeField] private int current_health;
+    [SerializeField] protected int max_health;
+    [SerializeField] protected int current_health;
 
     [Header("Enemy components")]
-    [SerializeField] private Enemy enemyComponent;
+    [SerializeField] protected Enemy enemyComponent;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class HealthEnemyManager : MonoBehaviour
         current_health = max_health;
     }
 
-	public void TakeDamage(int damage)
+	public virtual void TakeDamage(int damage)
 	{
 		// Implementa cómo el enemigo maneja el daño
 		current_health -= damage;

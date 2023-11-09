@@ -71,6 +71,19 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 	{
 		base.FixedUpdate();
 
+		switch (tState)
+		{
+			case TState.PATROL:
+				Patrol();
+				break;
+			case TState.CHASE:
+				Chase();
+				break;
+			case TState.ATTACK:
+				Attack();
+				break;
+		}
+
 		if (facingRight)
 		{
 			mySpriteRenderer.flipX = false;

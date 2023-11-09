@@ -35,25 +35,11 @@ public abstract class EnemyBaseBehaviour : Enemy
 	protected virtual void FixedUpdate()
 	{
 		CheckChangeState();
-
-		switch (tState)
-		{
-			case TState.PATROL:
-				Patrol();
-				break;
-			case TState.CHASE:
-				Chase();
-				break;
-			case TState.ATTACK:
-				Attack();
-				break;
-		}
 	}
 
 	protected virtual void Awake()
 	{
 		base.Awake();
-		EventDie += Die;
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 	}
 }

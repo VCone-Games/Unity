@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
 	public EventHandler EventDie;
+	public EventHandler EventSecondPhase;
 
 	[Header("Enemy params")]
 	[SerializeField] protected float moveSpeed;
@@ -32,6 +33,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Awake()
 	{
+		EventDie += Die;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
 		mySpriteRenderer = GetComponent<SpriteRenderer>();
