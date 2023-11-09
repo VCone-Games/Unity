@@ -1,3 +1,4 @@
+using EZCameraShake;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,6 +46,8 @@ public class Jump : MonoBehaviour
     [Header("Animator Components")]
     [SerializeField] private Animator animator;
 
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
 
     public bool HasParred { set { hasParred = value; } }
 
@@ -119,8 +122,16 @@ public class Jump : MonoBehaviour
     {
         if (DISABLED) return;
 
+        bool auxGrounded = isGrounded;
         isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
             myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
+
+        if (auxGrounded == false && isGrounded == true)
+        {
+            soundManager.PlayLanding();
+            
+           CameraShaker.Instance.ShakeOnce(2f, 1f, .1f, 0.2f);
+        }
 
         if (GetComponent<Dash>().IsDashing) return;
 

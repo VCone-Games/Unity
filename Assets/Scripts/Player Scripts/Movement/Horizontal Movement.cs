@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,9 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private float animationTimer;
     [SerializeField] private float animationCancelTime;
+
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
 
     public bool IsFacingRight
     {
@@ -86,6 +90,7 @@ public class HorizontalMovement : MonoBehaviour
 
     public void DisableMovementInput()
     {
+        soundManager.StoptFootsteps();
         movementActionReference.action.Disable();
         DISABLED = true;
     }
@@ -101,13 +106,17 @@ public class HorizontalMovement : MonoBehaviour
     {
         if (facingRight)
         {
-            spriteRenderer.flipX = false;
-            hookGun.transform.localPosition = initialGunPosition;
+            Vector3 rotator = new Vector3(0, 0, 0);
+            transform.rotation = Quaternion.Euler(rotator);
+            //spriteRenderer.flipX = false;
+            //hookGun.transform.localPosition = initialGunPosition;
         }
         else
         {
-            spriteRenderer.flipX = true;
-            hookGun.transform.localPosition = invertedGunPosition;
+            Vector3 rotator = new Vector3(0, 180, 0);
+            transform.rotation = Quaternion.Euler(rotator);
+            //spriteRenderer.flipX = true;
+            //hookGun.transform.localPosition = invertedGunPosition;
         }
 
         if (DISABLED) return;
@@ -117,6 +126,10 @@ public class HorizontalMovement : MonoBehaviour
             {
                 animator.SetBool("Running", true);
                 animationTimer = animationCancelTime;
+                soundManager.PlayFootsteps();
+            }else
+            {
+                soundManager.StoptFootsteps();
             }
             myRigidbody.velocity = new Vector2(movementSpeed * movementDirection, myRigidbody.velocity.y);
             animator.SetBool("MovingAir", true);
@@ -124,7 +137,7 @@ public class HorizontalMovement : MonoBehaviour
         }
         else
         {
-
+            soundManager.StoptFootsteps();
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 
         }
@@ -139,6 +152,7 @@ public class HorizontalMovement : MonoBehaviour
             {
                 animator.SetBool("MovingAir", false);
                 animator.SetBool("Running", false);
+
             }
         }
     }

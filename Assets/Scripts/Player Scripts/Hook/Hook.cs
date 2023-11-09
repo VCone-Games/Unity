@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Hook : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class Hook : MonoBehaviour
 
     //OTHER VARIABLES
     [Header("Other Variables")]
-    [SerializeField] private Vector3 shootDirection;
+    [SerializeField] private Vector2 shootDirection;
 
     [Header("Animation Variables")]
     [SerializeField] private Animator animator;
@@ -92,9 +93,13 @@ public class Hook : MonoBehaviour
         //hookAimControllerReference.action.Disable();
     }
 
+    void Update()
+    {
 
+    }
     void FixedUpdate()
     {
+
         if (hookingUnstuckTimer > 0)
         {
             hookingUnstuckTimer -= Time.fixedDeltaTime;
@@ -119,11 +124,11 @@ public class Hook : MonoBehaviour
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
-        if (controllerAim.magnitude > 0.5f)
-        {
-            shootDirection = controllerAim;
-            aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
-        }
+
+        shootDirection = controllerAim;
+        Vector2 position = shootDirection.normalized * hookingRange;
+        aimRepresentation.GetComponent<Transform>().localPosition = new Vector3(position.x, position.y, 10);
+
 
 
     }
@@ -140,10 +145,12 @@ public class Hook : MonoBehaviour
 
     private void OnMouseMovement(InputAction.CallbackContext context)
     {
-        if (disableAim) return;
-        mousePositionInScreen = context.ReadValue<Vector2>();
-        mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
-        aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
+        if (!disableAim)
+        {
+            mousePositionInScreen = Input.mousePosition;
+            mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
+            aimRepresentation.GetComponent<Transform>().position = new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, aimRepresentation.GetComponent<Transform>().position.z);
+        }
     }
 
 
@@ -199,7 +206,7 @@ public class Hook : MonoBehaviour
         hookShootGamepadReference.action.Enable();
         hookShootMouseReference.action.Enable();
         disableAim = false;
-        
+
         parryComponent.DisableParry();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -216,7 +223,7 @@ public class Hook : MonoBehaviour
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;
 
-      
+
         hookedObject.GetComponent<AHookable>().Hooked(hookProjectile, hookingSpeed);
 
         hookShootGamepadReference.action.Disable();
