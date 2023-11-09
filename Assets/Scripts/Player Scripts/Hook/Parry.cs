@@ -1,4 +1,4 @@
-using EZCameraShake;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -138,7 +138,7 @@ public class Parry : MonoBehaviour
     public void parryEffects(bool facingRight)
     {
         horizontalMovementComponent.IsFacingRight = facingRight;
-        CameraShaker.Instance.ShakeOnce(15f, 1f, .1f, 0.7f);
+        //.Instance.ShakeOnce(15f, 1f, .1f, 0.7f);
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;

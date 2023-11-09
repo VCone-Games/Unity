@@ -40,6 +40,9 @@ public class HorizontalMovement : MonoBehaviour
     [Header("Audio Management")]
     [SerializeField] private PlayerSoundManager soundManager;
 
+    [Header("Camera Management")]
+    [SerializeField] private CameraFollowObject cameraFollow;
+
     public bool IsFacingRight
     {
         get { return facingRight; }
@@ -81,6 +84,7 @@ public class HorizontalMovement : MonoBehaviour
     public void SpriteFlipManager(bool isFacingRight)
     {
         facingRight = isFacingRight;
+        cameraFollow.CallTurn(facingRight);
     }
 
     private void OnRelease(InputAction.CallbackContext context)
@@ -108,8 +112,7 @@ public class HorizontalMovement : MonoBehaviour
         {
             Vector3 rotator = new Vector3(0, 0, 0);
             transform.rotation = Quaternion.Euler(rotator);
-            //spriteRenderer.flipX = false;
-            //hookGun.transform.localPosition = initialGunPosition;
+
         }
         else
         {

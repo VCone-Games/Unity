@@ -1,4 +1,4 @@
-using EZCameraShake;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ public class Dash : MonoBehaviour
             animator.SetBool("Is Dashing", true);
             hasParred = false;
             TimeStop.instance.StopTime(0.05f, 20f, 0.3f);
-            CameraShaker.Instance.ShakeOnce(1f, 10f, .1f, 0.7f);
+           // CameraShaker.Instance.ShakeOnce(1f, 10f, .1f, 0.7f);
             isDashing = true;
             hasDashed = true;
             dashTimer = dashDuration;

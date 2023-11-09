@@ -1,4 +1,4 @@
-using EZCameraShake;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -214,7 +214,7 @@ public class Hook : MonoBehaviour
 
     public void SomethingHooked(GameObject hookedObject)
     {
-        CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
+        //CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
         //TimeStop.instance.StopTime(0.05f, 15f, 1f);
 
         animator.SetBool("Hooking", true);

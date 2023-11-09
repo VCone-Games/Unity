@@ -1,7 +1,8 @@
-using EZCameraShake;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,6 +50,10 @@ public class Jump : MonoBehaviour
     [Header("Audio Management")]
     [SerializeField] private PlayerSoundManager soundManager;
 
+    [Header("Camera Management")]
+    [SerializeField] private CameraFollowObject cameraFollow;
+    [SerializeField] private float fallSpeedYDumpingChangeThreshold;
+
     public bool HasParred { set { hasParred = value; } }
 
 
@@ -78,6 +83,7 @@ public class Jump : MonoBehaviour
         jumpReference.action.canceled += OnJumpCanceled;
 
         normalGravityScale = myRigidbody.gravityScale;
+        fallSpeedYDumpingChangeThreshold = CameraManager.Instance.fallSpeedDampingChangeThreshhold;
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -117,9 +123,24 @@ public class Jump : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (myRigidbody.velocity.y < fallSpeedYDumpingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpYDamping(true);
+        }
+
+        else if (myRigidbody.velocity.y >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpedFromPlayerFalling = false;
+            CameraManager.Instance.LerpYDamping(false);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (DISABLED) return;
 
         bool auxGrounded = isGrounded;
@@ -129,8 +150,6 @@ public class Jump : MonoBehaviour
         if (auxGrounded == false && isGrounded == true)
         {
             soundManager.PlayLanding();
-            
-           CameraShaker.Instance.ShakeOnce(2f, 1f, .1f, 0.2f);
         }
 
         if (GetComponent<Dash>().IsDashing) return;
