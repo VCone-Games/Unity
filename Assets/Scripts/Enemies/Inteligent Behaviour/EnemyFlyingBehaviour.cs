@@ -11,26 +11,11 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 	[SerializeField] private float patrolDistance;
 
 	[Header("AI flying params")]
-	[SerializeField] private float nextWaypointDistance = 3.0f;
-	[SerializeField] private int currentWayPoint;
-	[SerializeField] private Path path;
-	[SerializeField] private Seeker seeker;
-	[SerializeField] private bool reachedEndOfPath;
-
-	protected override void Chase()
-	{
-		seeker.StartPath(myRigidbody2D.position, playerObject.transform.position, OnPathComplete);
-	}
-
-	void OnPathComplete(Path p)
-	{
-		if (!p.error)
-		{
-			path = p;
-			currentWayPoint = 0;
-		}
-	}
-
+	[SerializeField] protected float nextWaypointDistance = 1.0f;
+	[SerializeField] protected int currentWayPoint;
+	[SerializeField] protected Path path;
+	[SerializeField] protected Seeker seeker;
+	[SerializeField] protected bool reachedEndOfPath;
 	protected override void CheckChangeState()
 	{
 
@@ -50,20 +35,6 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 		}
 	}
 
-	protected override void Patrol()
-	{
-		seeker.StartPath(myRigidbody2D.position, patrolPoints[currentPatrolPoint].position, OnPathComplete);
-	}
-
-	// Start is called before the first frame update
-	protected override void Awake()
-	{
-		base.Awake();
-		seeker = GetComponent<Seeker>();
-
-		InvokeRepeating("UpdatePath", 0f, .5f);
-	}
-
 	void UpdatePath()
 	{
 		if (seeker.IsDone())
@@ -79,9 +50,30 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 			}
 	}
 
-	// Update is called once per frame
-	protected override void FixedUpdate()
+	protected override void Patrol()
 	{
+		seeker.StartPath(myRigidbody2D.position, patrolPoints[currentPatrolPoint].position, OnPathComplete);
+	}
+	protected override void Chase()
+	{
+		seeker.StartPath(myRigidbody2D.position, playerObject.transform.position, OnPathComplete);
+	}
+
+	// Start is called before the first frame update
+
+	protected void OnPathComplete(Path p)
+	{
+		if (!p.error)
+		{
+			path = p;
+			currentWayPoint = 0;
+		}
+	}
+
+	protected virtual void FixedUpdate()
+	{
+		base.FixedUpdate();
+
 		if (tState == TState.PATROL)
 		{
 			if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) < patrolDistance)
@@ -94,9 +86,16 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 			}
 		}
 
-		if (path == null) return;
-		CheckChangeState();
 		if (tState == TState.ATTACK) return;
+
+		IAPath();
+		Flip();
+
+	}
+
+	void IAPath()
+	{
+		if (path == null) return;
 
 		if (currentWayPoint >= path.vectorPath.Count)
 		{
@@ -117,7 +116,10 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 		{
 			currentWayPoint++;
 		}
+	}
 
+	void Flip()
+	{
 		if (myRigidbody2D.velocity.x >= 0.0f)
 		{
 			facingRight = true;
@@ -130,6 +132,12 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 		}
 	}
 
+	protected override void Awake()
+	{
+		base.Awake();
+		seeker = GetComponent<Seeker>();
 
+		InvokeRepeating("UpdatePath", 0f, .5f);
+	}
 
 }
