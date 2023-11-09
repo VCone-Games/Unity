@@ -1,0 +1,163 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class AHookable : MonoBehaviour
+{
+    [Header("Player Components")]
+    [SerializeField] protected Transform playerTransform;
+    [SerializeField] protected Rigidbody2D playerRigidbody;
+    [SerializeField] protected Parry parryComponent;
+    [SerializeField] protected Collider2D playerCollider;
+    [SerializeField] protected GameObject playerGO;
+
+    [Header("My Components")]
+    [SerializeField] protected Rigidbody2D myRigidbody;
+    [SerializeField] protected Collider2D myCollider;
+
+    [Header("Parry variables")]
+    [SerializeField] protected bool isParried;
+    [SerializeField] protected bool parrying;
+    [SerializeField] protected float parryKnockbackTime;
+    [SerializeField] public float parryKnockbackTimer;
+
+    [Header("Parry Time Stop")]
+    [SerializeField] private float stopTimeDistance;
+    [SerializeField] private float timeScale;
+    [SerializeField] private float timeScaleRecoveryRatio;
+
+    [Header("Other Variables")]
+    [SerializeField] protected bool isHooked;
+    [SerializeField] protected Vector3 vectorToPlayer;
+    [SerializeField] protected GameObject hookProjectile;
+    [SerializeField] protected float hookingSpeed;
+    [SerializeField] protected Vector3 parryDirection;
+    [SerializeField] protected bool timeStopped;
+
+    [Header("Layers")]
+    [SerializeField] protected int normalLayer;
+    [SerializeField] protected int noPlayerLayer;
+
+    protected virtual void Start()
+    {
+        playerGO = GameObject.FindWithTag("Player");
+        playerTransform = playerGO.transform;
+        playerRigidbody = playerGO.GetComponent<Rigidbody2D>();
+        hookingSpeed = playerGO.GetComponent<Hook>().hookingSpeed;
+        parryComponent = playerGO.GetComponent<Parry>();
+        playerCollider = playerGO.GetComponent<Collider2D>();
+
+        
+        stopTimeDistance = parryComponent.stopTimeDistance;
+        timeScale = parryComponent.timeScale;
+        timeScaleRecoveryRatio = parryComponent.timeScaleRecoveryRatio;
+    }
+
+
+    protected virtual void FixedUpdate()
+    {
+
+
+        if (parryKnockbackTimer > 0)
+        {
+            parryKnockbackTimer -= Time.fixedDeltaTime;
+            if (parryKnockbackTimer < 0)
+            {
+                Unhook();
+            }
+        }
+        else if (isHooked && !parrying)
+        {
+            HookingInteraction();
+        }
+    }
+
+    protected virtual void ParryingAction()
+    {
+        playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
+
+        isParried = false;
+        parrying = false;
+        parryKnockbackTimer = parryKnockbackTime;
+        gameObject.layer = noPlayerLayer;
+        Destroy(hookProjectile);
+    }
+
+    protected virtual void HookingInteraction()
+    {
+        vectorToPlayer = playerTransform.position - transform.position;
+
+        if(Physics2D.Distance( myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
+        {
+            TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance/hookingSpeed + 0.2f);
+            timeStopped = true;
+        }
+        vectorToPlayer.Normalize();
+    }
+
+    public virtual void Hooked(GameObject hookProjectile, float hoookingSpeed)
+    {
+        isHooked = true;
+        this.hookProjectile = hookProjectile;
+        this.hookingSpeed = hoookingSpeed;
+    }
+
+    public virtual void Unhook()
+    {
+        if (!isHooked) return;
+
+
+        gameObject.layer = normalLayer;
+
+        if (hookProjectile != null)
+        {
+            hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
+        }
+        else
+        {
+            playerGO.GetComponent<Hook>().HookDestroyed();
+        }
+
+        myRigidbody.velocity *= new Vector3(0.75f, 1, 1);
+        hookProjectile = null;
+        hookingSpeed = 0;
+        isHooked = false;
+        timeStopped = false;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isHooked) return;
+
+        if (collision.gameObject.tag == "Player")
+        {
+            //closeParryTimer = closeParryTime;
+            if (!isParried)
+            {
+                Unhook();
+            }
+            else if (isParried)
+            {
+                parrying = true;
+                ParryingAction();
+            }
+        }
+
+    }
+
+    public void Parried(Vector3 direction, float knockbackTime)
+    {
+        parryDirection = direction;
+        parryKnockbackTime = knockbackTime;
+    }
+
+    public void SetParried(bool parried)
+    {
+        isParried = parried;
+    }
+
+    public bool IsParried()
+    {
+        return isParried;
+    }
+}

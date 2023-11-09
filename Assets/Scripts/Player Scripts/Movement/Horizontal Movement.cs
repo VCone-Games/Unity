@@ -76,23 +76,6 @@ public class HorizontalMovement : MonoBehaviour
 
     public void SpriteFlipManager(bool isFacingRight)
     {
-        //if (movementDirection < 0 || direction == 1) //SI MUEVE HACIA IZQUIERDA
-        //{
-        //    if (facingRight) //ME GIRO SI MIRABA A LA DERECHA
-        //    {
-        //        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        //    }
-        //    facingRight = false;
-        //}
-        //
-        //else if(movementDirection > 0 || direction == 2)//SI MUEVE HACIA DERECHA   
-        //{
-        //    if (!facingRight) //ME GIRO SI MIRABA A LA IZQUIERDA
-        //    {
-        //        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        //    }
-        //    facingRight = true;
-        //}
         facingRight = isFacingRight;
     }
 
@@ -134,11 +117,14 @@ public class HorizontalMovement : MonoBehaviour
             {
                 animator.SetBool("Running", true);
                 animationTimer = animationCancelTime;
-            }  
+            }
             myRigidbody.velocity = new Vector2(movementSpeed * movementDirection, myRigidbody.velocity.y);
+            animator.SetBool("MovingAir", true);
+            animationTimer = animationCancelTime;
         }
         else
         {
+
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 
         }
@@ -151,6 +137,7 @@ public class HorizontalMovement : MonoBehaviour
             animationTimer -= Time.deltaTime;
             if (animationTimer < 0)
             {
+                animator.SetBool("MovingAir", false);
                 animator.SetBool("Running", false);
             }
         }

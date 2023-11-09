@@ -40,8 +40,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
-    [SerializeField] private bool coyoteJumped;
-    [SerializeField] private bool firstJump = true;
+    [SerializeField] private bool asciende;
 
     [Header("Animator Components")]
     [SerializeField] private Animator animator;
@@ -80,19 +79,21 @@ public class Jump : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
+        if (jumping) return;
         jumpInputPressed = true;
 
         bufferTimer = bufferTime;
+
         jumpCount++;
-        if (!isGrounded && !coyoteJumped && firstJump)
-        {
-            jumpCount--;
-            coyoteJumped = true;
-        }
+
         if (jumpCount < maxJumps || hasParred)
         {
+            if (!IsGrounded && coyoteTimer > 0f)
+            {
+                jumpCount--;
+            }
             hasParred = false;
-            coyoteTimer = coyoteTime;
+            asciende = true;
             animator.SetTrigger("Jump Trigger");
         }
 
@@ -104,7 +105,8 @@ public class Jump : MonoBehaviour
         if (jumping)
         {
             jumping = false;
-
+            asciende = false;
+            bufferTimer = -1;
             if (myRigidbody.velocity.y < 0) return;
 
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 0);
@@ -122,6 +124,8 @@ public class Jump : MonoBehaviour
 
         if (GetComponent<Dash>().IsDashing) return;
 
+        animator.SetBool("isJumping", jumping);
+
         if (!isGrounded)
         {
             animator.SetBool("Is Airborne", true);
@@ -136,8 +140,6 @@ public class Jump : MonoBehaviour
         {
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
-            coyoteJumped = false;
-            firstJump = true;
         }
         else
         {
@@ -159,7 +161,11 @@ public class Jump : MonoBehaviour
         }
 
         if (bufferTimer > 0)
+        {
             bufferTimer -= Time.deltaTime;
+            if (bufferTimer < 0) asciende = false; jumping = false;
+        }
+
 
 
         if (jumpInputPressed)
@@ -171,12 +177,11 @@ public class Jump : MonoBehaviour
 
     void JumpMethod()
     {
-        if ((bufferTimer > 0.0f && coyoteTimer > 0.0f))
+        if ((bufferTimer > 0.0f && asciende))
         {
             // GetComponent<HorizontalMovement>().DisableMovementInput();
             jumping = true;
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
-            firstJump = false;
         }
     }
 

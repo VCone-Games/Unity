@@ -41,13 +41,18 @@ public class Parry : MonoBehaviour
     [SerializeField] private float parryTime;
     [SerializeField] public float parryKnockbackTime;
 
+    [Header("Parry Time Stop")]
+    [SerializeField] public float stopTimeDistance;
+    [SerializeField] public float timeScale;
+    [SerializeField] public float timeScaleRecoveryRatio;
+
 
     //PARRY LOGIC VARIABLES
     [Header("Parry Logic Variables")]
-    [SerializeField] private float parryTimer;
+    [SerializeField] public float parryTimer;
     [SerializeField] private bool Disabled;
     [SerializeField] private GameObject hookedObject;
-    [SerializeField] private IHookable hookableComponent;
+    [SerializeField] private AHookable hookableComponent;
     [SerializeField] private bool parryReady;
 
 
@@ -86,13 +91,12 @@ public class Parry : MonoBehaviour
         shootDirection.Normalize();
         hookableComponent.Parried(shootDirection * parryForce, parryKnockbackTime);
         hookableComponent.SetParried(true);
-        Debug.Log("PARRY INPUT");
     }
 
     public void SetHookedObject(GameObject hooked)
     {
         hookedObject = hooked;
-        hookableComponent = hookedObject.GetComponent<IHookable>();
+        hookableComponent = hookedObject.GetComponent<AHookable>();
     }
 
     public void DisableParry()

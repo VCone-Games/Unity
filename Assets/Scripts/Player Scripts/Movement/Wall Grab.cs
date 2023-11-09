@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallGrab :MonoBehaviour
+public class WallGrab : MonoBehaviour
 {
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
@@ -38,6 +38,8 @@ public class WallGrab :MonoBehaviour
     [SerializeField] private bool isJumpingRight;
     [SerializeField] private float jumpWallTimer;
 
+    [Header("Animator Variables")]
+    [SerializeField] private Animator animator;
 
     public bool IsGrabbingWall
     {
@@ -78,7 +80,7 @@ public class WallGrab :MonoBehaviour
             horizontalMovementReference.DisableMovementInput();
             airDashMovementReference.DisableDashInput();
 
-
+            animator.SetTrigger("Jump Trigger");
             jumpComponent.IsJumping = true;
         }
     }
@@ -91,6 +93,7 @@ public class WallGrab :MonoBehaviour
         leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
         rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
 
+        animator.SetBool("isGrabbingWall", isGrabbingWall);
 
         if (!jumpComponent.IsGrounded && (leftWall || rightWall))
         {
@@ -98,9 +101,14 @@ public class WallGrab :MonoBehaviour
             myRigidbody.gravityScale = wallGravity;
             jumpComponent.DisableBonusAirTime();
             isGrabbingWall = true;
+
+            if (leftWall) horizontalMovementReference.IsFacingRight = true;
+            if (rightWall) horizontalMovementReference.IsFacingRight = false;
+
         }
         else
         {
+            myRigidbody.gravityScale = normalGravityScale;
             leftWall = false;
             rightWall = false;
             isGrabbingWall = false;
@@ -120,7 +128,6 @@ public class WallGrab :MonoBehaviour
                 myRigidbody.velocity = new Vector2(-jumpWallForce + ForceAddX, jumpWallForce);
                 isJumpingRight = true;
             }
-
             jumpWallTimer -= Time.deltaTime;
         }
 

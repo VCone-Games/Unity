@@ -204,8 +204,10 @@ MonoBehaviour:
   myRigidbody: {fileID: 4583751139232801594}
   isParried: 0
   parrying: 0
-  parryKnockbackTime: 0
+  parryKnockbackTime: 0.3
   parryKnockbackTimer: 0
+  closeParryTime: 0.2
+  closeParryTimer: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
   hookProjectile: {fileID: 0}

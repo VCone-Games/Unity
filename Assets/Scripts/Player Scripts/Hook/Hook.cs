@@ -45,7 +45,7 @@ public class Hook : MonoBehaviour
     [Header("Hook Parameters")]
     [SerializeField] public float hookingRange;
     [SerializeField] private float hookProjectileSpeed;
-    [SerializeField] private float hookingSpeed;
+    [SerializeField] public float hookingSpeed;
     [SerializeField] private float hookingMaxDuration;
     [SerializeField] private float hookCooldDown;
 
@@ -98,13 +98,13 @@ public class Hook : MonoBehaviour
         if (hookingUnstuckTimer > 0)
         {
             hookingUnstuckTimer -= Time.fixedDeltaTime;
-            if (hookedObject.GetComponent<IHookable>().IsParried())
+            if (hookedObject.GetComponent<AHookable>().IsParried())
             {
                 hookingUnstuckTimer = parryComponent.parryKnockbackTime;
             }
             if (hookingUnstuckTimer < 0)
             {
-                hookedObject.GetComponent<IHookable>().Unhook();
+                hookedObject.GetComponent<AHookable>().Unhook();
             }
         }
         if (hookCoolDownTimer > 0)
@@ -155,7 +155,7 @@ public class Hook : MonoBehaviour
 
         shootingHook = true;
 
-        shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
+        shootDirection = mousePositionInWorld - new Vector2(hookGunPosition.position.x, hookGunPosition.position.y);
 
         Shoot(shootDirection);
 
@@ -208,7 +208,7 @@ public class Hook : MonoBehaviour
     public void SomethingHooked(GameObject hookedObject)
     {
         CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
-        TimeStop.instance.StopTime(0.05f, 15f, 1f);
+        //TimeStop.instance.StopTime(0.05f, 15f, 1f);
 
         animator.SetBool("Hooking", true);
 
@@ -216,7 +216,8 @@ public class Hook : MonoBehaviour
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;
 
-        hookedObject.GetComponent<IHookable>().Hooked(hookProjectile, hookingSpeed);
+      
+        hookedObject.GetComponent<AHookable>().Hooked(hookProjectile, hookingSpeed);
 
         hookShootGamepadReference.action.Disable();
         hookShootMouseReference.action.Disable();
