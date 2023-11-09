@@ -52,18 +52,6 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 
 	protected override void Patrol()
 	{
-		if (tState == TState.PATROL)
-		{
-			if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) < patrolDistance)
-			{
-				int previousCurrentPatrolPoint = currentPatrolPoint;
-				do
-				{
-					currentPatrolPoint = Random.Range(0, patrolPoints.Count);
-				} while (previousCurrentPatrolPoint == currentPatrolPoint);
-			}
-		}
-
 		seeker.StartPath(myRigidbody2D.position, patrolPoints[currentPatrolPoint].position, OnPathComplete);
 	}
 
@@ -94,6 +82,18 @@ public abstract class EnemyFlyingBehaviour : EnemyBaseBehaviour
 	// Update is called once per frame
 	protected override void FixedUpdate()
 	{
+		if (tState == TState.PATROL)
+		{
+			if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) < patrolDistance)
+			{
+				int previousCurrentPatrolPoint = currentPatrolPoint;
+				do
+				{
+					currentPatrolPoint = Random.Range(0, patrolPoints.Count);
+				} while (previousCurrentPatrolPoint == currentPatrolPoint);
+			}
+		}
+
 		if (path == null) return;
 		CheckChangeState();
 		if (tState == TState.ATTACK) return;
