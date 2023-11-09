@@ -7,14 +7,15 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 
 	[Header("Grounded params")]
 	[SerializeField] private Transform feet;
-	[SerializeField] protected float chaseTime;
+	[SerializeField] private LayerMask groundLayer;
 	[SerializeField] protected float chaseTimer;
+	[SerializeField] private float distance;
 
+	[Header("Control grounded variables")]
+	[SerializeField] private bool grounded;
+	[SerializeField] protected float chaseTime;
 	[SerializeField] private Vector2 initialFeetPos;
 	[SerializeField] private Vector2 inverseFeetPos;
-	[SerializeField] private float distance;
-	[SerializeField] private LayerMask groundLayer;
-	[SerializeField] private bool grounded;
 
 	protected override void Patrol()
 	{
@@ -69,7 +70,6 @@ public abstract class EnemyGroundedBehaviour : EnemyBaseBehaviour
 	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
-
 
 		if (facingRight)
 		{
