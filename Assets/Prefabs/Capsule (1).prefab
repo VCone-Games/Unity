@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4875092510534256330}
   - component: {fileID: 5200936586960881458}
   - component: {fileID: 6345190274633863346}
-  - component: {fileID: 2043631844237520827}
-  - component: {fileID: 211897220446722698}
   - component: {fileID: 5491876004549921255}
   - component: {fileID: 3457009194831032903}
   m_Layer: 0
@@ -116,76 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &2043631844237520827
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486055998925548718}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.2, y: 2.2}
-  m_Direction: 0
---- !u!70 &211897220446722698
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486055998925548718}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0084994, y: -0.004249372}
-  m_Size: {x: 1.5099654, y: 2.501466}
-  m_Direction: 0
 --- !u!114 &5491876004549921255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,18 +143,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
   playerGO: {fileID: 0}
   myRigidbody: {fileID: 0}
+  myCollider: {fileID: 0}
   isParried: 0
   parrying: 0
   parryKnockbackTime: 0.3
   parryKnockbackTimer: 0
-  closeParryTime: 0.2
-  closeParryTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
   normalLayer: 0
   noPlayerLayer: 9

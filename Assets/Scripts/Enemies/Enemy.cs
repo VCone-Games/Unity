@@ -11,7 +11,6 @@ public abstract class Enemy : MonoBehaviour
 	[Header("Enemy params")]
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected bool facingRight = true;
-	[SerializeField] protected SpriteRenderer mySpriteRenderer;
 	[SerializeField] protected float damage;
 
 	[Header("Own Components")]
@@ -36,6 +35,5 @@ public abstract class Enemy : MonoBehaviour
 		EventDie += Die;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
-		mySpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 }

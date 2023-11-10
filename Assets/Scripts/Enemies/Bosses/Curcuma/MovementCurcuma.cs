@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class MovementCurcuma : Enemy
 {
-
+	/*
 	private enum TState { CROW_A, CROW_B, CROW_C, ENERGY_CROW }
 	[Header("State params")]
 	[SerializeField] private TState tState;
@@ -170,5 +170,9 @@ public class MovementCurcuma : Enemy
 			facingRight = false;
 			mySpriteRenderer.flipX = true;
 		}
+	}*/
+	protected override void Attack()
+	{
+		throw new NotImplementedException();
 	}
 }
