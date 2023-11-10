@@ -212,70 +212,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8486055998925548718, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
   m_PrefabInstance: {fileID: 305642469}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &75232548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75232547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6150d63f6ed3fc488c83ffb8795dae7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  facingRight: 0
-  mySpriteRenderer: {fileID: 0}
-  damage: 0
-  myRigidbody2D: {fileID: 0}
-  myCollider2D: {fileID: 0}
-  playerObject: {fileID: 0}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  tState: 0
-  visionRange: 10
-  attackRange: 2
-  isPlayerInSight: 0
-  patrolPoints:
-  - {fileID: 1929693976}
-  - {fileID: 2041177384}
-  - {fileID: 361591972}
-  currentPatrolPoint: 0
-  patrolDistance: 0.5
-  nextWaypointDistance: 1
-  currentWayPoint: 0
-  seeker: {fileID: 0}
-  reachedEndOfPath: 0
---- !u!114 &75232549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 75232547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
 --- !u!70 &75232557
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -436,13 +372,10 @@ MonoBehaviour:
   myCollider2D: {fileID: 0}
   circleRadius: 0.5
   groundMask:
-    serializedVersion: 2
     m_Bits: 128
   wallMask:
-    serializedVersion: 2
     m_Bits: 256
   enemyMask:
-    serializedVersion: 2
     m_Bits: 2048
   hitTime: 0
   rightCheck: {fileID: 1299756256}
@@ -669,18 +602,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2043631844237520827, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
-    - {fileID: 211897220446722698, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8486055998925548718, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 75232549}
-    - targetCorrespondingSourceObject: {fileID: 8486055998925548718, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 75232548}
     - targetCorrespondingSourceObject: {fileID: 8486055998925548718, guid: 8f21f6f256805a04e90c7e088094a52e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 75232558}
@@ -1885,7 +1810,6 @@ MonoBehaviour:
   myCollider2D: {fileID: 0}
   playerObject: {fileID: 0}
   playerLayer:
-    serializedVersion: 2
     m_Bits: 64
   tState: 0
   visionRange: 10
@@ -1893,7 +1817,6 @@ MonoBehaviour:
   isPlayerInSight: 0
   feet: {fileID: 1927020938}
   groundLayer:
-    serializedVersion: 2
     m_Bits: 128
   chaseTimer: 0
   distance: 0.2

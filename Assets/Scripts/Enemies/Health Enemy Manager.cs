@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class HealthEnemyManager : MonoBehaviour
+public class HealthEnemyManager : MonoBehaviour
 {
     [Header("Health enemy params")]
     [SerializeField] protected int max_health;
@@ -12,7 +12,7 @@ public abstract class HealthEnemyManager : MonoBehaviour
     [SerializeField] protected Enemy enemyComponent;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         enemyComponent = GetComponent<Enemy>();
         current_health = max_health;

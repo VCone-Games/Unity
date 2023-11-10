@@ -5,30 +5,22 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MovementCurcuma : Enemy
+public class MovementCurcuma : IAFlyPatrol
 {
-	/*
-	private enum TState { CROW_A, CROW_B, CROW_C, ENERGY_CROW }
+	
+	private enum TStateAttack { CROW_A, CROW_B, CROW_C, ENERGY_CROW }
 	[Header("State params")]
-	[SerializeField] private TState tState;
+	[SerializeField] private TStateAttack tStateAttack;
 	[SerializeField] private List<float> probAttacks;
 	[SerializeField] private List<float> probAttacksSecondPhase;
-	[SerializeField] private Dictionary<TState, float> stateDictionary;
-	[SerializeField] private Dictionary<TState, float> stateDictionarySecondPhase;
+	[SerializeField] private Dictionary<TStateAttack, float> stateDictionary;
+	[SerializeField] private Dictionary<TStateAttack, float> stateDictionarySecondPhase;
 	[SerializeField] private float attackTimer;
 	[SerializeField] private float attackTimerSecondPhase;
 
-	[Header("Flying patrol params")]
-	[SerializeField] private List<Transform> patrolPoints;
-	[SerializeField] private int currentPatrolPoint;
-	[SerializeField] private float patrolDistance;
-
-	[Header("AI flying params")]
-	[SerializeField] private float nextWaypointDistance = 3.0f;
-	[SerializeField] private int currentWayPoint;
-	[SerializeField] private Path path;
-	[SerializeField] private Seeker seeker;
-	[SerializeField] private bool reachedEndOfPath;
+	[Header("Spawn params")]
+	[SerializeField] private List<Transform> spawnList;
+	[SerializeField] private List<GameObject> spawnEnemies;
 
 	[Header("Control variables")]
 	[SerializeField] private float attackTime;
@@ -46,57 +38,73 @@ public class MovementCurcuma : Enemy
 		float selectAttack = (float)UnityEngine.Random.Range(0, accumulate*100) /100;
 		Debug.Log(selectAttack);
 
-		Dictionary<TState, float> dictonary = (secondPhase) ? stateDictionarySecondPhase : stateDictionary;
+		Dictionary<TStateAttack, float> dictonary = (secondPhase) ? stateDictionarySecondPhase : stateDictionary;
 		foreach (var state in dictonary)
 		{
 			if (selectAttack < state.Value)
 			{
-				tState = state.Key;
-				Attack(tState);
+				tStateAttack = state.Key;
+				Attack(tStateAttack);
 				break;
 			}
-
 		}
 	}
-	private void Attack(TState tState)
+
+	private void Attack(TStateAttack tState)
 	{
+		int selectedCrow = UnityEngine.Random.Range(0, spawnList.Count);
+		Transform spawnPoint = spawnList[selectedCrow];
 		switch (tState)
 		{
-			case TState.CROW_A:
+			case TStateAttack.CROW_A:
 				Debug.Log("Invocar crow A");
+				SpawnCuervo(spawnPoint, spawnEnemies[0]);
 				break;
-			case TState.CROW_B:
+			case TStateAttack.CROW_B:
 				Debug.Log("Invocar crow B");
+				SpawnCuervo(spawnPoint, spawnEnemies[1]);
 				break;
-			case TState.CROW_C:
+			case TStateAttack.CROW_C:
 				Debug.Log("Invocar crow C");
+				SpawnCuervo(spawnPoint, spawnEnemies[2]);
 				break;
-			case TState.ENERGY_CROW:
+			case TStateAttack.ENERGY_CROW:
 				Debug.Log("Invocar energy crow");
+				SpawnCuervo(spawnPoint, spawnEnemies[3]);
 				break;
 		}
+	}
+
+	private void SpawnCuervo(Transform posicion, GameObject prefab)
+	{
+		GameObject crow = Instantiate(prefab, posicion);
+		crow.AddComponent<DispawnTemporalEnemies>();
 	}
 
 	protected override void Awake()
 	{
 		base.Awake();
 		EventSecondPhase += SecondPhaseActivation;
-		stateDictionary = new Dictionary<TState, float>();
+		stateDictionary = new Dictionary<TStateAttack, float>();
+		stateDictionarySecondPhase = new Dictionary<TStateAttack, float>();
 
-		stateDictionary[TState.CROW_A] = probAttacks[0];
-		stateDictionary[TState.CROW_B] = probAttacks[0] + probAttacks[1];
-		stateDictionary[TState.CROW_C] = probAttacks[0] + probAttacks[1] + probAttacks[2];
-		stateDictionary[TState.ENERGY_CROW] = probAttacks[0] + probAttacks[1] + probAttacks[2] + probAttacks[3];
-
-		stateDictionarySecondPhase[TState.CROW_A] = probAttacksSecondPhase[0];
-		stateDictionarySecondPhase[TState.CROW_B] = probAttacksSecondPhase[0] + probAttacksSecondPhase[1];
-		stateDictionarySecondPhase[TState.CROW_C] = probAttacksSecondPhase[0] + probAttacksSecondPhase[1] + probAttacksSecondPhase[2];
-		stateDictionarySecondPhase[TState.ENERGY_CROW] = probAttacksSecondPhase[0] + probAttacksSecondPhase[1] + probAttacksSecondPhase[2] + probAttacksSecondPhase[3];
+		InitializeStateDictionary(probAttacks, stateDictionary);
+		InitializeStateDictionary(probAttacksSecondPhase, stateDictionarySecondPhase);
 
 		seeker = GetComponent<Seeker>();
-		InvokeRepeating("UpdatePath", 0f, .5f);
+		InvokeRepeating("UpdatePath", 0f, 0.5f);
 		InvokeRepeating("Attack", 0f, attackTimer);
+	}
 
+	private void InitializeStateDictionary(List<float> probabilities, Dictionary<TStateAttack, float> dictionary)
+	{
+		float cumulativeProbability = 0f;
+
+		for (int i = 0; i < probabilities.Count; i++)
+		{
+			cumulativeProbability += probabilities[i];
+			dictionary[(TStateAttack)i] = cumulativeProbability;
+		}
 	}
 
 	private void SecondPhaseActivation(object sender, EventArgs e)
@@ -109,70 +117,4 @@ public class MovementCurcuma : Enemy
 		Debug.Log("Spawn del exoesqueleto");
 	}
 
-	void UpdatePath()
-	{
-		seeker.StartPath(myRigidbody2D.position, patrolPoints[currentPatrolPoint].position, OnPathComplete);
-	}
-
-	void OnPathComplete(Path p)
-	{
-		if (!p.error)
-		{
-			path = p;
-			currentWayPoint = 0;
-		}
-	}
-
-	private void FixedUpdate()
-	{
-		if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) <= patrolDistance)
-		{
-			int previousCurrentPatrolPoint = currentPatrolPoint;
-			do
-			{
-				currentPatrolPoint = UnityEngine.Random.Range(0, patrolPoints.Count);
-			} while (previousCurrentPatrolPoint == currentPatrolPoint);
-		}
-
-		Movement();
-		Flip();
-	}
-
-	private void Movement()
-	{
-		if (path == null) return;
-
-		if (currentWayPoint >= path.vectorPath.Count)
-		{
-			return;
-		}
-
-		Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - myRigidbody2D.position).normalized;
-
-		myRigidbody2D.velocity = direction * moveSpeed;
-
-		float distance = Vector2.Distance(myRigidbody2D.position, path.vectorPath[currentWayPoint]);
-		if (distance <= nextWaypointDistance)
-		{
-			currentWayPoint++;
-		}
-	}
-
-	private void Flip()
-	{
-		if (myRigidbody2D.velocity.x >= 0.0f)
-		{
-			facingRight = true;
-			mySpriteRenderer.flipX = false;
-		}
-		else
-		{
-			facingRight = false;
-			mySpriteRenderer.flipX = true;
-		}
-	}*/
-	protected override void Attack()
-	{
-		throw new NotImplementedException();
-	}
 }
