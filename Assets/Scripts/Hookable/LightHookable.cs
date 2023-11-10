@@ -27,7 +27,7 @@ public class LightHookable : AHookable
     {
         base.Hooked(hookProjectile, hookingSpeed);
 
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        myRigidbody.constraints = RigidbodyConstraints2D.None;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
     }

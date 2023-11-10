@@ -1,6 +1,9 @@
+
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,6 +48,18 @@ public class Jump : MonoBehaviour
     [Header("Animator Components")]
     [SerializeField] private Animator animator;
 
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
+
+    [Header("Camera Management")]
+    [SerializeField] private CameraFollowObject cameraFollow;
+    [SerializeField] private float fallSpeedYDumpingChangeThreshold;
+
+
+    [Header("Camera Shake")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private bool ShakeOnImpact;
+    [SerializeField] private bool SpartaOnImpact;
 
     public bool HasParred { set { hasParred = value; } }
 
@@ -71,10 +86,13 @@ public class Jump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
         jumpReference.action.performed += OnJump;
         jumpReference.action.canceled += OnJumpCanceled;
 
         normalGravityScale = myRigidbody.gravityScale;
+        fallSpeedYDumpingChangeThreshold = CameraManager.Instance.fallSpeedDampingChangeThreshhold;
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -86,11 +104,12 @@ public class Jump : MonoBehaviour
 
         jumpCount++;
 
-        if (jumpCount < maxJumps || hasParred)
+        if (jumpCount <= maxJumps || hasParred)
         {
-            if (!IsGrounded && coyoteTimer > 0f)
+            if (!IsGrounded && coyoteTimer > 0f && maxJumps > 1)
             {
                 jumpCount--;
+                Debug.Log("COYOTE SALTO");
             }
             hasParred = false;
             asciende = true;
@@ -114,13 +133,51 @@ public class Jump : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (myRigidbody.velocity.y < fallSpeedYDumpingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpYDamping(true);
+            ShakeOnImpact = true;
+            Debug.Log("shake");
+        }
+
+        if (ShakeOnImpact && myRigidbody.velocity.y < -35f && !SpartaOnImpact)
+        {
+            SpartaOnImpact = true;
+            Debug.Log("SPARTAAA");
+        }
+
+        else if (myRigidbody.velocity.y >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpedFromPlayerFalling = false;
+            CameraManager.Instance.LerpYDamping(false);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (DISABLED) return;
 
+        bool auxGrounded = isGrounded;
         isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
             myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
+
+        if (auxGrounded == false && isGrounded == true)
+        {
+            if (ShakeOnImpact && !SpartaOnImpact)
+            {
+                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.25f, 0));
+            } else if (SpartaOnImpact)
+            {
+                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 1f, 0));
+            }
+            ShakeOnImpact = false;
+            SpartaOnImpact = false;
+            soundManager.PlayLanding();
+        }
 
         if (GetComponent<Dash>().IsDashing) return;
 
@@ -136,8 +193,9 @@ public class Jump : MonoBehaviour
         }
 
 
-        if (isGrounded || grabWallComponent.IsGrabbingWall)
+        if ((isGrounded || grabWallComponent.IsGrabbingWall) && !asciende)
         {
+            asciende = false;
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
         }

@@ -165,19 +165,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
   playerGO: {fileID: 0}
   myRigidbody: {fileID: 6090710504617637755}
+  myCollider: {fileID: 8434937471926481278}
   isParried: 0
   parrying: 0
   parryKnockbackTime: 0.2
   parryKnockbackTimer: 0
-  closeParryTime: 0.2
-  closeParryTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
   isHooked: 0
   vectorToPlayer: {x: 0, y: 0, z: 0}
   hookProjectile: {fileID: 0}
-  hookingSpeed: 0
+  hookingSpeed: 10
   parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
   normalLayer: 0
   noPlayerLayer: 9
 --- !u!70 &8360221258859475919

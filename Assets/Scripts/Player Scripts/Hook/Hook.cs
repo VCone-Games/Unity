@@ -1,9 +1,10 @@
-using EZCameraShake;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class Hook : MonoBehaviour
 {
@@ -72,7 +73,7 @@ public class Hook : MonoBehaviour
 
     //OTHER VARIABLES
     [Header("Other Variables")]
-    [SerializeField] private Vector3 shootDirection;
+    [SerializeField] private Vector2 shootDirection;
 
     [Header("Animation Variables")]
     [SerializeField] private Animator animator;
@@ -92,9 +93,13 @@ public class Hook : MonoBehaviour
         //hookAimControllerReference.action.Disable();
     }
 
+    void Update()
+    {
 
+    }
     void FixedUpdate()
     {
+
         if (hookingUnstuckTimer > 0)
         {
             hookingUnstuckTimer -= Time.fixedDeltaTime;
@@ -119,11 +124,11 @@ public class Hook : MonoBehaviour
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
-        if (controllerAim.magnitude > 0.5f)
-        {
-            shootDirection = controllerAim;
-            aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
-        }
+
+        shootDirection = controllerAim;
+        Vector2 position = shootDirection.normalized * hookingRange;
+        aimRepresentation.GetComponent<Transform>().localPosition = new Vector3(position.x, position.y, 10);
+
 
 
     }
@@ -140,10 +145,12 @@ public class Hook : MonoBehaviour
 
     private void OnMouseMovement(InputAction.CallbackContext context)
     {
-        if (disableAim) return;
-        mousePositionInScreen = context.ReadValue<Vector2>();
-        mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
-        aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
+        if (!disableAim)
+        {
+            mousePositionInScreen = Input.mousePosition;
+            mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
+            aimRepresentation.GetComponent<Transform>().position = new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, aimRepresentation.GetComponent<Transform>().position.z);
+        }
     }
 
 
@@ -157,13 +164,13 @@ public class Hook : MonoBehaviour
 
         shootDirection = mousePositionInWorld - new Vector2(hookGunPosition.position.x, hookGunPosition.position.y);
 
+
         Shoot(shootDirection);
 
     }
 
     private void Shoot(Vector2 shootDirection)
     {
-        shootDirection.Normalize();
         if (shootDirection.x < 0)
         {
             horizontalMovementComponent.IsFacingRight = false;
@@ -173,16 +180,20 @@ public class Hook : MonoBehaviour
             horizontalMovementComponent.IsFacingRight = true;
         }
 
-        hookProjectile = Instantiate(hookPrefab, hookGunPosition.position, Quaternion.identity);
-        hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
-        hookProjectile.GetComponent<HookProjectile>().Shoot(shootDirection, hookingRange, unhookDistance, hookProjectileSpeed);
+
+        shootDirection.Normalize();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
 
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         wallGrabComponent.DisableWallGrabInput();
         jumpComponent.DisableJumpInput();
+
+        hookProjectile = Instantiate(hookPrefab, hookGunPosition.position, Quaternion.identity);
+        hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
+        hookProjectile.GetComponent<HookProjectile>().Shoot(shootDirection, hookingRange, unhookDistance, hookProjectileSpeed);
     }
 
     public void HookDestroyed()
@@ -199,7 +210,7 @@ public class Hook : MonoBehaviour
         hookShootGamepadReference.action.Enable();
         hookShootMouseReference.action.Enable();
         disableAim = false;
-        
+
         parryComponent.DisableParry();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -207,7 +218,7 @@ public class Hook : MonoBehaviour
 
     public void SomethingHooked(GameObject hookedObject)
     {
-        CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
+        //CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
         //TimeStop.instance.StopTime(0.05f, 15f, 1f);
 
         animator.SetBool("Hooking", true);
@@ -216,7 +227,7 @@ public class Hook : MonoBehaviour
         this.hookedObject = hookedObject;
         hookProjectile.GetComponent<Collider2D>().enabled = false;
 
-      
+
         hookedObject.GetComponent<AHookable>().Hooked(hookProjectile, hookingSpeed);
 
         hookShootGamepadReference.action.Disable();
