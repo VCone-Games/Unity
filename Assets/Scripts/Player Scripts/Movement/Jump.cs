@@ -1,4 +1,5 @@
 
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,6 +55,12 @@ public class Jump : MonoBehaviour
     [SerializeField] private CameraFollowObject cameraFollow;
     [SerializeField] private float fallSpeedYDumpingChangeThreshold;
 
+
+    [Header("Camera Shake")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private bool ShakeOnImpact;
+    [SerializeField] private bool SpartaOnImpact;
+
     public bool HasParred { set { hasParred = value; } }
 
 
@@ -79,6 +86,8 @@ public class Jump : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
         jumpReference.action.performed += OnJump;
         jumpReference.action.canceled += OnJumpCanceled;
 
@@ -128,6 +137,14 @@ public class Jump : MonoBehaviour
         if (myRigidbody.velocity.y < fallSpeedYDumpingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
         {
             CameraManager.Instance.LerpYDamping(true);
+            ShakeOnImpact = true;
+            Debug.Log("shake");
+        }
+
+        if (ShakeOnImpact && myRigidbody.velocity.y < -35f && !SpartaOnImpact)
+        {
+            SpartaOnImpact = true;
+            Debug.Log("SPARTAAA");
         }
 
         else if (myRigidbody.velocity.y >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
@@ -149,6 +166,15 @@ public class Jump : MonoBehaviour
 
         if (auxGrounded == false && isGrounded == true)
         {
+            if (ShakeOnImpact && !SpartaOnImpact)
+            {
+                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.25f, 0));
+            } else if (SpartaOnImpact)
+            {
+                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 1f, 0));
+            }
+            ShakeOnImpact = false;
+            SpartaOnImpact = false;
             soundManager.PlayLanding();
         }
 

@@ -1,4 +1,5 @@
 
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,9 @@ public class Dash : MonoBehaviour
     [Header("Animator Variables")]
     [SerializeField] private Animator animator;
 
+    [Header("Camera Shake")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+
 
     public bool HasParred { set { hasParred = value; } }
     
@@ -49,6 +53,8 @@ public class Dash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
         dashReference.action.performed += OnDashing;
         normalGravityScale = myRigidbody.gravityScale;
         horizontalMovementComponent.enabled = false;
@@ -61,8 +67,10 @@ public class Dash : MonoBehaviour
         {
             animator.SetBool("Is Dashing", true);
             hasParred = false;
+
             TimeStop.instance.StopTime(0.05f, 20f, 0.3f);
-           // CameraShaker.Instance.ShakeOnce(1f, 10f, .1f, 0.7f);
+            CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0.5f,0,0));
+
             isDashing = true;
             hasDashed = true;
             dashTimer = dashDuration;

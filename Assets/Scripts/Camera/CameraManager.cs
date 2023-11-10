@@ -2,8 +2,6 @@ using Cinemachine;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -33,7 +31,6 @@ public class CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 120;
 
         if (Instance == null)
             Instance = this;

@@ -1,4 +1,5 @@
 
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,11 +57,16 @@ public class Parry : MonoBehaviour
     [SerializeField] private bool parryReady;
 
 
-    [SerializeField] private float hookingRange;
+    [Header("Camera Shake")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+
+     private float hookingRange;
 
     // Start is called before the first frame update
     void Start()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
         parryReference.action.performed += OnParry;
         parryReference.action.Disable();
 
@@ -117,7 +123,7 @@ public class Parry : MonoBehaviour
     {
         if (Disabled) return;
         controllerAim = context.ReadValue<Vector2>();
-        //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
+        
         aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
         shootDirection = controllerAim;
 
@@ -138,7 +144,7 @@ public class Parry : MonoBehaviour
     public void parryEffects(bool facingRight)
     {
         horizontalMovementComponent.IsFacingRight = facingRight;
-        //.Instance.ShakeOnce(15f, 1f, .1f, 0.7f);
+        CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1,0.2f,0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6689558321036365904}
   - component: {fileID: -7657944304997157062}
   m_Layer: 0
-  m_Name: CameraControlTrigger
+  m_Name: HorizontalCameraTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.9572306, y: 0.9576857}
+  m_Offset: {x: 3.169566, y: 4.1325026}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.059928, y: 2.6262593}
+  m_Size: {x: 0.077904224, y: 8.975893}
   m_EdgeRadius: 0
 --- !u!114 &-7657944304997157062
 MonoBehaviour:
@@ -90,10 +90,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716f709e8c966994ea65bf6dbb5e026e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swapCameras: 0
-  panCameraOnContact: 1
-  cameraOnLeft: {fileID: 0}
-  cameraOnRight: {fileID: 0}
-  panDirection: 1
-  panDistance: 3
-  panTime: 0.35
+  swapCameras: 1
+  verticalChange: 0
+  panCameraOnContact: 0
+  camera_On_Left_Top: {fileID: 0}
+  camera_On_Right_Bottom: {fileID: 0}
+  panDirection: {x: 0, y: 0}
+  panDistance: 0
+  panTime: 0

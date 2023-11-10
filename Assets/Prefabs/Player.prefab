@@ -40,7 +40,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5978947126907997691}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 8.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -277,6 +277,8 @@ MonoBehaviour:
   asciende: 0
   animator: {fileID: 6685368250936817457}
   soundManager: {fileID: 5413601920481392651}
+  cameraFollow: {fileID: 0}
+  fallSpeedYDumpingChangeThreshold: 0
 --- !u!114 &7722671598202312195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +371,7 @@ MonoBehaviour:
   animationTimer: 0
   animationCancelTime: 0.08
   soundManager: {fileID: 5413601920481392651}
+  cameraFollow: {fileID: 0}
 --- !u!114 &2054309236971672253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSource: {fileID: 6595488629156135767}
   landingSource: {fileID: 6431343659010766365}
-  materialInicial: 2
+  materialInicial: 0
   footSteps:
   - {fileID: 8300000, guid: 70c236a73deb8d24c8a0695c0110441a, type: 3}
   - {fileID: 8300000, guid: 9131b97ae31918241930d7b8f735e90f, type: 3}
