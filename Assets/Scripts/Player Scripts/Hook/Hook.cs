@@ -164,13 +164,13 @@ public class Hook : MonoBehaviour
 
         shootDirection = mousePositionInWorld - new Vector2(hookGunPosition.position.x, hookGunPosition.position.y);
 
+
         Shoot(shootDirection);
 
     }
 
     private void Shoot(Vector2 shootDirection)
     {
-        shootDirection.Normalize();
         if (shootDirection.x < 0)
         {
             horizontalMovementComponent.IsFacingRight = false;
@@ -180,16 +180,20 @@ public class Hook : MonoBehaviour
             horizontalMovementComponent.IsFacingRight = true;
         }
 
-        hookProjectile = Instantiate(hookPrefab, hookGunPosition.position, Quaternion.identity);
-        hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
-        hookProjectile.GetComponent<HookProjectile>().Shoot(shootDirection, hookingRange, unhookDistance, hookProjectileSpeed);
+
+        shootDirection.Normalize();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
 
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         wallGrabComponent.DisableWallGrabInput();
         jumpComponent.DisableJumpInput();
+
+        hookProjectile = Instantiate(hookPrefab, hookGunPosition.position, Quaternion.identity);
+        hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
+        hookProjectile.GetComponent<HookProjectile>().Shoot(shootDirection, hookingRange, unhookDistance, hookProjectileSpeed);
     }
 
     public void HookDestroyed()

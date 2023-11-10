@@ -84,7 +84,7 @@ public class HorizontalMovement : MonoBehaviour
     public void SpriteFlipManager(bool isFacingRight)
     {
         facingRight = isFacingRight;
-        //cameraFollow.CallTurn(facingRight);
+        cameraFollow.CallTurn(facingRight);
     }
 
     private void OnRelease(InputAction.CallbackContext context)

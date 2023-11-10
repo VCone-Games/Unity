@@ -104,11 +104,12 @@ public class Jump : MonoBehaviour
 
         jumpCount++;
 
-        if (jumpCount < maxJumps || hasParred)
+        if (jumpCount <= maxJumps || hasParred)
         {
-            if (!IsGrounded && coyoteTimer > 0f)
+            if (!IsGrounded && coyoteTimer > 0f && maxJumps > 1)
             {
                 jumpCount--;
+                Debug.Log("COYOTE SALTO");
             }
             hasParred = false;
             asciende = true;
@@ -192,8 +193,9 @@ public class Jump : MonoBehaviour
         }
 
 
-        if (isGrounded || grabWallComponent.IsGrabbingWall)
+        if ((isGrounded || grabWallComponent.IsGrabbingWall) && !asciende)
         {
+            asciende = false;
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
         }

@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class CameraControlTrigger : MonoBehaviour
 {
+    [SerializeField] private CameraFollowObject folloObjectScript;
+
     [SerializeField] public bool swapCameras;
     [SerializeField] public bool verticalChange;
     [SerializeField] public bool panCameraOnContact;
+    [SerializeField] public int enterFromLeftRight;
 
     [SerializeField] public CinemachineVirtualCamera camera_On_Left_Top;
     [SerializeField] public CinemachineVirtualCamera camera_On_Right_Bottom;
@@ -26,9 +29,23 @@ public class CameraControlTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && panCameraOnContact)
         {
-            if (panCameraOnContact)
+            Vector2 enterDirection = (collision.transform.position - coll.bounds.center).normalized;
+
+            Debug.Log(enterDirection);
+
+            folloObjectScript.SetFlipDisabled(true);
+
+            if (enterFromLeftRight == 1 && enterDirection.x < 0)
+            {
+                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+            }
+            else if (enterFromLeftRight == 2 && enterDirection.x > 0)
+            {
+                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+            }
+            else if(enterFromLeftRight == 0)
             {
                 CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
             }
@@ -42,6 +59,7 @@ public class CameraControlTrigger : MonoBehaviour
         {
             if (panCameraOnContact)
             {
+                folloObjectScript.SetFlipDisabled(false);
                 CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, true);
             }
 

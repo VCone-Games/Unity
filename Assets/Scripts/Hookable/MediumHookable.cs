@@ -7,7 +7,7 @@ public class MediumHookable : AHookable
     protected override void ParryingAction()
     {
         myRigidbody.velocity = parryDirection * 0.85f;
-        playerRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.85f;
+        playerRigidbody.velocity = -parryDirection * 0.85f;
 
         if (Mathf.Abs(parryDirection.normalized.x) > 0.95)
         {
@@ -34,7 +34,7 @@ public class MediumHookable : AHookable
     public override void Unhook()
     {
         base.Unhook();
-        myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        myRigidbody.constraints = myRigidbody.constraints = RigidbodyConstraints2D.None;
 
     }
 
