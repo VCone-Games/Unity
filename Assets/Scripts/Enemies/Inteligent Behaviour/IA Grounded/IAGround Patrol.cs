@@ -31,6 +31,7 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 				Patrol();
 				break;
 			case TState.ATTACK:
+				if (!canAttack) return;
 				Attack();
 				break;
 		}

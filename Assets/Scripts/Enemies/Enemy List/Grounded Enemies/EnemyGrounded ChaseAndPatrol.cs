@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGroundedChase : IAGroundChase
+public class EnemyGroundedChaseAndPatrol : IAGroundChaseAndPatrol
 {
 	protected override void Attack()
 	{

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-	public EventHandler EventDie;
-	public EventHandler EventSecondPhase;
 
 	[Header("Enemy params")]
 	[SerializeField] protected float moveSpeed;
@@ -20,10 +18,10 @@ public abstract class Enemy : MonoBehaviour
 	protected virtual void Die(object sender, EventArgs e)
 	{
 		Debug.Log("Die");
-		Dissapear();
+		Disappear();
 	}
 
-	protected void Dissapear()
+	protected void Disappear()
 	{
 		Destroy(gameObject);
 	}
@@ -32,7 +30,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		EventDie += Die;
+		GetComponent<HealthEnemyManager>().EventDie += Die;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
 	}

@@ -15,6 +15,7 @@ public abstract class MovementGroundedIA : Enemy
 
 	[Header("Control grounded variables")]
 	[SerializeField] protected bool grounded;
+	[SerializeField] protected bool canAttack = true;
 
 	protected virtual void Patrol()
 	{
@@ -35,5 +36,12 @@ public abstract class MovementGroundedIA : Enemy
 			facingRight = !facingRight;
 			transform.Rotate(new Vector3(0, 180, 0));
 		}
+	}
+
+	protected void Awake()
+	{
+		base.Awake();
+
+		playerObject = GameObject.FindGameObjectWithTag("Player");
 	}
 }

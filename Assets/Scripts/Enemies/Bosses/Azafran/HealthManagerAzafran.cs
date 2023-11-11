@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManagerCurcuma : HealthEnemyManager
+public class HealthManagerAzafran : HealthEnemyManager
 {
-	public EventHandler EventSecondPhase;
+    public EventHandler EventSecondPhase;
 	[Header("Phases")]
 	[SerializeField] private bool SecondPhase = false;
 
-    // Start is called before the first frame update
-    public override void TakeDamage(int damage)
-    {
+	public override void TakeDamage(int damage)
+	{
+		if (!canTakeDamage) return;
 		current_health -= damage;
-		if (current_health <= max_health/2 && !SecondPhase)
+		if (!SecondPhase && current_health <= 0)
 		{
 			SecondPhase = true;
 			EventSecondPhase?.Invoke(this, null);
-		} else if (current_health <= 0)
+			current_health = max_health;
+			canTakeDamage = false;
+		}
+		else if (SecondPhase && current_health <= 0)
 		{
 			current_health = 0;
 			EventDie?.Invoke(this, null);

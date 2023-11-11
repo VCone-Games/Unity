@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFlyPatrolChase : IAFlyChaseAndPatrol
+public class EnemyFlyPatrolAndChase : IAFlyChaseAndPatrol
 {
 	protected override void Attack()
 	{

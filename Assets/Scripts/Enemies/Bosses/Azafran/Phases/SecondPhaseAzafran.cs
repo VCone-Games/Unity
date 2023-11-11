@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IAGroundChase : MovementGroundedIA
+public class SecondPhaseAzafran : MonoBehaviour
 {
-	protected enum TState { PATROL, CHASE, ATTACK }
-
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }

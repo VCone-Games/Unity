@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_health: 10
   current_health: 0
+  canTakeDamage: 1
   enemyComponent: {fileID: 0}
 --- !u!114 &-6392635747389191165
 MonoBehaviour:

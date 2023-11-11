@@ -22,6 +22,7 @@ public abstract class MovementFlyIA : Enemy
 	{
 		base.Awake();
 		seeker = GetComponent<Seeker>();
+
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 
 		InvokeRepeating("UpdatePath", 0f, .5f);

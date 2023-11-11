@@ -1,30 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthEnemyManager : MonoBehaviour
 {
-    [Header("Health enemy params")]
+	public EventHandler EventDie;
+
+	[Header("Health enemy params")]
     [SerializeField] protected int max_health;
     [SerializeField] protected int current_health;
-
-    [Header("Enemy components")]
-    [SerializeField] protected Enemy enemyComponent;
+    [SerializeField] protected bool canTakeDamage = true;
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
-        enemyComponent = GetComponent<Enemy>();
-        current_health = max_health;
+		current_health = max_health;
     }
 
 	public virtual void TakeDamage(int damage)
 	{
+        if (!canTakeDamage) return;
 		// Implementa cómo el enemigo maneja el daño
 		current_health -= damage;
 		if (current_health <= 0)
 		{
-            enemyComponent.EventDie?.Invoke(this, null);
+            EventDie?.Invoke(this, null);
 		}
 	}
 

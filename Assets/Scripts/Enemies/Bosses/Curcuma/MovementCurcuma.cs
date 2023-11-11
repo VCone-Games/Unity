@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class MovementCurcuma : IAFlyPatrol
 {
-	
 	private enum TStateAttack { CROW_A, CROW_B, CROW_C, ENERGY_CROW }
 	[Header("State params")]
 	[SerializeField] private TStateAttack tStateAttack;
@@ -20,11 +19,39 @@ public class MovementCurcuma : IAFlyPatrol
 
 	[Header("Spawn params")]
 	[SerializeField] private List<Transform> spawnList;
-	[SerializeField] private List<GameObject> spawnEnemies;
+	[SerializeField] private List<GameObject> spawnEnemiesPrefabs;
+	[SerializeField] private Transform spawnPointCurcumaSkeleton;
+	[SerializeField] private GameObject curcumaSkeletonPrefab;
 
 	[Header("Control variables")]
 	[SerializeField] private float attackTime;
 	[SerializeField] private bool secondPhase = false;
+
+	protected override void Awake()
+	{
+		base.Awake();
+		GetComponent<HealthManagerCurcuma>().EventSecondPhase += SecondPhaseActivation;
+
+		stateDictionary = new Dictionary<TStateAttack, float>();
+		stateDictionarySecondPhase = new Dictionary<TStateAttack, float>();
+
+		InitializeStateDictionary(probAttacks, stateDictionary);
+		InitializeStateDictionary(probAttacksSecondPhase, stateDictionarySecondPhase);
+
+		seeker = GetComponent<Seeker>();
+		InvokeRepeating("UpdatePath", 0f, 0.5f);
+		InvokeRepeating("Attack", 0f, attackTimer);
+	}
+	private void InitializeStateDictionary(List<float> probabilities, Dictionary<TStateAttack, float> dictionary)
+	{
+		float cumulativeProbability = 0f;
+
+		for (int i = 0; i < probabilities.Count; i++)
+		{
+			cumulativeProbability += probabilities[i];
+			dictionary[(TStateAttack)i] = cumulativeProbability;
+		}
+	}
 
 	protected override void Attack()
 	{
@@ -58,19 +85,19 @@ public class MovementCurcuma : IAFlyPatrol
 		{
 			case TStateAttack.CROW_A:
 				Debug.Log("Invocar crow A");
-				SpawnCuervo(spawnPoint, spawnEnemies[0]);
+				SpawnCuervo(spawnPoint, spawnEnemiesPrefabs[0]);
 				break;
 			case TStateAttack.CROW_B:
 				Debug.Log("Invocar crow B");
-				SpawnCuervo(spawnPoint, spawnEnemies[1]);
+				SpawnCuervo(spawnPoint, spawnEnemiesPrefabs[1]);
 				break;
 			case TStateAttack.CROW_C:
 				Debug.Log("Invocar crow C");
-				SpawnCuervo(spawnPoint, spawnEnemies[2]);
+				SpawnCuervo(spawnPoint, spawnEnemiesPrefabs[2]);
 				break;
 			case TStateAttack.ENERGY_CROW:
 				Debug.Log("Invocar energy crow");
-				SpawnCuervo(spawnPoint, spawnEnemies[3]);
+				SpawnCuervo(spawnPoint, spawnEnemiesPrefabs[3]);
 				break;
 		}
 	}
@@ -81,31 +108,9 @@ public class MovementCurcuma : IAFlyPatrol
 		crow.AddComponent<DispawnTemporalEnemies>();
 	}
 
-	protected override void Awake()
-	{
-		base.Awake();
-		EventSecondPhase += SecondPhaseActivation;
-		stateDictionary = new Dictionary<TStateAttack, float>();
-		stateDictionarySecondPhase = new Dictionary<TStateAttack, float>();
 
-		InitializeStateDictionary(probAttacks, stateDictionary);
-		InitializeStateDictionary(probAttacksSecondPhase, stateDictionarySecondPhase);
 
-		seeker = GetComponent<Seeker>();
-		InvokeRepeating("UpdatePath", 0f, 0.5f);
-		InvokeRepeating("Attack", 0f, attackTimer);
-	}
 
-	private void InitializeStateDictionary(List<float> probabilities, Dictionary<TStateAttack, float> dictionary)
-	{
-		float cumulativeProbability = 0f;
-
-		for (int i = 0; i < probabilities.Count; i++)
-		{
-			cumulativeProbability += probabilities[i];
-			dictionary[(TStateAttack)i] = cumulativeProbability;
-		}
-	}
 
 	private void SecondPhaseActivation(object sender, EventArgs e)
 	{
@@ -114,7 +119,7 @@ public class MovementCurcuma : IAFlyPatrol
 		CancelInvoke("Attack");
 		InvokeRepeating("Attack", 0f, attackTimerSecondPhase);
 
-		Debug.Log("Spawn del exoesqueleto");
+		GameObject curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton);
 	}
 
 }
