@@ -57,6 +57,9 @@ public class Parry : MonoBehaviour
     [SerializeField] private bool parryReady;
 
 
+    [Header("Animator Variables")]
+    [SerializeField] private Animator animator;
+
     [Header("Camera Shake")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
@@ -143,6 +146,8 @@ public class Parry : MonoBehaviour
 
     public void parryEffects(bool facingRight)
     {
+        animator.SetTrigger("Parry");
+
         horizontalMovementComponent.IsFacingRight = facingRight;
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1,0.2f,0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);

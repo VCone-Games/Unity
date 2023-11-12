@@ -11,7 +11,7 @@ public class CameraControlTrigger : MonoBehaviour
     [SerializeField] public bool swapCameras;
     [SerializeField] public bool verticalChange;
     [SerializeField] public bool panCameraOnContact;
-    [SerializeField] public int enterFromLeftRight;
+    [SerializeField] public int enterFromLeftTop_RightBottom;
 
     [SerializeField] public CinemachineVirtualCamera camera_On_Left_Top;
     [SerializeField] public CinemachineVirtualCamera camera_On_Right_Bottom;
@@ -37,18 +37,36 @@ public class CameraControlTrigger : MonoBehaviour
 
             folloObjectScript.SetFlipDisabled(true);
 
-            if (enterFromLeftRight == 1 && enterDirection.x < 0)
+            if (!verticalChange)
             {
-                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
-            }
-            else if (enterFromLeftRight == 2 && enterDirection.x > 0)
+                if (enterFromLeftTop_RightBottom == 1 && enterDirection.x < 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
+                else if (enterFromLeftTop_RightBottom == 2 && enterDirection.x > 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
+                else if (enterFromLeftTop_RightBottom == 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
+            } else
             {
-                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                if (enterFromLeftTop_RightBottom == 1 && enterDirection.y > 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
+                else if (enterFromLeftTop_RightBottom == 2 && enterDirection.y < 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
+                else if (enterFromLeftTop_RightBottom == 0)
+                {
+                    CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
+                }
             }
-            else if(enterFromLeftRight == 0)
-            {
-                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
-            }
+            
         }
     }
 

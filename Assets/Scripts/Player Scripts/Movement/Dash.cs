@@ -131,6 +131,18 @@ public class Dash : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!isDashing) return;
+        if (collision.gameObject.layer == 7)
+        {
+            Debug.Log("AAAAAAAA ME VENGOOO");
+            myRigidbody.velocity = Vector2.zero;
+            dashTimer = -1;
+        } 
+    }
+
+
     public void DisableDashInput()
     {
         dashReference.action.Disable();
