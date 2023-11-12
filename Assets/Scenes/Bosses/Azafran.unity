@@ -1979,9 +1979,10 @@ GameObject:
   - component: {fileID: 548182282}
   - component: {fileID: 548182281}
   - component: {fileID: 548182280}
-  m_Layer: 0
+  - component: {fileID: 548182283}
+  m_Layer: 7
   m_Name: MobileGround
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2708,6 +2709,33 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &548182283
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548182278}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &588970724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3656,6 +3684,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &981078221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 981078222}
+  m_Layer: 0
+  m_Name: StartSecondPhase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981078222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981078221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.2, z: -0.047395602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244564498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3727,6 @@ GameObject:
   - component: {fileID: 1244564500}
   - component: {fileID: 1244564499}
   - component: {fileID: 1244564506}
-  - component: {fileID: 1244564505}
   - component: {fileID: 1244564504}
   - component: {fileID: 1244564503}
   - component: {fileID: 1244564502}
@@ -3840,20 +3898,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPhaseComponent: {fileID: 1244564506}
-  secondPhaseComponent: {fileID: 1244564505}
+  secondPhaseSpawn: {fileID: 981078222}
+  speed: 2
   healthManager: {fileID: 1244564503}
---- !u!114 &1244564505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244564498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0750db14f9c533943ad6b813223893db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  firstPhaseEnded: 0
+  secondPhaseBegin: 0
 --- !u!114 &1244564506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3874,8 +3923,8 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   tState: 4
   probList:
-  - 0.8
   - 0.2
+  - 0.8
   decissionTime: 10
   directionCharge: {x: 0, y: 0, z: 0}
   prefabStone: {fileID: 2440332669216800084, guid: 45568cfc2b6a96a4f83cf316db9fac92, type: 3}
@@ -4211,3 +4260,4 @@ SceneRoots:
   - {fileID: 588970724}
   - {fileID: 1244564501}
   - {fileID: 2256681097473159753}
+  - {fileID: 981078222}
