@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PhaseManagerAzafran : MonoBehaviour
 {
-    [Header("Phase Components")]
+	public EventHandler<int> summonFallingStone;
+
+	[Header("Phase Components")]
     [SerializeField] private FirstPhaseAzafran firstPhaseComponent;
     [SerializeField] private SecondPhaseAzafran secondPhaseComponent;
 
