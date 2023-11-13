@@ -14,6 +14,7 @@ public abstract class Enemy : MonoBehaviour
 	[Header("Own Components")]
 	[SerializeField] protected Rigidbody2D myRigidbody2D;
 	[SerializeField] protected Collider2D myCollider2D;
+	[SerializeField] protected Animator myAnimator;
 
 	protected virtual void Die(object sender, EventArgs e)
 	{
@@ -26,12 +27,26 @@ public abstract class Enemy : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	protected abstract void Attack();
+	protected virtual void Attack()
+	{
+		myAnimator.SetBool("isAttacking", true);
+		myRigidbody2D.isKinematic = true;
+		myRigidbody2D.velocity = Vector3.zero;
+		Debug.Log("Attack mode");
+	}
+
+	protected virtual void StopAttack()
+	{
+		myAnimator.SetBool("isAttacking", false);
+		myRigidbody2D.isKinematic = false;
+		Debug.Log("Fin del ataque");
+	}
 
 	protected virtual void Awake()
 	{
 		GetComponent<HealthEnemyManager>().EventDie += Die;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
+		myAnimator = GetComponent<Animator>();
 	}
 }

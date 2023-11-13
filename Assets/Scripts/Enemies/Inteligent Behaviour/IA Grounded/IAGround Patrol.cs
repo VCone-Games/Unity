@@ -15,10 +15,13 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 		{
 			tState = TState.ATTACK;
 		}
-		else
-		{
-			tState = TState.PATROL;
-		}
+	}
+
+	protected virtual void StopAttack()
+	{
+		base.StopAttack();
+		tState = TState.PATROL;
+		Debug.Log("Cambiando a patrulla");
 	}
 
 	protected virtual void FixedUpdate()

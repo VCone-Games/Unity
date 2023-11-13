@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class EnemyGroundedPatrol : IAGroundPatrol
 {
-	protected override void Attack()
+	/*protected override void Attack()
 	{
+		myAnimator.SetBool("isAttacking", true);
 		Debug.Log("Attack mode");
 	}
+
+	public void StopAttack()
+	{
+
+	}*/
 }
