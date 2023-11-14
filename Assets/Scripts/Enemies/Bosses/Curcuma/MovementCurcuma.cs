@@ -40,7 +40,7 @@ public class MovementCurcuma : IAFlyPatrol
 
 		seeker = GetComponent<Seeker>();
 		InvokeRepeating("UpdatePath", 0f, 0.5f);
-		InvokeRepeating("Attack", 0f, attackTimer);
+		InvokeRepeating("Attack", attackTimer, attackTimer);
 	}
 	private void InitializeStateDictionary(List<float> probabilities, Dictionary<TStateAttack, float> dictionary)
 	{
@@ -108,10 +108,6 @@ public class MovementCurcuma : IAFlyPatrol
 		crow.AddComponent<DispawnTemporalEnemies>();
 	}
 
-
-
-
-
 	private void SecondPhaseActivation(object sender, EventArgs e)
 	{
 		moveSpeed += 2;
@@ -119,7 +115,7 @@ public class MovementCurcuma : IAFlyPatrol
 		CancelInvoke("Attack");
 		InvokeRepeating("Attack", 0f, attackTimerSecondPhase);
 
-		GameObject curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton);
+		GameObject curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton.position, Quaternion.identity);
 	}
 
 }

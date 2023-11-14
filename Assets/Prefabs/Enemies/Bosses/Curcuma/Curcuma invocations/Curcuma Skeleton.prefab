@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 1519268526478705637}
   - component: {fileID: 4552606028366652721}
   - component: {fileID: 6485604682453918038}
-  - component: {fileID: 9006955519019590097}
   m_Layer: 0
   m_Name: Curcuma Skeleton
   m_TagString: Untagged
@@ -196,9 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   facingRight: 1
-  damage: 0
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
+  myAnimator: {fileID: 0}
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -212,19 +211,3 @@ MonoBehaviour:
   canAttack: 0
   tState: 0
   attackRange: 0.1
---- !u!114 &9006955519019590097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6330249763131439790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3059aae340627514bb3749d0d3eca655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_health: 1000
-  current_health: 0
-  canTakeDamage: 0
-  enemyComponent: {fileID: 0}

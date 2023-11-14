@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class EnemyFlySimple : SimpleFlyingBehaviour
 {
-	protected override void Attack()
-	{
-		Debug.Log("Attacked");
-	}
-
+	[Header("Simple fly enemy params")]
+    [SerializeField] private int damage;
+	private HealthManager healthManager;
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Player")) Attack();
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			healthManager = collision.gameObject.GetComponent<HealthPlayerManager>();
+			if (healthManager == null) return;
+
+			Vector3 collisionPoint = collision.GetContact(0).point;
+
+			healthManager.EventDamageTaken(this, damage);
+		}
 	}
+
 }

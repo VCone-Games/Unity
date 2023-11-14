@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 897643177479904495}
   - component: {fileID: 3117422377758787555}
   - component: {fileID: 7347278446769727460}
+  - component: {fileID: 5497218216755711081}
   m_Layer: 0
   m_Name: Curcuma
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35994eb43d3ada44aa4f82b4debfb4b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -193,13 +194,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   facingRight: 1
-  damage: 0
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
+  myAnimator: {fileID: 0}
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   nextWaypointDistance: 1
   currentWayPoint: 0
   seeker: {fileID: 0}
@@ -257,4 +258,26 @@ MonoBehaviour:
   max_health: 100
   current_health: 0
   canTakeDamage: 1
-  enemyComponent: {fileID: 0}
+  myAnimator: {fileID: 0}
+  SecondPhase: 0
+--- !u!95 &5497218216755711081
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659681253205171668}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d18764d4113ff2b438572b27455f2c8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

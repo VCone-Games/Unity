@@ -45,8 +45,10 @@ GameObject:
   - component: {fileID: 4297705559495553367}
   - component: {fileID: 8862250599419334875}
   - component: {fileID: 6303247636484874085}
-  - component: {fileID: 4764903116296495540}
   - component: {fileID: -4364364518143231744}
+  - component: {fileID: 518620573649405646}
+  - component: {fileID: 2438307395840817672}
+  - component: {fileID: 8500645050756796581}
   m_Layer: 0
   m_Name: Crow B
   m_TagString: Untagged
@@ -113,8 +115,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6117647, g: 0.29393125, b: 0.21960784, a: 1}
+  m_Sprite: {fileID: 1803220470, guid: 409430c8388440b4eb329dc199d4afad, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,6 +185,7 @@ MonoBehaviour:
   parryComponent: {fileID: 0}
   playerCollider: {fileID: 0}
   playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
   myRigidbody: {fileID: 0}
   myCollider: {fileID: 0}
   isParried: 0
@@ -193,7 +196,7 @@ MonoBehaviour:
   timeScale: 0
   timeScaleRecoveryRatio: 0
   isHooked: 0
-  vectorToPlayer: {x: 0, y: 0, z: 0}
+  vectorToHookGun: {x: 0, y: 0, z: 0}
   hookProjectile: {fileID: 0}
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
@@ -214,9 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   facingRight: 1
-  damage: 0
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
+  myAnimator: {fileID: 0}
   circleRadius: 0.5
   groundMask:
     serializedVersion: 2
@@ -237,22 +240,7 @@ MonoBehaviour:
   groundTouch: 0
   roofTouch: 0
   hitTimer: 0
---- !u!114 &4764903116296495540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3336814843625774533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3059aae340627514bb3749d0d3eca655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_health: 10
-  current_health: 0
-  canTakeDamage: 1
-  enemyComponent: {fileID: 0}
+  damage: 1
 --- !u!114 &-4364364518143231744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +269,88 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &518620573649405646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336814843625774533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 1
+  current_health: 0
+  canTakeDamage: 1
+  myAnimator: {fileID: 0}
+--- !u!61 &2438307395840817672
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336814843625774533}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.96, y: 0.96}
+  m_EdgeRadius: 0
+--- !u!95 &8500645050756796581
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336814843625774533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93b75668bde668349b41a85bee1a7216, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8861814651853110357
 GameObject:
   m_ObjectHideFlags: 0
