@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,11 @@ public abstract class IAFlyPatrol : MovementFlyIA
 	protected override void FixedUpdate()
 	{
 		CheckState();
-		if (tState == TState.ATTACK) return;
+		if (tState == TState.ATTACK)
+		{
+			Attack();
+			return;
+		}
 		if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) < patrolDistance)
 		{
 			int previousCurrentPatrolPoint = currentPatrolPoint;
@@ -37,14 +41,18 @@ public abstract class IAFlyPatrol : MovementFlyIA
 		IAWorking();
 	}
 
-	private void CheckState()
+	protected virtual void CheckState()
 	{
 		if (Vector3.Distance(transform.position, playerObject.transform.position) < attackRange)
 		{
 			tState = TState.ATTACK;
-		} else
-		{
-			tState = TState.PATROL;
 		}
+	}
+
+	protected override void StopAttack()
+	{
+		base.StopAttack();
+		tState = TState.PATROL;
+		Debug.Log("Cambiando a patrulla");
 	}
 }

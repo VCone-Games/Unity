@@ -5,17 +5,17 @@ using UnityEngine;
 public class DispawnTemporalEnemies : MonoBehaviour
 {
     [Header("Params")]
-    [SerializeField] private float DeathTimer = 5.0f;
+    [SerializeField] private float DeathTimer = 25.0f;
 
     [Header("Components")]
-    [SerializeField] private HealthEnemyManager healthManager;
+    [SerializeField] private HealthManager healthManager;
 
     [Header("Control params")]
     [SerializeField] private float DeathTime;
 
 	private void Start()
 	{
-		healthManager = GetComponent<HealthEnemyManager>();
+		healthManager = GetComponent<HealthManager>();
 		DeathTime = DeathTimer;
 	}
 	private void FixedUpdate()
@@ -24,7 +24,8 @@ public class DispawnTemporalEnemies : MonoBehaviour
 
 		if (DeathTime < 0)
 		{
-			healthManager.TakeDamage(9999);
+			Destroy(gameObject);
+			//healthManager.EventDamageTaken(this, 9999);
 		}
 	}
 }

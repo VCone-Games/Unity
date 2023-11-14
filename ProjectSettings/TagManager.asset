@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Projectile
   - HookGun
+  - Ground
   layers:
   - Default
   - TransparentFX

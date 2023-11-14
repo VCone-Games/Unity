@@ -15,13 +15,16 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 		{
 			tState = TState.ATTACK;
 		}
-		else
-		{
-			tState = TState.PATROL;
-		}
 	}
 
-	protected virtual void FixedUpdate()
+	protected override void StopAttack()
+	{
+		base.StopAttack();
+		tState = TState.PATROL;
+		Debug.Log("Cambiando a patrulla");
+	}
+
+	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
 
@@ -31,6 +34,7 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 				Patrol();
 				break;
 			case TState.ATTACK:
+				if (!canAttack) return;
 				Attack();
 				break;
 		}

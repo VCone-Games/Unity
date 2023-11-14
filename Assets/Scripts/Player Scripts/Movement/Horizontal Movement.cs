@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class HorizontalMovement : MonoBehaviour
 {
+    public EventHandler<int> EventConfused;
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
 
@@ -20,6 +21,10 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private bool moving;
     [SerializeField] private float movementDirection;
     [SerializeField] private bool facingRight = true;
+
+    [Header("State debuff")]
+    [SerializeField] private bool isConfused;
+    [SerializeField] private float confuseTime;
 
 
     [Header("Player Component")]
@@ -59,6 +64,8 @@ public class HorizontalMovement : MonoBehaviour
         invertedGunPosition = initialGunPosition;
         invertedGunPosition.x = -invertedGunPosition.x;
 
+        EventConfused += HittedWithConfused;
+
         // myRigidbody = GetComponent<Rigidbody2D>();
         //
         // jumpComponent = GetComponent<Jump>();
@@ -67,10 +74,18 @@ public class HorizontalMovement : MonoBehaviour
 
     }
 
-    private void OnPressed(InputAction.CallbackContext context)
+	private void HittedWithConfused(object sender, int timer)
+	{
+        confuseTime = timer;
+        isConfused = true;
+	}
+
+	private void OnPressed(InputAction.CallbackContext context)
     {
         moving = true;
         movementDirection = movementActionReference.action.ReadValue<float>();
+        movementDirection = (isConfused) ? -movementDirection : movementDirection;
+        
         if (movementDirection < 0)
         {
             SpriteFlipManager(false);
@@ -104,10 +119,23 @@ public class HorizontalMovement : MonoBehaviour
         DISABLED = false;
     }
 
+    void ConfuseLogic()
+    {
+		if (isConfused)
+		{
+			confuseTime -= Time.deltaTime;
+		}
+		if (confuseTime < 0.0f)
+		{
+			isConfused = false;
+		}
+	}
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        ConfuseLogic();
+
         if (facingRight)
         {
             Vector3 rotator = new Vector3(0, 0, 0);

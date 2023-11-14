@@ -9,7 +9,7 @@ public class HealthUI : MonoBehaviour
 	[SerializeField] private GameObject healthList;
 
 	[Header("Health manager")]
-	[SerializeField] private HealthManager healthManagerComponent;
+	[SerializeField] private HealthPlayerManager healthManagerComponent;
 
 	[Header("Control variables")]
 	[SerializeField] private int currentHearth;
@@ -38,7 +38,7 @@ public class HealthUI : MonoBehaviour
 			hearthColor.color = Color.red;
         }
 
-		healthManagerComponent.EventUpdateHealth += UpdateHealUI;
+		healthManagerComponent.EventUpdateHealthUI += UpdateHealUI;
 	}
 
 	void UpdateHealUI(object sender, int currentHealth)
