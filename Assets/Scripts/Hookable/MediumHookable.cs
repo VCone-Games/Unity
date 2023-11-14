@@ -21,8 +21,8 @@ public class MediumHookable : AHookable
     {
         base.HookingInteraction();
 
-        playerRigidbody.velocity = 0.7f * hookingSpeed * -vectorToPlayer;
-        myRigidbody.velocity = 0.7f * hookingSpeed * vectorToPlayer;
+        playerRigidbody.velocity = 0.7f * hookingSpeed * -vectorToHookGun;
+        myRigidbody.velocity = 0.7f * hookingSpeed * vectorToHookGun;
     }
 
     public override void Hooked(GameObject hookProjectile, float hookingSpeed)

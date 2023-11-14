@@ -20,7 +20,7 @@ public class LightHookable : AHookable
     protected override void HookingInteraction()
     {
         base.HookingInteraction();
-        myRigidbody.velocity = hookingSpeed * vectorToPlayer;
+        myRigidbody.velocity = hookingSpeed * vectorToHookGun;
     }
 
     public override void Hooked(GameObject hookProjectile, float hookingSpeed)

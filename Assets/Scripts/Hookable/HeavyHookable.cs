@@ -18,7 +18,7 @@ public class HeavyHookable : AHookable
     {
         base.HookingInteraction();
 
-        playerRigidbody.velocity = hookingSpeed * -vectorToPlayer;
+        playerRigidbody.velocity = hookingSpeed * -vectorToHookGun;
     }
 
     public override void Hooked(GameObject hookProjectile, float hookingSpeed)
