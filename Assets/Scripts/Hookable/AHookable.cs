@@ -10,6 +10,7 @@ public abstract class AHookable : MonoBehaviour
     [SerializeField] protected Parry parryComponent;
     [SerializeField] protected Collider2D playerCollider;
     [SerializeField] protected GameObject playerGO;
+    [SerializeField] protected Transform hookGun;
 
     [Header("My Components")]
     [SerializeField] protected Rigidbody2D myRigidbody;
@@ -28,7 +29,7 @@ public abstract class AHookable : MonoBehaviour
 
     [Header("Other Variables")]
     [SerializeField] protected bool isHooked;
-    [SerializeField] protected Vector3 vectorToPlayer;
+    [SerializeField] protected Vector3 vectorToHookGun;
     [SerializeField] protected GameObject hookProjectile;
     [SerializeField] protected float hookingSpeed;
     [SerializeField] protected Vector3 parryDirection;
@@ -47,6 +48,7 @@ public abstract class AHookable : MonoBehaviour
         parryComponent = playerGO.GetComponent<Parry>();
         playerCollider = playerGO.GetComponent<Collider2D>();
 
+        hookGun = playerGO.transform.GetChild(0).transform;
         
         stopTimeDistance = parryComponent.stopTimeDistance;
         timeScale = parryComponent.timeScale;
@@ -85,14 +87,14 @@ public abstract class AHookable : MonoBehaviour
 
     protected virtual void HookingInteraction()
     {
-        vectorToPlayer = playerTransform.position - transform.position;
+        vectorToHookGun = hookGun.position - transform.position;
 
         if(Physics2D.Distance( myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
         {
             TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance/hookingSpeed + 0.2f);
             timeStopped = true;
         }
-        vectorToPlayer.Normalize();
+        vectorToHookGun.Normalize();
     }
 
     public virtual void Hooked(GameObject hookProjectile, float hoookingSpeed)

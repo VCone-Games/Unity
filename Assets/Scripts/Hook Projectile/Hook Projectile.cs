@@ -13,21 +13,22 @@ public class HookProjectile : MonoBehaviour
     [SerializeField] private Collider2D myCollider;
     [SerializeField] private Rigidbody2D myRigidbody;
     [SerializeField] private Transform myTransform;
+    [SerializeField] private GameObject sprite;
 
     [Header("Other Variables")]
     [SerializeField] private Vector3 shootDirection;
-    [SerializeField] private Vector3 distanceToPlayer;
+    [SerializeField] private Vector3 distanceToHookGun;
     [SerializeField] private bool triggered;
     [SerializeField] private bool failed;
 
     [Header("Player Components")]
-    [SerializeField] Transform playerTransform;
+    [SerializeField] Transform hookGunTransform;
     [SerializeField] Hook hookComponent;
 
     void Start()
     {
         GameObject playerGO = GameObject.FindWithTag("Player");
-        playerTransform = playerGO.transform;
+        hookGunTransform = playerGO.transform.GetChild(0).transform;
         hookComponent = playerGO.GetComponent<Hook>();
     }
 
@@ -36,7 +37,7 @@ public class HookProjectile : MonoBehaviour
     {
         if (!triggered) return;
 
-        distanceToPlayer = playerTransform.position - myTransform.position;
+        distanceToHookGun = hookGunTransform.position - myTransform.position;
 
         if (!failed)
         {       
@@ -52,7 +53,7 @@ public class HookProjectile : MonoBehaviour
 
     private void ShootingMovement()
     {
-        if (distanceToPlayer.magnitude > hookingRange)
+        if (distanceToHookGun.magnitude > hookingRange)
         {
             HookFailed();
             return;
@@ -62,14 +63,14 @@ public class HookProjectile : MonoBehaviour
 
     private void RetractingMovement()
     {
-        if (distanceToPlayer.magnitude < unhookDistance)
+        if (distanceToHookGun.magnitude < unhookDistance)
         {
             DestroyProjectile();
         }
         else
         {
-            distanceToPlayer.Normalize();
-            myRigidbody.velocity = projectileSpeed * distanceToPlayer;
+            distanceToHookGun.Normalize();
+            myRigidbody.velocity = projectileSpeed * distanceToHookGun;
         }
     }
 
@@ -88,6 +89,7 @@ public class HookProjectile : MonoBehaviour
     public void Shoot(Vector3 direction, float hookingRange, float unhookDistance, float speed)
     {
         shootDirection = direction;
+        transform.right = shootDirection;
         triggered = true;
         this.hookingRange = hookingRange;
         this.unhookDistance = unhookDistance;

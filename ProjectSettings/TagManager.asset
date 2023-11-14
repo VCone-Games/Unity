@@ -22,7 +22,7 @@ TagManager:
   - Projectile
   - Enemies
   - AI
-  - 
+  - CheckPoint
   - 
   - 
   - 
@@ -42,8 +42,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: 'Background '
+    uniqueID: 1865583089
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1336837753
     locked: 0
   - name: UI
     uniqueID: 766271993

@@ -63,9 +63,6 @@ public class Jump : MonoBehaviour
 
     public bool HasParred { set { hasParred = value; } }
 
-
-
-
     public bool IsJumping
     {
         get { return jumping; }
@@ -172,7 +169,7 @@ public class Jump : MonoBehaviour
                 CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.25f, 0));
             } else if (SpartaOnImpact)
             {
-                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 1f, 0));
+                CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.5f, 1.25f));
             }
             ShakeOnImpact = false;
             SpartaOnImpact = false;

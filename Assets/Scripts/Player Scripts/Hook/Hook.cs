@@ -166,7 +166,6 @@ public class Hook : MonoBehaviour
 
 
         Shoot(shootDirection);
-
     }
 
     private void Shoot(Vector2 shootDirection)
