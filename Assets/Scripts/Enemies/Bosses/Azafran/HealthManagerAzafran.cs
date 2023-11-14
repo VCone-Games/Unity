@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManagerAzafran : HealthEnemyManager
+public class HealthManagerAzafran : HealthManager
 {
     public EventHandler EventSecondPhase;
 	[Header("Phases")]
 	[SerializeField] private bool SecondPhase = false;
 
-	public override void TakeDamage(int damage)
+	protected override void TakeDamage(object sender, int damage)
 	{
-		if (!canTakeDamage) return;
-		current_health -= damage;
+		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
+		myAnimator.SetBool("isDamaging", true);
+		int objetiveHealth = current_health - damage;
+		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
+
 		if (!SecondPhase && current_health <= 0)
 		{
 			SecondPhase = true;
@@ -22,17 +25,8 @@ public class HealthManagerAzafran : HealthEnemyManager
 		}
 		else if (SecondPhase && current_health <= 0)
 		{
-			current_health = 0;
 			EventDie?.Invoke(this, null);
 		}
 		Debug.Log("Damage received " + current_health);
-	}
-
-	private void Update()
-	{
-		if (Input.GetKey(KeyCode.Z))
-		{
-			TakeDamage(1);
-		}
 	}
 }

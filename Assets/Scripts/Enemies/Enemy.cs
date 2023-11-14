@@ -9,7 +9,6 @@ public abstract class Enemy : MonoBehaviour
 	[Header("Enemy params")]
 	[SerializeField] protected float moveSpeed;
 	[SerializeField] protected bool facingRight = true;
-	[SerializeField] protected float damage;
 
 	[Header("Own Components")]
 	[SerializeField] protected Rigidbody2D myRigidbody2D;
@@ -18,8 +17,9 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Die(object sender, EventArgs e)
 	{
-		Debug.Log("Die");
-		Disappear();
+		myAnimator.SetBool("isDead", true);
+		myRigidbody2D.velocity = Vector2.zero;
+		myRigidbody2D.isKinematic = false;
 	}
 
 	protected void Disappear()
@@ -44,7 +44,7 @@ public abstract class Enemy : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		GetComponent<HealthEnemyManager>().EventDie += Die;
+		GetComponent<HealthManager>().EventDie += Die;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myCollider2D = GetComponent<Collider2D>();
 		myAnimator = GetComponent<Animator>();
