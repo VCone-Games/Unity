@@ -30,8 +30,8 @@ public abstract class Enemy : MonoBehaviour
 	protected virtual void Attack()
 	{
 		myAnimator.SetBool("isAttacking", true);
-		myRigidbody2D.isKinematic = true;
 		myRigidbody2D.velocity = Vector3.zero;
+		myRigidbody2D.isKinematic = true;
 		Debug.Log("Attack mode");
 	}
 

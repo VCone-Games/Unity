@@ -34,11 +34,20 @@ public abstract class MovementGroundedIA : Enemy
 		if (!grounded)
 		{
 			facingRight = !facingRight;
-			transform.Rotate(new Vector3(0, 180, 0));
+		}
+
+		if (facingRight)
+		{
+			Vector3 rotator = new Vector3(0, 0, 0);
+			transform.rotation = Quaternion.Euler(rotator);
+		} else
+		{
+			Vector3 rotator = new Vector3(0, 180, 0);
+			transform.rotation = Quaternion.Euler(rotator);
 		}
 	}
 
-	protected void Awake()
+	protected override void Awake()
 	{
 		base.Awake();
 

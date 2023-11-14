@@ -17,14 +17,14 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 		}
 	}
 
-	protected virtual void StopAttack()
+	protected override void StopAttack()
 	{
 		base.StopAttack();
 		tState = TState.PATROL;
 		Debug.Log("Cambiando a patrulla");
 	}
 
-	protected virtual void FixedUpdate()
+	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
 

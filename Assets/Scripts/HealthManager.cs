@@ -30,6 +30,7 @@ public class HealthManager : MonoBehaviour
 	protected virtual void TakeDamage(object sender, int damage)
 	{
 		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
+		myAnimator.SetBool("isAttacking", false);
 		Debug.Log(gameObject + ": Me han dañado");
 
 		// Implementa cómo el enemigo maneja el daño

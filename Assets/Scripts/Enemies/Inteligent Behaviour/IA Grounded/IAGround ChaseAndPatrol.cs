@@ -40,6 +40,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	{
 		isPlayerInSight = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left, myCollider2D.bounds.extents.y + visionRange, playerLayer) ||
 			Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right, myCollider2D.bounds.extents.y + visionRange, playerLayer);
+		if (myAnimator.GetBool("isAttacking")) return;
 
 		if (isPlayerInSight)
 		{
@@ -59,8 +60,14 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 			tState = TState.PATROL;
 		}
 	}
+	protected override void StopAttack()
+	{
+		base.StopAttack();
+		tState = TState.CHASE;
+		Debug.Log("Cambiando a patrulla");
+	}
 
-	protected virtual void FixedUpdate()
+	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyGroundedChaseAndPatrol : IAGroundChaseAndPatrol
 {
-	protected override void Attack()
+	/*protected override void Attack()
 	{
 		Debug.Log("Attack mode");
-	}
+	}*/
 }
