@@ -19,6 +19,7 @@ public class Dash : MonoBehaviour
     [SerializeField] private Jump jumpReference;
     [SerializeField] private HorizontalMovement horizontalMovementComponent;
     [SerializeField] private WallGrab wallGrabComponent;
+    [SerializeField] private Interact interactComponent;
 
     [Header("Dash params")]
     [SerializeField] float dashForce;
@@ -59,12 +60,17 @@ public class Dash : MonoBehaviour
         normalGravityScale = myRigidbody.gravityScale;
         horizontalMovementComponent.enabled = false;
         horizontalMovementComponent.enabled = true;
+        interactComponent = GetComponent<Interact>();
     }
 
     private void OnDashing(InputAction.CallbackContext context)
     {
         if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
+            interactComponent.enabled = false;
+            horizontalMovementComponent.DisableMovementInput();
+            wallGrabComponent.DisableWallGrabInput();
+
             animator.SetBool("Is Dashing", true);
             hasParred = false;
 
@@ -95,9 +101,6 @@ public class Dash : MonoBehaviour
 
         if (dashTimer > 0.0f)
         {
-            horizontalMovementComponent.DisableMovementInput();
-            wallGrabComponent.DisableWallGrabInput();
-
 
             if (!horizontalMovementComponent.IsFacingRight)
                 myRigidbody.velocity = new Vector2(-dashForce, myRigidbody.velocity.y);
@@ -121,8 +124,8 @@ public class Dash : MonoBehaviour
         {
             isDashing = false;
             hasDashed = false;
- 
 
+            interactComponent.enabled = true;
             horizontalMovementComponent.EnableMovementInput();
             wallGrabComponent.EnableWallGrabInput();
         }

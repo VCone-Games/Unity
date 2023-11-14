@@ -131,7 +131,7 @@ public class WallGrab : MonoBehaviour
             jumpWallTimer -= Time.deltaTime;
         }
 
-        if (jumpWallTimer <= 0.0f || !jumpComponent.IsJumping)
+        if ((jumpWallTimer <= 0.0f || !jumpComponent.IsJumping) && jumpWall)
         {
             jumpWall = false;
             isJumpingLeft = false;

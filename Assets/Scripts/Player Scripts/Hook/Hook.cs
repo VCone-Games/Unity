@@ -24,6 +24,7 @@ public class Hook : MonoBehaviour
     [SerializeField] private WallGrab wallGrabComponent;
     [SerializeField] private Jump jumpComponent;
     [SerializeField] private Parry parryComponent;
+    [SerializeField] private Interact interactComponent;
     [SerializeField] private Rigidbody2D hookedRigidBody;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask projectileLayer;
@@ -88,6 +89,8 @@ public class Hook : MonoBehaviour
 
         hookAimGamepadReference.action.performed += OnControllerAim;
         hookShootGamepadReference.action.performed += OnControllerShoot;
+
+        interactComponent = GetComponent<Interact>();
 
         //hookShootControllerReference.action.Disable();
         //hookAimControllerReference.action.Disable();
@@ -170,6 +173,10 @@ public class Hook : MonoBehaviour
 
     private void Shoot(Vector2 shootDirection)
     {
+
+        interactComponent.enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+
         if (shootDirection.x < 0)
         {
             horizontalMovementComponent.IsFacingRight = false;
@@ -213,6 +220,9 @@ public class Hook : MonoBehaviour
         parryComponent.DisableParry();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        interactComponent.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public void SomethingHooked(GameObject hookedObject)
@@ -237,6 +247,20 @@ public class Hook : MonoBehaviour
 
         parryComponent.SetHookedObject(hookedObject);
         hookingUnstuckTimer = hookingMaxDuration;
+
+    }
+
+
+    public void DisableHookInput()
+    {
+        hookShootGamepadReference.action.Disable();
+        hookShootMouseReference.action.Disable();
+
+    }
+    public void EnableHookInput()
+    {
+        hookShootGamepadReference.action.Enable();
+        hookShootMouseReference.action.Enable();
 
     }
 }

@@ -14,7 +14,7 @@ public abstract class AHookable : MonoBehaviour
 
     [Header("My Components")]
     [SerializeField] protected Rigidbody2D myRigidbody;
-    [SerializeField] protected Collider2D myCollider;
+    [SerializeField] protected CapsuleCollider2D myCollider;
 
     [Header("Parry variables")]
     [SerializeField] protected bool isParried;
@@ -46,7 +46,7 @@ public abstract class AHookable : MonoBehaviour
         playerRigidbody = playerGO.GetComponent<Rigidbody2D>();
         hookingSpeed = playerGO.GetComponent<Hook>().hookingSpeed;
         parryComponent = playerGO.GetComponent<Parry>();
-        playerCollider = playerGO.GetComponent<Collider2D>();
+        playerCollider = playerGO.GetComponent<CapsuleCollider2D>();
 
         hookGun = playerGO.transform.GetChild(0).transform;
         
@@ -83,6 +83,7 @@ public abstract class AHookable : MonoBehaviour
         parryKnockbackTimer = parryKnockbackTime;
         gameObject.layer = noPlayerLayer;
         Destroy(hookProjectile);
+        playerGO.GetComponent<Interact>().enabled = false;
     }
 
     protected virtual void HookingInteraction()
@@ -125,6 +126,7 @@ public abstract class AHookable : MonoBehaviour
         hookingSpeed = 0;
         isHooked = false;
         timeStopped = false;
+        playerGO.GetComponent<Interact>().enabled = true;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
