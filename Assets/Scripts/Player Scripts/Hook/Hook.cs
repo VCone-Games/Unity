@@ -175,7 +175,6 @@ public class Hook : MonoBehaviour
     {
 
         interactComponent.enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
 
         if (shootDirection.x < 0)
         {
@@ -222,7 +221,6 @@ public class Hook : MonoBehaviour
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         interactComponent.enabled = true;
-        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public void SomethingHooked(GameObject hookedObject)

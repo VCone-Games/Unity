@@ -9,8 +9,6 @@ public class Interact : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionReference interactReference;
 
-    [Header("InteractionCollider")]
-    [SerializeField] private Collider2D interactionCollider;
 
     private Jump jumpComponent;
 
@@ -18,12 +16,15 @@ public class Interact : MonoBehaviour
 
     private void Update()
     {
-        if (jumpComponent.IsGrounded)
+        if (jumpComponent.IsGrounded && !interactReference.action.enabled)
         {
-            interactionCollider.enabled = true;
+            interactReference.action.Enable();
         }
-        else
-            interactionCollider.enabled = false;
+        else if (!jumpComponent.IsGrounded && interactReference.action.enabled)
+        {
+            interactReference.action.Disable();
+        }
+
     }
     private void Start()
     {
@@ -39,24 +40,19 @@ public class Interact : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnInteractableEnter(IInteractable collision)
     {
-        interactable = collision.GetComponent<IInteractable>();
-        if (interactable != null)
-        {
-            interactReference.action.Enable();
-            interactable.InInteractionRange(true);
-        }
+        interactable = collision;
+        interactReference.action.Enable();
+        interactable.InInteractionRange(true);
+
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnInteractableExit(IInteractable collision)
     {
-        interactable = collision.GetComponent<IInteractable>();
-        if (interactable != null)
-        {
-            interactReference.action.Disable();
-            interactable.InInteractionRange(false);
-            interactable = null;
-        }
+        interactable = collision;
+        interactReference.action.Disable();
+        interactable.InInteractionRange(false);
+        interactable = null;
     }
 }
