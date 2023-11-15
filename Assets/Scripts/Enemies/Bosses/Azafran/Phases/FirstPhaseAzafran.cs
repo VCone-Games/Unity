@@ -45,6 +45,7 @@ public class FirstPhaseAzafran : Enemy
 	[SerializeField] private Transform rightCheck;
 	[SerializeField] private Transform spawnAttack;
 	[SerializeField] private float circleRadius;
+	[SerializeField] private bool rightSide;
 	[SerializeField] private LayerMask wallMask;
 	[SerializeField] private float raycastWallLenght;
 	[SerializeField] private float gravityScale;
@@ -126,25 +127,28 @@ public class FirstPhaseAzafran : Enemy
 		tState = TStateAttack.DIG;
 		myRigidbody2D.gravityScale = 0.0f;
 		myAnimator.SetBool("beginDigging", true);
+		Debug.Log("\n\t::::::::Setting dig");
 		previousDigPlace.position = transform.position;
 	}
 
 	void StartDigging()
 	{
-		tState = (tState == TStateAttack.DIG)?
+		tState = (tState == TStateAttack.DIG) ?
 			TStateAttack.DIG_TRAVEL :
 			TStateAttack.DIGGING_BACK;
 
-		tStateMoving = (tState == TStateAttack.DIG_TRAVEL)?
+		Debug.Log("\tState: " + tState);
+		tStateMoving = (tState == TStateAttack.DIG_TRAVEL) ?
 			TStateMovingToDigPoint.GROUND :
 			TStateMovingToDigPoint.PLATAFORM;
+		Debug.Log("\tState movement: " + tStateMoving);
 
 		myAnimator.SetBool("beginDigging", false);
 		myAnimator.SetBool("isDigging", true);
 
 		int selectedPlace = UnityEngine.Random.Range(0, digPlaces.Count);
 
-		digObjetive.position = (tStateMoving == TStateMovingToDigPoint.GROUND)?
+		digObjetive.position = (tState == TStateAttack.DIG_TRAVEL) ?
 			digPlaces[selectedPlace].position :
 			previousDigPlace.position;
 
@@ -177,21 +181,17 @@ public class FirstPhaseAzafran : Enemy
 	/// <summary>
 	/// ///////////////////////////////////
 	/// </summary>
-	void TravelToWall()
+
+	void AscendWall(bool RightWall, bool LeftWall, bool condition)
 	{
-		Debug.Log("***********Viajando al muro...");
-		bool LeftWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left,
-			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
-		bool RightWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right,
-			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
-
 		Vector3 rotator;
-
-		if (digDirection.x >= 0)
+		Debug.Log("****INTENTANDO ASCENDER MURO EN EL ESTADO: " + tState);
+		if (condition)
 		{
 			if (RightWall)
 			{
-				Debug.Log("RightWall");
+				if (tState == TStateAttack.DIG_TRAVEL) rightSide = true;
+				Debug.Log("RightWall -> (" + tState + ")");
 				rotator = new Vector3(0, 0, 90);
 				transform.rotation = Quaternion.Euler(rotator);
 				tStateMoving = TStateMovingToDigPoint.WALL;
@@ -203,9 +203,11 @@ public class FirstPhaseAzafran : Enemy
 		}
 		else
 		{
+
 			if (LeftWall)
 			{
-				Debug.Log("LeftWall");
+				if (tState == TStateAttack.DIG_TRAVEL) rightSide = false;
+				Debug.Log("LeftWall -> (" + tState + ")");
 				rotator = new Vector3(0, 180, 90);
 				transform.rotation = Quaternion.Euler(rotator);
 				tStateMoving = TStateMovingToDigPoint.WALL;
@@ -216,24 +218,56 @@ public class FirstPhaseAzafran : Enemy
 			}
 		}
 	}
+	void TravelToWall()
+	{
+		Debug.Log("***********Viajando al muro... -> (" + tState + ")");
+		bool LeftWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left,
+			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
+		bool RightWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right,
+			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
+
+		switch (tState)
+		{
+			case TStateAttack.DIG_TRAVEL:
+				AscendWall(RightWall, LeftWall, (digDirection.x >= 0));
+				break;
+			case TStateAttack.DIGGING_BACK:
+				AscendWall(RightWall, LeftWall, rightSide);
+				break;
+		}
+	}
 	void TravelOnWall()
 	{
-		Debug.Log("***********Viajando a la plataforma...");
-		if ((transform.position.y - digObjetive.position.y) < distanceToChangeMovementState)
+		Debug.Log("***********Viajando a la plataforma... -> (" + tState + ")");
+		Vector2 destiny = new Vector2(0.0f, digObjetive.position.y);
+		Vector2 origin = new Vector2(0.0f, transform.position.y);
+
+		if (Vector2.Distance(origin, destiny) >= distanceToChangeMovementState)
 		{
-			myRigidbody2D.velocity = new Vector2(0.0f, digSpeedWall);
+			Debug.Log("Ascending... -> (" + tState + ")");
+			myRigidbody2D.velocity = (tState == TStateAttack.DIG_TRAVEL) ? 
+				new Vector2(0.0f, digSpeedWall) : 
+				new Vector2(0.0f, -digSpeedWall);
 		}
 		else
 		{
-			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
+			Debug.Log("\tESTOY EN TRAVEL ON WALL: " + tState);
+			tStateMoving = (tState == TStateAttack.DIG_TRAVEL)?
+				TStateMovingToDigPoint.PLATAFORM:
+				TStateMovingToDigPoint.GROUND;
 		}
 	}
 	private void TravelToDestiny()
 	{
-		float direction = digObjetive.position.x - transform.position.x;
-		if (direction < distanceToChangeMovementState)
+		Vector2 destiny = new Vector2(digObjetive.position.x, 0.0f);
+		Vector2 origin = new Vector2(transform.position.x, 0.0f);
+
+		Vector2 direction = destiny - origin;
+		if (Vector2.Distance(destiny, origin) >= distanceToChangeMovementState)
 		{
-			myRigidbody2D.velocity = (direction >= 0)? new Vector2(digSpeedGround, 0.0f) : new Vector2(-digSpeedGround, 0.0f);
+			myRigidbody2D.velocity = (direction.x >= 0) ?
+				new Vector2(digSpeedGround, 0.0f) :
+				new Vector2(-digSpeedGround, 0.0f);
 		}
 		else
 		{
@@ -242,7 +276,10 @@ public class FirstPhaseAzafran : Enemy
 			myAnimator.SetBool("isDigging", false);
 			myAnimator.SetBool("endDigging", true);
 			tStateMoving = TStateMovingToDigPoint.NONE;
-			tState = TStateAttack.SHOOTING;
+
+			tState = (tState == TStateAttack.DIG_TRAVEL) ?
+				TStateAttack.SHOOTING :
+				TStateAttack.IDLE;
 		}
 	}
 	void TravellingToPoint()
@@ -259,41 +296,23 @@ public class FirstPhaseAzafran : Enemy
 				TravelToDestiny();
 				break;
 		}
-		/*
-		 * isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
-            myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
-		 */
 	}
-	/// <summary>
-	/// ///////////////////////////////////
-	/// </summary>
-	void ReturnToWall()
-	{
-
-	}
-	void TravelToGround()
-	{
-
-	}
-	void ReturnToOrigin()
-	{
-
-	}
-	void TravelingToOrigin()
+	void ReturnToPoint()
 	{
 		switch (tStateMoving)
 		{
 			case TStateMovingToDigPoint.PLATAFORM:
-				ReturnToWall();
+				TravelToWall();
 				break;
 			case TStateMovingToDigPoint.WALL:
-				TravelToGround();
+				TravelOnWall();
 				break;
 			case TStateMovingToDigPoint.GROUND:
-				ReturnToOrigin();
+				TravelToDestiny();
 				break;
 		}
 	}
+
 	/// <summary>
 	/// ///////////////////////////////////
 	/// </summary>
@@ -330,44 +349,9 @@ public class FirstPhaseAzafran : Enemy
 				Shoot();
 				break;
 			case TStateAttack.DIGGING_BACK:
-				TravelingToOrigin();
+				ReturnToPoint();
 				break;
 		}
-
-		/*
-		if (tState == TStateAttack.CHARGE)
-		{
-			ChargeLogic();
-		}
-		else if (tState == TStateAttack.DIG && digTimer > 0.0f)
-		{
-			digTimer -= Time.deltaTime;
-			Debug.Log("Digging...");
-		}
-		else if (tState == TStateAttack.DIG && digTimer < 0.0f)
-		{
-			int selectedPlace = UnityEngine.Random.Range(0, digPlaces.Count);
-
-			transform.position = digPlaces[selectedPlace].position;
-			Debug.Log("Disparando...");
-			shootTimer = shootTime;
-			tState = TStateAttack.SHOOTING;
-		}
-		else if (tState == TStateAttack.SHOOTING)
-		{
-			Shoot();
-		}
-		else if (tState == TStateAttack.DIGGING_BACK && digTimer > 0.0f)
-		{
-			digTimer -= Time.deltaTime;
-			Debug.Log("Digging back...");
-		}
-		else if (tState == TStateAttack.DIGGING_BACK && digTimer < 0.0f)
-		{
-			transform.position = previousDigPlace.position;
-			myRigidbody2D.isKinematic = false;
-			tState = TStateAttack.IDLE;
-		}*/
 
 		if (tStateMoving != TStateMovingToDigPoint.NONE && tStateMoving != TStateMovingToDigPoint.PLATAFORM) return;
 		Vector3 rotator = (facingRight) ? new Vector3(0, 0, 0) : new Vector3(0, 180, 0);
@@ -380,23 +364,15 @@ public class FirstPhaseAzafran : Enemy
 		{
 			if (shootCount != maxShoots)
 			{
-				Debug.Log("*********Shooting");
 				myAnimator.SetBool("isAttacking", true);
 			}
 			else
 			{
-				Debug.Log("Volviendo a DIGGING_BACK");
 				myAnimator.SetBool("beginDigging", true);
-				/*shootCount = 0;
-				transform.position = digObjetive.position;
-				tState = TStateAttack.DIGGING_BACK;
-				digTimer = digTime;
-				return;*/
 			}
 		}
 		else if (shootTimer >= 0.0f)
 		{
-			Debug.Log("Recargando...");
 			shootTimer -= Time.deltaTime;
 		}
 
