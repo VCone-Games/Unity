@@ -109,7 +109,7 @@ public class FirstPhaseAzafran : Enemy
 	{
 		tState = TStateAttack.CHARGE;
 		directionCharge = (playerObject.transform.position - transform.position).normalized;
-
+		myAnimator.SetBool("isCharging", true);
 		Debug.Log("Charge");
 	}
 

@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &37901602 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2033683188939639035, guid: e58b7598d02000d499a6875301137bbf, type: 3}
-  m_PrefabInstance: {fileID: 1996844291982409391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &111764434
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,11 +510,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2610653065291653515, guid: bd5f75cbea5e8484695117c630476980, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100.28709
+      value: 134.8
       objectReference: {fileID: 0}
     - target: {fileID: 2610653065291653515, guid: bd5f75cbea5e8484695117c630476980, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -41.89177
+      value: -37.6
       objectReference: {fileID: 0}
     - target: {fileID: 2610653065291653515, guid: bd5f75cbea5e8484695117c630476980, type: 3}
       propertyPath: m_LocalPosition.z
@@ -596,37 +591,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2081835997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &606194702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 606194703}
-  m_Layer: 0
-  m_Name: SpawnPointSkeleton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &606194703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606194702}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.17, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 37901602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &703347078
 GameObject:
@@ -1549,10 +1513,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 598011247}
     - target: {fileID: 3117422377758787555, guid: e58b7598d02000d499a6875301137bbf, type: 3}
-      propertyPath: spawnPointCurcumaSkeleton
-      value: 
-      objectReference: {fileID: 606194703}
-    - target: {fileID: 3117422377758787555, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 226252749}
@@ -1578,10 +1538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2033683188939639035, guid: e58b7598d02000d499a6875301137bbf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 606194703}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e58b7598d02000d499a6875301137bbf, type: 3}
 --- !u!1660057539 &9223372036854775807

@@ -32,10 +32,11 @@ Transform:
   m_GameObject: {fileID: 6659681253205171668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3, y: 10.64, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7513897044999758547}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6737612188631783695
@@ -239,7 +240,7 @@ MonoBehaviour:
   - {fileID: 3336814843625774533, guid: 0e419a002dd869844bd3635ccc4687ff, type: 3}
   - {fileID: 866944337043889660, guid: 7377e20b1d5194044bd0b02c129a7107, type: 3}
   - {fileID: 2664349279408210146, guid: 111f7b41279353d4aa005b28124e495b, type: 3}
-  spawnPointCurcumaSkeleton: {fileID: 0}
+  spawnPointCurcumaSkeleton: {fileID: 7513897044999758547}
   curcumaSkeletonPrefab: {fileID: 6330249763131439790, guid: f9a8145e10ec86044a22cb49a0a83e58, type: 3}
   attackTime: 0
   secondPhase: 0
@@ -281,3 +282,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &7563654530002214090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7513897044999758547}
+  m_Layer: 0
+  m_Name: SpawnPointSkeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7513897044999758547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563654530002214090}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.17, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033683188939639035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
