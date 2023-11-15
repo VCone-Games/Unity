@@ -27,9 +27,9 @@ public class PlayerSoundManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(materialInicial);
+        //Debug.Log(materialInicial);
         SetGroundMaterial(materialInicial);
-        Debug.Log(currentMaterialId);
+        //Debug.Log(currentMaterialId);
     }
     public void PlayFootsteps()
     {
@@ -49,7 +49,7 @@ public class PlayerSoundManager : MonoBehaviour
 
     public void SetGroundMaterial(int material)
     {
-        Debug.Log("CAMBIAO A :" + material);
+        //Debug.Log("CAMBIAO A :" + material);
         footstepsSource.clip = footSteps[material];
         landingSource.clip = landingSounds[material];
         currentMaterialId = material;

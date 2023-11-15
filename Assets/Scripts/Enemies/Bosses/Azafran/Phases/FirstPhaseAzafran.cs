@@ -10,9 +10,12 @@ public class FirstPhaseAzafran : Enemy
 	[Header("Player params")]
 	[SerializeField] private GameObject playerObject;
 
-	enum TStateAttack { CHARGE, DIG, SHOOTING, DIGGING_BACK, IDLE }
+	enum TStateAttack { CHARGE, DIG, DIG_TRAVEL, DIGGING_BACK, SHOOTING, IDLE }
+	enum TStateMovingToDigPoint { GROUND, WALL, PLATAFORM, NONE }
 	[Header("State params")]
 	[SerializeField] private TStateAttack tState = TStateAttack.IDLE;
+	[SerializeField] private TStateMovingToDigPoint tStateMoving = TStateMovingToDigPoint.NONE;
+
 	[SerializeField] private List<float> probList;
 	[SerializeField] private Dictionary<TStateAttack, float> stateDictionary;
 	[SerializeField] private float decissionTime;
@@ -22,7 +25,7 @@ public class FirstPhaseAzafran : Enemy
 	[SerializeField] private GameObject prefabStone;
 
 	[Header("CHASE STATE")]
-	[SerializeField] private int stonesSummoned; 
+	[SerializeField] private int stonesSummoned;
 
 	[Header("SHOOT STATE")]
 	[SerializeField] private float shootTime;
@@ -30,15 +33,21 @@ public class FirstPhaseAzafran : Enemy
 
 	[Header("DIG STATE")]
 	[SerializeField] private float digTime;
+	[SerializeField] private float digSpeedGround;
+	[SerializeField] private float digSpeedWall;
 	[SerializeField] private List<Transform> digPlaces;
-	[SerializeField] private Transform digWaiting;
+	[SerializeField] private Transform digObjetive;
 	[SerializeField] private Transform previousDigPlace;
+	[SerializeField] private Vector2 digDirection;
+	[SerializeField] private float distanceToChangeMovementState;
 
 	[Header("Azafran params")]
 	[SerializeField] private Transform rightCheck;
 	[SerializeField] private Transform spawnAttack;
 	[SerializeField] private float circleRadius;
 	[SerializeField] private LayerMask wallMask;
+	[SerializeField] private float raycastWallLenght;
+	[SerializeField] private float gravityScale;
 
 	[Header("Control state params")]
 	[SerializeField] private float digTimer;
@@ -51,11 +60,12 @@ public class FirstPhaseAzafran : Enemy
 	{
 		base.Awake();
 
+		gravityScale = myRigidbody2D.gravityScale;
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 		stateDictionary = new Dictionary<TStateAttack, float>();
 		InitializeStateDictionary(probList, stateDictionary);
 
-		InvokeRepeating("Attack", 0.0f, decissionTime);
+		InvokeRepeating("Attack", decissionTime, decissionTime);
 	}
 
 	protected override void Attack()
@@ -89,8 +99,6 @@ public class FirstPhaseAzafran : Enemy
 		}
 	}
 
-
-
 	private void Attack(TStateAttack tState)
 	{
 		Debug.Log("state: " + tState.ToString());
@@ -116,15 +124,31 @@ public class FirstPhaseAzafran : Enemy
 	void Dig()
 	{
 		tState = TStateAttack.DIG;
-
-		myRigidbody2D.isKinematic = true;
-		myRigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-
+		myRigidbody2D.gravityScale = 0.0f;
+		myAnimator.SetBool("beginDigging", true);
 		previousDigPlace.position = transform.position;
-		transform.position = digWaiting.position;
+	}
 
-		digTimer = digTime;
-		Debug.Log("Dig");
+	void StartDigging()
+	{
+		tState = (tState == TStateAttack.DIG)?
+			TStateAttack.DIG_TRAVEL :
+			TStateAttack.DIGGING_BACK;
+
+		tStateMoving = (tState == TStateAttack.DIG_TRAVEL)?
+			TStateMovingToDigPoint.GROUND :
+			TStateMovingToDigPoint.PLATAFORM;
+
+		myAnimator.SetBool("beginDigging", false);
+		myAnimator.SetBool("isDigging", true);
+
+		int selectedPlace = UnityEngine.Random.Range(0, digPlaces.Count);
+
+		digObjetive.position = (tStateMoving == TStateMovingToDigPoint.GROUND)?
+			digPlaces[selectedPlace].position :
+			previousDigPlace.position;
+
+		digDirection = digObjetive.position;
 	}
 
 	private void InitializeStateDictionary(List<float> probabilities, Dictionary<TStateAttack, float> dictionary)
@@ -138,7 +162,145 @@ public class FirstPhaseAzafran : Enemy
 		}
 	}
 
+	void ChargeLogic()
+	{
+		myRigidbody2D.velocity = new Vector2(directionCharge.x * moveSpeed, 0);
 
+		if (Physics2D.OverlapCircle(rightCheck.position, circleRadius, wallMask))
+		{
+			Debug.Log("Encuentro pared");
+			myAnimator.SetBool("isCharging", false);
+			GetComponent<PhaseManagerAzafran>().summonFallingStone?.Invoke(this, stonesSummoned);
+			tState = TStateAttack.IDLE;
+		}
+	}
+	/// <summary>
+	/// ///////////////////////////////////
+	/// </summary>
+	void TravelToWall()
+	{
+		Debug.Log("***********Viajando al muro...");
+		bool LeftWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left,
+			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
+		bool RightWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right,
+			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
+
+		Vector3 rotator;
+
+		if (digDirection.x >= 0)
+		{
+			if (RightWall)
+			{
+				Debug.Log("RightWall");
+				rotator = new Vector3(0, 0, 90);
+				transform.rotation = Quaternion.Euler(rotator);
+				tStateMoving = TStateMovingToDigPoint.WALL;
+			}
+			else
+			{
+				myRigidbody2D.velocity = new Vector2(digSpeedGround, 0.0f);
+			}
+		}
+		else
+		{
+			if (LeftWall)
+			{
+				Debug.Log("LeftWall");
+				rotator = new Vector3(0, 180, 90);
+				transform.rotation = Quaternion.Euler(rotator);
+				tStateMoving = TStateMovingToDigPoint.WALL;
+			}
+			else
+			{
+				myRigidbody2D.velocity = new Vector2(-digSpeedGround, 0.0f);
+			}
+		}
+	}
+	void TravelOnWall()
+	{
+		Debug.Log("***********Viajando a la plataforma...");
+		if ((transform.position.y - digObjetive.position.y) < distanceToChangeMovementState)
+		{
+			myRigidbody2D.velocity = new Vector2(0.0f, digSpeedWall);
+		}
+		else
+		{
+			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
+		}
+	}
+	private void TravelToDestiny()
+	{
+		float direction = digObjetive.position.x - transform.position.x;
+		if (direction < distanceToChangeMovementState)
+		{
+			myRigidbody2D.velocity = (direction >= 0)? new Vector2(digSpeedGround, 0.0f) : new Vector2(-digSpeedGround, 0.0f);
+		}
+		else
+		{
+			myRigidbody2D.velocity = Vector2.zero;
+			myRigidbody2D.gravityScale = gravityScale;
+			myAnimator.SetBool("isDigging", false);
+			myAnimator.SetBool("endDigging", true);
+			tStateMoving = TStateMovingToDigPoint.NONE;
+			tState = TStateAttack.SHOOTING;
+		}
+	}
+	void TravellingToPoint()
+	{
+		switch (tStateMoving)
+		{
+			case TStateMovingToDigPoint.GROUND:
+				TravelToWall();
+				break;
+			case TStateMovingToDigPoint.WALL:
+				TravelOnWall();
+				break;
+			case TStateMovingToDigPoint.PLATAFORM:
+				TravelToDestiny();
+				break;
+		}
+		/*
+		 * isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
+            myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
+		 */
+	}
+	/// <summary>
+	/// ///////////////////////////////////
+	/// </summary>
+	void ReturnToWall()
+	{
+
+	}
+	void TravelToGround()
+	{
+
+	}
+	void ReturnToOrigin()
+	{
+
+	}
+	void TravelingToOrigin()
+	{
+		switch (tStateMoving)
+		{
+			case TStateMovingToDigPoint.PLATAFORM:
+				ReturnToWall();
+				break;
+			case TStateMovingToDigPoint.WALL:
+				TravelToGround();
+				break;
+			case TStateMovingToDigPoint.GROUND:
+				ReturnToOrigin();
+				break;
+		}
+	}
+	/// <summary>
+	/// ///////////////////////////////////
+	/// </summary>
+	void EndDigging()
+	{
+		myAnimator.SetBool("endDigging", false);
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
@@ -156,17 +318,26 @@ public class FirstPhaseAzafran : Enemy
 			facingRight = (direction.x > 0) ? true : false;
 		}
 
+		switch (tState)
+		{
+			case TStateAttack.CHARGE:
+				ChargeLogic();
+				break;
+			case TStateAttack.DIG_TRAVEL:
+				TravellingToPoint();
+				break;
+			case TStateAttack.SHOOTING:
+				Shoot();
+				break;
+			case TStateAttack.DIGGING_BACK:
+				TravelingToOrigin();
+				break;
+		}
 
+		/*
 		if (tState == TStateAttack.CHARGE)
 		{
-			myRigidbody2D.velocity = new Vector2(directionCharge.x * moveSpeed, 0);
-
-			if (Physics2D.OverlapCircle(rightCheck.position, circleRadius, wallMask))
-			{
-				Debug.Log("Encuentro pared");
-				GetComponent<PhaseManagerAzafran>().summonFallingStone?.Invoke(this, stonesSummoned);
-				tState = TStateAttack.IDLE;
-			}
+			ChargeLogic();
 		}
 		else if (tState == TStateAttack.DIG && digTimer > 0.0f)
 		{
@@ -176,7 +347,6 @@ public class FirstPhaseAzafran : Enemy
 		else if (tState == TStateAttack.DIG && digTimer < 0.0f)
 		{
 			int selectedPlace = UnityEngine.Random.Range(0, digPlaces.Count);
-
 
 			transform.position = digPlaces[selectedPlace].position;
 			Debug.Log("Disparando...");
@@ -197,8 +367,9 @@ public class FirstPhaseAzafran : Enemy
 			transform.position = previousDigPlace.position;
 			myRigidbody2D.isKinematic = false;
 			tState = TStateAttack.IDLE;
-		}
+		}*/
 
+		if (tStateMoving != TStateMovingToDigPoint.NONE && tStateMoving != TStateMovingToDigPoint.PLATAFORM) return;
 		Vector3 rotator = (facingRight) ? new Vector3(0, 0, 0) : new Vector3(0, 180, 0);
 		transform.rotation = Quaternion.Euler(rotator);
 	}
@@ -207,22 +378,20 @@ public class FirstPhaseAzafran : Enemy
 	{
 		if (shootTimer < 0.0f)
 		{
-			if (shootCount == maxShoots)
+			if (shootCount != maxShoots)
 			{
-				Debug.Log("Volviendo a DIGGING_BACK");
-				shootCount = 0;
-				transform.position = digWaiting.position;
-				tState = TStateAttack.DIGGING_BACK;
-				digTimer = digTime;
-				return;
+				Debug.Log("*********Shooting");
+				myAnimator.SetBool("isAttacking", true);
 			}
 			else
 			{
-				Debug.Log("*********Shooting");
-				Debug.Log(spawnAttack.position);
-				Instantiate(prefabStone, spawnAttack.position, Quaternion.identity);
-				shootTimer = shootTime;
-				shootCount++;
+				Debug.Log("Volviendo a DIGGING_BACK");
+				myAnimator.SetBool("beginDigging", true);
+				/*shootCount = 0;
+				transform.position = digObjetive.position;
+				tState = TStateAttack.DIGGING_BACK;
+				digTimer = digTime;
+				return;*/
 			}
 		}
 		else if (shootTimer >= 0.0f)
@@ -231,5 +400,17 @@ public class FirstPhaseAzafran : Enemy
 			shootTimer -= Time.deltaTime;
 		}
 
+	}
+
+	protected override void StopAttack()
+	{
+		base.StopAttack();
+		shootTimer = shootTime;
+		shootCount++;
+	}
+
+	void InsantiateProjectile()
+	{
+		Instantiate(prefabStone, spawnAttack.position, Quaternion.identity);
 	}
 }
