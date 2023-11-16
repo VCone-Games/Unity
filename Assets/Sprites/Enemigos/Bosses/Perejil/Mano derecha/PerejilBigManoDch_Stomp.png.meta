@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43e8357cf2238084abfbfa4423517126
+guid: c3370ff08ee21904c84f581c5d2d1134
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PerejilBig_Change_0
+      name: PerejilBigManoDch_Stomp_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -137,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44cb91e2df83f184194e027a22c87173
-      internalID: -159913290
+      spriteID: c5bc15775d736e245937640b249ac89c
+      internalID: 668944690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_1
+      name: PerejilBigManoDch_Stomp_1
       rect:
         serializedVersion: 2
-        x: 834
+        x: 1290
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b8243cde58fa1c489e54db73af770ac
-      internalID: -1304040342
+      spriteID: 66bcc39344cfad2489c31d80ea46623e
+      internalID: 781449244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_2
+      name: PerejilBigManoDch_Stomp_2
       rect:
         serializedVersion: 2
-        x: 1668
+        x: 2580
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -179,19 +179,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c803725c769a2024b85381e19e44157b
-      internalID: 1455143757
+      spriteID: 0746a3fb9c3ea204097db08aeacc73a3
+      internalID: -364035937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_3
+      name: PerejilBigManoDch_Stomp_3
       rect:
         serializedVersion: 2
-        x: 2502
+        x: 3870
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -200,19 +200,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a41d5dc297d1f224cace82d106cd7877
-      internalID: -2097223721
+      spriteID: 0187e81a08d6fcc488fbf91e3d120af2
+      internalID: 1083985003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_4
+      name: PerejilBigManoDch_Stomp_4
       rect:
         serializedVersion: 2
-        x: 3336
+        x: 5160
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -221,19 +221,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dab8d80a026cd04da4b804de38ded44
-      internalID: 1903167400
+      spriteID: b78ec1264250df447b7ee0dc7aff2474
+      internalID: -2463633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_5
+      name: PerejilBigManoDch_Stomp_5
       rect:
         serializedVersion: 2
-        x: 4170
+        x: 6450
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -242,19 +242,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f398f2589b4e3534a841b6abb0ba8434
-      internalID: -778822045
+      spriteID: b458fb857f0fab4478ea74afd881bf69
+      internalID: -1128967842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Change_6
+      name: PerejilBigManoDch_Stomp_6
       rect:
         serializedVersion: 2
-        x: 5004
+        x: 7740
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,50 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9763691e8f129bf46aa2379805166181
-      internalID: 343069123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerejilBig_Change_7
-      rect:
-        serializedVersion: 2
-        x: 5838
-        y: 0
-        width: 834
-        height: 834
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 652e9598a02135146b045cb1ed7b5464
-      internalID: -1500286572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerejilBig_Change_8
-      rect:
-        serializedVersion: 2
-        x: 6672
-        y: 0
-        width: 834
-        height: 834
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 963d123205014624291d20242f122190
-      internalID: -1609543483
+      spriteID: 03bcc2d126925fe48a91efc4c8710f3c
+      internalID: -1715157034
       vertices: []
       indices: 
       edges: []
@@ -322,15 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PerejilBig_Change_0: -159913290
-      PerejilBig_Change_1: -1304040342
-      PerejilBig_Change_2: 1455143757
-      PerejilBig_Change_3: -2097223721
-      PerejilBig_Change_4: 1903167400
-      PerejilBig_Change_5: -778822045
-      PerejilBig_Change_6: 343069123
-      PerejilBig_Change_7: -1500286572
-      PerejilBig_Change_8: -1609543483
+      PerejilBigManoDch_Stomp_0: 668944690
+      PerejilBigManoDch_Stomp_1: 781449244
+      PerejilBigManoDch_Stomp_2: -364035937
+      PerejilBigManoDch_Stomp_3: 1083985003
+      PerejilBigManoDch_Stomp_4: -2463633
+      PerejilBigManoDch_Stomp_5: -1128967842
+      PerejilBigManoDch_Stomp_6: -1715157034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2ac7f674ca523d54f88700d7b0939ca5
+guid: 2cb58763aff31e94585dfadd5f97db62
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Perejil_Sheet_0
+      name: PerejilBig_Idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b855c4b8973e0a4897f6d1ad619aecf
-      internalID: -188715964
+      spriteID: 631dbf566ef263e4b9b91e4c86087897
+      internalID: 1539448943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perejil_Sheet_1
+      name: PerejilBig_Idle_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 834
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddd90cbd14d0969499e1ccd0e2db34d6
-      internalID: 945539235
+      spriteID: 3c0077428812ea0419bdb0c174be10a1
+      internalID: 1999505613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perejil_Sheet_2
+      name: PerejilBig_Idle_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1668
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,29 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad5f6c23c61ab34c94e5497089ab32f
-      internalID: 597246115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Perejil_Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a21776024539879429524c0a066c804f
-      internalID: 187055900
+      spriteID: 92e06912f0c190f4286e8ca3ca310281
+      internalID: -1927000388
       vertices: []
       indices: 
       edges: []
@@ -217,10 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Perejil_Sheet_0: -188715964
-      Perejil_Sheet_1: 945539235
-      Perejil_Sheet_2: 597246115
-      Perejil_Sheet_3: 187055900
+      PerejilBig_Idle_0: 1539448943
+      PerejilBig_Idle_1: 1999505613
+      PerejilBig_Idle_2: -1927000388
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

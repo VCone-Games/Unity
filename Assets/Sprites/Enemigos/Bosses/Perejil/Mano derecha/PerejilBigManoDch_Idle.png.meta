@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f12c69f26545d24f9567f9aa69fbbc9
+guid: 291effb8a8f6c1b40b07804957a9dd73
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PerejilBig_Idle_0
+      name: PerejilBigManoDch_Idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -137,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5dcefa90c433574fbdb9314fb7cdbe8
-      internalID: 123247299
+      spriteID: 162ea7b3da36dcc44b8ff18faa193099
+      internalID: -1627825586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Idle_1
+      name: PerejilBigManoDch_Idle_1
       rect:
         serializedVersion: 2
-        x: 834
+        x: 1290
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5853a28e8cbe4434e8bffbe1106c5888
-      internalID: -1138619842
+      spriteID: 83f160a9cb127af4fbc1bc1c60a90edc
+      internalID: 1012581929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerejilBig_Idle_2
+      name: PerejilBigManoDch_Idle_2
       rect:
         serializedVersion: 2
-        x: 1668
+        x: 2580
         y: 0
-        width: 834
+        width: 1290
         height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edd3202bbcff2ba448b8a727f5725b64
-      internalID: 923272086
+      spriteID: 45302f6fe6f434a46819cd4a7716a0c0
+      internalID: -332233437
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PerejilBig_Idle_0: 123247299
-      PerejilBig_Idle_1: -1138619842
-      PerejilBig_Idle_2: 923272086
+      PerejilBigManoDch_Idle_0: -1627825586
+      PerejilBigManoDch_Idle_1: 1012581929
+      PerejilBigManoDch_Idle_2: -332233437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

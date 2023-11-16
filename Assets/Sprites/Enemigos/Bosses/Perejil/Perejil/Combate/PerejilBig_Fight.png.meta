@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cc8145c8fef338458fdd0aafaebe43b
+guid: 7d0b2c51552cb77409b0a5fcc6e0e023
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Perejil_Die_0
+      name: PerejilBig_Fight_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 336148f2dcd008647bda2b9dc16902a7
-      internalID: 1856308477
+      spriteID: bfac5263ff05c4d4ba9b840d0d51016a
+      internalID: -1259979969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perejil_Die_1
+      name: PerejilBig_Fight_1
       rect:
         serializedVersion: 2
-        x: 150
+        x: 834
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a77d32f96635574aa25f8af92632858
-      internalID: -696003790
+      spriteID: 89d25d1af530370438b55dd0b9a4ac5b
+      internalID: -1905052221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perejil_Die_2
+      name: PerejilBig_Fight_2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 1668
         y: 0
-        width: 150
-        height: 192
+        width: 834
+        height: 834
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81a09f604b8621d42a9b6a5b4890f80b
-      internalID: 1704840738
+      spriteID: 2309ee1107b0aec489a9181f5bbd9eb9
+      internalID: -611869801
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Perejil_Die_0: 1856308477
-      Perejil_Die_1: -696003790
-      Perejil_Die_2: 1704840738
+      PerejilBig_Fight_0: -1259979969
+      PerejilBig_Fight_1: -1905052221
+      PerejilBig_Fight_2: -611869801
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
