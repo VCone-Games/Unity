@@ -12,9 +12,11 @@ public class PhaseManagerAzafran : MonoBehaviour
     [SerializeField] private FirstPhaseAzafran firstPhaseComponent;
 	[SerializeField] private Transform secondPhaseSpawn;
 	[SerializeField] private float speed = 1f;
+	[SerializeField] private float distanceToStart = 1f;
 	
     [Header("Azafran Components")]
     [SerializeField] private HealthManagerAzafran healthManager;
+    [SerializeField] private Animator myAnimator;
 
 	private Rigidbody2D myRigidbody2D;
 	[SerializeField] private bool firstPhaseEnded = false;
@@ -23,30 +25,32 @@ public class PhaseManagerAzafran : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		healthManager.EventSecondPhase += ActivateSecondPhase;
 		myRigidbody2D = GetComponent<Rigidbody2D>();
+		myAnimator = GetComponent<Animator>();
 	}
 
-	private void ActivateSecondPhase(object sender, EventArgs e)
+	void ActivateSecondPhase()
 	{
 		Destroy(firstPhaseComponent);
 
-		myRigidbody2D.isKinematic = false;
+		myAnimator.SetBool("isTransicion", false);
+		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;
 		Debug.Log("Cambio de fase");
 	}
 
 	private void FixedUpdate()
 	{
-		if (firstPhaseEnded && !secondPhaseBegin)
+		bool condition = firstPhaseEnded && !secondPhaseBegin;
+		if (condition)
 		{
-			Debug.Log("Transicionando...");
 			Vector3 direction = (secondPhaseSpawn.position - transform.position);
 			myRigidbody2D.velocity = direction.normalized * speed;
 		}
 
-		if (firstPhaseEnded && !secondPhaseBegin && Vector3.Distance(transform.position, secondPhaseSpawn.position) < 0.5f)
+		if (condition && Vector3.Distance(transform.position, secondPhaseSpawn.position) < distanceToStart)
 		{
+			Debug.Log("Activando segunda fase");
 			gameObject.AddComponent<SecondPhaseAzafran>();
 			secondPhaseBegin = true;
 		}

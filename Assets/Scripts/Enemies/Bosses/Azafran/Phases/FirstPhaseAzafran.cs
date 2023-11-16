@@ -49,6 +49,7 @@ public class FirstPhaseAzafran : Enemy
 	[SerializeField] private LayerMask wallMask;
 	[SerializeField] private float raycastWallLenght;
 	[SerializeField] private float gravityScale;
+	[SerializeField] private bool secondPhaseActivated;
 
 	[Header("Control state params")]
 	[SerializeField] private float digTimer;
@@ -72,8 +73,9 @@ public class FirstPhaseAzafran : Enemy
 	protected override void Attack()
 	{
 
-		if (!(tState == TStateAttack.IDLE))
+		if (!(tState == TStateAttack.IDLE) && secondPhaseActivated)
 		{
+			Debug.Log("\n\tInvalidState");
 			return;
 		}
 
@@ -174,7 +176,7 @@ public class FirstPhaseAzafran : Enemy
 	/// ///////////////////////////////////
 	/// </summary>
 
-	void AscendWall(bool RightWall, bool LeftWall, bool condition)
+	void Travelling(bool RightWall, bool LeftWall, bool condition)
 	{
 		Vector3 rotator;
 		if (condition)
@@ -217,10 +219,10 @@ public class FirstPhaseAzafran : Enemy
 		switch (tState)
 		{
 			case TStateAttack.DIG_TRAVEL:
-				AscendWall(RightWall, LeftWall, (digDirection.x >= 0));
+				Travelling(RightWall, LeftWall, (digDirection.x >= 0));
 				break;
 			case TStateAttack.DIGGING_BACK:
-				AscendWall(RightWall, LeftWall, rightSide);
+				Travelling(RightWall, LeftWall, rightSide);
 				break;
 		}
 	}
@@ -313,8 +315,20 @@ public class FirstPhaseAzafran : Enemy
 		myAnimator.SetBool("endDigging", false);
 	}
 
+	void SecondPhaseAnimation()
+	{
+		secondPhaseActivated = true;
+		myAnimator.SetBool("secondPhase", false);
+		if (tState == TStateAttack.SHOOTING)
+		{
+			tState = TStateAttack.DIGGING_BACK;
+			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
+		}
+
+	}
+
 	// Update is called once per frame
-	void FixedUpdate()
+	protected override void FixedUpdate()
 	{
 		Vector3 direction;
 
@@ -331,6 +345,10 @@ public class FirstPhaseAzafran : Enemy
 
 		switch (tState)
 		{
+			case TStateAttack.IDLE:
+				if (secondPhaseActivated)
+					myAnimator.SetBool("isTransicion", true);
+					break;
 			case TStateAttack.CHARGE:
 				ChargeLogic();
 				break;

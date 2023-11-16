@@ -2820,7 +2820,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1482445160777906339, guid: bd5f75cbea5e8484695117c630476980, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1774957375}
   m_SourcePrefab: {fileID: 100100000, guid: bd5f75cbea5e8484695117c630476980, type: 3}
 --- !u!1 &598011246
 GameObject:
@@ -4090,7 +4093,7 @@ Transform:
   m_GameObject: {fileID: 981078221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.2, z: -0.047395602}
+  m_LocalPosition: {x: 0, y: -3.67, z: -0.047395602}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4166,7 +4169,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 2.88, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4228,7 +4231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10154ab2ce6c5e94aa073613fdf80681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 10
+  max_health: 2
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
@@ -4249,7 +4252,9 @@ MonoBehaviour:
   firstPhaseComponent: {fileID: 1244564506}
   secondPhaseSpawn: {fileID: 981078222}
   speed: 2
+  distanceToStart: 2
   healthManager: {fileID: 1244564503}
+  myAnimator: {fileID: 0}
   firstPhaseEnded: 0
   secondPhaseBegin: 0
 --- !u!114 &1244564506
@@ -4306,6 +4311,7 @@ MonoBehaviour:
     m_Bits: 256
   raycastWallLenght: 0.1
   gravityScale: 0
+  secondPhaseActivated: 0
   digTimer: 0
   shootTimer: 0
   shootCount: 0
@@ -4383,18 +4389,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2893703, y: 0.85233533}
+  m_Offset: {x: -0.0009288788, y: 0.8154962}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.88, y: 1.92}
-    newSize: {x: 1, y: 2}
+    newSize: {x: 2.88, y: 1.92}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.4587407, y: 1.7832239}
+  m_Size: {x: 2.8908262, y: 1.7014585}
   m_EdgeRadius: 0
 --- !u!1 &1246921255
 GameObject:
@@ -5452,6 +5458,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2081835997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1774957373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1482445160777906339, guid: bd5f75cbea5e8484695117c630476980, type: 3}
+  m_PrefabInstance: {fileID: 588970724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1774957375
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774957373}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d393939e305b4a438ee9788f2ccfa54, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2081835996
 GameObject:
   m_ObjectHideFlags: 0
