@@ -14,8 +14,9 @@ public abstract class MovementGroundedIA : Enemy
 	[SerializeField] protected float distance;
 
 	[Header("Control grounded variables")]
-	[SerializeField] protected bool grounded;
-	[SerializeField] protected bool canAttack = true;
+	[SerializeField] protected bool edgeDetector;
+    [SerializeField] protected bool isGrounded;
+    [SerializeField] protected bool canAttack = true;
 
 	protected virtual void Patrol()
 	{
@@ -25,13 +26,22 @@ public abstract class MovementGroundedIA : Enemy
 	}
 
 	protected abstract void CheckState();
-	protected virtual void FixedUpdate()
+	protected override void FixedUpdate()
 	{
-		CheckState(); 
+        isGrounded = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.down,
+           myCollider2D.bounds.extents.y + 0.05f, groundLayer);
+        if (!isGrounded) return;
 
-		grounded = Physics2D.Raycast(feet.position, Vector2.down, distance, groundLayer);
+        edgeDetector = Physics2D.Raycast(feet.position, Vector2.down, distance, groundLayer);
 
-		if (!grounded)
+
+        base.FixedUpdate();
+        if (isBeingHooked) return;
+
+        CheckState(); 
+
+
+		if (!edgeDetector)
 		{
 			facingRight = !facingRight;
 		}

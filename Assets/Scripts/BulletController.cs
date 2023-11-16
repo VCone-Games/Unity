@@ -18,7 +18,7 @@ public class BulletController : MonoBehaviour
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionStay2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
         {
@@ -26,8 +26,10 @@ public class BulletController : MonoBehaviour
             if (healthManager == null) return;
 
             Vector3 collisionPoint = collision.GetContact(0).point;
-            
-            healthManager.EventDamageTaken(this, damage);
+            collisionPoint = collisionPoint - collision.transform.position;
+            Vector3 damageContactPoint = new Vector3(damage, collisionPoint.x, collisionPoint.y);
+
+            healthManager.EventDamageTaken(this, damageContactPoint);
         }
         Destroy(gameObject);
 	}

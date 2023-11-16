@@ -9,11 +9,11 @@ public class HealthManagerAzafran : HealthManager
 	[Header("Phases")]
 	[SerializeField] private bool SecondPhase = false;
 
-	protected override void TakeDamage(object sender, int damage)
+	protected override void TakeDamage(object sender, Vector3 damage)
 	{
 		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
 		myAnimator.SetBool("isDamaging", true);
-		int objetiveHealth = current_health - damage;
+		int objetiveHealth = current_health - (int)damage.x;
 		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
 
 		if (!SecondPhase && current_health <= 0)

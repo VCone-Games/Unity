@@ -102,7 +102,9 @@ public class HookProjectile : MonoBehaviour
 
         GameObject hookedObject = collision.gameObject;
 
-        if (hookedObject.GetComponent<AHookable>() == null)
+        Enemy enemyComponent = hookedObject.GetComponent<Enemy>();
+
+        if (hookedObject.GetComponent<AHookable>() == null || (  enemyComponent!= null && enemyComponent.isBeingHooked))
         {
             HookFailed();
             return;

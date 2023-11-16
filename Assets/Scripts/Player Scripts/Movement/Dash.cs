@@ -137,7 +137,7 @@ public class Dash : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isDashing) return;
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer != 14)
         {
             Debug.Log("AAAAAAAA ME VENGOOO");
             myRigidbody.velocity = Vector2.zero;

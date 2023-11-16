@@ -168,8 +168,10 @@ MonoBehaviour:
   parryComponent: {fileID: 0}
   playerCollider: {fileID: 0}
   playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
   myRigidbody: {fileID: 6090710504617637755}
   myCollider: {fileID: 8434937471926481278}
+  enemyComponent: {fileID: 0}
   isParried: 0
   parrying: 0
   parryKnockbackTime: 0.2
@@ -178,7 +180,7 @@ MonoBehaviour:
   timeScale: 0
   timeScaleRecoveryRatio: 0
   isHooked: 0
-  vectorToPlayer: {x: 0, y: 0, z: 0}
+  vectorToHookGun: {x: 0, y: 0, z: 0}
   hookProjectile: {fileID: 0}
   hookingSpeed: 10
   parryDirection: {x: 0, y: 0, z: 0}

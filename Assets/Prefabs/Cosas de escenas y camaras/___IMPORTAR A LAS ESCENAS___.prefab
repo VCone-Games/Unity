@@ -1028,7 +1028,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  interactionCollider: {fileID: 0}
 --- !u!1 &1482445160777906339
 GameObject:
   m_ObjectHideFlags: 0

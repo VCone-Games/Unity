@@ -8,7 +8,7 @@ public class EnemyFlyChase : IAFlyChase
 	[SerializeField] private int damage;
 	private HealthManager healthManager;
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionStay2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
@@ -16,8 +16,10 @@ public class EnemyFlyChase : IAFlyChase
 			if (healthManager == null) return;
 
 			Vector3 collisionPoint = collision.GetContact(0).point;
+            collisionPoint = collisionPoint - collision.transform.position;
+            Vector3 damageContactPoint = new Vector3(damage, collisionPoint.x, collisionPoint.y);
 
-			healthManager.EventDamageTaken(this, damage);
-		}
+            healthManager.EventDamageTaken(this, damageContactPoint);
+        }
 	}
 }

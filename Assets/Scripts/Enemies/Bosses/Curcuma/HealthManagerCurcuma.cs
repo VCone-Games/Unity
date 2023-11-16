@@ -10,11 +10,11 @@ public class HealthManagerCurcuma : HealthManager
 	[SerializeField] private bool SecondPhase = false;
 
     // Start is called before the first frame update
-    protected override void TakeDamage(object sender, int damage)
+    protected override void TakeDamage(object sender, Vector3 damage)
     {
 		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
 		myAnimator?.SetBool("isDamaging", true);
-		int objetiveHealth = current_health - damage;
+		int objetiveHealth = current_health - (int)damage.x;
 		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
 
 		if (current_health <= max_health/2 && !SecondPhase)

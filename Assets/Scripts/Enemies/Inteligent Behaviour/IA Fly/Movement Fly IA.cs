@@ -29,7 +29,10 @@ public abstract class MovementFlyIA : Enemy
 	}
 
 	// Update is called once per frame
-	protected abstract void FixedUpdate();
+	protected override void FixedUpdate()
+	{
+		base.FixedUpdate();
+	}
 
 	protected abstract void UpdatePath();
 	protected void IAWorking()

@@ -14,7 +14,8 @@ public abstract class AHookable : MonoBehaviour
 
     [Header("My Components")]
     [SerializeField] protected Rigidbody2D myRigidbody;
-    [SerializeField] protected CapsuleCollider2D myCollider;
+    [SerializeField] protected Collider2D myCollider;
+    [SerializeField] protected Enemy enemyComponent;
 
     [Header("Parry variables")]
     [SerializeField] protected bool isParried;
@@ -28,7 +29,7 @@ public abstract class AHookable : MonoBehaviour
     [SerializeField] private float timeScaleRecoveryRatio;
 
     [Header("Other Variables")]
-    [SerializeField] protected bool isHooked;
+    [SerializeField] public bool isHooked;
     [SerializeField] protected Vector3 vectorToHookGun;
     [SerializeField] protected GameObject hookProjectile;
     [SerializeField] protected float hookingSpeed;
@@ -47,9 +48,10 @@ public abstract class AHookable : MonoBehaviour
         hookingSpeed = playerGO.GetComponent<Hook>().hookingSpeed;
         parryComponent = playerGO.GetComponent<Parry>();
         playerCollider = playerGO.GetComponent<CapsuleCollider2D>();
+        enemyComponent = GetComponent<Enemy>();
 
         hookGun = playerGO.transform.GetChild(0).transform;
-        
+
         stopTimeDistance = parryComponent.stopTimeDistance;
         timeScale = parryComponent.timeScale;
         timeScaleRecoveryRatio = parryComponent.timeScaleRecoveryRatio;
@@ -90,9 +92,9 @@ public abstract class AHookable : MonoBehaviour
     {
         vectorToHookGun = hookGun.position - transform.position;
 
-        if(Physics2D.Distance( myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
+        if (Physics2D.Distance(myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
         {
-            TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance/hookingSpeed + 0.2f);
+            TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance / hookingSpeed + 0.2f);
             timeStopped = true;
         }
         vectorToHookGun.Normalize();
@@ -101,6 +103,7 @@ public abstract class AHookable : MonoBehaviour
     public virtual void Hooked(GameObject hookProjectile, float hoookingSpeed)
     {
         isHooked = true;
+        if (enemyComponent != null) enemyComponent.isBeingHooked = true;
         this.hookProjectile = hookProjectile;
         this.hookingSpeed = hoookingSpeed;
     }
@@ -125,6 +128,8 @@ public abstract class AHookable : MonoBehaviour
         hookProjectile = null;
         hookingSpeed = 0;
         isHooked = false;
+        if (enemyComponent != null) enemyComponent.SetUnhookTimer();
+
         timeStopped = false;
         playerGO.GetComponent<Interact>().enabled = true;
     }

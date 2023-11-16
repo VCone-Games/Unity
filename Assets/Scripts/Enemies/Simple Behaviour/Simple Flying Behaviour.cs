@@ -28,8 +28,12 @@ public abstract class SimpleFlyingBehaviour : Enemy
 
 
 	// Update is called once per frame
-	protected virtual void FixedUpdate()
+	protected override void FixedUpdate()
 	{
+		base.FixedUpdate();
+
+		if (isBeingHooked) return;
+
 		HitCollision();
 
 		if (rightTouch)

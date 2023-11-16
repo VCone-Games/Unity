@@ -70,8 +70,9 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
+        if (isBeingHooked) return;
 
-		switch (tState)
+        switch (tState)
 		{
 			case TState.PATROL:
 				Patrol();

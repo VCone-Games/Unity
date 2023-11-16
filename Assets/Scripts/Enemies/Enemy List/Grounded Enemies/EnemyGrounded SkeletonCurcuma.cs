@@ -26,7 +26,9 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 	{
 		base.FixedUpdate();
 
-		switch(tState)
+        if (isBeingHooked) return;
+
+        switch (tState)
 		{
 			case TState.PATROL:
 				Patrol();

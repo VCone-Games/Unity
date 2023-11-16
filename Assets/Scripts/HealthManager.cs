@@ -5,48 +5,67 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-	public EventHandler EventDie;
-	public EventHandler<int> EventDamageTaken;
+    public EventHandler EventDie;
+    public EventHandler<Vector3> EventDamageTaken;
 
-	[Header("Health params")]
-	[SerializeField] protected int max_health;
-	[SerializeField] protected int current_health;
-	[SerializeField] protected bool canTakeDamage = true;
+    [Header("Health params")]
+    [SerializeField] protected int max_health;
+    [SerializeField] protected int current_health;
+    [SerializeField] protected bool canTakeDamage = true;
 
-	[Header("Components")]
-	[SerializeField] protected Animator myAnimator;
+    [Header("Components")]
+    [SerializeField] protected Animator myAnimator;
+    [SerializeField] protected Rigidbody2D myRigidbody;
 
-	public int MaxHealth { get { return max_health; } set { max_health = value; } }
-	public int CurrentHealth { get { return current_health; } set { current_health = value; } }
+    protected bool OnlyTakeDmgOnce;
 
-	// Start is called before the first frame update
-	protected virtual void Start()
-	{
-		current_health = max_health;
-		EventDamageTaken += TakeDamage;
-		myAnimator = GetComponent<Animator>();
-	}
+    public int MaxHealth { get { return max_health; } set { max_health = value; } }
+    public int CurrentHealth { get { return current_health; } set { current_health = value; } }
 
-	protected virtual void TakeDamage(object sender, int damage)
-	{
-		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
-		myAnimator.SetBool("isAttacking", false);
-		Debug.Log(gameObject + ": Me han dañado");
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        current_health = max_health;
+        EventDamageTaken += TakeDamage;
+        myAnimator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+    }
 
-		// Implementa cómo el enemigo maneja el daño
-		myAnimator.SetBool("isDamaging", true);
-		int objetiveHealth = current_health - damage;
-		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
+    protected virtual void TakeDamage(object sender, Vector3 damageContactPoint)
+    {
+        if (!canTakeDamage || myAnimator.GetBool("isDamaging") || OnlyTakeDmgOnce)
+        {
+            Debug.Log("FUS ESTOY RECIBIENDO DAÑO");
+            return;
+        }
+        canTakeDamage = false;
+        myAnimator.SetBool("isAttacking", false);
+        Debug.Log(gameObject + ": Me han dañado");
 
-		if (current_health <= 0)
-		{
-			EventDie?.Invoke(this, null);
-		}
-	}
+        myAnimator.SetTrigger("Damaged");
 
-	public void EndDamaging()
-	{
-		myAnimator.SetBool("isDamaging", false);
-	}
+        // Implementa cómo el enemigo maneja el daño
+        int objetiveHealth = current_health - (int)damageContactPoint.x;
+        current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
+
+        if (current_health <= 0)
+        {
+            EventDie?.Invoke(this, null);
+        }
+
+        myAnimator.SetBool("isDamaging", true);
+
+        //COSAS DURANTE LA ANIMACION
+
+
+
+    }
+
+    public virtual void EndDamaging()
+    {
+        myAnimator.SetBool("isDamaging", false);
+        canTakeDamage = true;
+        OnlyTakeDmgOnce = false;
+    }
 
 }

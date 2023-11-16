@@ -26,9 +26,11 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 
 	protected override void FixedUpdate()
 	{
-		base.FixedUpdate();
 
-		switch (tState)
+		base.FixedUpdate();
+        if (isBeingHooked) return;
+
+        switch (tState)
 		{
 			case TState.PATROL:
 				Patrol();
