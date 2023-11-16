@@ -4179,7 +4179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244564498}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 15.56, y: -1.98, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
@@ -4187,7 +4187,7 @@ Transform:
   - {fileID: 106379000}
   - {fileID: 1319752105}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!50 &1244564502
 Rigidbody2D:
   serializedVersion: 4
@@ -4271,8 +4271,8 @@ MonoBehaviour:
   tState: 5
   tStateMoving: 3
   probList:
-  - 0
   - 1
+  - 0
   decissionTime: 10
   directionCharge: {x: 0, y: 0, z: 0}
   prefabStone: {fileID: 2440332669216800084, guid: 45568cfc2b6a96a4f83cf316db9fac92, type: 3}
@@ -4290,10 +4290,11 @@ MonoBehaviour:
   digObjetive: {fileID: 2140935241}
   previousDigPlace: {fileID: 179585168}
   digDirection: {x: 0, y: 0}
-  distanceToChangeMovementState: 0
+  distanceToChangeMovementState: 0.5
   rightCheck: {fileID: 106379000}
   spawnAttack: {fileID: 1319752105}
   circleRadius: 0.5
+  rightSide: 0
   wallMask:
     serializedVersion: 2
     m_Bits: 256
@@ -4445,7 +4446,7 @@ Transform:
   m_GameObject: {fileID: 1319752104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.08, y: 0.161, z: 0}
+  m_LocalPosition: {x: 2.18, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

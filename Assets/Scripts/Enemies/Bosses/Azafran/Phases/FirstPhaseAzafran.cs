@@ -74,11 +74,9 @@ public class FirstPhaseAzafran : Enemy
 
 		if (!(tState == TStateAttack.IDLE))
 		{
-			Debug.Log("\tInvalid state, current state:" + tState.ToString());
 			return;
 		}
 
-		Debug.Log("Procesando ataque");
 
 		float accumulate = 0;
 		foreach (var probability in probList)
@@ -87,7 +85,6 @@ public class FirstPhaseAzafran : Enemy
 		}
 
 		float selectedAttack = (float)UnityEngine.Random.Range(0, accumulate * 100) / 100;
-		Debug.Log("prob:" + selectedAttack);
 
 		foreach (var state in stateDictionary)
 		{
@@ -102,7 +99,6 @@ public class FirstPhaseAzafran : Enemy
 
 	private void Attack(TStateAttack tState)
 	{
-		Debug.Log("state: " + tState.ToString());
 		switch (tState)
 		{
 			case TStateAttack.CHARGE:
@@ -119,7 +115,6 @@ public class FirstPhaseAzafran : Enemy
 		tState = TStateAttack.CHARGE;
 		directionCharge = (playerObject.transform.position - transform.position).normalized;
 		myAnimator.SetBool("isCharging", true);
-		Debug.Log("Charge");
 	}
 
 	void Dig()
@@ -127,7 +122,6 @@ public class FirstPhaseAzafran : Enemy
 		tState = TStateAttack.DIG;
 		myRigidbody2D.gravityScale = 0.0f;
 		myAnimator.SetBool("beginDigging", true);
-		Debug.Log("\n\t::::::::Setting dig");
 		previousDigPlace.position = transform.position;
 	}
 
@@ -137,11 +131,9 @@ public class FirstPhaseAzafran : Enemy
 			TStateAttack.DIG_TRAVEL :
 			TStateAttack.DIGGING_BACK;
 
-		Debug.Log("\tState: " + tState);
 		tStateMoving = (tState == TStateAttack.DIG_TRAVEL) ?
 			TStateMovingToDigPoint.GROUND :
 			TStateMovingToDigPoint.PLATAFORM;
-		Debug.Log("\tState movement: " + tStateMoving);
 
 		myAnimator.SetBool("beginDigging", false);
 		myAnimator.SetBool("isDigging", true);
@@ -172,7 +164,6 @@ public class FirstPhaseAzafran : Enemy
 
 		if (Physics2D.OverlapCircle(rightCheck.position, circleRadius, wallMask))
 		{
-			Debug.Log("Encuentro pared");
 			myAnimator.SetBool("isCharging", false);
 			GetComponent<PhaseManagerAzafran>().summonFallingStone?.Invoke(this, stonesSummoned);
 			tState = TStateAttack.IDLE;
@@ -185,13 +176,11 @@ public class FirstPhaseAzafran : Enemy
 	void AscendWall(bool RightWall, bool LeftWall, bool condition)
 	{
 		Vector3 rotator;
-		Debug.Log("****INTENTANDO ASCENDER MURO EN EL ESTADO: " + tState);
 		if (condition)
 		{
 			if (RightWall)
 			{
 				if (tState == TStateAttack.DIG_TRAVEL) rightSide = true;
-				Debug.Log("RightWall -> (" + tState + ")");
 				rotator = new Vector3(0, 0, 90);
 				transform.rotation = Quaternion.Euler(rotator);
 				tStateMoving = TStateMovingToDigPoint.WALL;
@@ -207,7 +196,6 @@ public class FirstPhaseAzafran : Enemy
 			if (LeftWall)
 			{
 				if (tState == TStateAttack.DIG_TRAVEL) rightSide = false;
-				Debug.Log("LeftWall -> (" + tState + ")");
 				rotator = new Vector3(0, 180, 90);
 				transform.rotation = Quaternion.Euler(rotator);
 				tStateMoving = TStateMovingToDigPoint.WALL;
@@ -220,7 +208,6 @@ public class FirstPhaseAzafran : Enemy
 	}
 	void TravelToWall()
 	{
-		Debug.Log("***********Viajando al muro... -> (" + tState + ")");
 		bool LeftWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left,
 			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
 		bool RightWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right,
@@ -238,20 +225,17 @@ public class FirstPhaseAzafran : Enemy
 	}
 	void TravelOnWall()
 	{
-		Debug.Log("***********Viajando a la plataforma... -> (" + tState + ")");
 		Vector2 destiny = new Vector2(0.0f, digObjetive.position.y);
 		Vector2 origin = new Vector2(0.0f, transform.position.y);
 
 		if (Vector2.Distance(origin, destiny) >= distanceToChangeMovementState)
 		{
-			Debug.Log("Ascending... -> (" + tState + ")");
 			myRigidbody2D.velocity = (tState == TStateAttack.DIG_TRAVEL) ? 
 				new Vector2(0.0f, digSpeedWall) : 
 				new Vector2(0.0f, -digSpeedWall);
 		}
 		else
 		{
-			Debug.Log("\tESTOY EN TRAVEL ON WALL: " + tState);
 			tStateMoving = (tState == TStateAttack.DIG_TRAVEL)?
 				TStateMovingToDigPoint.PLATAFORM:
 				TStateMovingToDigPoint.GROUND;
@@ -263,11 +247,18 @@ public class FirstPhaseAzafran : Enemy
 		Vector2 origin = new Vector2(transform.position.x, 0.0f);
 
 		Vector2 direction = destiny - origin;
+		Vector3 rotator;
 		if (Vector2.Distance(destiny, origin) >= distanceToChangeMovementState)
 		{
 			myRigidbody2D.velocity = (direction.x >= 0) ?
 				new Vector2(digSpeedGround, 0.0f) :
 				new Vector2(-digSpeedGround, 0.0f);
+
+			rotator = (direction.x > 0) ?
+				new Vector3(0, 0, 0) :
+				new Vector3(0, 180, 0);
+
+			transform.rotation = Quaternion.Euler(rotator);
 		}
 		else
 		{
@@ -353,7 +344,7 @@ public class FirstPhaseAzafran : Enemy
 				break;
 		}
 
-		if (tStateMoving != TStateMovingToDigPoint.NONE && tStateMoving != TStateMovingToDigPoint.PLATAFORM) return;
+		if (tStateMoving != TStateMovingToDigPoint.NONE) return;
 		Vector3 rotator = (facingRight) ? new Vector3(0, 0, 0) : new Vector3(0, 180, 0);
 		transform.rotation = Quaternion.Euler(rotator);
 	}
