@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public class HealthPlayerManager : HealthManager
     private Dash dashComponent;
     private Jump jumpComponent;
     private Hook hook;
+    private CinemachineImpulseSource impulseSource;
 
     [SerializeField] private Vector2 DamageKnockbackVector;
     [SerializeField] private float DamageKnockbackForce;
@@ -38,7 +40,7 @@ public class HealthPlayerManager : HealthManager
     {
         base.Start();
         EventHealing += Heal;
-
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         horizontalMovementComponent = GetComponent<HorizontalMovement>();
         dashComponent = GetComponent<Dash>();
         jumpComponent = GetComponent<Jump>();
@@ -66,6 +68,8 @@ public class HealthPlayerManager : HealthManager
         if (OnlyTakeDmgOnce) return;
         OnlyTakeDmgOnce = true;
 
+        TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
+        CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         EventUpdateHealthUI?.Invoke(this, current_health);
 
         //Debug.Log("Damaging..." + current_health);
