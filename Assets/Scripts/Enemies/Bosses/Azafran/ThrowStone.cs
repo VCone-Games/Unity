@@ -8,27 +8,23 @@ public class ThrowStone : MonoBehaviour
 	public float vel = 20f;
 	Vector3 direccion;
 
-	public float gravityScale;
-	public float alturaMaxima = 1f;
-
 	private void Start()
 	{
 		// Lanzar el objeto al jugador cuando se inicia el juego
 		jugador = GameObject.FindGameObjectWithTag("Player").transform;
-		gravityScale = GetComponent<Rigidbody2D>().gravityScale;
 
 		direccion = (jugador.position - transform.position).normalized;
+		Debug.Log(direccion);
 	}
 
 	private void FixedUpdate()
 	{
-		GetComponent<Rigidbody2D> ().velocity = (direccion.x >= 0)?
-			new Vector2(vel, vel) * direccion :
-			new Vector2(-vel, vel) * direccion;
+		GetComponent<Rigidbody2D>().velocity = new Vector2(vel, vel) * direccion;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
+		Debug.Log("Resultado de la colisión: " + collision.gameObject);
 		if (collision.gameObject.CompareTag("Player"))
 		{
 			Debug.Log("damage");

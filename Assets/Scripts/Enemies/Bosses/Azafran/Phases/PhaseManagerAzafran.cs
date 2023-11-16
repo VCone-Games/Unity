@@ -50,9 +50,5 @@ public class PhaseManagerAzafran : MonoBehaviour
 			gameObject.AddComponent<SecondPhaseAzafran>();
 			secondPhaseBegin = true;
 		}
-
 	}
-
-	//6 cotas de malla, 6 cuero tachonado, 6 ballestas de mano, 20 cajas de ballesta (20), 6 espadas cortas, 10 dagas.
-	//6 bolsa de abrojos, 4 rollos de cuerda, 
 }
