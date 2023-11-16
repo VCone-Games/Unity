@@ -130,6 +130,7 @@ public class FirstPhaseAzafran : Enemy
 		tState = (tState == TStateAttack.DIG) ?
 			TStateAttack.DIG_TRAVEL :
 			TStateAttack.DIGGING_BACK;
+		if (tState == TStateAttack.DIGGING_BACK) shootCount = 0;
 
 		tStateMoving = (tState == TStateAttack.DIG_TRAVEL) ?
 			TStateMovingToDigPoint.GROUND :
