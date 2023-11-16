@@ -22,8 +22,13 @@ public class PhaseManagerAzafran : MonoBehaviour
 	[SerializeField] private bool firstPhaseEnded = false;
 	[SerializeField] private bool secondPhaseBegin = false;
 
-    // Start is called before the first frame update
-    void Start()
+	[SerializeField] private Transform endCombat;
+	void SpawnDeadPoint()
+	{
+		transform.position = endCombat.position;
+	}
+	// Start is called before the first frame update
+	void Start()
     {
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myAnimator = GetComponent<Animator>();
@@ -31,7 +36,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 
 	void ActivateSecondPhase()
 	{
-		Destroy(firstPhaseComponent);
+		firstPhaseComponent.IsDisabled = true;
 
 		myAnimator.SetBool("isTransicion", false);
 		myAnimator.SetBool("isWalking", true);
@@ -51,8 +56,21 @@ public class PhaseManagerAzafran : MonoBehaviour
 		if (condition && Vector3.Distance(transform.position, secondPhaseSpawn.position) < distanceToStart)
 		{
 			Debug.Log("Activando segunda fase");
+			Vector3 rotator = new Vector3(0, 0, 0);
+			transform.rotation = Quaternion.Euler(rotator);
+
+			myAnimator.SetBool("isWalking", false);
+			myAnimator.SetBool("beginDigging", true);
+			myRigidbody2D.gravityScale = 0.0f;
 			gameObject.AddComponent<SecondPhaseAzafran>();
 			secondPhaseBegin = true;
 		}
+	}
+
+	void StartDiggingPhaseManager()
+	{
+		if (!secondPhaseBegin) return;
+		myAnimator.SetBool("beginDigging", false);
+		myAnimator.SetBool("isDigging", true);
 	}
 }

@@ -22,10 +22,7 @@ public class HealthManagerAzafran : HealthManager
 			current_health = max_health;
 			canTakeDamage = false;
 		}
-		else if (SecondPhase && current_health <= 0)
-		{
-			EventDie?.Invoke(this, null);
-		}
+
 		Debug.Log("Damage received " + current_health);
 	}
 
