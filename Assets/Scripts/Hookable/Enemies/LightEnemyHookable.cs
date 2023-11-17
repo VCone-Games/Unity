@@ -8,8 +8,9 @@ public class LightEnemyHookable : LightHookable
     {
         base.ParryingAction();
 
-        gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1,0,0));
+       // gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1,0,0));
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerRigidbody.velocity = new Vector3(0.1f, 7);
     }
 
     public override void Unhook()

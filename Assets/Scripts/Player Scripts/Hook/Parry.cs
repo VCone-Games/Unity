@@ -37,7 +37,6 @@ public class Parry : MonoBehaviour
 
     //PARRY PARAMETERS
     [Header("Parry Parameters")]
-    [SerializeField] private float parryDistance;
     [SerializeField] private float parryForce;
     [SerializeField] private float parryTime;
     [SerializeField] public float parryKnockbackTime;

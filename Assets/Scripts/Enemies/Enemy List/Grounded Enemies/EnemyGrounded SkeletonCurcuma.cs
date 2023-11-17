@@ -26,7 +26,7 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 	{
 		base.FixedUpdate();
 
-        if (isBeingHooked) return;
+        if (isBeingHooked || isDead) return;
 
         switch (tState)
 		{

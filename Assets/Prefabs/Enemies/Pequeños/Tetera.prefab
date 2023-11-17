@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409053439485125421}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnAttackPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,12 @@ GameObject:
   - component: {fileID: 3777908487635629428}
   - component: {fileID: 7862179281825343127}
   - component: {fileID: 8001647701397636976}
-  m_Layer: 0
+  - component: {fileID: 5664000718872885197}
+  - component: {fileID: 1805259262968641060}
+  - component: {fileID: 3652144613032106091}
+  - component: {fileID: 961367487660812986}
+  - component: {fileID: 4212287201317763585}
+  m_Layer: 11
   m_Name: Tetera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +136,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6047236492934092723}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0039191246, y: -0.0039191246}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -165,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96, y: 0.96}
+  m_Size: {x: 0.7640562, y: 0.7797308}
   m_EdgeRadius: 0
 --- !u!50 &690743018787521123
 Rigidbody2D:
@@ -179,10 +184,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -260,6 +265,11 @@ MonoBehaviour:
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
   myAnimator: {fileID: 0}
+  hookableComponent: {fileID: 0}
+  isBeingHooked: 0
+  unhookTime: 1.5
+  unhookTimer: 0
+  isDead: 0
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -271,6 +281,7 @@ MonoBehaviour:
   tState: 0
   attackRange: 3
   patrolPoints:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   currentPatrolPoint: 0
@@ -289,7 +300,170 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 10
+  max_health: 1
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+--- !u!114 &5664000718872885197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047236492934092723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09254c9ee0ec17a40b7c917889bbe147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!61 &1805259262968641060
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047236492934092723}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.022255182}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.96, y: 1.0045104}
+  m_EdgeRadius: 0
+--- !u!114 &3652144613032106091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047236492934092723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4818ebedd3825a438559fcb99371388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
+  playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
+  myRigidbody: {fileID: 690743018787521123}
+  myCollider: {fileID: 2363901337917168488}
+  enemyComponent: {fileID: 0}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
+  isHooked: 0
+  vectorToHookGun: {x: 0, y: 0, z: 0}
+  hookProjectile: {fileID: 0}
+  hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
+  normalLayer: 0
+  noPlayerLayer: 9
+--- !u!114 &961367487660812986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047236492934092723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 690743018787521123}
+  maxSpeed: 20
+  dashComponent: {fileID: 0}
+--- !u!114 &4212287201317763585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047236492934092723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}

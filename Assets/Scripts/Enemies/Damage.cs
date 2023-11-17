@@ -7,8 +7,8 @@ public class Damage : MonoBehaviour
     [Header("Damage params")]
     [SerializeField] private int damage;
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         Debug.Log(collision.gameObject);
 
         HealthManager healthManager;
@@ -23,7 +23,9 @@ public class Damage : MonoBehaviour
             Vector2 contactPoint = rigidbody2D.ClosestPoint(transform.position);
             contactPoint = contactPoint - new Vector2(collision.transform.position.x, collision.transform.position.y);
             Vector3 damageContactPoint = new Vector3(damage, contactPoint.x, contactPoint.y);
+            //if (!collision.gameObject.CompareTag("Player"))
+            //    collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 7);
             healthManager.EventDamageTaken(this, damageContactPoint);
-		}
-	}
+        }
+    }
 }

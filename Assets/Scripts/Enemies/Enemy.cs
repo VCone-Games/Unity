@@ -21,11 +21,14 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] public float unhookTime;
     [SerializeField] public float unhookTimer;
+    [SerializeField] protected bool isDead;
+
 
     protected virtual void Die(object sender, EventArgs e)
     {
+        isDead = true;
         myAnimator.SetBool("isDead", true);
-       // myRigidbody2D.velocity = Vector2.zero;
+        // myRigidbody2D.velocity = Vector2.zero;
         myRigidbody2D.isKinematic = false;
     }
 
@@ -42,7 +45,7 @@ public abstract class Enemy : MonoBehaviour
         //Debug.Log("Attack mode");
     }
 
-    protected virtual void StopAttack()
+    public virtual void StopAttack()
     {
         myAnimator.SetBool("isAttacking", false);
         myRigidbody2D.isKinematic = false;
@@ -63,7 +66,11 @@ public abstract class Enemy : MonoBehaviour
         if(unhookTimer > 0)
         {
             unhookTimer -= Time.fixedDeltaTime;
-            if (unhookTimer < 0) isBeingHooked = false;
+            if (unhookTimer < 0)
+            { 
+                isBeingHooked = false;
+                gameObject.layer = 11;
+            }
         }
     }
 
