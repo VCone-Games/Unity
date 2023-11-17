@@ -281,6 +281,8 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &787362554949174770
 MonoBehaviour:
   m_ObjectHideFlags: 0

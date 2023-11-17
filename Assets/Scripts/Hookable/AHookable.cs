@@ -117,7 +117,7 @@ public abstract class AHookable : MonoBehaviour
     {
         if (!isHooked) return;
 
-        if (isParried)
+        //if (isParried)
             gameObject.layer = normalLayer;
         isParried = false;
 

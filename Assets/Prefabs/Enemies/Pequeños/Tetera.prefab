@@ -305,6 +305,9 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &5664000718872885197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +400,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
-  normalLayer: 0
+  normalLayer: 11
   noPlayerLayer: 9
 --- !u!114 &961367487660812986
 MonoBehaviour:

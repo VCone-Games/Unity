@@ -127,7 +127,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14, y: -0.3487532}
+  m_Offset: {x: -0.14000034, y: -0.32940602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.725, y: 0.5}
@@ -138,7 +138,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2997026, y: 2.1881185}
+  m_Size: {x: 2.1913548, y: 2.2268128}
   m_EdgeRadius: 0.02
 --- !u!50 &3571038383504458260
 Rigidbody2D:
@@ -245,6 +245,9 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &890832885310913590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +308,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24945843, y: -0.04499221}
+  m_Offset: {x: -0.14272785, y: -0.27096105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.725, y: 0.5}
@@ -316,7 +319,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8615267, y: 2.7956405}
+  m_Size: {x: 2.4004154, y: 2.3437028}
   m_EdgeRadius: 0
 --- !u!114 &2010496052215869661
 MonoBehaviour:
@@ -352,7 +355,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
-  normalLayer: 0
+  normalLayer: 11
   noPlayerLayer: 9
 --- !u!1 &5843819553768664236
 GameObject:

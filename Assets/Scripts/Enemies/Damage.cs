@@ -5,9 +5,9 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     [Header("Damage params")]
-    [SerializeField] private int damage;
+    [SerializeField] protected int damage;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject);
 

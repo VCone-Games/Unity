@@ -273,11 +273,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 2
+  max_health: 10
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &5684944796899077733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +326,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.1542635, y: -0.2732668}
+  m_Offset: {x: -0.1584773, y: -0.3322544}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -334,7 +337,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9183636, y: 1.7882786}
+  m_Size: {x: 0.8256693, y: 1.6703033}
   m_EdgeRadius: 0
 --- !u!114 &2797556288978130150
 MonoBehaviour:
@@ -370,7 +373,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
-  normalLayer: 0
+  normalLayer: 11
   noPlayerLayer: 9
 --- !u!114 &799213041899166889
 MonoBehaviour:
