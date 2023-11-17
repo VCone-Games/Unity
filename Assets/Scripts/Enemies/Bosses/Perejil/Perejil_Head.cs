@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Perejil_Head : Enemy
 {
@@ -55,15 +56,24 @@ public class Perejil_Head : Enemy
 	{
 		int numStatesSummon = System.Enum.GetNames(typeof(TStateSummon)).Length;
 		tStateSummon = (TStateSummon)Random.Range(0, numStatesSummon);
+		int selPlace = Random.Range(0, summonPlaces.Count);
 
-		switch(tStateSummon)
+		switch (tStateSummon)
 		{
 			case TStateSummon.HOLOGRAM:
-				Debug.Log("Invocando holograma normal");
+				Debug.Log("Hologram");
+				InsantiateHologram(normalHologram, summonPlaces[selPlace]);
 				break;
 			case TStateSummon.GOLD_HOLOGRAM:
-				Debug.Log("Invocando holograma dorado");
+				Debug.Log("Gold");
+				InsantiateHologram(normalHologram, summonPlaces[selPlace]);
 				break;
 		}
+	}
+
+	private void InsantiateHologram(GameObject prefabHologram, Transform position)
+	{
+		GameObject hologram = Instantiate(prefabHologram, position.position, Quaternion.identity);
+		hologram.AddComponent<DispawnTemporalEnemies>();
 	}
 }
