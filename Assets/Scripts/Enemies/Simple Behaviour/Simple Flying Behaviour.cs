@@ -32,7 +32,7 @@ public abstract class SimpleFlyingBehaviour : Enemy
 	{
 		base.FixedUpdate();
 
-		if (isBeingHooked) return;
+		if (isBeingHooked || isDead) return;
 
 		HitCollision();
 

@@ -401,7 +401,7 @@ public class FirstPhaseAzafran : Enemy
 
 	}
 
-	protected override void StopAttack()
+	public override void StopAttack()
 	{
 		base.StopAttack();
 		shootTimer = shootTime;

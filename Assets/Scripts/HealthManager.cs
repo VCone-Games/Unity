@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
@@ -18,6 +19,14 @@ public class HealthManager : MonoBehaviour
     [SerializeField] protected Rigidbody2D myRigidbody;
 
     protected bool OnlyTakeDmgOnce;
+
+    [SerializeField] protected float InvulnerabilityTime;
+    protected float InvulnerabilityTimer;
+
+    [SerializeField] protected Vector2 DamageKnockbackVector;
+    [SerializeField] protected float DamageKnockbackForce;
+
+    protected Vector2 auxKnockback;
 
     public int MaxHealth { get { return max_health; } set { max_health = value; } }
     public int CurrentHealth { get { return current_health; } set { current_health = value; } }
@@ -55,6 +64,24 @@ public class HealthManager : MonoBehaviour
 
         myAnimator.SetBool("isDamaging", true);
 
+        if (!gameObject.CompareTag("Player"))
+        {
+            myRigidbody.GetComponent<Rigidbody2D>().velocity += new Vector2(3, 7);
+            GetComponent<Enemy>().StopAttack();
+        }
+
+        myRigidbody.velocity = Vector2.zero;
+
+        if (damageContactPoint.y <= 0)
+        {
+            auxKnockback = DamageKnockbackVector;
+        }
+        if (damageContactPoint.y > 0)
+        {
+            auxKnockback = new Vector2(-DamageKnockbackVector.x, DamageKnockbackVector.y);
+        }
+        myRigidbody.velocity = auxKnockback.normalized * DamageKnockbackForce;
+
         //COSAS DURANTE LA ANIMACION
 
 
@@ -65,8 +92,22 @@ public class HealthManager : MonoBehaviour
     {
         Debug.Log("Fin del daño");
         myAnimator.SetBool("isDamaging", false);
-        canTakeDamage = true;
-        OnlyTakeDmgOnce = false;
+
+        InvulnerabilityTimer = InvulnerabilityTime;
+
+    }
+
+    protected virtual void Update()
+    {
+        if (InvulnerabilityTimer > 0)
+        {
+            InvulnerabilityTimer -= Time.deltaTime;
+            if (InvulnerabilityTimer < 0)
+            {
+                canTakeDamage = true;
+                OnlyTakeDmgOnce = false;
+            }
+        }
     }
 
 }

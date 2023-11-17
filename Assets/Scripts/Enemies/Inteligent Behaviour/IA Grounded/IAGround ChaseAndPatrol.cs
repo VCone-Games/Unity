@@ -60,7 +60,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 			tState = TState.PATROL;
 		}
 	}
-	protected override void StopAttack()
+	public override void StopAttack()
 	{
 		base.StopAttack();
 		tState = TState.CHASE;
@@ -70,7 +70,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	protected override void FixedUpdate()
 	{
 		base.FixedUpdate();
-        if (isBeingHooked) return;
+        if (isBeingHooked || isDead) return;
 
         switch (tState)
 		{

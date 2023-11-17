@@ -9,8 +9,11 @@ public class HeavyEnemyHookable : HeavyHookable
     {
         base.ParryingAction();
 
+        //gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        myRigidbody.velocity = new Vector3(-parryDirection.x, parryDirection.y, parryDirection.z) * 0.25f;
+
+        float xVelocity = parryDirection.x >= 0 ? 1 : -1;
+        myRigidbody.velocity = new Vector3(xVelocity * 3, 7);
     }
 
     public override void Unhook()

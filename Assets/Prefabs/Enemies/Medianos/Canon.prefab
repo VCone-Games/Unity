@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4794535968186036257}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,11 @@ GameObject:
   - component: {fileID: 520425911369506782}
   - component: {fileID: 3675281119965354980}
   - component: {fileID: 405442629331315945}
-  m_Layer: 0
+  - component: {fileID: 5684944796899077733}
+  - component: {fileID: 1111796657202546120}
+  - component: {fileID: 2797556288978130150}
+  - component: {fileID: 799213041899166889}
+  m_Layer: 11
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,11 +138,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 100
+  m_LinearDrag: 0.57
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3
+  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -147,8 +151,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &6386137247266704974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,7 +185,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005431652, y: -0.28385413}
+  m_Offset: {x: -0.16345882, y: -0.3720827}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -192,8 +196,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1062546, y: 1.652292}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.63969994, y: 1.5578442}
+  m_EdgeRadius: 0.02
 --- !u!95 &520425911369506782
 Animator:
   serializedVersion: 5
@@ -232,6 +236,11 @@ MonoBehaviour:
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
   myAnimator: {fileID: 0}
+  hookableComponent: {fileID: 0}
+  isBeingHooked: 0
+  unhookTime: 1
+  unhookTimer: 0
+  isDead: 0
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -241,13 +250,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   distance: 0.5
-  grounded: 0
+  edgeDetector: 0
+  isGrounded: 0
   canAttack: 1
   chaseTimer: 3
   tState: 0
   visionRange: 10
   attackRange: 6
-  chaseTime: 0
+  chaseTime: 2
   isPlayerInSight: 0
   prefabBullet: {fileID: 8001287367008388910, guid: 2e3b5c051f083fb40936df7589702f3b, type: 3}
   spawnAttackPoint: {fileID: 4794535968186036257}
@@ -267,6 +277,119 @@ MonoBehaviour:
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
+--- !u!114 &5684944796899077733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294446937796390347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09254c9ee0ec17a40b7c917889bbe147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!61 &1111796657202546120
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294446937796390347}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.1584773, y: -0.3322544}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.16, y: 2.22}
+    newSize: {x: 2.16, y: 2.22}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8256693, y: 1.6703033}
+  m_EdgeRadius: 0
+--- !u!114 &2797556288978130150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294446937796390347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1dd4efdc8128d844bc3154a9cd9370c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
+  playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
+  myRigidbody: {fileID: 3175800110056089875}
+  myCollider: {fileID: 6386137247266704974}
+  enemyComponent: {fileID: 0}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
+  isHooked: 0
+  vectorToHookGun: {x: 0, y: 0, z: 0}
+  hookProjectile: {fileID: 0}
+  hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
+  normalLayer: 11
+  noPlayerLayer: 9
+--- !u!114 &799213041899166889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294446937796390347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 3175800110056089875}
+  maxSpeed: 20
+  dashComponent: {fileID: 0}
 --- !u!1 &6947290092007292757
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4852227307462680352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

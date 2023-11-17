@@ -28,6 +28,8 @@ public abstract class MovementGroundedIA : Enemy
 	protected abstract void CheckState();
 	protected override void FixedUpdate()
 	{
+        base.FixedUpdate();
+
         isGrounded = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.down,
            myCollider2D.bounds.extents.y + 0.05f, groundLayer);
         if (!isGrounded) return;
@@ -35,8 +37,8 @@ public abstract class MovementGroundedIA : Enemy
         edgeDetector = Physics2D.Raycast(feet.position, Vector2.down, distance, groundLayer);
 
 
-        base.FixedUpdate();
-        if (isBeingHooked) return;
+
+        if (isBeingHooked || isDead) return;
 
         CheckState(); 
 

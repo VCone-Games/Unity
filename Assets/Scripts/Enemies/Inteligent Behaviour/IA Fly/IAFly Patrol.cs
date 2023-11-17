@@ -23,7 +23,10 @@ public abstract class IAFlyPatrol : MovementFlyIA
 
 	protected override void FixedUpdate()
 	{
-		CheckState();
+		base.FixedUpdate();
+        if (isBeingHooked || isDead) return;
+
+        CheckState();
 		if (tState == TState.ATTACK)
 		{
 			Attack();
@@ -49,7 +52,7 @@ public abstract class IAFlyPatrol : MovementFlyIA
 		}
 	}
 
-	protected override void StopAttack()
+	public override void StopAttack()
 	{
 		base.StopAttack();
 		tState = TState.PATROL;

@@ -17,7 +17,7 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 		}
 	}
 
-	protected override void StopAttack()
+	public override void StopAttack()
 	{
 		base.StopAttack();
 		tState = TState.PATROL;
@@ -28,7 +28,7 @@ public abstract class IAGroundPatrol : MovementGroundedIA
 	{
 
 		base.FixedUpdate();
-        if (isBeingHooked) return;
+        if (isBeingHooked || isDead) return;
 
         switch (tState)
 		{

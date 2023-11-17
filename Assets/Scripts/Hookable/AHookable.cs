@@ -80,7 +80,7 @@ public abstract class AHookable : MonoBehaviour
     {
         playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
 
-        isParried = false;
+
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
         gameObject.layer = noPlayerLayer;
@@ -103,7 +103,12 @@ public abstract class AHookable : MonoBehaviour
     public virtual void Hooked(GameObject hookProjectile, float hoookingSpeed)
     {
         isHooked = true;
-        if (enemyComponent != null) enemyComponent.isBeingHooked = true;
+        if (enemyComponent != null)
+        {
+            enemyComponent.isBeingHooked = true;
+            enemyComponent.StopAttack();
+        }
+
         this.hookProjectile = hookProjectile;
         this.hookingSpeed = hoookingSpeed;
     }
@@ -112,8 +117,9 @@ public abstract class AHookable : MonoBehaviour
     {
         if (!isHooked) return;
 
-
-        gameObject.layer = normalLayer;
+        //if (isParried)
+            gameObject.layer = normalLayer;
+        isParried = false;
 
         if (hookProjectile != null)
         {
