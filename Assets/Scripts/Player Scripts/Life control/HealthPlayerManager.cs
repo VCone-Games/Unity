@@ -26,7 +26,7 @@ public class HealthPlayerManager : HealthManager
 
     private void Update()
     {
-        if(InvulnerabilityTimer > 0)
+        if(InvulnerabilityTimer >= 0)
         {
             InvulnerabilityTimer -= Time.deltaTime;
             if(InvulnerabilityTimer < 0)
