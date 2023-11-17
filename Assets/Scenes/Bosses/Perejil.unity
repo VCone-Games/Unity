@@ -8102,14 +8102,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4211898933687043210, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
-      propertyPath: attackTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4211898933687043210, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
-      propertyPath: summonTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4211898933687043210, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
       propertyPath: summonPlaces.Array.data[0]
       value: 
       objectReference: {fileID: 378229572}

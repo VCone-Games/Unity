@@ -823,8 +823,8 @@ MonoBehaviour:
   tStateSummon: 0
   normalHologram: {fileID: 1329960461328795154, guid: e5b362608e27f0b47a629097b2fad4ab, type: 3}
   goldHologram: {fileID: 0}
-  attackTime: 2
-  summonTime: 5
+  attackTime: 0
+  summonTime: 0
   summonPlaces:
   - {fileID: 0}
   - {fileID: 0}
