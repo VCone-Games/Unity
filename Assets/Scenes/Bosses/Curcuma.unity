@@ -1114,7 +1114,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 1
+  showGraphs: 0
 --- !u!1001 &1052542739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1125,15 +1125,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 709353178098947151, guid: 19efd91b0ea129149a51d8a77340c255, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147.86183
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709353178098947151, guid: 19efd91b0ea129149a51d8a77340c255, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -141.52559
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709353178098947151, guid: 19efd91b0ea129149a51d8a77340c255, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6308904
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 709353178098947151, guid: 19efd91b0ea129149a51d8a77340c255, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2512,6 +2512,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1052542739}
   - {fileID: 1016613945}
   - {fileID: 1485202823}
   - {fileID: 791534696}
@@ -2522,7 +2523,6 @@ SceneRoots:
   - {fileID: 2081835997}
   - {fileID: 147419929}
   - {fileID: 2610653065877166959}
-  - {fileID: 1052542739}
   - {fileID: 1889665205}
   - {fileID: 709166785}
   - {fileID: 779196230}

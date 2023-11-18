@@ -8664,7 +8664,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1383955886, guid: 73c676c3d7a66d74b91b203be493b1b3, type: 3}
+  m_Sprite: {fileID: -1784074389, guid: d5577be2e1e7f994597963859f31171f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8961,6 +8961,7 @@ GameObject:
   - component: {fileID: 4488636371436498803}
   - component: {fileID: 7393286437845886473}
   - component: {fileID: 8378224941065614091}
+  - component: {fileID: 8378224941065614092}
   m_Layer: 11
   m_Name: 'GoldHologram_Enemy '
   m_TagString: Untagged
@@ -9045,6 +9046,27 @@ MonoBehaviour:
   reachedEndOfPath: 0
   tState: 0
   attackRange: 10
+--- !u!95 &8378224941065614092
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939063651863856014}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e93f8de8d7db8a6439139b30fc2f3263, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8630135088220538159
 Transform:
   m_ObjectHideFlags: 0

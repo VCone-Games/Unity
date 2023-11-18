@@ -24,8 +24,8 @@ public class DispawnTemporalEnemies : MonoBehaviour
 
 		if (DeathTime < 0)
 		{
-			Destroy(gameObject);
-			//healthManager.EventDamageTaken(this, 9999);
+			//Destroy(gameObject);
+			healthManager.EventDamageTaken(this, new Vector3(99990, 0,0));
 		}
 	}
 }

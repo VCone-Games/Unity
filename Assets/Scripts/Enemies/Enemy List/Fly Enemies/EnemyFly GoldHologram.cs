@@ -1,4 +1,5 @@
 using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,5 +54,11 @@ public class EnemyFlyGoldHologram : IAFlyChase
 	{
 		CheckState();
 		IAWorking();
+	}
+
+	protected override void Die(object sender, EventArgs e)
+	{
+		isDead = true;
+		myAnimator.SetBool("isDeadTimer", true);
 	}
 }
