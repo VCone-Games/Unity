@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_FogShader BACKGROUND
+  m_Name: tutorial1
   m_Shader: {fileID: -6465566751694194690, guid: 63f895bcfb3aa4c4ea5ba7627f75c7b6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fog_Size: 1
+    - _Fog_Size: 4
     m_Colors:
-    - _Fog_Color: {r: 0.16078427, g: 0.3215686, b: 0.3490196, a: 0.6392157}
-    - _Fog_Speed: {r: 0, g: -0.1, b: 0, a: 0}
+    - _Fog_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.019607844}
+    - _Fog_Speed: {r: 0.5, g: 0.57, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7372588352046488999
 MonoBehaviour:

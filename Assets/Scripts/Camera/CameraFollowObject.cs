@@ -15,6 +15,11 @@ public class CameraFollowObject : MonoBehaviour
 
     private Coroutine turnCoroutine;
 
+
+    private void Start()
+    {
+        playerTransform = GameObject.FindWithTag("Player").transform;
+    }
     private void Update()
     {
 

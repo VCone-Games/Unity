@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/0. Tutorial.unity
     guid: 71d77148c4ab9f349be484aaebe9d060
+  - enabled: 1
+    path: Assets/Scenes/1. Pre pueblo.unity
+    guid: d9d4b0c31f8e29d41a62c94a43068cfc
   - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 837c1fb4156fda341a7dc754ce173120

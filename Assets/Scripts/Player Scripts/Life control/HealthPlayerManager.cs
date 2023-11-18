@@ -19,6 +19,7 @@ public class HealthPlayerManager : HealthManager
 
     protected override void Start()
     {
+        DontDestroyOnLoad(gameObject);
         base.Start();
         EventHealing += Heal;
         impulseSource = GetComponent<CinemachineImpulseSource>();

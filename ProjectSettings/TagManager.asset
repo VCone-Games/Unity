@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - HookGun
   - Ground
+  - CameraFollow
+  - AimRepresentation
   layers:
   - Default
   - TransparentFX

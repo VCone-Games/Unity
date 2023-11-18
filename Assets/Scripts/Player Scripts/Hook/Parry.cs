@@ -76,6 +76,8 @@ public class Parry : MonoBehaviour
         hookAimGamepadReference.action.performed += OnControllerAim;
 
         hookingRange = GetComponent<Hook>().hookingRange;
+
+        aimRepresentation = GameObject.FindWithTag("AimRepresentation");
     }
 
     private void Update()

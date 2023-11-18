@@ -92,6 +92,8 @@ public class Hook : MonoBehaviour
 
         interactComponent = GetComponent<Interact>();
 
+        aimRepresentation = GameObject.FindWithTag("AimRepresentation");
+
         //hookShootControllerReference.action.Disable();
         //hookAimControllerReference.action.Disable();
     }

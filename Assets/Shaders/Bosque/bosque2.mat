@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_FogShader FOREGROUND
+  m_Name: bosque2
   m_Shader: {fileID: -6465566751694194690, guid: 63f895bcfb3aa4c4ea5ba7627f75c7b6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,10 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fog_Size: 3
+    - _Fog_Size: 1
     m_Colors:
-    - _Fog_Color: {r: 0.24705881, g: 0.17254898, b: 0.12549016, a: 0.34901962}
-    - _Fog_Speed: {r: 0.75, g: 0.25, b: 0, a: 0}
+    - _Fog_Color: {r: 0.67058825, g: 0.8, b: 0.6117647, a: 0.3764706}
+    - _Fog_Speed: {r: 0, g: -0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7372588352046488999
 MonoBehaviour:

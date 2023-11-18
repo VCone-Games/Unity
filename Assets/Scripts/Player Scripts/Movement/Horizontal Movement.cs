@@ -66,6 +66,8 @@ public class HorizontalMovement : MonoBehaviour
 
         EventConfused += HittedWithConfused;
 
+        cameraFollow = GameObject.FindWithTag("CameraFollow").GetComponent<CameraFollowObject>();
+
         // myRigidbody = GetComponent<Rigidbody2D>();
         //
         // jumpComponent = GetComponent<Jump>();
