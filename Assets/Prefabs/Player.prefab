@@ -731,6 +731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSource: {fileID: 7471403883245542936}
   landingSource: {fileID: 1626350880401930096}
+  doubleJumpSource: {fileID: 7471403883245542936}
+  doubleJump: {fileID: 8300000, guid: 346d4d1c9e708394dbff3416b3c62858, type: 3}
   materialInicial: 0
   footSteps:
   - {fileID: 8300000, guid: 70c236a73deb8d24c8a0695c0110441a, type: 3}
