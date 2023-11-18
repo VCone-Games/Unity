@@ -7,6 +7,8 @@ public class PlayerSoundManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource footstepsSource;
     [SerializeField] private AudioSource landingSource;
+    [SerializeField] private AudioSource doubleJumpSource;
+    [SerializeField] private AudioClip doubleJump;
 
     [Header("Footsteps Sounds: 0-Metal, 1-Snow, 2-Grass, 3-Stone")]
     [SerializeField] public int materialInicial;
@@ -59,5 +61,11 @@ public class PlayerSoundManager : MonoBehaviour
     {
         landingSource.volume = landingVOLUME[currentMaterialId];
         landingSource.Play();
+    }
+    public void PlayDoubleJump()
+    {
+        doubleJumpSource.clip=  doubleJump;
+        doubleJumpSource.volume = 1.0f;
+        doubleJumpSource.Play();
     }
 }

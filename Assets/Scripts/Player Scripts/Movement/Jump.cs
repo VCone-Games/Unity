@@ -111,6 +111,7 @@ public class Jump : MonoBehaviour
             hasParred = false;
             asciende = true;
             animator.SetTrigger("Jump Trigger");
+            if (jumpCount == 2) { soundManager.PlayDoubleJump(); }
         }
 
     }
