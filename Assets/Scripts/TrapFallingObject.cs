@@ -45,6 +45,7 @@ public class TrapFallingObject : MonoBehaviour
 
 			healthManager.EventDamageTaken(this, damageContactPoint);
 		}
+		Destroy(gameObject);
 	}
 
 	// Update is called once per frame
