@@ -13,7 +13,8 @@ public class HealthManagerCurcuma : HealthManager
     protected override void TakeDamage(object sender, Vector3 damage)
     {
 		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
-		myAnimator?.SetBool("isDamaging", true);
+		myAnimator.SetBool("isDamaging", true);
+		Debug.Log("CURCUMA RECIBE: " + (int)damage.x);
 		int objetiveHealth = current_health - (int)damage.x;
 		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;
 
@@ -21,7 +22,8 @@ public class HealthManagerCurcuma : HealthManager
 		{
 			SecondPhase = true;
 			EventSecondPhase?.Invoke(this, null);
-		} else if (current_health <= 0)
+		}
+		if (current_health <= 0)
 		{
 			EventDie?.Invoke(this, null);
 		}

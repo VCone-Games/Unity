@@ -1707,7 +1707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033683188939639035, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.48
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 2033683188939639035, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1739,6 +1739,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033683188939639035, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117422377758787555, guid: e58b7598d02000d499a6875301137bbf, type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117422377758787555, guid: e58b7598d02000d499a6875301137bbf, type: 3}
+      propertyPath: attackTimer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3117422377758787555, guid: e58b7598d02000d499a6875301137bbf, type: 3}
@@ -1788,6 +1796,10 @@ PrefabInstance:
     - target: {fileID: 6659681253205171668, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: m_Name
       value: Curcuma
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347278446769727460, guid: e58b7598d02000d499a6875301137bbf, type: 3}
+      propertyPath: max_health
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7347278446769727460, guid: e58b7598d02000d499a6875301137bbf, type: 3}
       propertyPath: InvulnerabilityTime

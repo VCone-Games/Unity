@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6941670800731106074}
   - component: {fileID: 7554610478828129761}
   - component: {fileID: 3276150445513985692}
+  - component: {fileID: 7236888092221011267}
   m_Layer: 11
   m_Name: Curcuma Skeleton
   m_TagString: Untagged
@@ -154,8 +155,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.07259941, y: -0.1563679}
+  m_Size: {x: 0.9664917, y: 1.8212955}
   m_Direction: 0
 --- !u!50 &4552606028366652721
 Rigidbody2D:
@@ -173,7 +174,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -196,9 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 0
+  max_health: 99
   current_health: 0
-  canTakeDamage: 1
+  canTakeDamage: 0
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 0
@@ -273,3 +274,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!70 &7236888092221011267
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330249763131439790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.036591172}
+  m_Size: {x: 1.4763241, y: 2.1731822}
+  m_Direction: 0

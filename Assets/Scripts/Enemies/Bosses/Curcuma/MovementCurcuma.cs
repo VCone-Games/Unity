@@ -27,6 +27,7 @@ public class MovementCurcuma : IAFlyPatrol
 	[SerializeField] private float attackTime;
 	[SerializeField] private bool secondPhase = false;
 
+	private GameObject curcumaSkeleton;
 	protected override void Start()
 	{
 		base.Start();
@@ -115,7 +116,13 @@ public class MovementCurcuma : IAFlyPatrol
 		CancelInvoke("Attack");
 		InvokeRepeating("Attack", 0f, attackTimerSecondPhase);
 
-		GameObject curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton.position, Quaternion.identity);
+		curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton.position, Quaternion.identity);
+	}
+
+	protected override void Die(object sender, EventArgs e)
+	{
+		base.Die(sender, e);
+		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(this, null); ;
 	}
 
 }

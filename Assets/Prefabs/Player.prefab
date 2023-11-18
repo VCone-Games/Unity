@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803a452048eec1c44b012a240f6e50f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 5
+  max_health: 99
   current_health: 5
   canTakeDamage: 1
   myAnimator: {fileID: 0}
