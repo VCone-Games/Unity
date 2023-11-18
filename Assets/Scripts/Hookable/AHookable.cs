@@ -155,6 +155,7 @@ public abstract class AHookable : MonoBehaviour
             {
                 parrying = true;
                 ParryingAction();
+                Debug.Log("parreao");
             }
         }
 

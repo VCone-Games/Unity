@@ -18,9 +18,9 @@ public abstract class MovementFlyIA : Enemy
 
 
 	// Start is called before the first frame update
-	protected override void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 		seeker = GetComponent<Seeker>();
 
 		playerObject = GameObject.FindGameObjectWithTag("Player");

@@ -430,6 +430,7 @@ MonoBehaviour:
   disableAim: 0
   hookPrefab: {fileID: 7953474213004086225, guid: 74207256fd9995049aaefc6586b20e3f, type: 3}
   hookGunPosition: {fileID: 35531225954975345}
+  hookProjectile: {fileID: 0}
   hookedObject: {fileID: 0}
   shootDirection: {x: 0, y: 0}
   animator: {fileID: 8536663018944128429}

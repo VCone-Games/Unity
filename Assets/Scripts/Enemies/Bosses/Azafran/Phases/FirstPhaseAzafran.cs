@@ -56,9 +56,9 @@ public class FirstPhaseAzafran : Enemy
 
 
 	// Start is called before the first frame update
-	protected override void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 
 		gravityScale = myRigidbody2D.gravityScale;
 		playerObject = GameObject.FindGameObjectWithTag("Player");

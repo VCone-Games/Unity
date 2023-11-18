@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 7073210297750287030}
   - component: {fileID: 1145134367496993173}
   - component: {fileID: 8108228443693999531}
-  m_Layer: 0
+  - component: {fileID: 1632748818433143386}
+  - component: {fileID: 1996238730542659738}
+  m_Layer: 11
   m_Name: FallingStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -161,4 +163,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b0793b56b74234d8df5087392ea527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 35
+  vel: 5
+  CanDamageBoss: 0
+  hooked: 0
+--- !u!58 &1632748818433143386
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107035845228679881}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.004196584, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.77
+--- !u!114 &1996238730542659738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4107035845228679881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd281f6228897804c90e1c88b3789053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
+  playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
+  myRigidbody: {fileID: 7073210297750287030}
+  myCollider: {fileID: 1145134367496993173}
+  enemyComponent: {fileID: 0}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
+  isHooked: 0
+  vectorToHookGun: {x: 0, y: 0, z: 0}
+  hookProjectile: {fileID: 0}
+  hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
+  normalLayer: 0
+  noPlayerLayer: 9
+  forceMultiplicator: 2

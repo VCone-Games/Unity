@@ -54,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
         //Debug.Log("Fin del ataque");
     }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         GetComponent<HealthManager>().EventDie += Die;
         myRigidbody2D = GetComponent<Rigidbody2D>();

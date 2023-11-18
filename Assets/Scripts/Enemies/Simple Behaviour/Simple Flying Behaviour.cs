@@ -66,9 +66,9 @@ public abstract class SimpleFlyingBehaviour : Enemy
 		roofTouch = Physics2D.OverlapCircle(roofCheck.transform.position, circleRadius, groundMask);
 	}
 
-	private void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 		currentDirection = initDirection;
 	}
 }

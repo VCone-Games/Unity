@@ -26,6 +26,6 @@ public class HealthManagerCurcuma : HealthManager
 			EventDie?.Invoke(this, null);
 		}
 
-		Debug.Log("Damage received " + current_health);
+		Debug.Log("CURCUUUUUUUMAAAAA::: Damage received " + current_health);
 	}
 }

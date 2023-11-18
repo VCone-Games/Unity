@@ -15,7 +15,6 @@ public class RespawnScript : MonoBehaviour
     {
        player = GameObject.FindGameObjectWithTag("Player");
         // // Suscripcion al evento
-        player.GetComponent<TeleportToSafeGround>().evento += OnReachCheckpoint;
 
         enemyToRespawn = transform.GetChild(0).gameObject;
     }

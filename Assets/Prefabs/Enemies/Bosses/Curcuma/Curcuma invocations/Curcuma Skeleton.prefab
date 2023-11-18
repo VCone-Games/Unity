@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 640195408720506929}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Feets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 846813256437342228}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.64, y: -0.988, z: 0}
+  m_LocalPosition: {x: 0.87, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,8 +43,11 @@ GameObject:
   - component: {fileID: 2530876821779911560}
   - component: {fileID: 1519268526478705637}
   - component: {fileID: 4552606028366652721}
-  - component: {fileID: 6485604682453918038}
-  m_Layer: 0
+  - component: {fileID: 2385516133275924742}
+  - component: {fileID: 6941670800731106074}
+  - component: {fileID: 7554610478828129761}
+  - component: {fileID: 3276150445513985692}
+  m_Layer: 11
   m_Name: Curcuma Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,9 +111,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 1452822907, guid: 789c56536b73e9a47877d2ae1ce055a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
@@ -170,7 +173,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -181,7 +184,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6485604682453918038
+--- !u!114 &2385516133275924742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,14 +193,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 6330249763131439790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 107dd1bd0070afa42868ad438804ce2b, type: 3}
+  m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
+  max_health: 0
+  current_health: 0
+  canTakeDamage: 1
+  myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 0
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
+--- !u!95 &6941670800731106074
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330249763131439790}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6eff6caa4cec17438d9db251e302344, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7554610478828129761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330249763131439790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93dfe0ac79f3ed943931d269a591de8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
   facingRight: 1
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
   myAnimator: {fileID: 0}
+  hookableComponent: {fileID: 0}
+  isBeingHooked: 0
+  unhookTime: 0
+  unhookTimer: 0
+  isDead: 0
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -207,7 +256,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   distance: 0.5
-  grounded: 0
-  canAttack: 0
-  tState: 0
-  attackRange: 0.1
+  edgeDetector: 0
+  isGrounded: 0
+  canAttack: 1
+  tState: 1
+--- !u!114 &3276150445513985692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330249763131439790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09254c9ee0ec17a40b7c917889bbe147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

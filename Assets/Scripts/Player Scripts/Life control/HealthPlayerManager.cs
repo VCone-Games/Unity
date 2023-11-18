@@ -8,7 +8,7 @@ public class HealthPlayerManager : HealthManager
 {
 
     public EventHandler<int> EventHealing;
-	public EventHandler<int> EventUpdateHealthUI;
+    public EventHandler<int> EventUpdateHealthUI;
 
     private HorizontalMovement horizontalMovementComponent;
     private Dash dashComponent;
@@ -22,6 +22,7 @@ public class HealthPlayerManager : HealthManager
         DontDestroyOnLoad(gameObject);
         base.Start();
         EventHealing += Heal;
+        EventDie += Die;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         horizontalMovementComponent = GetComponent<HorizontalMovement>();
         dashComponent = GetComponent<Dash>();
@@ -30,7 +31,7 @@ public class HealthPlayerManager : HealthManager
     }
     void Restore()
     {
-		current_health = max_health;
+        current_health = max_health;
         EventUpdateHealthUI?.Invoke(this, current_health);
     }
 
@@ -38,7 +39,7 @@ public class HealthPlayerManager : HealthManager
     {
         int objetiveHealth = current_health + health;
 
-		current_health = (objetiveHealth > max_health) ? max_health : objetiveHealth;
+        current_health = (objetiveHealth > max_health) ? max_health : objetiveHealth;
         EventUpdateHealthUI?.Invoke(this, current_health);
 
         //Debug.Log("Healing... " + current_health);
@@ -49,7 +50,12 @@ public class HealthPlayerManager : HealthManager
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         jumpComponent.DisableJumpInput();
+        if (hook.hookProjectile != null)
+            hook.hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
+        hook.HookDestroyed();
         hook.DisableHookInput();
+
+
 
         base.TakeDamage(sender, damageContactPoint);
         if (OnlyTakeDmgOnce) return;
@@ -90,5 +96,10 @@ public class HealthPlayerManager : HealthManager
                 gameObject.layer = 6;
             }
         }
+    }
+
+    protected void Die(object sender, EventArgs e)
+    {
+        myAnimator.SetTrigger("Dead");
     }
 }

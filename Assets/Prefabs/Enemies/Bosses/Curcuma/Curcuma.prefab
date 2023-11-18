@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 3117422377758787555}
   - component: {fileID: 7347278446769727460}
   - component: {fileID: 5497218216755711081}
-  m_Layer: 0
+  - component: {fileID: 6026377061677919260}
+  m_Layer: 11
   m_Name: Curcuma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +126,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.030042171}
   serializedVersion: 2
-  m_Radius: 0.5300422
+  m_Radius: 0.65
 --- !u!50 &3619245444077745895
 Rigidbody2D:
   serializedVersion: 4
@@ -142,7 +143,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -198,6 +199,11 @@ MonoBehaviour:
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
   myAnimator: {fileID: 0}
+  hookableComponent: {fileID: 0}
+  isBeingHooked: 0
+  unhookTime: 0
+  unhookTimer: 0
+  isDead: 0
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -256,10 +262,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8c68a40ea0cf943ac57cc4c4b29bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 100
+  max_health: 2
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 0
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
   SecondPhase: 0
 --- !u!95 &5497218216755711081
 Animator:
@@ -282,6 +292,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &6026377061677919260
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659681253205171668}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.02
 --- !u!1 &7563654530002214090
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7513897044999758547}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnPointSkeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}

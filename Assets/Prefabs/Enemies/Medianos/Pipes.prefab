@@ -320,7 +320,7 @@ MonoBehaviour:
   chaseTimer: 2
   tState: 0
   visionRange: 5
-  attackRange: 2.5
+  attackRange: 2
   chaseTime: 2
   isPlayerInSight: 0
 --- !u!95 &3489160124212780780
