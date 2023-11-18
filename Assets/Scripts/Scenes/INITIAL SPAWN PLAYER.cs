@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class INITIALSPAWNPLAYER : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Vector3 position;
+
+    private GameObject player;
     // Start is called before the first frame update
     private void Awake()
     {
-        if (GameObject.FindWithTag("Player") != null) return;
-        Instantiate(player, position, player.transform.rotation);
+        player = GameObject.FindWithTag("Player");
+        if (player == null)
+        {
+            Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+        }
+        player = GameObject.FindWithTag("Player");
+        player.GetComponent<HorizontalMovement>().cameraFollow = GameObject.FindGameObjectWithTag("CameraFollow").GetComponent<CameraFollowObject>();
+        player.GetComponent<Hook>().aimRepresentation = GameObject.FindGameObjectWithTag("AimRepresentation");
+        player.GetComponent<Parry>().aimRepresentation = GameObject.FindGameObjectWithTag("AimRepresentation");
     }
 }

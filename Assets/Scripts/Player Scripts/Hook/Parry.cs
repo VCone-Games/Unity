@@ -23,7 +23,7 @@ public class Parry : MonoBehaviour
 
     //AIM REPRESENTATION
     [Header("AIM REPRESENTATION")]
-    [SerializeField] private GameObject aimRepresentation;
+    [SerializeField] public GameObject aimRepresentation;
     [SerializeField] private Vector3 shootDirection;
 
     //MOUSE COORDINATES

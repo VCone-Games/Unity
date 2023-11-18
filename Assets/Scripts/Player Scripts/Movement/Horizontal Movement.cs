@@ -46,7 +46,7 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private PlayerSoundManager soundManager;
 
     [Header("Camera Management")]
-    [SerializeField] private CameraFollowObject cameraFollow;
+    [SerializeField] public CameraFollowObject cameraFollow;
 
     public bool IsFacingRight
     {

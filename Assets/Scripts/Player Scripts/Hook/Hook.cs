@@ -31,7 +31,7 @@ public class Hook : MonoBehaviour
 
     //AIM REPRESENTATION
     [Header("AIM REPRESENTATION")]
-    [SerializeField] private GameObject aimRepresentation;
+    [SerializeField] public GameObject aimRepresentation;
 
     //MOUSE COORDINATES
     [Header("Mouse Coordinates")]

@@ -21,7 +21,8 @@ public abstract class Enemy : MonoBehaviour
 
     [SerializeField] public float unhookTime;
     [SerializeField] public float unhookTimer;
-    [SerializeField] protected bool isDead;
+    [SerializeField] public bool isDead;
+
 
 
     protected virtual void Die(object sender, EventArgs e)
@@ -34,7 +35,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected void Disappear()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     protected virtual void Attack()
@@ -78,4 +80,5 @@ public abstract class Enemy : MonoBehaviour
     {
         unhookTimer = unhookTime;
     }
+
 }

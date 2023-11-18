@@ -6,7 +6,7 @@ using UnityEngine;
 public class SceneObject : ScriptableObject
 {
     public string sceneName;
-    public Vector2[] EnterPositions;
+    public Vector3[] EnterPositions;
     public bool[] isFacingRight;
 
 }

@@ -14,7 +14,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1. Pre pueblo.unity
     guid: d9d4b0c31f8e29d41a62c94a43068cfc
+  - enabled: 1
+    path: Assets/Scenes/2. Pueblo.unity
+    guid: 0d9f1508afbf409408ec908a09620247
+  - enabled: 1
+    path: "Assets/Scenes/3.1. Cueva de la monta\xF1a oeste.unity"
+    guid: 829c872d376258a43ae7878c2a38eddf
+  - enabled: 1
+    path: "Assets/Scenes/3.2. Cueva de la monta\xF1a este.unity"
+    guid: 12c7cb1f2dbeb274f8c7515b9f3c587e
   - enabled: 0
     path: Assets/Scenes/MainScene.unity
     guid: 837c1fb4156fda341a7dc754ce173120
+  - enabled: 1
+    path: Assets/Scenes/4.0. Cueva Caliente Oeste.unity
+    guid: 96c425be9319c7e45ba00692b2e23d1d
+  - enabled: 1
+    path: Assets/Scenes/4.2. Cueva Caliente Este.unity
+    guid: 9948284ce37070e439e36e90a39a279c
   m_configObjects: {}
