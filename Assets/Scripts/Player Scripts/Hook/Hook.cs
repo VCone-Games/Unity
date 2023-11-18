@@ -67,7 +67,7 @@ public class Hook : MonoBehaviour
     [Header("Hook Projectile Prefab and GameObject")]
     [SerializeField] private GameObject hookPrefab;
     [SerializeField] private Transform hookGunPosition;
-    private GameObject hookProjectile;
+    public GameObject hookProjectile;
 
     [Header("Hooked GameObject")]
     [SerializeField] private GameObject hookedObject;

@@ -25,9 +25,9 @@ public class Perejil_Head : Enemy
 	[SerializeField] private List<Transform> summonPlaces;
 
 	// Start is called before the first frame update
-	protected override void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 		InvokeRepeating("Attack", attackTime, attackTime);
 		InvokeRepeating("Summon", summonTime, summonTime);
 	}

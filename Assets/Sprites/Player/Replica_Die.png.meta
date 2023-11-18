@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6c1725186228124fa19b804fc186b01
+guid: dbd5091c01b777f4ba1307ecece7312c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,30 +132,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Piedra_Azafr\xE1n_0"
+      name: Replica_Die_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 96
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,41 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0dfb51694125014a88b21d1ee6b860c
-      internalID: 335027162
+      spriteID: 209777002a3f3d7478213c9826b83e15
+      internalID: 1394025649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Piedra_Azafr\xE1n_1"
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 108af4d09feca01449a89ff303a1b787
-      internalID: -1594147968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "Piedra_Azafr\xE1n_2"
+      name: Replica_Die_1
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 96
-        height: 96
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa8213e22622faa4caec27a01fcb54f3
-      internalID: -197114916
+      spriteID: b0432be45cc3bc14c966889c2aff1b85
+      internalID: -661094428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Piedra_Azafr\xE1n_3"
+      name: Replica_Die_2
       rect:
         serializedVersion: 2
-        x: 288
+        x: 384
         y: 0
-        width: 96
-        height: 96
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +192,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3240744d2b7396641a9b081e9731884e
-      internalID: 728872553
+      spriteID: b5104d4e0bb511a4cbe261874b202f3e
+      internalID: -931880601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Replica_Die_3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2221d5d7751dd514aa56211dcfcd1dca
+      internalID: -1112916549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Replica_Die_4
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7efd3f040cf3508419cc93ab06a52cdb
+      internalID: -1250985290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Replica_Die_5
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 192
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3cae0a1277933b48bed01c16c4a5704
+      internalID: 1519286144
       vertices: []
       indices: 
       edges: []
@@ -230,10 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "Piedra_Azafr\xE1n_0": 335027162
-      "Piedra_Azafr\xE1n_1": -1594147968
-      "Piedra_Azafr\xE1n_2": -197114916
-      "Piedra_Azafr\xE1n_3": 728872553
+      Replica_Die_0: 1394025649
+      Replica_Die_1: -661094428
+      Replica_Die_2: -931880601
+      Replica_Die_3: -1112916549
+      Replica_Die_4: -1250985290
+      Replica_Die_5: 1519286144
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -59,9 +59,9 @@ public abstract class MovementGroundedIA : Enemy
 		}
 	}
 
-	protected override void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 	}

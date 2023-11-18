@@ -27,9 +27,9 @@ public class MovementCurcuma : IAFlyPatrol
 	[SerializeField] private float attackTime;
 	[SerializeField] private bool secondPhase = false;
 
-	protected override void Awake()
+	protected override void Start()
 	{
-		base.Awake();
+		base.Start();
 		GetComponent<HealthManagerCurcuma>().EventSecondPhase += SecondPhaseActivation;
 
 		stateDictionary = new Dictionary<TStateAttack, float>();
