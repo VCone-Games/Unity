@@ -30,4 +30,9 @@ public class HealthManagerCurcuma : HealthManager
 
 		Debug.Log("CURCUUUUUUUMAAAAA::: Damage received " + current_health);
 	}
+
+	void FixedUpdate()
+	{
+		if (Input.GetKey(KeyCode.C)) EventDamageTaken(this, new Vector3(4, 0, 0));
+	}
 }

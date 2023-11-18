@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
@@ -50,5 +51,11 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 	{
 		base.Patrol();
 		myAnimator.SetBool("isFalling", false);
+	}
+
+	protected override void Die(object sender, EventArgs e)
+	{
+		base.Die(sender, e);
+		myRigidbody2D.velocity = Vector3.zero;
 	}
 }
