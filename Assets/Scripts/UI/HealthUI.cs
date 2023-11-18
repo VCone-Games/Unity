@@ -130,7 +130,8 @@ public class HealthUI : MonoBehaviour
 
 		// Decrementar la vida máxima y actual del jugador
 		healthManagerComponent.MaxHealth--;
-		healthManagerComponent.CurrentHealth--;
+		if (healthManagerComponent.MaxHealth < healthManagerComponent.CurrentHealth)
+			healthManagerComponent.CurrentHealth = healthManagerComponent.MaxHealth;
 
 		UpdateHealUI(this, healthManagerComponent.CurrentHealth);
 
