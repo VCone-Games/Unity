@@ -90,6 +90,7 @@ public class HealthManager : MonoBehaviour
 
     public virtual void EndDamaging()
     {
+        Debug.Log("Fin del daño");
         myAnimator.SetBool("isDamaging", false);
 
         InvulnerabilityTimer = InvulnerabilityTime;

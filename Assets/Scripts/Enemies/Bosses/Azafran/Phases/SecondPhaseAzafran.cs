@@ -6,6 +6,8 @@ public class SecondPhaseAzafran : MonoBehaviour
 {
     [Header("TILEMAP")]
     [SerializeField] GameObject tileMapGround;
+	[Header("Enemy components")]
+	[SerializeField] Animator myAnimator;
 
     [Header("Second Phase params")]
     [SerializeField] private float advanceTime = 2f;
@@ -21,6 +23,7 @@ public class SecondPhaseAzafran : MonoBehaviour
     void Start()
     {
         tileMapGround = GameObject.FindGameObjectWithTag("Ground");
+        myAnimator = GetComponent<Animator>();
         InvokeRepeating("Advance", advanceTime, advanceTime);
         InvokeRepeating("SpawnAttack", spawnStonesTime, spawnStonesTime);
     }
@@ -32,6 +35,8 @@ public class SecondPhaseAzafran : MonoBehaviour
         if (currentStep == maxSteps)
         {
             Debug.Log("Fin del combate");
+            canMove = false;
+            myAnimator.SetBool("isDead", true);
             CancelInvoke();
 		}else
         {

@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class FirstPhaseAzafran : Enemy
 {
-
+	[SerializeField] private bool isDisabled = false;
+	public bool IsDisabled { get { return isDisabled; } set { isDisabled = value; } }
 	[Header("Player params")]
 	[SerializeField] private GameObject playerObject;
 
@@ -15,7 +16,6 @@ public class FirstPhaseAzafran : Enemy
 	[Header("State params")]
 	[SerializeField] private TStateAttack tState = TStateAttack.IDLE;
 	[SerializeField] private TStateMovingToDigPoint tStateMoving = TStateMovingToDigPoint.NONE;
-
 	[SerializeField] private List<float> probList;
 	[SerializeField] private Dictionary<TStateAttack, float> stateDictionary;
 	[SerializeField] private float decissionTime;
@@ -32,7 +32,6 @@ public class FirstPhaseAzafran : Enemy
 	[SerializeField] private int maxShoots;
 
 	[Header("DIG STATE")]
-	[SerializeField] private float digTime;
 	[SerializeField] private float digSpeedGround;
 	[SerializeField] private float digSpeedWall;
 	[SerializeField] private List<Transform> digPlaces;
@@ -49,9 +48,9 @@ public class FirstPhaseAzafran : Enemy
 	[SerializeField] private LayerMask wallMask;
 	[SerializeField] private float raycastWallLenght;
 	[SerializeField] private float gravityScale;
+	[SerializeField] private bool secondPhaseActivated = false;
 
 	[Header("Control state params")]
-	[SerializeField] private float digTimer;
 	[SerializeField] private float shootTimer;
 	[SerializeField] private int shootCount;
 
@@ -72,8 +71,9 @@ public class FirstPhaseAzafran : Enemy
 	protected override void Attack()
 	{
 
-		if (!(tState == TStateAttack.IDLE))
+		if (!(tState == TStateAttack.IDLE) || secondPhaseActivated)
 		{
+			Debug.Log("\n\tInvalidState");
 			return;
 		}
 
@@ -174,7 +174,7 @@ public class FirstPhaseAzafran : Enemy
 	/// ///////////////////////////////////
 	/// </summary>
 
-	void AscendWall(bool RightWall, bool LeftWall, bool condition)
+	void Travelling(bool RightWall, bool LeftWall, bool condition)
 	{
 		Vector3 rotator;
 		if (condition)
@@ -209,6 +209,8 @@ public class FirstPhaseAzafran : Enemy
 	}
 	void TravelToWall()
 	{
+		Debug.Log("\n\t\tViajando al muro... -> (" + tState + ")");
+
 		bool LeftWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left,
 			myCollider2D.bounds.extents.x + raycastWallLenght, wallMask);
 		bool RightWall = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right,
@@ -217,15 +219,16 @@ public class FirstPhaseAzafran : Enemy
 		switch (tState)
 		{
 			case TStateAttack.DIG_TRAVEL:
-				AscendWall(RightWall, LeftWall, (digDirection.x >= 0));
+				Travelling(RightWall, LeftWall, (digDirection.x >= 0));
 				break;
 			case TStateAttack.DIGGING_BACK:
-				AscendWall(RightWall, LeftWall, rightSide);
+				Travelling(RightWall, LeftWall, rightSide);
 				break;
 		}
 	}
 	void TravelOnWall()
 	{
+		Debug.Log("\n\t\tViajando dentro del muro... -> (" + tState + ")");
 		Vector2 destiny = new Vector2(0.0f, digObjetive.position.y);
 		Vector2 origin = new Vector2(0.0f, transform.position.y);
 
@@ -244,11 +247,14 @@ public class FirstPhaseAzafran : Enemy
 	}
 	private void TravelToDestiny()
 	{
+		Debug.Log("\n\t\tViajando al destino... -> (" + tState + ")");
+
 		Vector2 destiny = new Vector2(digObjetive.position.x, 0.0f);
 		Vector2 origin = new Vector2(transform.position.x, 0.0f);
 
 		Vector2 direction = destiny - origin;
 		Vector3 rotator;
+
 		if (Vector2.Distance(destiny, origin) >= distanceToChangeMovementState)
 		{
 			myRigidbody2D.velocity = (direction.x >= 0) ?
@@ -313,9 +319,30 @@ public class FirstPhaseAzafran : Enemy
 		myAnimator.SetBool("endDigging", false);
 	}
 
-	// Update is called once per frame
-	void FixedUpdate()
+	void InAnimation_SecondPhaseAnimationBegin()
 	{
+		secondPhaseActivated = true;
+		shootCount = maxShoots;
+
+	}
+	void InAnimation_SecondPhaseAnimationEnd()
+	{
+		myAnimator.SetBool("secondPhase", false);
+
+		if (tState == TStateAttack.SHOOTING)
+		{
+			tState = TStateAttack.DIGGING_BACK;
+			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
+		}
+
+	}
+
+	// Update is called once per frame
+	protected override void FixedUpdate()
+	{
+		if (isDisabled) return;
+
+		Debug.Log("**********CURRENT STATE:" + tState);
 		Vector3 direction;
 
 		if (tState == TStateAttack.IDLE || tState == TStateAttack.SHOOTING)
@@ -331,6 +358,10 @@ public class FirstPhaseAzafran : Enemy
 
 		switch (tState)
 		{
+			case TStateAttack.IDLE:
+				if (secondPhaseActivated && !myAnimator.GetBool("secondPhase"))
+					myAnimator.SetBool("isTransicion", true);
+					break;
 			case TStateAttack.CHARGE:
 				ChargeLogic();
 				break;

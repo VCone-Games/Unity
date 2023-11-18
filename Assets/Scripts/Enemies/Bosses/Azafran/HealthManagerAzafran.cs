@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HealthManagerAzafran : HealthManager
 {
-    public EventHandler EventSecondPhase;
 	[Header("Phases")]
 	[SerializeField] private bool SecondPhase = false;
 
@@ -19,14 +18,22 @@ public class HealthManagerAzafran : HealthManager
 		if (!SecondPhase && current_health <= 0)
 		{
 			SecondPhase = true;
-			EventSecondPhase?.Invoke(this, null);
+			myAnimator.SetBool("secondPhase", true);
 			current_health = max_health;
 			canTakeDamage = false;
 		}
-		else if (SecondPhase && current_health <= 0)
-		{
-			EventDie?.Invoke(this, null);
-		}
+
 		Debug.Log("Damage received " + current_health);
+	}
+
+	void DamageReceived()
+	{
+		myAnimator.SetBool("isDamaging", false);
+	}
+
+	private void FixedUpdate()
+	{
+		if (Input.GetKey(KeyCode.F))
+			EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
 	}
 }
