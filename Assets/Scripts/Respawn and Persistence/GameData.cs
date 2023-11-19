@@ -26,6 +26,15 @@ public class GameData
     // 6. Configuraciones de sonido/resolución/opciones
     public float audioValue;
 
+    //7. Nombre del usuario
+    public string username;
+
+    //8. Tiempo de juego
+    public float timeGame;
+
+    //9. Contador de muertes
+    public int deathCounts;
+
     // Constructor. Valores con los que se empieza una nueva partida
     public GameData()
     {
@@ -35,5 +44,7 @@ public class GameData
         defeatedEnemies = new SerializableDictionary<string, bool>();
         playerPosition = Vector3.zero;
         audioValue = 0;
+        timeGame = 0; 
+        deathCounts = 0;
     }
 }
