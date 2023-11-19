@@ -36,8 +36,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 		
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myAnimator = GetComponent<Animator>();
-        musicManager.PlayInterlude();
-       musicManager.PlaySecond();
+		musicManager.PlayFirst();
     }
 
 	void ActivateSecondPhase()
@@ -48,8 +47,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;
 		Debug.Log("Cambio de fase");
-        musicManager.PlayInterlude();
-		musicManager.PlaySecond();
+
 
     }
 
