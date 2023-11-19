@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Perejil Ambos jefes derrotados
+  m_EditorClassIdentifier: 
+  speakerName: Perejil
+  paragraphs:
+  - "Tienes un aroma, extra\xF1o\u2026 La tierra ya no tiembla y los cuervos no se
+    meten a mirar mis joyas\u2026"
+  - "Alguien hizo eso, hace ya demasiado tiempo\u2026"
+  - "Ya veo qui\xE9n eres\u2026 Siempre fuiste parte de Cilantro\u2026"
+  - "Me vengar\xE9 por todo lo que nos hiciste\u2026"
+  - Me traicionaste, me encarcelaste.
+  - "A m\xED y a todos."
+  - Ahora.
+  - Cae.

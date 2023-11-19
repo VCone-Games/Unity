@@ -34,7 +34,6 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         instance = this;
-
     }
 
     private void Start()
@@ -88,7 +87,6 @@ public class DataPersistenceManager : MonoBehaviour
 
         // Guardar en el fichero
         dataHandler.Save(gameData);
-
     }
 
     // Si realmente deseamos guardar partida al cerrar la aplicación

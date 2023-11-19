@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Jengibre Pueblo 1
+  m_EditorClassIdentifier: 
+  speakerName: Jengibre
+  paragraphs:
+  - "Oh, una peque\xF1a r\xE9plica\u2026 de una guerra pasada\u2026 \xBFCu\xE1l de
+    todas?"
+  - "Acaso tienes a GaLi en tu c\xF3digo o a m\xED\u2026 o a Cilantro\u2026 Humm\u2026"
+  - "Parece que, a ninguno, y eso es raro\u2026"
+  - " \xBFCu\xE1ndo has sido creado?"
+  - "Hum, ya veo\u2026"
+  - "Bueno, a este pueblo, le vendr\xEDa bien una ayuda como la tuya."
+  - "Ciertos h\xE9roes, antiguos compa\xF1eros m\xEDos, han perdido su rumbo."
+  - Bueno, lo perdieron hace tiempo, pero nunca intervinieron tanto como ahora.
+  - "C\xFArcuma, en lo alto de la monta\xF1a, en su momento se encarg\xF3 del espionaje,
+    vierte sus susurros envenenados sobre la gente."
+  - "Azafr\xE1n, no s\xE9 a cuanta profundidad estar\xE1, fue antiguamente aquel
+    al que le atribuimos la construcci\xF3n de todas las fortalezas, ahora quiere
+    transformar todo el mundo en una gran estructura."
+  - "C\xFArcuma, corrompiendo a la poblaci\xF3n al susurrar con cuervos y Azafr\xE1n,
+    creando terremotos a su paso\u2026"
+  - "Son un problema, pero tengo una mejora que podr\xEDa venirte bien, siempre y
+    cuando estes dispuesto a ayudarnos\u2026"

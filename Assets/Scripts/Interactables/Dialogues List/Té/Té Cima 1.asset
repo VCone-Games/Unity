@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: "T\xE9 Cima 1"
+  m_EditorClassIdentifier: 
+  speakerName: "T\xE9"
+  paragraphs:
+  - "Peque\xF1o, \xBFhas visto a Caf\xE9?"
+  - "Se que le gustan estas zonas fr\xEDas y altas."
+  - "Dej\xE9 marcas para ver si le encontraba, pero se ve que ha sido en vano."
+  - "Creo que har\xE9 lo mismo que hicimos cuando en la guerra tuvimos que escabullirnos."
+  - "Le esperar\xE9 al otro lado del peligro, que en este caso es la monta\xF1a."
+  - "Se que me encontrar\xE1, pero no me vendr\xEDa bien algo de ayuda, si le ves,
+    d\xEDselo, por favor."
+  - "Y si quieres, ven con \xE9l."
+  - "Sabemos lo que es la soledad, no queremos que nadie m\xE1s la tenga."

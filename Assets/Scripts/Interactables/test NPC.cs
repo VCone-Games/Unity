@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class testNPC : AInteractable, ITalkable
 {
-    [SerializeField] private DialogueText dialogueText;
+    [SerializeField] private List<DialogueText> dialogueTextList;
+    private int currentText = 0;
     [SerializeField] private DialogueController dialogueController;
     public override void Interact()
     {
         base.Interact();
-        Talk(dialogueText);
+        Talk(dialogueTextList[currentText]);
+        if (currentText == 0) currentText++;
     }
 
     public void Talk(DialogueText dialogueText)

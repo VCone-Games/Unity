@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Pletorat Mina 1
+  m_EditorClassIdentifier: 
+  speakerName: Pletorat
+  paragraphs:
+  - "Oh, viejo amigo, que alegr\xEDa que sigas respirando.\r"
+  - "He encontrado esto, un IEEE, te vendr\xE1 mejor a ti que a m\xED, JOJOJO\u2026\r\r"
+  - "Antes estas cuevas no exist\xEDan, las hizo todas Azafr\xE1n, en su af\xE1n
+    de\u2026 Bueno, no sabr\xEDa decirlo.\r\r"
+  - "Solo s\xE9 que este fue un punto importante para la exportaci\xF3n de minerales
+    cuando GaLi a\xFAn estaba entre nosotros.\r\r"
+  - "Poco a poco, la decadencia fue llegando y bueno\u2026 ahora es una sauna muy
+    vieja\u2026 \xA1JOJOJO!\r\r"
+  - "Deber\xEDas tener cuidado con las estalactitas, estalagmitas y bueno, cualquier
+    cosa puntiaguda en general. JOJOJO\u2026\r\r\r"
+  - "Deber\xEDas tener cuidado con las estalactitas, estalagmitas y bueno, cualquier
+    cosa puntiaguda en general. JOJOJO\u2026\r\r\r"
+  - "Deber\xEDas tener cuidado con las estalactitas, estalagmitas y bueno, cualquier
+    cosa puntiaguda en general. JOJOJO\u2026\r\r\r"
