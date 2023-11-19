@@ -626,6 +626,7 @@ MonoBehaviour:
   disableAim: 0
   hookPrefab: {fileID: 7953474213004086225, guid: 74207256fd9995049aaefc6586b20e3f, type: 3}
   hookGunPosition: {fileID: 3949910628057399370}
+  hookProjectile: {fileID: 0}
   hookedObject: {fileID: 0}
   shootDirection: {x: 0, y: 0}
   animator: {fileID: 43332739616761622}
@@ -652,7 +653,6 @@ MonoBehaviour:
   mousePositionInScreen: {x: 0, y: 0}
   mousePositionInWorld: {x: 0, y: 0}
   controllerAim: {x: 0, y: 0}
-  parryDistance: 3
   parryForce: 25
   parryTime: 0.15
   parryKnockbackTime: 0.3
@@ -697,6 +697,10 @@ MonoBehaviour:
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 0
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
 --- !u!95 &43332739616761622
 Animator:
   serializedVersion: 5
@@ -924,6 +928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSource: {fileID: 3381974829107638688}
   landingSource: {fileID: 541606882982744998}
+  doubleJumpSource: {fileID: 0}
+  doubleJump: {fileID: 0}
   materialInicial: 1
   footSteps:
   - {fileID: 8300000, guid: 70c236a73deb8d24c8a0695c0110441a, type: 3}
@@ -1243,7 +1249,7 @@ GameObject:
   - component: {fileID: 204613482286258146}
   m_Layer: 0
   m_Name: CameraFollowObject
-  m_TagString: Untagged
+  m_TagString: CameraFollow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1389,7 +1395,7 @@ GameObject:
   - component: {fileID: 7442544636139378073}
   m_Layer: 6
   m_Name: Hexagon Pointed-Top
-  m_TagString: Untagged
+  m_TagString: AimRepresentation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1491,7 +1497,7 @@ Transform:
   m_GameObject: {fileID: 6744861288094042628}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.054123, y: -2.2333145, z: -7.504531}
+  m_LocalPosition: {x: -3.2118454, y: -2.2333145, z: -7.504531}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

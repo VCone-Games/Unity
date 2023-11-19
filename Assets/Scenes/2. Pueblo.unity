@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c77e2e45b605b84f86dfc5af6d8a7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changingScene: {fileID: 11400000, guid: 13d6fe54b02e26649916dc36d77cdeb1, type: 2}
-  EnterPosition: 1
+  changingScene: {fileID: 11400000, guid: 3412df4b4b243244594d1bb7e413721a, type: 2}
+  EnterPosition: 0
 --- !u!1 &270891519
 GameObject:
   m_ObjectHideFlags: 0

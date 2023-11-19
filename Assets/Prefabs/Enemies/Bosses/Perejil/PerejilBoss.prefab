@@ -817,6 +817,7 @@ MonoBehaviour:
   isBeingHooked: 0
   unhookTime: 0
   unhookTimer: 0
+  isDead: 0
   _leftHand: {fileID: 4315253511675218240}
   _rightHand: {fileID: 6580606628566560111}
   tStateBody: 0
@@ -848,6 +849,9 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 0
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
 --- !u!1 &7990539134848494579
 GameObject:
   m_ObjectHideFlags: 0
