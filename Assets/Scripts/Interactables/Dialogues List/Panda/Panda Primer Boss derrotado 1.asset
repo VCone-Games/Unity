@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Panda Primer Boss derrotado 1
+  m_EditorClassIdentifier: 
+  speakerName: Panda
+  paragraphs:
+  - "Ha pasado mucho tiempo desde que gente como t\xFA pas\xF3 por aqu\xED, no les
+    ca\xE9is bien a la gente."
+  - "No s\xE9 por qu\xE9, pero a m\xED me da igual."
+  - Siempre es igual, desde antes de que GaLi y Canon se peleasen.
+  - Al final, eso siempre implica que luego tengo menos pan.
+  - "\xBFA caso nadie te ha explicado lo que es el Systale?"
+  - "Tr\xE1eme pan y te lo dir\xE9."
