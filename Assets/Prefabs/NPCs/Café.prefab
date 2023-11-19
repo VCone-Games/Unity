@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4985389140098857400}
   - component: {fileID: 4692624719517133786}
   - component: {fileID: 7446401270784125099}
-  - component: {fileID: 8489991170688230247}
   - component: {fileID: 3702508012450155036}
   - component: {fileID: 5556776758045293018}
   - component: {fileID: 804436753891746916}
@@ -119,46 +118,11 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.038993835, y: -0.029245615}
   m_Size: {x: 0.9270401, y: 2.1415086}
-  m_Direction: 0
---- !u!70 &8489991170688230247
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 379389963876980366}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0084994, y: -0.004249372}
-  m_Size: {x: 1.5099654, y: 2.501466}
   m_Direction: 0
 --- !u!50 &3702508012450155036
 Rigidbody2D:
