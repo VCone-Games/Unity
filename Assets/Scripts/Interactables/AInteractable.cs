@@ -6,16 +6,16 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] public GameObject interactionSprite;
 
-    private GameObject playerGameObject;
+	protected GameObject playerGameObject;
 
-    private HorizontalMovement horizontalMovementComponent;
-    private Dash dashComponent;
-    private Jump jumpComponent;
-    private Hook hook;
+	protected HorizontalMovement horizontalMovementComponent;
+	protected Dash dashComponent;
+	protected Jump jumpComponent;
+	protected Hook hook;
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         playerGameObject = GameObject.FindWithTag("Player");
         horizontalMovementComponent = playerGameObject.GetComponent<HorizontalMovement>();

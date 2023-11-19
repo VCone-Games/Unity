@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - CameraFollow
   - AimRepresentation
+  - Dialogue Box
   layers:
   - Default
   - TransparentFX
