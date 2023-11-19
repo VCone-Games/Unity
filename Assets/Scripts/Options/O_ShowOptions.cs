@@ -27,9 +27,18 @@ public class O_ShowOptions : MonoBehaviour
 
 	private void OnPressed(InputAction.CallbackContext context)
 	{
-        if (mainScene.name == SceneManager.GetActiveScene().name) return;
+        Debug.Log("Pulsado");
+        if (mainScene.name == SceneManager.GetActiveScene().name)
+        {
+            if (!pauseUI.activeSelf)
+            {
+                mainUI.SetActive(true);
+                pauseUI.SetActive(false);
+            }
+            return;
+        }
 
-		if (pauseUI.activeSelf)
+        if (pauseUI.activeSelf)
         {
             //Si esta activada, la desactiva
             Time.timeScale = 1.0f;
@@ -47,7 +56,7 @@ public class O_ShowOptions : MonoBehaviour
     {
         if (mainScene.name == SceneManager.GetActiveScene().name)
         {
-            //Estamos en la escena del menú, la primera, antes de empezar partida
+            //Estamos en la escena del menï¿½, la primera, antes de empezar partida
             mainUI.SetActive(true);
             pauseUI.SetActive(false);
         } else

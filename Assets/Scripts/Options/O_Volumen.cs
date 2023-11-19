@@ -7,7 +7,7 @@ public class O_Volumen : MonoBehaviour
 {
 	[Header("UI elements")]
 	[SerializeField] private Slider volumeSlider;
-	[SerializeField] private GameObject imagenMute;
+	[SerializeField] private Toggle toggleMuteAudio;
 
 	[Header("Control variables")]
 	[SerializeField] private float sliderValue;
@@ -25,7 +25,21 @@ public class O_Volumen : MonoBehaviour
 		sliderValue = value;
 		PlayerPrefs.SetFloat("volumeAudio", sliderValue);
 		AudioListener.volume = volumeSlider.value;
+	}
+	
+	public void OnTogglePressed(bool pressed)
+	{
+		if (pressed)
+		{
+			// Se silencia el sonido en el juego
+			AudioListener.volume = 0;
+		}
+		else
+		{
+			// Se vuelve ha activar el sonido
+			AudioListener.volume = 1;
 
-		if (sliderValue != 0f) { imagenMute.SetActive(false); } else { imagenMute.SetActive(true); }
+		}
+
 	}
 }
