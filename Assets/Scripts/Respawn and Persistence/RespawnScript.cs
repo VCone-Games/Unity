@@ -16,7 +16,7 @@ public class RespawnScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         // // Suscripcion al evento
 
-        enemyToRespawn = transform.GetChild(0).gameObject;
+        //enemyToRespawn = transform.GetChild(0).gameObject;
     }
 
     // Que ocurre si el jugador alcanza el respawn
