@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject optionsPanel;
-    private bool optionsIsShowing;
+    public GameObject introduceYourNamePanel;
+    public InputField nameField;
 
     private void Start()
     {
@@ -16,52 +17,43 @@ public class MainMenu : MonoBehaviour
         Debug.Log(Application.persistentDataPath);
     }
 
-    private void Update()
-    {
-        HideOptions();
-    }
+    
 
     public void StartGame()
     {
+        Debug.Log(Application.persistentDataPath);
         // Si no hay información guardada, empecemos nueva partida
         if (DataPersistenceManager.instance.GetGameData() == null)
         {
             DataPersistenceManager.instance.NewGame();
-
+            // Mostrar el panel de "Introduce tu nombre"
+            introduceYourNamePanel.SetActive(true);
         }
         // Por el contrario, cargamos partida
         else
         {
             DataPersistenceManager.instance.LoadGame();
+            // Iniciamos partida
+            GetComponent<SceneManagerScript>().SceneStartGame();
         }
-        // Cargamos escena
-        SceneManager.LoadScene(1);
     }
-    
+
+    public void StartGameWithName()
+    {
+        // Actualizamos el nombre del jugador
+        DataPersistenceManager.instance.GetGameData().username = nameField.text;
+        introduceYourNamePanel.SetActive(false);
+        // Cargamos escena
+        GetComponent<SceneManagerScript>().SceneStartGame();
+        
+
+    }
+
     public void QuitGame()
     {
         Application.Quit();
         print("Game closed");
     }
 
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-        DataPersistenceManager.instance.SaveGame();
-    }
 
-    public void ShowOptions()
-    {
-        optionsPanel.SetActive(true);
-        optionsIsShowing = true;
-    }
-    
-    public void HideOptions()
-    {
-        if (optionsIsShowing && Input.GetKeyDown(KeyCode.Escape))
-        {
-            optionsPanel.SetActive(false);
-            optionsIsShowing = false;
-        }
-    }
 }
