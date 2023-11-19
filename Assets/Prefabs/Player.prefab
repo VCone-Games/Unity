@@ -102,13 +102,13 @@ GameObject:
   - component: {fileID: 6875797519026028364}
   - component: {fileID: 8641342064485253044}
   - component: {fileID: 7659170656792392123}
+  - component: {fileID: 5991962501229497735}
+  - component: {fileID: 6157240760031724549}
+  - component: {fileID: 7657141592462333180}
+  - component: {fileID: 8113807330458110483}
   - component: {fileID: 8536663018944128429}
   - component: {fileID: 7471403883245542936}
   - component: {fileID: 1626350880401930096}
-  - component: {fileID: 5991962501229497735}
-  - component: {fileID: 8113807330458110483}
-  - component: {fileID: 6157240760031724549}
-  - component: {fileID: 7657141592462333180}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -587,6 +587,126 @@ MonoBehaviour:
   InvulnerabilityTime: 0.5
   DamageKnockbackVector: {x: 2, y: 4}
   DamageKnockbackForce: 13
+--- !u!114 &5991962501229497735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528275170606725360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6534d62a6007d944e99be8fe58d5d352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepsSource: {fileID: 7471403883245542936}
+  landingSource: {fileID: 1626350880401930096}
+  doubleJumpSource: {fileID: 7471403883245542936}
+  doubleJump: {fileID: 8300000, guid: 346d4d1c9e708394dbff3416b3c62858, type: 3}
+  materialInicial: 0
+  footSteps:
+  - {fileID: 8300000, guid: 70c236a73deb8d24c8a0695c0110441a, type: 3}
+  - {fileID: 8300000, guid: 9131b97ae31918241930d7b8f735e90f, type: 3}
+  - {fileID: 8300000, guid: 450308e3f77f52d4b8c96d308adf65df, type: 3}
+  - {fileID: 8300000, guid: b75d64be4d4c12c49b66cc4d7589c0a5, type: 3}
+  footStepsVOLUME:
+  - 0.1
+  - 0.4
+  - 0.3
+  - 0.5
+  currentMaterialId: 3
+  footstepsPlaying: 0
+  landingSounds:
+  - {fileID: 8300000, guid: 39e4cc79aaed82141b20f4caf84ee76b, type: 3}
+  - {fileID: 8300000, guid: 1ee4f20a5e740b84bb39f8ad90582ece, type: 3}
+  - {fileID: 8300000, guid: 3f7663db62315ee4ead334bdd44f8140, type: 3}
+  - {fileID: 8300000, guid: 6ee951667c8779340acb16019e30afa7, type: 3}
+  landingVOLUME:
+  - 0.15
+  - 0.5
+  - 0.6
+  - 0.5
+--- !u!114 &6157240760031724549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528275170606725360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f05869509e7fa543b1de76463189ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsCheckPoint:
+    serializedVersion: 2
+    m_Bits: 8192
+--- !u!114 &7657141592462333180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528275170606725360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba70124082d3454790be72f5f0ccb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+--- !u!114 &8113807330458110483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528275170606725360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.1
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: 0.25, z: 0}
 --- !u!95 &8536663018944128429
 Animator:
   serializedVersion: 5
@@ -800,126 +920,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5991962501229497735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528275170606725360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6534d62a6007d944e99be8fe58d5d352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footstepsSource: {fileID: 7471403883245542936}
-  landingSource: {fileID: 1626350880401930096}
-  doubleJumpSource: {fileID: 7471403883245542936}
-  doubleJump: {fileID: 8300000, guid: 346d4d1c9e708394dbff3416b3c62858, type: 3}
-  materialInicial: 0
-  footSteps:
-  - {fileID: 8300000, guid: 70c236a73deb8d24c8a0695c0110441a, type: 3}
-  - {fileID: 8300000, guid: 9131b97ae31918241930d7b8f735e90f, type: 3}
-  - {fileID: 8300000, guid: 450308e3f77f52d4b8c96d308adf65df, type: 3}
-  - {fileID: 8300000, guid: b75d64be4d4c12c49b66cc4d7589c0a5, type: 3}
-  footStepsVOLUME:
-  - 0.1
-  - 0.4
-  - 0.3
-  - 0.5
-  currentMaterialId: 3
-  footstepsPlaying: 0
-  landingSounds:
-  - {fileID: 8300000, guid: 39e4cc79aaed82141b20f4caf84ee76b, type: 3}
-  - {fileID: 8300000, guid: 1ee4f20a5e740b84bb39f8ad90582ece, type: 3}
-  - {fileID: 8300000, guid: 3f7663db62315ee4ead334bdd44f8140, type: 3}
-  - {fileID: 8300000, guid: 6ee951667c8779340acb16019e30afa7, type: 3}
-  landingVOLUME:
-  - 0.15
-  - 0.5
-  - 0.6
-  - 0.5
---- !u!114 &8113807330458110483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528275170606725360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 2
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.1
-    m_ImpulseType: 0
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: 0.25, z: 0}
---- !u!114 &6157240760031724549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528275170606725360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f05869509e7fa543b1de76463189ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsCheckPoint:
-    serializedVersion: 2
-    m_Bits: 8192
---- !u!114 &7657141592462333180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528275170606725360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba70124082d3454790be72f5f0ccb51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
 --- !u!1 &5145390847902573106
 GameObject:
   m_ObjectHideFlags: 0

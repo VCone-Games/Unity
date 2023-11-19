@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "Caf\xE9 Cueva caliente 1"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "Caf\xE9"
+  paragraphs:
+  - "\xA1Oh! Vaya, vaya\u2026 Mira por d\xF3nde... "
+  - "\xBFQu\xE9 haces aqu\xED a tanta profundidad? "
+  - "Yo estoy aqu\xED porque s\xE9 que a T\xE9 le gustan este tipo de sitios, y es
+    un ser de costumbres."
+  - "Si le ves, \xBFPodr\xEDas decirle que me espere al otro lado de la monta\xF1a? "
+  - "He dejado muchas notas por ah\xED, pero nunca me quejar\xE9 si cuento con m\xE1s
+    ayuda."
+  - "Y\u2026 Ya sabes, siempre puedes venirte con nosotros una vez termines lo que
+    tengas que hacer por aqu\xED."

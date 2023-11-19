@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Panda Segundo Boss derrotado 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Panda
+  paragraphs:
+  - Pareces ser distinto al resto.
+  - "No gritas\u2026 Tanto."
+  - "Pero, sigues yendo de lado a lado\u2026 El parque me lo ha comentado."

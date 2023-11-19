@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Ajo Cueva con Pletorat 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Ajo
+  paragraphs:
+  - "Otra vez asust\xE1ndome, ya van varias, estoy demasiado concentrado en ese carcamal
+    que incluso mi flauta desafinar\xEDa con su recuerdo."
+  - "Ja, como si su pedanter\xEDa me fuese a silenciar."
+  - "No me enfrent\xE9 en la guerra junto a los grandes h\xE9roes como para que este
+    venga y me diga sandeces sin el m\xE1s m\xEDnimo sentido."

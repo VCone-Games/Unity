@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Panda Pueblo 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Panda
+  paragraphs:
+  - "\xA1Eh! T\xFA, ven, ven."
+  - "Soy Panda, el Panda del pan, \xBFtienes pan?"
+  - "Hummm\u2026 No tienes pan, \xBFno?"
+  - "Eso esperaba\u2026 Bueno, tr\xE1eme pan, o incluso semillas de pan."
+  - Todo puede valer, siempre y cuando luego sea pan.
+  - "GaLi me prometi\xF3 pan, y Jengibre tambi\xE9n, Cilantro tambi\xE9n sus promesas,
+    pero no consegu\xED nada."

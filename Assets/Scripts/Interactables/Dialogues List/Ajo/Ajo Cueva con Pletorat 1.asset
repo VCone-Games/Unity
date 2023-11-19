@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Ajo Cueva con Pletorat 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Ajo
+  paragraphs:
+  - "\xA1OH! Anciano, nadie va a querer escuchar la historia si es aburrida y se
+    perder\xE1 como t\xFA en tus libros. No intentar amenizarlo si es un verdadero
+    crimen contra la humanidad."
+  - "En la m\xFAsica hay recuerdo y pasi\xF3n, cosas que incluso en guerra prevalecen,
+    aunque t\xFA no hayas visto una guerra en tu vida."
+  - Ya hemos tenido estas conversaciones antes, no juzgues mi apariencia para quitar
+    importancia a mis palabras.

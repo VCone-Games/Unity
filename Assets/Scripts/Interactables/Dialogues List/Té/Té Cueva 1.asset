@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "T\xE9 Cueva 1"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "T\xE9"
+  paragraphs:
+  - "Ah, peque\xF1a replica de cabeza rara. \xBFDe d\xF3nde sales? "
+  - "Anda\u2026 As\xED que eres nuevo en esto."
+  - "Oh, \xBFy has visto a mi compa\xF1ero caf\xE9? Nos separamos en una tormenta
+    de arena y acabamos por esta zona."
+  - "Podr\xEDas venir con nosotros al desierto si nos volvemos a juntar."
+  - "Las r\xE9plicas somos raras y est\xE1 bien que nos mantengamos unidos. \xBFNo
+    crees?"

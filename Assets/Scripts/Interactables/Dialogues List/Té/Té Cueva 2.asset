@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "T\xE9 Cueva 2"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "T\xE9"
+  paragraphs:
+  - "Mi compa\xF1ero y yo sobrevivimos al ser desertores, pero al contrario que los
+    otros, seguimos vivos."
+  - "Nos fuimos al desierto a intentar ver estrellas, pero se ve que solo son leyendas\u2026"
+  - "Hubo un tiempo donde hab\xEDa cosas fuera, en el espacio."
+  - "Es triste pensar todo lo que hemos perdido\u2026"
+  - "Pero m\xE1s triste pensar en todo lo que podemos perder\u2026"

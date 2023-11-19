@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Jengibre Pueblo 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Jengibre
+  paragraphs:
+  - "Ahora vete\u2026 Ay\xFAdanos, y te dar\xE9 m\xE1s poder."
+  - "En anta\xF1o, podr\xEDa haberte ayudado, pero perd\xED todo cuanto tuve."
+  - "Oh, tendr\xE9 un viejo cuerpo\u2026 Pero morir\xE9 siendo un coloso."

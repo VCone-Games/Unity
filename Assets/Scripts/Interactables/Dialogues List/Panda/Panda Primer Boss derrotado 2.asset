@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Panda Primer Boss derrotado 2
   m_EditorClassIdentifier: 
   speakerName: Panda
-  paragraphs: []
+  paragraphs:
+  - "Todos sois iguales, ni\xF1os gritones."
+  - "Grit\xE1is por todo, dejad de llorar de una vez."
+  - "A m\xED me sirve comer pan."

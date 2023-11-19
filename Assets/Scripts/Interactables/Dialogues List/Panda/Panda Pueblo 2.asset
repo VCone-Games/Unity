@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Panda Pueblo 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Panda
+  paragraphs:
+  - "Cuando Cilantro se enfrent\xF3 a Jengibre, ambos me prometieron pan, pero incluso
+    cuando Jengibre venci\xF3, no me dieron m\xE1s pan que antes."
+  - "Oye, si sigues hablando conmigo no me podr\xE1s conseguir pan."
+  - "Cons\xEDgueme pan y luego hablamos."

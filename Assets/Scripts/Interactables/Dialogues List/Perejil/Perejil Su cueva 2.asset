@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Perejil Su cueva 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Perejil
+  paragraphs:
+  - "Hace mucho que nadie viene por aqu\xED."
+  - "Pens\xE9 que todo el mundo se hab\xEDa olvidado de mi como yo de todo el mundo,
+    \xF1ejejeje\u2026"
+  - Hay veces que escucho susurros por encima del pozo.
+  - "Siento que las plantas me observan, pero as\xED me siento menos solo\u2026"
+  - Ven siempre que quieras.

@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Perejil Su cueva 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Perejil
+  paragraphs:
+  - "\xD1ejeje\u2026"
+  - "Brillante, brillante\u2026 Si tienes brillante te doy cosas\u2026"
+  - "Soy Perejil, comerciante hologr\xE1fico."
+  - "Bueno m\xE1s bien solo hago trueques, \xF1ejeje\u2026"
+  - Pero eso no hace que me guste menos lo brillante.
+  - "No me puedo mover, as\xED que cualquier cosa que tengas de fuera lo mirar\xE9
+    con inter\xE9s, eso s\xED, si es brillante, aumenta su valor"

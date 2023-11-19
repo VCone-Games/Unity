@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Pletorat Fabrica 2-2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Pletorat
+  paragraphs:
+  - "\xBFQui\xE9n podr\xEDa decirme que en tan poco tiempo se hab\xEDa avanzado tanto?"
+  - "Nunca me habr\xEDa esperado tantos sucesos postapocal\xEDpticos, JOJOJO."

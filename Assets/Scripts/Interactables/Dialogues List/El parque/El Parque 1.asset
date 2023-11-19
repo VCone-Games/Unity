@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: El Parque 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: El Parque
+  paragraphs:
+  - Un individual se adentra en algo que no es capaz de comprender, nosotros somos
+    El Parque, somos uno y distintos al mismo tiempo, una colmena viva.
+  - "Pareces ser m\xE1s bien una carcasa vac\xEDa, sin conocimiento, nosotros compartimos
+    todo lo que somos y conocemos."
+  - "Podemos compartirlo contigo, siendo uno, todos son felices. No hay bandos, no
+    hay falta de comprensi\xF3n."
+  - "Como c\xE9lulas de un organismo, nosotros hemos formado algo superior."
+  - "La corrupci\xF3n del mundo nos abruma y las paredes nos bloquea, si crees que
+    nuestro fin es el correcto, trae semillas para poder hacerlas parte de nosotros."

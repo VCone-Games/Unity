@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: El Parque 2
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: El Parque
+  paragraphs:
+  - "Al principio, \xE9ramos unos cuantos, separados, tuvimos la suerte de poder
+    fusionarnos con las plantas, fue puro accidente."
+  - "Usamos sus c\xE9lulas como cables y nos unimos, todos sabemos que pasa mientras
+    una ra\xEDz este en contacto con la red central."
+  - Ten cuidado al bajar por el pozo, el moho ha visto sobras que olvidaron y que
+    esperan pasos que vuelven.

@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Jengibre Ambos Bosses derrotados 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Jengibre
+  paragraphs:
+  - "Oh, cielos, est\xE1n muertos\u2026 Despu\xE9s de tantos siglos, realmente pens\xE9
+    que nunca ocurrir\xEDa, les diste paz\u2026"
+  - "Fuiste capaz de hacerlo, una tarea realizada, con demasiada facilidad, no eres
+    consciente del poder que llevas\u2026 Pero yo s\xED."
+  - "Servir\xE1s bien para romper el \xFAltimo sello que queda."

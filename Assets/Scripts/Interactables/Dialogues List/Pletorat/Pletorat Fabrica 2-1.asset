@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Pletorat Fabrica 2-1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Pletorat
+  paragraphs:
+  - "\xBFQu\xE9 c\xF3mo he llegado aqu\xED? Por la puerta, claro est\xE1, jojojo..."
+  - "Se sale por la f\xE1brica saltando por ese agujero de ah\xED, pero no soy excesivamente
+    fan de las alturas."
+  - "Malos recuerdos\u2026\r"
+  - "No te preocupes por m\xED, en cuanto recuerde como entr\xE9, podr\xE9 salir...\r\r"
+  - "Espero que Yers haya sido de ayuda.\r\r"

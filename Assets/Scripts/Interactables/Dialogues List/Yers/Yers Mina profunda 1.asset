@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Yers Mina profunda 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Yers
+  paragraphs:
+  - "El doctor cree que este sitio es importante, no s\xE9 bien por qu\xE9, pero
+    no tengo razones para dudar."
+  - "Ver\xE1s, yo soy una r\xE9plica, como t\xFA. Una versi\xF3n muy distinta s\xED,
+    pero yo he conocido la guerra."
+  - "No quiero volver a ella. Pletorat me ense\xF1\xF3 otra forma de vida, una salida."
+  - "Sin saber siquiera mi pasado, simplemente me dej\xF3 unirme a \xE9l."
+  - "Y ya que \xE9l no puede bajar hasta aqu\xED con facilidad, estoy yo para ver
+    qu\xE9 datos puedo conseguir."

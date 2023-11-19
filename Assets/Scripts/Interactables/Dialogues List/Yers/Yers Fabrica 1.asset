@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Yers Fabrica 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Yers
+  paragraphs:
+  - Buenas, he conseguido reparar ciertas pruebas de estas instalaciones.
+  - Puede que no las consigas pasar, pero eso lo iremos viendo a medida que avances.
+  - "Pletorat conf\xEDa en ti, as\xED que como disc\xEDpula suya que soy, yo tambi\xE9n."
+  - "Primero, espero que seas consciente de la acci\xF3n reacci\xF3n; si golpeas
+    fuerte, te pegan fuerte."
+  - "Depender\xE1 de la masa y de tus motores de arranque, pero si algo es ligero,
+    lo lanzar\xE1s por los aires, si algo es pesado, saldr\xE1s despedido por los
+    aires."
+  - "Ah, tienes un gancho\u2026 Para utilizarlo, pulsa [CLICK IZQUIERDO DEL MOUSE]
+    para lanzarlo hacia la direcci\xF3n indicada por tu interfaz de visi\xF3n (esa
+    bolita blanca que persigue al cursor). "
+  - "Al agarrar algo, recuerda que tienes que volver a pulsar [CLICK IZQUIERDO DEL
+    MOUSE] para que funcione correctamente la reacci\xF3n, si fallas, te golpear\xE1n."
+  - "Te estar\xE9 observando, buena suerte."

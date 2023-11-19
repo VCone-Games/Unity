@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "Caf\xE9 Afueras del pueblo 2"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "Caf\xE9"
+  paragraphs:
+  - "No somos de aqu\xED, la verdad, venimos de un lugar muy lejano."
+  - "Digamos\u2026 Que nos fuimos de donde se supone que deb\xEDamos estar\u2026"
+  - "Sin embargo, fue la decisi\xF3n correcta."

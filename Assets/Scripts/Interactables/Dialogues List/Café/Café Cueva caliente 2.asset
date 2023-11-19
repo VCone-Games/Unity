@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "Caf\xE9 Cueva caliente 2"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "Caf\xE9"
+  paragraphs:
+  - "Cuando T\xE9 y yo decidimos marcharnos, nos empezaron a ir bien las cosas, la
+    verdad."
+  - Desde entonces no estamos nunca mucho tiempo en el mismo sitio.

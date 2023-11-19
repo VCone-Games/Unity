@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Perejil Al salvarte 1
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: Perejil
+  paragraphs:
+  - "Oh, eso estuvo cerca, no puedo perder a mi \xFAnico cliente tras tantos a\xF1os.
+    \xD1ejejeje\u2026"

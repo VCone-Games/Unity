@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "T\xE9 Cima 2"
   m_EditorClassIdentifier: 
-  speakerName: 
-  paragraphs: []
+  speakerName: "T\xE9"
+  paragraphs:
+  - "Aqu\xED hace demasiado fr\xEDo para m\xED, no me prepararon para esto\u2026"
+  - Sin embargo, tampoco me prepararon para vivir tanto tiempo.
+  - "A veces se gana, a veces se pierde\u2026"
