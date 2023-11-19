@@ -61,4 +61,10 @@ public class EnemyFlyGoldHologram : IAFlyChase
 		isDead = true;
 		myAnimator.SetBool("isDeadTimer", true);
 	}
+
+	public void DieNoCOin()
+	{
+        isDead = true;
+        myAnimator.SetBool("isDead", true);
+    }
 }

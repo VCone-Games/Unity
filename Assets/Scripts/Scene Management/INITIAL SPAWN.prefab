@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 4528275170606725360, guid: 7a054e995f763ce40901e81ad9baefec, type: 3}
-  position: {x: -17.244507, y: -0.96939087, z: 1.1176393}
+  position: {x: 0, y: 0, z: 0}

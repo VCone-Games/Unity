@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059f3bc5c639fd34c827d28bcfa8d279, type: 3}
+  m_Name: 5.1 mina medio oeste
+  m_EditorClassIdentifier: 
+  sceneName: 5.1. Mina Profunda Medio Oeste
+  EnterPositions:
+  - {x: -35.65932, y: -5.9755626, z: 0}
+  - {x: -96.39931, y: -13.7455635, z: 0}
+  - {x: 3.6006813, y: -27.045563, z: 0}
+  - {x: 3.6006813, y: -63.44556, z: 0}
+  - {x: -102.0193, y: -66.445564, z: 0}
+  isFacingRight: 0001000001
