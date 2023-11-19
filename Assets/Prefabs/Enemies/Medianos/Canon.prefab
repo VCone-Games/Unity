@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atackSource: {fileID: 106063284502522942}
   dieSource: {fileID: 3691324310563161165}
-  atack: {fileID: 8300000, guid: d02d489ed4630ae4cb11034bae61a0ff, type: 3}
+  atack: {fileID: 8300000, guid: 24f4cf08e1070f140a21f5cfc6d6da18, type: 3}
   die: {fileID: 8300000, guid: aef40e31b09eb41498af8d5e328fe790, type: 3}
 --- !u!1 &6947290092007292757
 GameObject:
