@@ -7,6 +7,8 @@ public class CheckPointSaver : AInteractable
 {
     [SerializeField] private int checkpointId;
     [SerializeField] private Transform respawnPosition;
+    [SerializeField] public Sprite OnSprite;
+    [SerializeField] public Sprite OffSprite;
 
 
     protected override void Start()
@@ -15,6 +17,7 @@ public class CheckPointSaver : AInteractable
         if(GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DataManager>().GetCheckPointId() == checkpointId)
         {
             playerGameObject.transform.position = respawnPosition.position;
+            Interact();
         }
     }
 
@@ -31,6 +34,16 @@ public class CheckPointSaver : AInteractable
         }
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DataManager>().SaveData(SceneManager.GetActiveScene().name, checkpointId);
         Debug.Log("GUARDANDO");
+
+      
+        foreach(GameObject a in GameObject.FindGameObjectsWithTag("spawn"))
+        {
+                a.GetComponent<SpriteRenderer>().sprite = OffSprite;
+      
+        }
+
+        GetComponent<SpriteRenderer>().sprite = OnSprite;
+
         EndInteraction();
     }
 }

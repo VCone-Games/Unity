@@ -13,6 +13,7 @@ TagManager:
   - Dialogue Box
   - Game Manager
   - Hearth Canvas
+  - spawn
   layers:
   - Default
   - TransparentFX

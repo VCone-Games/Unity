@@ -32,9 +32,9 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
 
-       // GameObject.FindGameObjectWithTag("Game Manager").GetComponent<HealthUI>().EventInitialiteUI.Invoke();
+         GameObject.FindAnyObjectByType<HealthUI>().EventInitialiteUI.Invoke();
     }
-    void Restore()
+    public void Restore()
     {
         current_health = max_health;
         EventUpdateHealthUI?.Invoke(this, current_health);
@@ -106,12 +106,17 @@ public class HealthPlayerManager : HealthManager
 
     protected void Die(object sender, EventArgs e)
     {
+        EndDamaging();
+        GameObject.FindObjectOfType<DataMetricBase>().DeadTimes++;
+
         myAnimator.SetTrigger("Dead");
+
     }
 
     public void EndDie()
     {
         myAnimator.SetTrigger("EndDead");
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DataManager>().DeathManager();
+        //GameObject.FindObjectOfType<DeadRespawn>().RespawnPlayer();
     }
 }

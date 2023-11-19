@@ -32,6 +32,7 @@ public class DataManager : MonoBehaviour
 
     public void DeathManager()
     {
+       // Destroy(GameObject.FindWithTag("Player"));
         SceneManager.LoadScene(playerScene);
     }
 
