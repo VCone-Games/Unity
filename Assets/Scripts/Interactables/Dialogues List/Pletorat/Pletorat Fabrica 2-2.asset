@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Pletorat Fabrica 2-2
+  m_EditorClassIdentifier: 
+  speakerName: Pletorat
+  paragraphs:
+  - "\xBFQui\xE9n podr\xEDa decirme que en tan poco tiempo se hab\xEDa avanzado tanto?"
+  - "Nunca me habr\xEDa esperado tantos sucesos postapocal\xEDpticos, JOJOJO."

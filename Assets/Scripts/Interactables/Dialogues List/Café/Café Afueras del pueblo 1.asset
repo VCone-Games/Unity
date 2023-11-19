@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: "Caf\xE9 Afueras del pueblo 1"
+  m_EditorClassIdentifier: 
+  speakerName: "Caf\xE9"
+  paragraphs:
+  - "Mira por d\xF3nde, una r\xE9plica, como yo."
+  - "Con una cabeza rara eso s\xED, pero r\xE9plica, y eso es lo que importa."
+  - "\xBFTe ensamblaron con la luz apagada?"
+  - "No pareces de los que r\xEDen con facilidad, \xBFeh?"
+  - " Bueno, de todas formas, \xBFhas visto a otra r\xE9plica como yo?, pero m\xE1s
+    grande, se llama T\xE9."
+  - "Ah, se ve que no, bueno, si le ves, \xBFpodr\xEDas decirle que le estoy buscando?
+    De paso, com\xE9ntale d\xF3nde puede encontrarme."
+  - "Gracias, compa\xF1ero, espero que t\xFA tambi\xE9n consigas hacer lo que te
+    propones."

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: El Parque 2
+  m_EditorClassIdentifier: 
+  speakerName: El Parque
+  paragraphs:
+  - "Al principio, \xE9ramos unos cuantos, separados, tuvimos la suerte de poder
+    fusionarnos con las plantas, fue puro accidente."
+  - "Usamos sus c\xE9lulas como cables y nos unimos, todos sabemos que pasa mientras
+    una ra\xEDz este en contacto con la red central."
+  - Ten cuidado al bajar por el pozo, el moho ha visto sobras que olvidaron y que
+    esperan pasos que vuelven.

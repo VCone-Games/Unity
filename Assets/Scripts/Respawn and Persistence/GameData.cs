@@ -26,7 +26,6 @@ public class GameData
     // 6. Configuraciones de sonido/resolución/opciones
     public float audioValue;
 
-
     // Constructor. Valores con los que se empieza una nueva partida
     public GameData()
     {

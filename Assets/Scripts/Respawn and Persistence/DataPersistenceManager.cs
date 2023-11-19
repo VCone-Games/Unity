@@ -26,6 +26,11 @@ public class DataPersistenceManager : MonoBehaviour
     // Se puede acceder de manera privada y se puede modificar de manera pública
     public static DataPersistenceManager instance { get; private set; }
 
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
+
     private void Awake()
     {
         if (instance != null)
@@ -34,7 +39,6 @@ public class DataPersistenceManager : MonoBehaviour
         }
 
         instance = this;
-
     }
 
     private void Start()
@@ -88,7 +92,6 @@ public class DataPersistenceManager : MonoBehaviour
 
         // Guardar en el fichero
         dataHandler.Save(gameData);
-
     }
 
     // Si realmente deseamos guardar partida al cerrar la aplicación

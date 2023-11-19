@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Perejil Su cueva 1
+  m_EditorClassIdentifier: 
+  speakerName: Perejil
+  paragraphs:
+  - "\xD1ejeje\u2026"
+  - "Brillante, brillante\u2026 Si tienes brillante te doy cosas\u2026"
+  - "Soy Perejil, comerciante hologr\xE1fico."
+  - "Bueno m\xE1s bien solo hago trueques, \xF1ejeje\u2026"
+  - Pero eso no hace que me guste menos lo brillante.
+  - "No me puedo mover, as\xED que cualquier cosa que tengas de fuera lo mirar\xE9
+    con inter\xE9s, eso s\xED, si es brillante, aumenta su valor"

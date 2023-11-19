@@ -35,6 +35,11 @@ public class Interact : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
+        if (interactable == null)
+        {
+            Debug.Log("No hay interactable cerca");
+            return;
+        }
         interactable.Interact();
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
@@ -42,6 +47,7 @@ public class Interact : MonoBehaviour
 
     public void OnInteractableEnter(IInteractable collision)
     {
+        Debug.Log("\t\tInteractuable cerca");
         interactable = collision;
         interactReference.action.Enable();
         interactable.InInteractionRange(true);
@@ -50,7 +56,8 @@ public class Interact : MonoBehaviour
 
     public void OnInteractableExit(IInteractable collision)
     {
-        interactable = collision;
+		Debug.Log("\t\tInteractuable cerca");
+		interactable = collision;
         interactReference.action.Disable();
         interactable.InInteractionRange(false);
         interactable = null;

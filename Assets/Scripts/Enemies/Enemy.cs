@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    //GameData gameData = DataPersistenceManager.instance.GetGameData();
 
     [Header("Enemy params")]
     [SerializeField] protected float moveSpeed;
@@ -33,7 +34,7 @@ public abstract class Enemy : MonoBehaviour
         myRigidbody2D.isKinematic = false;
     }
 
-    protected void Disappear()
+    protected virtual void Disappear()
     {
         gameObject.SetActive(false);
         //Destroy(gameObject);
@@ -80,5 +81,4 @@ public abstract class Enemy : MonoBehaviour
     {
         unhookTimer = unhookTime;
     }
-
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Pletorat Cueva 1
+  m_EditorClassIdentifier: 
+  speakerName: Pletorat
+  paragraphs:
+  - "Viejo amigo, no te f\xEDes de este embustero."
+  - "Convirtiendo historia en canciones hiperb\xF3licas para que, al paso de los
+    a\xF1os, nadie sepa si fueron reales o no."
+  - "Incluso invent\xE1ndose sus propias mentiras solo para poder rimar."
+  - Es una falta de respeto a todos los que nos han precedido e intentado guardar
+    el conocimiento.
+  - "Creo que es el \xFAnico ser que realmente me saca de mis casillas, y he vivido
+    una larga vida."
+  - "Y me dice que yo no entiendo, como su no hubiese luchado en una guerra m\xE1s
+    grande que la que \xE9l pueda imaginar\u2026 Y algunas cosas han de ser recordadas
+    como fueron realmente\u2026"
+  - "No cantadas en una est\xFApida parodia de la vida. "

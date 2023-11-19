@@ -7,8 +7,19 @@ public class PlayerSoundManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource footstepsSource;
     [SerializeField] private AudioSource landingSource;
+
     [SerializeField] private AudioSource doubleJumpSource;
+    [SerializeField] private AudioSource dashSource;
+    [SerializeField] private AudioSource hookSource;
+    [SerializeField] private AudioSource parrySource;
+    [SerializeField] private AudioSource hitSource;
+
+    [Header("Sonidos")]
+    [SerializeField] private AudioClip dash;
     [SerializeField] private AudioClip doubleJump;
+    [SerializeField] private AudioClip hook;
+    [SerializeField] private AudioClip parry;
+    [SerializeField] private AudioClip hit;
 
     [Header("Footsteps Sounds: 0-Metal, 1-Snow, 2-Grass, 3-Stone")]
     [SerializeField] public int materialInicial;
@@ -65,7 +76,34 @@ public class PlayerSoundManager : MonoBehaviour
     public void PlayDoubleJump()
     {
         doubleJumpSource.clip=  doubleJump;
-        doubleJumpSource.volume = 1.0f;
+        doubleJumpSource.volume = 2.0f;
         doubleJumpSource.Play();
+    }
+
+    public void PlayDash()
+    {
+        dashSource.clip=  dash;
+        dashSource.volume = 1.0f;
+        dashSource.Play();
+    }
+
+    public void PlayHook()
+    {
+        hookSource.clip=  hook;
+        hookSource.volume = 1.0f;
+        hookSource.Play();
+    }
+
+    public void PlayParry()
+    {
+        parrySource.clip=  parry;
+        parrySource.volume = 1.0f;
+        parrySource.Play();
+    }
+    public void PlayHit()
+    {
+        hitSource.clip=   hit;
+        hitSource.volume = 1.0f;
+        hitSource.Play();
     }
 }

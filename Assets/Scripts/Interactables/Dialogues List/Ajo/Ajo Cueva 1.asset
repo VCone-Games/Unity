@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
+  m_Name: Ajo Cueva 1
+  m_EditorClassIdentifier: 
+  speakerName: Ajo
+  paragraphs:
+  - "Oh, dioses, \xBFqui\xE9n eres t\xFA? Me asustaste saliendo de la nada."
+  - "Humhuhum\u2026"
+  - "Eres raro\u2026"
+  - "Ah, ya veo\u2026 Una r\xE9plica. Tu cabeza me enga\xF1\xF3."
+  - "\xBFNo vendr\xE1s de inc\xF3gnito? Jeje\u2026 "
+  - "Soy Ajo, \xA1el mejor m\xFAsico de toda la Cuaderna Este!"
+  - "Si encuentras libros o partituras, d\xE1melas y te dar\xE9 recompensas, jugosas
+    recompensas."
+  - "Solo que, \xFAltimamente me estoy quedando sin ideas\u2026"
+  - "Toma esta m\xE1quina de estados, como muestra de mi buena fe."
+  - "Aunque dudo que llegues a encontrar alguno, la verdad\u2026"

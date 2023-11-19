@@ -16,6 +16,8 @@ public class HealthPlayerManager : HealthManager
     private Hook hook;
     private CinemachineImpulseSource impulseSource;
 
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
 
     protected override void Start()
     {
@@ -47,6 +49,7 @@ public class HealthPlayerManager : HealthManager
 
     protected override void TakeDamage(object sender, Vector3 damageContactPoint)
     {
+        soundManager.PlayHit();
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         jumpComponent.DisableJumpInput();
