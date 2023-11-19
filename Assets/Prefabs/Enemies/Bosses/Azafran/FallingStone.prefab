@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3228072a0374162479e5eb74bde26541, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,9 +163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b0793b56b74234d8df5087392ea527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 5
+  spritesFalling:
+  - {fileID: 21300000, guid: 3228072a0374162479e5eb74bde26541, type: 3}
+  - {fileID: 21300000, guid: 4b4c94f9f07cc0840be000f89bd684ce, type: 3}
+  - {fileID: 21300000, guid: 9c740f0cb67f7b248a1726d89e5130db, type: 3}
+  - {fileID: 21300000, guid: c39cf23c708a170478e5fc54f0f93817, type: 3}
+  mySpriteRenderer: {fileID: 0}
+  myRigidbody2D: {fileID: 0}
+  fallingSpeed: 20
   CanDamageBoss: 0
   hooked: 0
+  skinChanged: 0
 --- !u!58 &1632748818433143386
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -200,7 +208,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.004196584, y: 0}
   serializedVersion: 2
-  m_Radius: 0.77
+  m_Radius: 1.5171804
 --- !u!114 &1996238730542659738
 MonoBehaviour:
   m_ObjectHideFlags: 0

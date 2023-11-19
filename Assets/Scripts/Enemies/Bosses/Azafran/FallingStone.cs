@@ -6,14 +6,26 @@ using UnityEngine;
 
 public class FallingStone : MonoBehaviour
 {
-	public float vel = 20f;
+	[Header("Sprites")]
+	[SerializeField] private List<Sprite> spritesFalling;
+
+	[Header("Components")]
+	[SerializeField] private SpriteRenderer mySpriteRenderer;
+	[SerializeField] private Rigidbody2D myRigidbody2D;
+
+	public float fallingSpeed = 20f;
 	public bool CanDamageBoss;
     public bool hooked;
+    
+    [SerializeField] private bool skinChanged;
 
-    // Start is called before the first frame update
-    void Start()
+
+	// Start is called before the first frame update
+	void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -vel);
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+		myRigidbody2D = GetComponent<Rigidbody2D>();
+		myRigidbody2D.velocity = new Vector2(0, -fallingSpeed);
     }
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -44,7 +56,15 @@ public class FallingStone : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		
+	}
 
+	private void Update()
+	{
+		if (!skinChanged)
+		{
+			skinChanged = true;
+			int selSprite = Random.Range(0, spritesFalling.Count);
+			mySpriteRenderer.sprite = spritesFalling[selSprite];
+		}
 	}
 }

@@ -11,6 +11,8 @@ TagManager:
   - CameraFollow
   - AimRepresentation
   - Dialogue Box
+  - Game Manager
+  - Hearth Canvas
   layers:
   - Default
   - TransparentFX

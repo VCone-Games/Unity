@@ -56,10 +56,10 @@ public class TrapFallingObject : MonoBehaviour
 		{
 			playerFirstDetected = false;
 			myRigidbody2D.velocity = new Vector2(0.0f, -fallingSpeed);
-			int selSprite = Random.Range(0, spritesFalling.Count);
 			if (!skinChanged)
 			{
 				skinChanged = true;
+				int selSprite = Random.Range(0, spritesFalling.Count);
 				mySpriteRenderer.sprite = spritesFalling[selSprite];
 			}
 		}
