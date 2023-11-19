@@ -18,7 +18,10 @@ public class PhaseManagerAzafran : MonoBehaviour
     [SerializeField] private HealthManagerAzafran healthManager;
     [SerializeField] private Animator myAnimator;
 
-	private Rigidbody2D myRigidbody2D;
+    [Header("Audio Management")]
+    [SerializeField] private MusicManager musicManager;
+
+    private Rigidbody2D myRigidbody2D;
 	[SerializeField] private bool firstPhaseEnded = false;
 	[SerializeField] private bool secondPhaseBegin = false;
 
@@ -30,25 +33,32 @@ public class PhaseManagerAzafran : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myAnimator = GetComponent<Animator>();
-	}
+        musicManager.PlayInterlude();
+       musicManager.PlaySecond();
+    }
 
 	void ActivateSecondPhase()
 	{
 		firstPhaseComponent.IsDisabled = true;
-
-		myAnimator.SetBool("isTransicion", false);
+        
+        myAnimator.SetBool("isTransicion", false);
 		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;
 		Debug.Log("Cambio de fase");
-	}
+        musicManager.PlayInterlude();
+		musicManager.PlaySecond();
+
+    }
 
 	private void FixedUpdate()
 	{
 		bool condition = firstPhaseEnded && !secondPhaseBegin;
 		if (condition)
 		{
+
 			Vector3 direction = (secondPhaseSpawn.position - transform.position);
 			myRigidbody2D.velocity = direction.normalized * speed;
 		}
