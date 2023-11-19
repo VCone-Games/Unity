@@ -20,10 +20,10 @@ public class DataPersistenceManager : MonoBehaviour
     // Lista de los objetos que implementan la interfaz IDataPersistance que interesa guardar
     private List<IDataPersistance> dataPersistenceObjects;
 
-    // File Data Handler que gestiona los flujos de informacion y la serialización y deserializacion
+    // File Data Handler que gestiona los flujos de informacion y la serializaciï¿½n y deserializacion
     private FileDataHandler dataHandler;
 
-    // Se puede acceder de manera privada y se puede modificar de manera pública
+    // Se puede acceder de manera privada y se puede modificar de manera pï¿½blica
     public static DataPersistenceManager instance { get; private set; }
 
     public GameData GetGameData()
@@ -43,8 +43,8 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
-        // Inicialización del dataHandler.
-        // El Application.persistenceDataPath da al SO el directorio estándar de informacion persistente de un proyecto de Unity
+        // Inicializacion del dataHandler.
+        // El Application.persistenceDataPath da al SO el directorio estandar de informacion persistente de un proyecto de Unity
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         Debug.Log(Application.persistentDataPath);
 
@@ -70,7 +70,7 @@ public class DataPersistenceManager : MonoBehaviour
         foreach (IDataPersistance dataPersistenceObj in dataPersistenceObjects)
         {
             
-            // Cargamos según su metodo de cargado
+            // Cargamos segï¿½n su metodo de cargado
             dataPersistenceObj.LoadData(gameData);
 
         }
@@ -94,7 +94,7 @@ public class DataPersistenceManager : MonoBehaviour
         dataHandler.Save(gameData);
     }
 
-    // Si realmente deseamos guardar partida al cerrar la aplicación
+    // Si realmente deseamos guardar partida al cerrar la aplicaciï¿½n
     private void OnApplicationQuit()
     {
         SaveGame();
