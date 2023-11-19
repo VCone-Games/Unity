@@ -13,18 +13,10 @@ public class RespawnScript : MonoBehaviour
 
     void Start()
     {
-       player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         // // Suscripcion al evento
 
         enemyToRespawn = transform.GetChild(0).gameObject;
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     // Que ocurre si el jugador alcanza el respawn

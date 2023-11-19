@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Perejil_Head : Enemy
+public class Perejil_Head : Enemy, IDataPersistance
 {
 	[Header("Perejil's body")]
 	[SerializeField] private Perejil_LeftHand _leftHand;
@@ -75,5 +75,32 @@ public class Perejil_Head : Enemy
 	{
 		GameObject hologram = Instantiate(prefabHologram, position.position, Quaternion.identity);
 		hologram.AddComponent<DispawnTemporalEnemies>();
+	}
+
+	protected override void Disappear()
+	{
+		base.Disappear();
+		DataPersistenceManager.instance.SaveGame();
+	}
+
+	public void LoadData(GameData data)
+	{
+		Debug.Log("Cargando perejil...");
+		data.defeatedBosses.TryGetValue("Perejil", out isDead);
+		if (isDead)
+		{
+			gameObject.SetActive(false);
+		}
+	}
+
+	public void SaveData(ref GameData data)
+	{
+		Debug.Log("Guardando perejil...");
+		if (data.defeatedBosses.ContainsKey("Perejil"))
+		{
+			data.defeatedBosses.Remove("Perejil");
+			//data.defeatedBosses["Perejil"] = isDead;
+		}
+		data.defeatedBosses.Add("Perejil", isDead);
 	}
 }

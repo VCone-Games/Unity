@@ -26,6 +26,11 @@ public class DataPersistenceManager : MonoBehaviour
     // Se puede acceder de manera privada y se puede modificar de manera pública
     public static DataPersistenceManager instance { get; private set; }
 
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
+
     private void Awake()
     {
         if (instance != null)
