@@ -5,121 +5,124 @@ using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI NPCNameText;
-    [SerializeField] private TextMeshProUGUI NPCDialogueText;
-    [SerializeField] private float typeSpeed;
+	[SerializeField] private TextMeshProUGUI NPCNameText;
+	[SerializeField] private TextMeshProUGUI NPCDialogueText;
+	[SerializeField] private float typeSpeed;
 
-    private IInteractable interactable;
+	private IInteractable interactable;
 
-    private Queue<string> paragraphs = new Queue<string>();
+	private Queue<string> paragraphs = new Queue<string>();
 
-    private bool conversationEnded;
-    private bool isTyping;
+	private bool conversationEnded;
+	private bool isTyping;
 
-    private string p;
+	private string p;
 
-    private Coroutine typeCoroutine;
+	private Coroutine typeCoroutine;
 
-    private const string HTML_ALPHA = "<color=#00000000>";
+	private const string HTML_ALPHA = "<color=#00000000>";
 
-    private const float MAX_TYPE_TIME = 0.1f;
+	private const float MAX_TYPE_TIME = 0.1f;
 
-    public void DisplayNexParagraph(DialogueText dialogueText, IInteractable interactable)
-    {
-        if (paragraphs.Count == 0)
-        {
-            if (!conversationEnded)
-            {
-                this.interactable = interactable;
-                StartConversation(dialogueText);
-            }
-            else if(conversationEnded && !isTyping) 
-            {
-                EndConversation();
-            }
-        }
+	public void DisplayNexParagraph(DialogueText dialogueText, IInteractable interactable)
+	{
+		if (paragraphs.Count == 0)
+		{
+			if (!conversationEnded)
+			{
+				this.interactable = interactable;
+				StartConversation(dialogueText);
+			}
+			else if (conversationEnded && !isTyping)
+			{
+				EndConversation();
+			}
+		}
 
-        if (!isTyping && !conversationEnded)
-        {
-            p = paragraphs.Dequeue();
+		if (!isTyping && !conversationEnded)
+		{
 
-            typeCoroutine = StartCoroutine(TypeDialogue(p));
-        }
+			p = paragraphs.Dequeue();
 
-        else
-        {
-            FinishParagraphEarly();
-        }
-
-        if (paragraphs.Count == 0)
-        {
-            conversationEnded = true;
-        }
+			typeCoroutine = StartCoroutine(TypeDialogue(p));
 
 
-    }
+		}
 
-    private void StartConversation(DialogueText dialogueText)
-    {
+		else
+		{
+			FinishParagraphEarly();
+		}
 
-        if (!gameObject.activeSelf)
-        {
-            gameObject.SetActive(true);
-        }
-
-        NPCNameText.text = dialogueText.speakerName;
+		if (paragraphs.Count == 0)
+		{
+			conversationEnded = true;
+		}
 
 
-        for (int i = 0; i < dialogueText.paragraphs.Length; i++)
-        {
-            paragraphs.Enqueue(dialogueText.paragraphs[i]);
-        }
-    }
+	}
 
-    private void EndConversation()
-    {
-        interactable.EndInteraction();
+	private void StartConversation(DialogueText dialogueText)
+	{
 
-        paragraphs.Clear();
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+		}
 
-        conversationEnded = false;
+		NPCNameText.text = dialogueText.speakerName;
 
-        if (gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 
-    private IEnumerator TypeDialogue(string p)
-    {
-        isTyping = true;
+		for (int i = 0; i < dialogueText.paragraphs.Length; i++)
+		{
+			paragraphs.Enqueue(dialogueText.paragraphs[i]);
+		}
+	}
 
-        NPCDialogueText.text = "";
+	private void EndConversation()
+	{
+		interactable.EndInteraction();
 
-        string originalText = p;
-        string displayedText = "";
-        int alphaIndex = 0;
+		paragraphs.Clear();
 
-        foreach (char c in p.ToCharArray())
-        {
-            alphaIndex++;
-            NPCDialogueText.text = originalText;
+		conversationEnded = false;
 
-            displayedText = NPCDialogueText.text.Insert(alphaIndex, HTML_ALPHA);
-            NPCDialogueText.text = displayedText;
+		if (gameObject.activeSelf)
+		{
+			gameObject.SetActive(false);
+		}
+	}
 
-            yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
-        }
+	private IEnumerator TypeDialogue(string p)
+	{
+		isTyping = true;
 
-        isTyping = false;
-    }
+		NPCDialogueText.text = "";
 
-    private void FinishParagraphEarly()
-    {
-        StopCoroutine(typeCoroutine);
+		string originalText = p;
+		string displayedText = "";
+		int alphaIndex = 0;
 
-        NPCDialogueText.text = p;
+		foreach (char c in p.ToCharArray())
+		{
+			alphaIndex++;
+			NPCDialogueText.text = originalText;
 
-        isTyping = false;
-    }
+			displayedText = NPCDialogueText.text.Insert(alphaIndex, HTML_ALPHA);
+			NPCDialogueText.text = displayedText;
+
+			yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
+		}
+
+		isTyping = false;
+	}
+
+	private void FinishParagraphEarly()
+	{
+		StopCoroutine(typeCoroutine);
+
+		NPCDialogueText.text = p;
+
+		isTyping = false;
+	}
 }

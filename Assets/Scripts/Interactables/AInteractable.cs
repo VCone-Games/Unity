@@ -24,12 +24,6 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
         hook = playerGameObject.GetComponent<Hook>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public virtual void Interact()
     {
