@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class testNPC : AInteractable, ITalkable
 {
+
     [SerializeField] private List<DialogueText> dialogueTextList;
     private int currentText = 0;
     [SerializeField] private DialogueController dialogueController;
