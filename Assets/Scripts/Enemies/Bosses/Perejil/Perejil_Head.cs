@@ -66,7 +66,7 @@ public class Perejil_Head : Enemy
 				break;
 			case TStateSummon.GOLD_HOLOGRAM:
 				Debug.Log("Gold");
-				InsantiateHologram(normalHologram, summonPlaces[selPlace]);
+				InsantiateHologram(goldHologram, summonPlaces[selPlace]);
 				break;
 		}
 	}

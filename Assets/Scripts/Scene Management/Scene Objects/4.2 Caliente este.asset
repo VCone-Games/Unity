@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059f3bc5c639fd34c827d28bcfa8d279, type: 3}
+  m_Name: 4.2 Caliente este
+  m_EditorClassIdentifier: 
+  sceneName: 4.2. Cueva Caliente Este
+  EnterPositions:
+  - {x: -23.011396, y: -5.8889537, z: 0}
+  - {x: -22.961395, y: -42.308952, z: 0}
+  - {x: 86.148605, y: 7.371046, z: 0}
+  - {x: -2.621396, y: -37.188953, z: -1.4043031}
+  isFacingRight: 01010000

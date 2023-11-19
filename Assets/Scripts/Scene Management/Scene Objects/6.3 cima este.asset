@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059f3bc5c639fd34c827d28bcfa8d279, type: 3}
+  m_Name: 6.3 cima este
+  m_EditorClassIdentifier: 
+  sceneName: "6.3. Cima de la monta\xF1a este"
+  EnterPositions:
+  - {x: -24.418343, y: -0.7951131, z: 0}
+  - {x: 5.7616587, y: -21.565113, z: 0}
+  isFacingRight: 0101

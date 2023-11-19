@@ -146,6 +146,7 @@ MonoBehaviour:
   isBeingHooked: 0
   unhookTime: 0
   unhookTimer: 0
+  isDead: 0
   playerObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
@@ -202,6 +203,9 @@ MonoBehaviour:
   canTakeDamage: 0
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 0
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
 --- !u!50 &1928654936071644053
 Rigidbody2D:
   serializedVersion: 4
