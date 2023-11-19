@@ -5,7 +5,7 @@ using UnityEngine;
 public class INITIALSPAWNPLAYER : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private Vector3 position;
+    [SerializeField] private Transform spawnPosition;
 
     private GameObject player;
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class INITIALSPAWNPLAYER : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         if (player == null)
         {
-            Instantiate(playerPrefab, position, playerPrefab.transform.rotation);
+            Instantiate(playerPrefab, spawnPosition.position, playerPrefab.transform.rotation);
         }
         player = GameObject.FindWithTag("Player");
         player.GetComponent<HorizontalMovement>().cameraFollow = GameObject.FindGameObjectWithTag("CameraFollow").GetComponent<CameraFollowObject>();

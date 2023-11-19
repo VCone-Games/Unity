@@ -33,7 +33,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 			facingRight = false;
 		}
 
-		Debug.Log("Chase state");
+		//Debug.Log("Chase state");
 	}
 
 	protected override void CheckState()

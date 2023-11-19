@@ -9,7 +9,6 @@ public class Damage : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
 
         HealthManager healthManager;
         if (collision.CompareTag("Player")) healthManager = collision.GetComponent<HealthPlayerManager>();
