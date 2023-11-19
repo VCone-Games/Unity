@@ -37,6 +37,9 @@ public class Dash : MonoBehaviour
     [Header("Animator Variables")]
     [SerializeField] private Animator animator;
 
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
+
     [Header("Camera Shake")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
@@ -72,12 +75,14 @@ public class Dash : MonoBehaviour
             wallGrabComponent.DisableWallGrabInput();
 
             animator.SetBool("Is Dashing", true);
+            
             hasParred = false;
 
             TimeStop.instance.StopTime(0.05f, 20f, 0.3f);
             CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0.5f,0,0));
 
             isDashing = true;
+            soundManager.PlayDash();
             hasDashed = true;
             dashTimer = dashDuration;
             myRigidbody.velocity = Vector2.zero;
