@@ -18,6 +18,6 @@ public class SceneManagerScript : MonoBehaviour
 
 	public void SceneStartGame()
 	{
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("0. Tutorial");
 	}
 }

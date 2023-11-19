@@ -87,15 +87,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause game",
-                    "type": "Button",
-                    "id": "1d73cfe5-df00-407e-b7a1-0c0081aae346",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "8dc494a2-10f3-49c3-8606-69718d50af28",
@@ -295,28 +286,6 @@
                 },
                 {
                     "name": "",
-                    "id": "150caf3f-f852-4753-a5cc-a533e80e5380",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Pause game",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ad77de2-3c4a-409f-95e7-2bdb6f97e0bc",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad;Touch",
-                    "action": "Pause game",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "3e65f62b-4232-48aa-b25a-e3c231c29ba2",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -429,6 +398,15 @@
                     "type": "PassThrough",
                     "id": "d4c56037-ea95-4a7b-94a1-23d3a6ee9394",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause game",
+                    "type": "Button",
+                    "id": "decec0b1-2e59-4e33-ac87-b176a0d0a40d",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -850,6 +828,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37463353-481a-4ba6-be05-74ddc0b22db5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause game",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99d6009a-e252-4a21-9b2e-c1b6b1b4793d",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Touch",
+                    "action": "Pause game",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

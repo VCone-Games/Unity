@@ -20,8 +20,8 @@ public class GameTimer : MonoBehaviour
 			UpdateTimerText(elapsedTime);
 		}
 
-		if (Input.GetKey(KeyCode.G)) Time.timeScale = 0.0f;
-		if (Input.GetKey(KeyCode.H)) Time.timeScale = 1.0f;
+		/*if (Input.GetKey(KeyCode.G)) Time.timeScale = 0.0f;
+		if (Input.GetKey(KeyCode.H)) Time.timeScale = 1.0f;*/
 	}
 
 	// Método para actualizar el texto del temporizador

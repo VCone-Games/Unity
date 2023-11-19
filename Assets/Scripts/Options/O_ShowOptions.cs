@@ -30,7 +30,7 @@ public class O_ShowOptions : MonoBehaviour
         Debug.Log("Pulsado");
         if (mainScene.name == SceneManager.GetActiveScene().name)
         {
-            if (!pauseUI.activeSelf)
+            if (pauseUI.activeSelf)
             {
                 mainUI.SetActive(true);
                 pauseUI.SetActive(false);
