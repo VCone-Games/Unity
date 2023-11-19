@@ -9,9 +9,11 @@ public class HealthUI : MonoBehaviour
 
 	public Action EventAddHeartUI;
 	public Action EventRemoveHeartUI;
+	public Action EventInitialiteUI;
+
 	public EventHandler<int> EventUpdateUI;
 	[Header("External GameObjects")]
-	[SerializeField] private GameObject hearthList;
+	[SerializeField] private Transform hearthList;
 	[SerializeField] private GameObject playerGameObject;
 
 	[Header("Prefab hearts")]
@@ -30,34 +32,37 @@ public class HealthUI : MonoBehaviour
 
 	[Header("Control UI")]
 	[SerializeField] private List<GameObject> AllHearthsGameObject;
-	[SerializeField] private float offSetX;
-	[SerializeField] private float offSetY;
-	[SerializeField] private int maxHearthsPerRow;
+	[SerializeField] private float offSetX = 40;
+	[SerializeField] private float offSetY = 40;
+	[SerializeField] private int maxHearthsPerRow = 10;
 
 	[Header("Control variables")]
 	[SerializeField] private int currentRow;
 	[SerializeField] private int currentColumn;
-	[SerializeField] private GameObject lastHearth;
 
 	void Start()
 	{
-		playerGameObject = GameObject.FindGameObjectWithTag("Player");
-
 		EventAddHeartUI += AddHearth;
 		EventRemoveHeartUI += RemoveHearth;
+		EventInitialiteUI += LateStart;
+	}
+
+	private void LateStart()
+	{
+		playerGameObject = GameObject.FindGameObjectWithTag("Player");
+
 		healthManagerComponent = playerGameObject.GetComponent<HealthPlayerManager>();
 
 		healthManagerComponent.EventUpdateHealthUI += UpdateHealUI;
 
-
+		hearthList = GameObject.FindGameObjectWithTag("Hearth Canvas").transform.GetChild(0);
 		int max_player_health = healthManagerComponent.MaxHealth;
 		Debug.Log(max_player_health);
 		for (int i = 0; i < max_player_health; i++)
 		{
 			Debug.Log("Añadiendo corazón...");
-			GameObject currentHearth = Instantiate(prefab_hearth_full, hearthList.transform);
+			GameObject currentHearth = Instantiate(prefab_hearth_full, hearthList);
 			AllHearthsGameObject.Add(currentHearth);
-			lastHearth = currentHearth;
 			RectTransform currentRectTransform = currentHearth.GetComponent<RectTransform>();
 
 			// Ajustar la posición en el eje X y eje Y basado en filas y columnas

@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HealthPlayerManager : HealthManager
@@ -30,6 +31,8 @@ public class HealthPlayerManager : HealthManager
         dashComponent = GetComponent<Dash>();
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
+
+        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<HealthUI>().EventInitialiteUI.Invoke();
     }
     void Restore()
     {
