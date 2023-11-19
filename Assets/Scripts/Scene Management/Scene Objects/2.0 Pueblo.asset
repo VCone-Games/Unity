@@ -15,6 +15,6 @@ MonoBehaviour:
   sceneName: 2. Pueblo
   EnterPositions:
   - {x: -21.223738, y: 3.5352948, z: 0}
-  - {x: 231.24, y: 4.49, z: 0}
+  - {x: 221.93626, y: 7.2252946, z: 0}
   - {x: 231.24, y: -16.05, z: 0}
   isFacingRight: 010000

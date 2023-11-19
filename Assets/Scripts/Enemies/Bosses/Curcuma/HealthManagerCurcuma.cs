@@ -33,6 +33,6 @@ public class HealthManagerCurcuma : HealthManager
 
 	void FixedUpdate()
 	{
-		if (Input.GetKey(KeyCode.C)) EventDamageTaken(this, new Vector3(4, 0, 0));
+		if (Input.GetKey(KeyCode.F)) EventDamageTaken(this, new Vector3(4, 0, 0));
 	}
 }

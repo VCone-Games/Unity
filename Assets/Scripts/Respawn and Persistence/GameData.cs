@@ -46,5 +46,6 @@ public class GameData
         audioValue = 0;
         timeGame = 0; 
         deathCounts = 0;
+        username = "";
     }
 }
