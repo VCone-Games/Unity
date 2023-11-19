@@ -415,7 +415,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2049221282}
+      - m_Target: {fileID: 1220474870}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -426,6 +426,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2005382664}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &141357469
 MonoBehaviour:
@@ -779,7 +791,7 @@ RectTransform:
   m_Father: {fileID: 1229814743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1825,7 +1837,7 @@ RectTransform:
   m_Father: {fileID: 2022959133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2560,7 +2572,7 @@ RectTransform:
   m_Father: {fileID: 1380715694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5246,7 +5258,7 @@ RectTransform:
   m_Father: {fileID: 107976135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5577,7 +5589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1220474871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7570,7 +7582,7 @@ RectTransform:
   m_Father: {fileID: 455378987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9172,7 +9184,7 @@ RectTransform:
   m_Father: {fileID: 361516105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9843,7 +9855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6019a567889f6e40a83f19ac0f55907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightSlider: {fileID: 0}
+  brightSlider: {fileID: 590482553}
   brightPanel: {fileID: 84840959}
   sliderValue: 0
   maxValue: 0
@@ -9859,8 +9871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647194e275f83f444811876ead6db314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleFullScreen: {fileID: 0}
-  dropdownResolutions: {fileID: 0}
+  toggleFullScreen: {fileID: 246025807}
+  dropdownResolutions: {fileID: 276468036}
   options: []
 --- !u!114 &2026435734
 MonoBehaviour:
@@ -9877,7 +9889,7 @@ MonoBehaviour:
   mainScene: {fileID: 102900000, guid: ad59bb4a261af3a4a9a911b3f7b041c7, type: 3}
   pauseUI: {fileID: 1220474870}
   mainUI: {fileID: 2005382664}
-  pauseReference: {fileID: 0}
+  pauseReference: {fileID: 8623632526280487017, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
 --- !u!114 &2026435735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9890,8 +9902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efcb61f67a386646b72b265b3aae765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
-  toggleMuteAudio: {fileID: 0}
+  volumeSlider: {fileID: 1051352679}
+  toggleMuteAudio: {fileID: 565981501}
   sliderValue: 0
 --- !u!114 &2026435736
 MonoBehaviour:
