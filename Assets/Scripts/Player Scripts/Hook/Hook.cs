@@ -79,7 +79,8 @@ public class Hook : MonoBehaviour
     [Header("Animation Variables")]
     [SerializeField] private Animator animator;
 
-
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
 
 
     void Start()
@@ -141,10 +142,10 @@ public class Hook : MonoBehaviour
     private void OnControllerShoot(InputAction.CallbackContext context)
     {
         if (shootingHook || hookCoolDownTimer > 0) return;
-
+        
         hookCoolDownTimer = hookCooldDown;
         shootingHook = true;
-
+        
         Shoot(shootDirection);
     }
 
@@ -169,22 +170,26 @@ public class Hook : MonoBehaviour
 
         shootDirection = mousePositionInWorld - new Vector2(hookGunPosition.position.x, hookGunPosition.position.y);
 
-
+        
         Shoot(shootDirection);
+        
     }
 
     private void Shoot(Vector2 shootDirection)
     {
-
+        soundManager.PlayHook();
+        Debug.Log("AYUDAA");
         interactComponent.enabled = false;
 
         if (shootDirection.x < 0)
         {
             horizontalMovementComponent.IsFacingRight = false;
+            
         }
         else if (shootDirection.x > 0)
         {
             horizontalMovementComponent.IsFacingRight = true;
+            
         }
 
 

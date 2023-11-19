@@ -62,7 +62,10 @@ public class Parry : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
-     private float hookingRange;
+    [Header("Audio Management")]
+    [SerializeField] private PlayerSoundManager soundManager;
+
+    private float hookingRange;
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +98,7 @@ public class Parry : MonoBehaviour
     private void OnParry(InputAction.CallbackContext context)
     {
         if (!parryReady) return;
-
+        soundManager.PlayParry();
         parryReady = false;
         parryTimer = parryTime;
         shootDirection.Normalize();
