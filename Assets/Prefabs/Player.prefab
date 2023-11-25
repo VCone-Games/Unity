@@ -129,8 +129,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4528275170606725360}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 152.09, y: -145.66, z: 2.1170626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -347,13 +347,14 @@ MonoBehaviour:
   myCollider: {fileID: 5271503091895005485}
   grabWallComponent: {fileID: 870136086859879188}
   jumpForce: 12
-  coyoteTime: 0.15
+  coyoteTime: 0.1
   bufferTime: 0.25
   maxJumps: 2
   bonusAirTimeInterval: 0.5
   raycastFeetLength: 0.1
-  bonusAirTimeGravityScale: 3
+  bonusAirTimeGravityScale: 10
   normalGravityScale: 4
+  descendingImpulse: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -587,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803a452048eec1c44b012a240f6e50f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 99
+  max_health: 1
   current_health: 5
   canTakeDamage: 1
   myAnimator: {fileID: 0}

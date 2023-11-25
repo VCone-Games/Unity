@@ -15,7 +15,7 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         playerGameObject = GameObject.FindWithTag("Player");
         horizontalMovementComponent = playerGameObject.GetComponent<HorizontalMovement>();

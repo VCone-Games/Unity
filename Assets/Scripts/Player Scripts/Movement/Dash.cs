@@ -8,7 +8,9 @@ using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour
 {
-    [Header("Is Disabled")]
+    private bool dashUnlocked;
+
+    [Header("Is Disabled by need")]
     private bool DISABLED;
 
     [Header("Input system")]
@@ -45,8 +47,8 @@ public class Dash : MonoBehaviour
 
 
     public bool HasParred { set { hasParred = value; } }
-    
 
+    public bool DashUnlocked { set { dashUnlocked = value; } }
 
 
     public bool IsDashing
@@ -68,6 +70,7 @@ public class Dash : MonoBehaviour
 
     private void OnDashing(InputAction.CallbackContext context)
     {
+        if(!dashUnlocked) return;
         if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
             interactComponent.enabled = false;
@@ -75,11 +78,11 @@ public class Dash : MonoBehaviour
             wallGrabComponent.DisableWallGrabInput();
 
             animator.SetBool("Is Dashing", true);
-            
+
             hasParred = false;
 
             TimeStop.instance.StopTime(0.05f, 20f, 0.3f);
-            CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0.5f,0,0));
+            CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0.5f, 0, 0));
 
             isDashing = true;
             soundManager.PlayDash();
@@ -97,9 +100,11 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!dashUnlocked) return;
+
         if (DISABLED) return;
 
-        if(coolDownTimer > 0)
+        if (coolDownTimer > 0)
         {
             coolDownTimer -= Time.fixedDeltaTime;
         }
@@ -147,7 +152,7 @@ public class Dash : MonoBehaviour
             Debug.Log("AAAAAAAA ME VENGOOO");
             myRigidbody.velocity = Vector2.zero;
             dashTimer = -1;
-        } 
+        }
     }
 
 
@@ -160,5 +165,11 @@ public class Dash : MonoBehaviour
     {
         dashReference.action.Enable();
         DISABLED = false;
+    }
+
+    private void OnDestroy()
+    {
+
+        dashReference.action.performed -= OnDashing;
     }
 }

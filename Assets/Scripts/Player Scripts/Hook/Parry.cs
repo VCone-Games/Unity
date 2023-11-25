@@ -160,4 +160,9 @@ public class Parry : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        parryReference.action.performed -= OnParry;
+    }
+
 }

@@ -10,8 +10,6 @@ public class SceneChanger : MonoBehaviour
 {
     public static SceneChanger Instance;
 
-    [SerializeField] private GameObject player;
-
 
     private void Awake()
     {
@@ -20,15 +18,22 @@ public class SceneChanger : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void ChangeScene(SceneObject scene, int EnterPoint)
+    public void ChangeSceneByMoving(SceneObject scene, int EnterPoint)
     {
+        GameObject player = GameObject.FindWithTag("Player");
+        PlayerInfo.Instance.CanDoubleJump = true;
+        PlayerInfo.Instance.CanDash = true;
 
-        player = GameObject.FindWithTag("Player");
-        player.transform.position = scene.EnterPositions[EnterPoint];
-        player.GetComponent<HorizontalMovement>().IsFacingRight = scene.isFacingRight[EnterPoint];
+        PlayerInfo.Instance.OnSceneChange(player.GetComponent<HealthPlayerManager>().CurrentHealth, scene.sceneName, scene.EnterPositions[EnterPoint]);
+
         //PANTALLA DE CARGA
         SceneManager.LoadScene(scene.sceneName);
 
+    }
+
+    public void ChangeSceneByDeath()
+    {
+        SceneManager.LoadScene(PlayerInfo.Instance.CheckpointSceneName);
     }
 
 

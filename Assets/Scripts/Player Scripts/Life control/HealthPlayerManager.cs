@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthPlayerManager : HealthManager
 {
@@ -21,7 +22,6 @@ public class HealthPlayerManager : HealthManager
 
     protected override void Start()
     {
-        DontDestroyOnLoad(gameObject);
         base.Start();
         EventHealing += Heal;
         EventDie += Die;
@@ -31,7 +31,7 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
     }
-    void Restore()
+    public void Restore()
     {
         current_health = max_health;
         EventUpdateHealthUI?.Invoke(this, current_health);
@@ -104,5 +104,11 @@ public class HealthPlayerManager : HealthManager
     protected void Die(object sender, EventArgs e)
     {
         myAnimator.SetTrigger("Dead");
+        PlayerInfo.Instance.IsDead = true;
+    }
+
+    protected void EndDieAnimation()
+    {
+        SceneChanger.Instance.ChangeSceneByDeath();
     }
 }

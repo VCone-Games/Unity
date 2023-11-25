@@ -12,6 +12,7 @@ public class RadarInteractable : MonoBehaviour
         if (interactable != null)
         {
             playerInteract.OnInteractableEnter(interactable);
+            Debug.Log("INTERACTABLE CERCA");
         }
     }
 
@@ -22,6 +23,7 @@ public class RadarInteractable : MonoBehaviour
         if (interactable != null)
         {
             playerInteract.OnInteractableExit(interactable);
+            Debug.Log("ADIOS INTERACTABLE");
         }
     }
 }

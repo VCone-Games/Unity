@@ -31,6 +31,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private float raycastFeetLength;
     [SerializeField] private float bonusAirTimeGravityScale;
     [SerializeField] private float normalGravityScale;
+    [SerializeField] private float descendingImpulse;
 
     [Header("Jump layerMask")]
     [SerializeField] private LayerMask groundLayer;
@@ -44,6 +45,8 @@ public class Jump : MonoBehaviour
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
     [SerializeField] private bool asciende;
+
+    private float auxVelY;
 
     [Header("Animator Components")]
     [SerializeField] private Animator animator;
@@ -62,6 +65,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private bool SpartaOnImpact;
 
     public bool HasParred { set { hasParred = value; } }
+    public int MaxJumps { set { maxJumps = value; } }
 
     public bool IsJumping
     {
@@ -95,19 +99,30 @@ public class Jump : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         if (jumping) return;
+        jumping = true;
         jumpInputPressed = true;
 
         bufferTimer = bufferTime;
-
-        jumpCount++;
-
-        if (jumpCount <= maxJumps || hasParred)
+        if (jumpCount == 0)
+            jumpCount++;
+        Debug.Log(jumpCount);
+        if (!IsGrounded)
         {
-            if (!IsGrounded && coyoteTimer > 0f && maxJumps > 1)
+            jumpCount++;
+
+            if (coyoteTimer > 0f)
             {
                 jumpCount--;
                 Debug.Log("COYOTE SALTO");
+                coyoteTimer = -1;
             }
+        }
+
+
+        Debug.Log(jumpCount);
+        if (jumpCount <= maxJumps || hasParred)
+        {
+
             hasParred = false;
             asciende = true;
             animator.SetTrigger("Jump Trigger");
@@ -151,6 +166,13 @@ public class Jump : MonoBehaviour
             CameraManager.Instance.LerpedFromPlayerFalling = false;
             CameraManager.Instance.LerpYDamping(false);
         }
+
+        if (auxVelY >= 0 && myRigidbody.velocity.y < 0)
+        {
+            myRigidbody.velocity += new Vector2(0, -descendingImpulse);
+            Debug.Log("ABAJO ESPAÑA");
+        }
+        auxVelY = myRigidbody.velocity.y;
     }
 
     // Update is called once per frame
@@ -168,7 +190,8 @@ public class Jump : MonoBehaviour
             if (ShakeOnImpact && !SpartaOnImpact)
             {
                 CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.25f, 0));
-            } else if (SpartaOnImpact)
+            }
+            else if (SpartaOnImpact)
             {
                 CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(0, 0.5f, 1.25f));
             }
@@ -191,11 +214,13 @@ public class Jump : MonoBehaviour
         }
 
 
+
         if ((isGrounded || grabWallComponent.IsGrabbingWall) && !asciende)
         {
             asciende = false;
             coyoteTimer = coyoteTime;
             jumpCount = 0; // Reinicia el contador de saltos cuando tocas el suelo.
+            bufferTimer = 0;
         }
         else
         {
@@ -261,4 +286,9 @@ public class Jump : MonoBehaviour
         disableBonusAirTime = false;
     }
 
+    private void OnDestroy()
+    {
+        jumpReference.action.performed -= OnJump;
+        jumpReference.action.canceled -= OnJumpCanceled;
+    }
 }
