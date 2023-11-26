@@ -354,7 +354,7 @@ MonoBehaviour:
   raycastFeetLength: 0.1
   bonusAirTimeGravityScale: 10
   normalGravityScale: 4
-  descendingImpulse: 10
+  descendingImpulse: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

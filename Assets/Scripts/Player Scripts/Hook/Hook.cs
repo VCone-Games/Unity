@@ -178,7 +178,7 @@ public class Hook : MonoBehaviour
 
     private void Shoot(Vector2 shootDirection)
     {
-        Time.timeScale = 0.5f;
+        Time.timeScale = 0.75f;
         soundManager.PlayHook();
         Debug.Log("AYUDAA");
         interactComponent.enabled = false;
