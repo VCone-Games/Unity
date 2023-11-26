@@ -98,7 +98,6 @@ public class Parry : MonoBehaviour
     private void OnParry(InputAction.CallbackContext context)
     {
         if (!parryReady) return;
-        soundManager.PlayParry();
         parryReady = false;
         parryTimer = parryTime;
         shootDirection.Normalize();
@@ -151,13 +150,18 @@ public class Parry : MonoBehaviour
     public void parryEffects(bool facingRight)
     {
         animator.SetTrigger("Parry");
-
+        soundManager.PlayParry();
         horizontalMovementComponent.IsFacingRight = facingRight;
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1,0.2f,0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;
 
+    }
+
+    private void OnDestroy()
+    {
+        parryReference.action.performed -= OnParry;
     }
 
 }

@@ -10,10 +10,8 @@ TagManager:
   - Ground
   - CameraFollow
   - AimRepresentation
-  - Dialogue Box
   - Game Manager
-  - Hearth Canvas
-  - spawn
+  - UI Manager
   layers:
   - Default
   - TransparentFX

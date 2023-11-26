@@ -189,4 +189,10 @@ public class HorizontalMovement : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        movementActionReference.action.performed -= OnPressed;
+        movementActionReference.action.canceled -= OnRelease;
+    }
 }

@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class WallGrab : MonoBehaviour
 {
+    private bool wallGrabUnlocked;
+    public bool WallGrabUnlocked { set { wallGrabUnlocked = value; } }
+
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
 
@@ -61,6 +64,8 @@ public class WallGrab : MonoBehaviour
 
     private void WallJump(InputAction.CallbackContext context)
     {
+        if (!wallGrabUnlocked) return;
+
         if (isGrabbingWall)
         {
             if (rightWall)
@@ -88,6 +93,7 @@ public class WallGrab : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!wallGrabUnlocked) return;
         if (DISABLED) return;
 
         leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
@@ -151,5 +157,10 @@ public class WallGrab : MonoBehaviour
     {
         wallJumpReference.action.Enable();
         DISABLED = false;
+    }
+
+    private void OnDestroy()
+    {
+        wallJumpReference.action.performed -= WallJump;
     }
 }

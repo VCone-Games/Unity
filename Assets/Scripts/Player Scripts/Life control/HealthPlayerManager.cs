@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthPlayerManager : HealthManager
 {
@@ -22,7 +23,6 @@ public class HealthPlayerManager : HealthManager
 
     protected override void Start()
     {
-        DontDestroyOnLoad(gameObject);
         base.Start();
         EventHealing += Heal;
         EventDie += Die;
@@ -32,7 +32,9 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
 
-         GameObject.FindAnyObjectByType<HealthUI>().EventInitialiteUI.Invoke();
+        GameObject ui = GameObject.FindGameObjectWithTag("UI Manager");
+        HealthUI hUI = ui.GetComponent<HealthUI>();
+        hUI.EventInitialiteUI?.Invoke();
     }
     public void Restore()
     {
@@ -106,17 +108,12 @@ public class HealthPlayerManager : HealthManager
 
     protected void Die(object sender, EventArgs e)
     {
-        EndDamaging();
-        GameObject.FindObjectOfType<DataMetricBase>().DeadTimes++;
-
         myAnimator.SetTrigger("Dead");
-
+        PlayerInfo.Instance.IsDead = true;
     }
 
-    public void EndDie()
+    protected void EndDieAnimation()
     {
-        myAnimator.SetTrigger("EndDead");
-        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DataManager>().DeathManager();
-        //GameObject.FindObjectOfType<DeadRespawn>().RespawnPlayer();
+        SceneChanger.Instance.ChangeSceneByDeath();
     }
 }
