@@ -56,7 +56,7 @@ public class EnemyFlyGoldHologram : IAFlyChase
 		IAWorking();
 	}
 
-	protected override void Die(object sender, EventArgs e)
+	protected override void Die()
 	{
 		isDead = true;
 		myAnimator.SetBool("isDeadTimer", true);

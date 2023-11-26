@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Perejil_Head : Enemy, IDataPersistance
+public class Perejil_Head : Enemy
 {
 	[Header("Perejil's body")]
 	[SerializeField] private Perejil_LeftHand _leftHand;
@@ -80,7 +80,6 @@ public class Perejil_Head : Enemy, IDataPersistance
 	protected override void Disappear()
 	{
 		base.Disappear();
-		DataPersistenceManager.instance.SaveGame();
 	}
 
 	public void LoadData(GameData data)
@@ -93,14 +92,9 @@ public class Perejil_Head : Enemy, IDataPersistance
 		}
 	}
 
-	public void SaveData(ref GameData data)
+	protected override void Die()
 	{
-		Debug.Log("Guardando perejil...");
-		if (data.defeatedBosses.ContainsKey("Perejil"))
-		{
-			data.defeatedBosses.Remove("Perejil");
-			//data.defeatedBosses["Perejil"] = isDead;
-		}
-		data.defeatedBosses.Add("Perejil", isDead);
+		base.Die();
+		DataBase.Singleton.OnDeathBoss("Perejil");
 	}
 }

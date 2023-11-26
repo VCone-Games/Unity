@@ -15,9 +15,9 @@ public class PlayerInfo : MonoBehaviour
     private int checkpointID;
 
     //PLAYER POWERS
-    private bool canDoubleJump;
-    private bool canDash;
-    private bool canWallGrab;
+    private bool canDoubleJump = true;
+    private bool canDash = true;
+    private bool canWallGrab = true;
 
     //BETWEEN SCENES VARIABLES
     private int currentHealth;
@@ -46,7 +46,6 @@ public class PlayerInfo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     public void SetCheckpoint(string sceneName, Vector3 checkPointPosition, int checkpointID)

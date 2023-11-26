@@ -10,7 +10,13 @@ public class EnemyGroundedCanon : IAGroundChaseAndPatrol
     public void SpawnBullet()
     {
         GameObject bullet = Instantiate(prefabBullet, spawnAttackPoint.position, Quaternion.identity);
-        bullet.GetComponent<BulletController>().FacingRight = facingRight;
+        bullet.GetComponent<BulletController>().PlayerObject = playerObject;
     }
 
+	protected override void Attack()
+	{
+		base.Attack();
+		Vector3 direction = (playerObject.transform.position - transform.position);
+		facingRight = (direction.x > 0) ? true : false;
+	}
 }

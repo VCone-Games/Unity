@@ -106,9 +106,11 @@ public class HealthPlayerManager : HealthManager
         }
     }
 
-    protected void Die(object sender, EventArgs e)
+    protected void Die()
     {
         myAnimator.SetTrigger("Dead");
+
+        DataBase.Singleton.DeathCount++;
         PlayerInfo.Instance.IsDead = true;
     }
 

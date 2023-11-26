@@ -26,7 +26,7 @@ public abstract class Enemy : MonoBehaviour
 
 
 
-    protected virtual void Die(object sender, EventArgs e)
+    protected virtual void Die()
     {
         isDead = true;
         myAnimator.SetBool("isDead", true);

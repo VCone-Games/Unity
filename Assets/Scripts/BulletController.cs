@@ -8,8 +8,11 @@ public class BulletController : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed;
     [SerializeField] private HealthManager healthManager;
-    private bool facingRightFather;
-    public bool FacingRight { get { return facingRightFather; } set { facingRightFather = value; } }
+    private GameObject playerObject;
+    private Vector3 direction;
+
+    private bool startedMoving = false;
+    public GameObject PlayerObject { get { return playerObject; } set { playerObject = value; } }
 
     private Rigidbody2D myRigidbody2D;
 
@@ -36,13 +39,13 @@ public class BulletController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (facingRightFather)
+        if (!startedMoving)
         {
-            myRigidbody2D.velocity = new Vector2(speed, 0);
-        } else
-        {
-			myRigidbody2D.velocity = new Vector2(-speed, 0);
-		}
+            direction = playerObject.transform.position - transform.position;
+            startedMoving = true;
+        }
+
+        myRigidbody2D.velocity = direction.normalized * speed;
 	}
 
 }

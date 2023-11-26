@@ -119,10 +119,11 @@ public class MovementCurcuma : IAFlyPatrol
 		curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton.position, Quaternion.identity);
 	}
 
-	protected override void Die(object sender, EventArgs e)
+	protected override void Die()
 	{
-		base.Die(sender, e);
-		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(this, null); ;
+		base.Die();
+		DataBase.Singleton.OnDeathBoss("Curcuma");
+		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(); ;
 	}
 
 }

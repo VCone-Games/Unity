@@ -53,9 +53,9 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 		myAnimator.SetBool("isFalling", false);
 	}
 
-	protected override void Die(object sender, EventArgs e)
+	protected override void Die()
 	{
-		base.Die(sender, e);
+		base.Die();
 		myRigidbody2D.velocity = Vector3.zero;
 	}
 }

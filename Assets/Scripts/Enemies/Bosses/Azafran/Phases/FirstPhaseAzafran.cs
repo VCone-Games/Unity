@@ -412,4 +412,10 @@ public class FirstPhaseAzafran : Enemy
 	{
 		Instantiate(prefabStone, spawnAttack.position, Quaternion.identity);
 	}
+
+	protected override void Die()
+	{
+		base.Die();
+		DataBase.Singleton.OnDeathBoss("Azafran");
+	}
 }
