@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _Fog_Size: 4
     m_Colors:
-    - _Fog_Color: {r: 1, g: 1, b: 1, a: 0.0627451}
+    - _Fog_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
     - _Fog_Speed: {r: 0.5, g: 0.57, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7372588352046488999

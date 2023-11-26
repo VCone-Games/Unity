@@ -7,13 +7,11 @@ public class TriggerSceneChange : MonoBehaviour
     [SerializeField] private SceneObject changingScene;
     [SerializeField] private int EnterPosition;
 
-
-   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneChanger.Instance.ChangeScene(changingScene, EnterPosition);
+            SceneChanger.Instance.ChangeSceneByMoving(changingScene, EnterPosition);
         }
     }
 }

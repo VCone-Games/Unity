@@ -95,6 +95,7 @@ public class Hook : MonoBehaviour
 
         aimRepresentation = GameObject.FindWithTag("AimRepresentation");
 
+
         //hookShootControllerReference.action.Disable();
         //hookAimControllerReference.action.Disable();
     }
@@ -177,6 +178,7 @@ public class Hook : MonoBehaviour
 
     private void Shoot(Vector2 shootDirection)
     {
+        Time.timeScale = 0.75f;
         soundManager.PlayHook();
         Debug.Log("AYUDAA");
         interactComponent.enabled = false;
@@ -210,6 +212,8 @@ public class Hook : MonoBehaviour
 
     public void HookDestroyed()
     {
+        Time.timeScale = 1;
+
         shootingHook = false;
 
         animator.SetBool("Hooking", false);
@@ -267,5 +271,14 @@ public class Hook : MonoBehaviour
         hookShootGamepadReference.action.Enable();
         hookShootMouseReference.action.Enable();
 
+    }
+
+    private void OnDestroy()
+    {
+        hookAimMouseReference.action.performed -= OnMouseMovement;
+        hookShootMouseReference.action.performed -= OnMouseShoot;
+
+        hookAimGamepadReference.action.performed -= OnControllerAim;
+        hookShootGamepadReference.action.performed -= OnControllerShoot;
     }
 }

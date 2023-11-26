@@ -62,4 +62,8 @@ public class Interact : MonoBehaviour
         interactable.InInteractionRange(false);
         interactable = null;
     }
+    private void OnDestroy()
+    {
+        interactReference.action.performed -= OnInteract;
+    }
 }

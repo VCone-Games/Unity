@@ -40,7 +40,7 @@ public class HealthUI : MonoBehaviour
 	[SerializeField] private int currentRow;
 	[SerializeField] private int currentColumn;
 
-	void Start()
+	void Awake()
 	{
 		EventAddHeartUI += AddHearth;
 		EventRemoveHeartUI += RemoveHearth;
@@ -55,7 +55,6 @@ public class HealthUI : MonoBehaviour
 
 		healthManagerComponent.EventUpdateHealthUI += UpdateHealUI;
 
-		hearthList = GameObject.FindGameObjectWithTag("Hearth Canvas").transform.GetChild(0);
 		int max_player_health = healthManagerComponent.MaxHealth;
 		Debug.Log(max_player_health);
 		for (int i = 0; i < max_player_health; i++)
@@ -79,6 +78,8 @@ public class HealthUI : MonoBehaviour
 				currentColumn = 0;
 			}
 		}
+
+		EventUpdateUI?.Invoke(this, healthManagerComponent.CurrentHealth);
 	}
 
 	void UpdateHealUI(object sender, int currentHealth)
