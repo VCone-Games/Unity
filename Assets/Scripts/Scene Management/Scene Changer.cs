@@ -20,6 +20,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeSceneByMoving(SceneObject scene, int EnterPoint)
     {
+        Time.timeScale = 1;
         GameObject player = GameObject.FindWithTag("Player");
         PlayerInfo.Instance.CanDoubleJump = true;
         PlayerInfo.Instance.CanDash = true;
@@ -33,6 +34,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeSceneByDeath()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(PlayerInfo.Instance.CheckpointSceneName);
     }
 

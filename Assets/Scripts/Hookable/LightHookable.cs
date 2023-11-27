@@ -21,6 +21,7 @@ public class LightHookable : AHookable
     {
         base.HookingInteraction();
         myRigidbody.velocity = hookingSpeed * vectorToHookGun;
+
     }
 
     public override void Hooked(GameObject hookProjectile, float hookingSpeed)
@@ -29,7 +30,6 @@ public class LightHookable : AHookable
 
         myRigidbody.constraints = RigidbodyConstraints2D.None;
         playerRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-
     }
 
     protected override void Start()

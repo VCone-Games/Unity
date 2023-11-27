@@ -25,6 +25,12 @@ public class Parry : MonoBehaviour
     [Header("AIM REPRESENTATION")]
     [SerializeField] public GameObject aimRepresentation;
     [SerializeField] private Vector3 shootDirection;
+    [SerializeField] private GameObject parryAim1;
+    [SerializeField] private GameObject parryAim2;
+    [SerializeField] private SpriteRenderer parryAimSprite1;
+    [SerializeField] private SpriteRenderer parryAimSprite2;
+
+    private int hookableWeight;
 
     //MOUSE COORDINATES
     [Header("Mouse Coordinates")]
@@ -73,7 +79,6 @@ public class Parry : MonoBehaviour
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
         parryReference.action.performed += OnParry;
-        parryReference.action.Disable();
 
         hookAimMouseReference.action.performed += OnMouseMovement;
         hookAimGamepadReference.action.performed += OnControllerAim;
@@ -81,6 +86,7 @@ public class Parry : MonoBehaviour
         hookingRange = GetComponent<Hook>().hookingRange;
 
         aimRepresentation = GameObject.FindWithTag("AimRepresentation");
+        DisableParry();
     }
 
     private void Update()
@@ -91,6 +97,26 @@ public class Parry : MonoBehaviour
             if (parryTimer < 0)
             {
                 hookableComponent.SetParried(false);
+            }
+        }
+        if(hookedObject != null)
+        {
+            if(hookableWeight == 0)
+            {
+                parryAim1.transform.position = hookedObject.transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim1.transform.right = shootDirection.normalized;
+            }
+            else if(hookableWeight == 1)
+            {
+                parryAim1.transform.position = hookedObject.transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim1.transform.right = shootDirection.normalized;
+                parryAim2.transform.position = transform.position - new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim2.transform.right = -shootDirection.normalized;
+            }
+            else if(hookableWeight == 2)
+            {
+                parryAim1.transform.position = transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim1.transform.right = shootDirection.normalized;
             }
         }
     }
@@ -109,13 +135,33 @@ public class Parry : MonoBehaviour
     {
         hookedObject = hooked;
         hookableComponent = hookedObject.GetComponent<AHookable>();
+        if (hookedObject.GetComponent<LightHookable>() != null)
+        {
+            hookableWeight = 0;
+        }
+        if (hookedObject.GetComponent<MediumHookable>() != null)
+        {
+            parryAimSprite2.enabled = true;
+            hookableWeight = 1;
+        }
+        if (hookedObject.GetComponent<HeavyHookable>() != null)
+        {
+            hookableWeight = 2;
+        }
+        parryAimSprite1.enabled = true;
+        aimRepresentation.GetComponent<SpriteRenderer>().enabled = false;
+
     }
 
     public void DisableParry()
     {
         parryReference.action.Disable();
+        hookedObject = null;
         Disabled = true;
         parryReady = false;
+        parryAimSprite1.enabled = false;
+        parryAimSprite2.enabled = false;
+        aimRepresentation.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void EnableParry()
@@ -129,8 +175,8 @@ public class Parry : MonoBehaviour
     {
         if (Disabled) return;
         controllerAim = context.ReadValue<Vector2>();
-        
-        aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
+
+        //aimRepresentation.GetComponent<Transform>().localPosition = shootDirection.normalized * hookingRange;
         shootDirection = controllerAim;
 
 
@@ -142,8 +188,22 @@ public class Parry : MonoBehaviour
         if (Disabled) return;
         mousePositionInScreen = context.ReadValue<Vector2>();
         mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
-        aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
-        shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
+        // aimRepresentation.GetComponent<Transform>().position = mousePositionInWorld;
+
+
+        switch (hookableWeight)
+        {
+            case 0:
+                shootDirection = mousePositionInWorld - new Vector2(hookedObject.transform.position.x, hookedObject.transform.position.y);
+                break;
+            case 1:
+                shootDirection = mousePositionInWorld - new Vector2(hookedObject.transform.position.x, hookedObject.transform.position.y);   
+                break;
+            case 2:
+                shootDirection = mousePositionInWorld - new Vector2(transform.position.x, transform.position.y);
+                break;
+
+        }
     }
 
 
@@ -151,8 +211,9 @@ public class Parry : MonoBehaviour
     {
         animator.SetTrigger("Parry");
         soundManager.PlayParry();
+        
         horizontalMovementComponent.IsFacingRight = facingRight;
-        CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1,0.2f,0));
+        CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
         jumpComponent.HasParred = true;

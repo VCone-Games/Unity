@@ -12,6 +12,9 @@ TagManager:
   - AimRepresentation
   - Game Manager
   - UI Manager
+  - Parry Aim
+  - Parry Aim 2
+  - Music Manager
   layers:
   - Default
   - TransparentFX

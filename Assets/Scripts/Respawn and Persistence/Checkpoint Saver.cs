@@ -42,6 +42,7 @@ public class CheckpointSaver : AInteractable
     {
         playerObject.GetComponent<PlayerInput>().enabled = false;
         playerObject.GetComponent<SpriteRenderer>().enabled = false;
+        playerObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetTrigger("Spawn");
     }
 
@@ -49,6 +50,7 @@ public class CheckpointSaver : AInteractable
     {
         playerObject.GetComponent<PlayerInput>().enabled = true;
         playerObject.GetComponent<SpriteRenderer>().enabled = true;
+        playerObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         animator.SetBool("Active", true);
         animator.SetTrigger("EndSpawn");
     }

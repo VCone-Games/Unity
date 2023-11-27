@@ -36,6 +36,8 @@ public abstract class AHookable : MonoBehaviour
     [SerializeField] protected Vector3 parryDirection;
     [SerializeField] protected bool timeStopped;
 
+    [SerializeField] public float failedParryTimer;
+
     [Header("Layers")]
     [SerializeField] protected int normalLayer;
     [SerializeField] protected int noPlayerLayer;
@@ -60,13 +62,18 @@ public abstract class AHookable : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-
+        if(failedParryTimer > 0)
+        {
+            parryKnockbackTimer -= Time.fixedDeltaTime;
+        }
 
         if (parryKnockbackTimer > 0)
         {
             parryKnockbackTimer -= Time.fixedDeltaTime;
+            GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch += 0.01f;
             if (parryKnockbackTimer < 0)
             {
+                GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch = 1f;
                 Unhook();
             }
         }
@@ -76,10 +83,10 @@ public abstract class AHookable : MonoBehaviour
         }
     }
 
+
     protected virtual void ParryingAction()
     {
         playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
-
 
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
@@ -91,7 +98,7 @@ public abstract class AHookable : MonoBehaviour
     protected virtual void HookingInteraction()
     {
         vectorToHookGun = hookGun.position - transform.position;
-
+        GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch -= 0.01f;
         if (Physics2D.Distance(myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
         {
             TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance / hookingSpeed + 0.2f);
@@ -117,8 +124,10 @@ public abstract class AHookable : MonoBehaviour
     {
         if (!isHooked) return;
 
+        GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch = 1f;
+
         //if (isParried)
-            gameObject.layer = normalLayer;
+        gameObject.layer = normalLayer;
         isParried = false;
 
         if (hookProjectile != null)

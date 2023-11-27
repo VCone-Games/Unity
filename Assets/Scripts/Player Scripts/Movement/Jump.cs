@@ -39,7 +39,7 @@ public class Jump : MonoBehaviour
     [Header("Control variables")]
     [SerializeField] private bool jumping;
     [SerializeField] private bool isGrounded;
-    [SerializeField] private bool jumpInputPressed;
+    [SerializeField] public bool jumpInputPressed;
     [SerializeField] private float coyoteTimer;
     [SerializeField] private float bufferTimer;
     [SerializeField] private int jumpCount;
