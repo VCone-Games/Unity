@@ -19,8 +19,24 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	public override void Interact()
 	{
 		base.Interact();
-		currentText = ((currentText + 1) < _dialoguesList.Count)? currentText + 1 : currentText;
+		bool startedTalking = myAnimator.GetBool("StartTalk");
+		bool isTalking = myAnimator.GetBool("isTalking");
 
+		if (!startedTalking && !isTalking)
+			myAnimator.SetBool("StartTalk", true);
+		if (isTalking)
+		{
+			currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
+			Talk(_dialoguesList[currentText]);
+		}
+	}
+
+	public void OnAnimation_StartTalk()
+	{
+
+		myAnimator.SetBool("isTalking", true);
+		myAnimator.SetBool("StartTalk", false);
+		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
 		Talk(_dialoguesList[currentText]);
 	}
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class AInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] public GameObject interactionSprite;
+    [SerializeField] protected Animator myAnimator;
 
 	protected GameObject playerGameObject;
 
@@ -18,6 +19,7 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
     protected virtual void Start()
     {
         playerGameObject = GameObject.FindWithTag("Player");
+        myAnimator = GetComponent<Animator>();
         horizontalMovementComponent = playerGameObject.GetComponent<HorizontalMovement>();
         dashComponent = playerGameObject.GetComponent<Dash>();
         jumpComponent = playerGameObject.GetComponent<Jump>();
@@ -37,7 +39,9 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
     public virtual void EndInteraction()
     {
         Debug.Log(" AAAAAA QUE PASASSA");
-        horizontalMovementComponent.EnableMovementInput();
+		myAnimator.SetBool("isTalking", false);
+
+		horizontalMovementComponent.EnableMovementInput();
         dashComponent.EnableDashInput();
         jumpComponent.EnableJumpInput();
         hook.EnableHookInput();
