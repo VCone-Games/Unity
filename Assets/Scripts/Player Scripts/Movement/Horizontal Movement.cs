@@ -18,7 +18,7 @@ public class HorizontalMovement : MonoBehaviour
 
     [Header("Movement params")]
     [SerializeField] private float movementSpeed;
-    [SerializeField] private bool moving;
+    [SerializeField] public bool moving;
     [SerializeField] private float movementDirection;
     [SerializeField] private bool facingRight = true;
 

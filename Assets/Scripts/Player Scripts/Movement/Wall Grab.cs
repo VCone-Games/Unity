@@ -108,17 +108,24 @@ public class WallGrab : MonoBehaviour
             jumpComponent.DisableBonusAirTime();
             isGrabbingWall = true;
 
-            if (leftWall) horizontalMovementReference.IsFacingRight = true;
-            if (rightWall) horizontalMovementReference.IsFacingRight = false;
-
+            if(!jumpComponent.jumpInputPressed || !jumpComponent.IsJumping)
+            {
+                if (leftWall) horizontalMovementReference.IsFacingRight = true;
+                if (rightWall) horizontalMovementReference.IsFacingRight = false;
+            }
         }
-        else
+        else if(isGrabbingWall) 
         {
             myRigidbody.gravityScale = normalGravityScale;
             leftWall = false;
             rightWall = false;
             isGrabbingWall = false;
             jumpComponent.EnableBonusAirTime();
+            if (!jumpWall && !horizontalMovementReference.moving)
+            {
+                horizontalMovementReference.IsFacingRight = !horizontalMovementReference.IsFacingRight;
+            }
+
         }
 
         if (jumpWall && jumpComponent.IsJumping)

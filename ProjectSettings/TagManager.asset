@@ -11,6 +11,9 @@ TagManager:
   - CameraFollow
   - AimRepresentation
   - Game Manager
+  - Parry Aim
+  - Parry Aim 2
+  - Music Manager
   layers:
   - Default
   - TransparentFX
