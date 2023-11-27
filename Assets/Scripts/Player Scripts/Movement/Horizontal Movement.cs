@@ -54,7 +54,6 @@ public class HorizontalMovement : MonoBehaviour
         set { facingRight = value; }
     }
 
-
     void Start()
     {
         movementActionReference.action.performed += OnPressed;
