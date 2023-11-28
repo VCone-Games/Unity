@@ -26,17 +26,14 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 			myAnimator.SetBool("StartTalk", true);
 		if (isTalking)
 		{
-			currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
 			Talk(_dialoguesList[currentText]);
 		}
 	}
 
 	public void OnAnimation_StartTalk()
 	{
-
 		myAnimator.SetBool("isTalking", true);
 		myAnimator.SetBool("StartTalk", false);
-		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
 		Talk(_dialoguesList[currentText]);
 	}
 
@@ -48,5 +45,7 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	public override void EndInteraction()
 	{
 		base.EndInteraction();
+		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
+
 	}
 }

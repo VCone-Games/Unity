@@ -29,7 +29,7 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 
     public virtual void Interact()
     {
-        Debug.Log("INTERACTUANDO");
+        //Debug.Log("INTERACTUANDO");
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         jumpComponent.DisableJumpInput();
@@ -38,7 +38,7 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 
     public virtual void EndInteraction()
     {
-        Debug.Log(" AAAAAA QUE PASASSA");
+        //Debug.Log(" AAAAAA QUE PASASSA");
 		myAnimator.SetBool("isTalking", false);
 
 		horizontalMovementComponent.EnableMovementInput();

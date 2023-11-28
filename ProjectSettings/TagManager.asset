@@ -15,6 +15,7 @@ TagManager:
   - Parry Aim
   - Parry Aim 2
   - Music Manager
+  - Dialogue Box
   layers:
   - Default
   - TransparentFX

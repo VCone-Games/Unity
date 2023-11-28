@@ -46,7 +46,7 @@ public class DataBase : MonoBehaviour
 		int segundos = Mathf.FloorToInt(timerGame % 60);
 
 		// Muestra el tiempo transcurrido en la consola
-		Debug.Log("Tiempo transcurrido: " + minutos.ToString("00") + ":" + segundos.ToString("00"));
+		//Debug.Log("Tiempo transcurrido: " + minutos.ToString("00") + ":" + segundos.ToString("00"));
 	}
 
     public void OnDeathBoss(string nameBoss)

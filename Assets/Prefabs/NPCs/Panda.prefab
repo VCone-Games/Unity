@@ -203,8 +203,8 @@ GameObject:
   - component: {fileID: 5722430691750067255}
   - component: {fileID: 8273274533433012678}
   - component: {fileID: 2357721759876100310}
-  - component: {fileID: 2207789508674975631}
   - component: {fileID: 4163261531914174112}
+  - component: {fileID: 5357016358177899842}
   m_Layer: 0
   m_Name: Panda
   m_TagString: Untagged
@@ -220,10 +220,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773698558029401904}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.01, y: 47.4, z: -0.649435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8082504809486471083}
   m_Father: {fileID: 0}
@@ -342,21 +342,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2207789508674975631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6773698558029401904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec8a8afe303bf1a42bc4d30de24cc60d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionSprite: {fileID: 5024107232573124353}
-  _dialoguesList: []
-  dialogueController: {fileID: 0}
 --- !u!95 &4163261531914174112
 Animator:
   serializedVersion: 5
@@ -378,3 +363,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5357016358177899842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6773698558029401904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bac8802a6ff62748a81740febe227d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSprite: {fileID: 5024107232573124353}
+  myAnimator: {fileID: 0}
+  currentText: 0
+  _dialogueBase:
+  - {fileID: 11400000, guid: bc0a08324f75e664c869eccc62e23cc8, type: 2}
+  - {fileID: 11400000, guid: 485378c5a642e2047a116bb239e2ba81, type: 2}
+  _dialogueFirstBoss:
+  - {fileID: 11400000, guid: d9ebe68853f6c34409962ce1da2775d7, type: 2}
+  - {fileID: 11400000, guid: 27699e45052a91742960626ee6064fe8, type: 2}
+  _dialogueSecondBoss:
+  - {fileID: 11400000, guid: 683fda3f05a04f2488e20dfbfe639eaa, type: 2}
+  - {fileID: 11400000, guid: c4169cebe88b25546823a43f96f620ff, type: 2}
+  _dialoguesList: []
+  dialogueController: {fileID: 0}
+  _CanDialogueBase: 1
+  _CanDialogueFirstBoss: 0
+  _CanDialogueSecondBoss: 0
+  _DialogueBaseAssing: 1
+  _DialogueFirstAssing: 1
+  _DialogueSecondAssing: 1
+  _firstBossDefeated: 0
+  _secondBossDefeated: 0
