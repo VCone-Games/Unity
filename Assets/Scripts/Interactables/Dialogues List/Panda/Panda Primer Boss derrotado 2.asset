@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Panda Primer Boss derrotado 2
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: b491e6a32402d8d489bac79efc6d5b99, type: 3}
   speakerName: Panda
   paragraphs:
   - "Todos sois iguales, ni\xF1os gritones."

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Pletorat Fabrica 2-1
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 71fc26666272ed04f8e1737539e85da6, type: 3}
   speakerName: Pletorat
   paragraphs:
   - "\xBFQu\xE9 c\xF3mo he llegado aqu\xED? Por la puerta, claro est\xE1, jojojo..."

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Yers Mina profunda 1
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 25abf760a8af3e8478fdeaa5d3ee1a18, type: 3}
   speakerName: Yers
   paragraphs:
   - "El doctor cree que este sitio es importante, no s\xE9 bien por qu\xE9, pero

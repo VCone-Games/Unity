@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: Ajo Cueva 2
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: ca1b65a929fea654f89ed048ee004b93, type: 3}
   speakerName: Ajo
   paragraphs:
   - "\u201CAdi\xF3s les decimos al hogar y a la sala, lejos, por el bosque y la monta\xF1a

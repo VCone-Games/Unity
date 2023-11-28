@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "T\xE9 Cima 1"
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 942f0865748a92d4eb5ef583391001e7, type: 3}
   speakerName: "T\xE9"
   paragraphs:
   - "Peque\xF1o, \xBFhas visto a Caf\xE9?"

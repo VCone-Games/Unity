@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "Caf\xE9 Cueva caliente 1"
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2ae995c0ed62c50479616bb3eaffe71b, type: 3}
   speakerName: "Caf\xE9"
   paragraphs:
   - "\xA1Oh! Vaya, vaya\u2026 Mira por d\xF3nde... "

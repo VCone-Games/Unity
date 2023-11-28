@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06753597f348744191eee4575f1293e, type: 3}
   m_Name: "Jengibre Azafr\xE1n derrotado 1"
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8168f9478b2cd99449f03c4be0cff4d1, type: 3}
   speakerName: Jengibre
   paragraphs:
   - "Lo siento en la tierra, la calma profunda\u2026 Azafr\xE1n ha sido apaciguado,

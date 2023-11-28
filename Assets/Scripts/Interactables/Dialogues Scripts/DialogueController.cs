@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI NPCNameText;
 	[SerializeField] private TextMeshProUGUI NPCDialogueText;
+	[SerializeField] private RawImage NPCIconImage;
 	[SerializeField] private float typeSpeed;
 
 	private IInteractable interactable;
@@ -71,7 +73,7 @@ public class DialogueController : MonoBehaviour
 		}
 
 		NPCNameText.text = dialogueText.speakerName;
-
+		NPCIconImage.texture = dialogueText.icon.texture;
 
 		for (int i = 0; i < dialogueText.paragraphs.Length; i++)
 		{
