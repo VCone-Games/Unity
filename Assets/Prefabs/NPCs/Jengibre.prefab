@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 5526884394948871533}
   - component: {fileID: 1314782723928636419}
   - component: {fileID: 5822534417002435594}
-  - component: {fileID: 2443082358986067782}
   - component: {fileID: 1941486374895879682}
+  - component: {fileID: 7350598909648915491}
   m_Layer: 0
   m_Name: Jengibre
   m_TagString: Untagged
@@ -235,22 +235,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2443082358986067782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3547858977912429355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec8a8afe303bf1a42bc4d30de24cc60d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionSprite: {fileID: 5910791630882874834}
-  myAnimator: {fileID: 0}
-  _dialoguesList: []
-  dialogueController: {fileID: 0}
 --- !u!95 &1941486374895879682
 Animator:
   serializedVersion: 5
@@ -272,6 +256,47 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7350598909648915491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547858977912429355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a27a6dae9a57d646b691a19b7237b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSprite: {fileID: 5910791630882874834}
+  myAnimator: {fileID: 0}
+  currentText: 0
+  _dialogueBase:
+  - {fileID: 11400000, guid: dc4d517c31fb07c47819a32bb64d6418, type: 2}
+  - {fileID: 11400000, guid: df8795a46e191b045a1c4417deb6e9da, type: 2}
+  _dialogueAzafran:
+  - {fileID: 11400000, guid: e3a22af3238ca3b408ee2afcfbd6e964, type: 2}
+  - {fileID: 11400000, guid: 58d2b669da10899468c98c060ed4a098, type: 2}
+  _dialogueCurcuma:
+  - {fileID: 11400000, guid: 884fc56c9a2719f49a8141ed313cf6dd, type: 2}
+  - {fileID: 11400000, guid: 58d2b669da10899468c98c060ed4a098, type: 2}
+  _dialogueBothBosses:
+  - {fileID: 11400000, guid: 5a4732b5849f2884f80cd79d40abed75, type: 2}
+  _dialoguesList: []
+  dialogueController: {fileID: 0}
+  _CanDialogueBase: 1
+  _CanDialogueCurcumaBoss: 0
+  _CanDialogueAzafranBoss: 0
+  _CanDialogueBothBoss: 0
+  _DialogueBaseAssing: 1
+  _DialogueCurcumaAssing: 1
+  _DialogueAzafranAssing: 1
+  _DialogueBothAssing: 1
+  _AzafranReached: 0
+  _CurcumaReached: 0
+  _CurcumaDefeated: 0
+  _AzafranDefeated: 0
+  _BothDefeated: 0
 --- !u!1 &5910791630882874834
 GameObject:
   m_ObjectHideFlags: 0
