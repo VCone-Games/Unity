@@ -41,7 +41,6 @@ public class PlayerSoundManager : MonoBehaviour
     private void Start()
     {
         //Debug.Log(materialInicial);
-        SetGroundMaterial(materialInicial);
         //Debug.Log(currentMaterialId);
     }
     public void PlayFootsteps()

@@ -18,8 +18,8 @@ public class PhaseManagerAzafran : MonoBehaviour
     [SerializeField] private HealthManagerAzafran healthManager;
     [SerializeField] private Animator myAnimator;
 
-    [Header("Audio Management")]
-    [SerializeField] private MusicManager musicManager;
+   // [Header("Audio Management")]
+   // [SerializeField] private MusicManager musicManager;
 
     private Rigidbody2D myRigidbody2D;
 	[SerializeField] private bool firstPhaseEnded = false;
@@ -36,7 +36,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 		
 		myRigidbody2D = GetComponent<Rigidbody2D>();
 		myAnimator = GetComponent<Animator>();
-		musicManager.PlayFirst();
+		//musicManager.PlayFirst();
     }
 
 	void ActivateSecondPhase()

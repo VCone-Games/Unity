@@ -18,3 +18,4 @@ MonoBehaviour:
   - {x: 141.23277, y: 36.807377, z: 0}
   - {x: 53.062767, y: 55.717377, z: 0}
   isFacingRight: 010001
+  zone: 3
