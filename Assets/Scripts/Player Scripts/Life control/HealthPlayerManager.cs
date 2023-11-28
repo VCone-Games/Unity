@@ -110,7 +110,7 @@ public class HealthPlayerManager : HealthManager
     {
         myAnimator.SetTrigger("Dead");
 
-        DataBase.Singleton.DeathCount++;
+        //DataBase.Singleton.DeathCount++;
         PlayerInfo.Instance.IsDead = true;
     }
 
