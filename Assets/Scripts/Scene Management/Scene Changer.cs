@@ -42,7 +42,7 @@ public class SceneChanger : MonoBehaviour
     public void ChangeSceneByDeath()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(PlayerInfo.Instance.CheckpointSceneName);
+        Instance.StartCoroutine(FadeOutThenChangeScene(PlayerInfo.Instance.CheckpointSceneName));
     }
 
     private IEnumerator FadeOutThenChangeScene(string sceneName)
@@ -61,29 +61,35 @@ public class SceneChanger : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        Debug.Log("cargando escena");
         GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<Jump>().DisableBonusAirTime();
         player.GetComponent<Hook>().DisableHookInput();
         player.GetComponent<HorizontalMovement>().DisableMovementInput();
         player.GetComponent<Dash>().DisableDashInput();
         player.GetComponent<Jump>().DisableJumpInput();
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
 
         Instance.StartCoroutine(FadeInAndGainControl());
     }
 
     private IEnumerator FadeInAndGainControl()
     {
-        yield return new WaitForSeconds(0.75f);
-        Debug.Log("FADE IN");
+        GameObject player = GameObject.FindWithTag("Player");
+        yield return new WaitForSeconds(0.55f);
+
         FadeInOut.instance.StartFadeIn();
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        yield return new WaitForSeconds(0.2f);
+
 
         while (FadeInOut.instance.IsFadingIn)
         {
             yield return null;
         }
 
-        Debug.Log("CONTROLAS");
-        GameObject player = GameObject.FindWithTag("Player");
+
+
+        Debug.Log(player.GetComponent<Rigidbody2D>().gravityScale + SceneManager.GetActiveScene().name);
         player.GetComponent<Hook>().EnableHookInput();
         player.GetComponent<HorizontalMovement>().EnableMovementInput();
         player.GetComponent<Dash>().EnableDashInput();

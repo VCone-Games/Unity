@@ -37,6 +37,8 @@ public class FadeInOut : MonoBehaviour
             }
             else
             {
+                fadeColor.a = 1 ;
+                fadeImage.color = fadeColor;
                 IsFadingOut = false;
             }
         }
@@ -50,6 +52,8 @@ public class FadeInOut : MonoBehaviour
             }
             else
             {
+                fadeColor.a = 0;
+                fadeImage.color = fadeColor;
                 IsFadingIn = false;
             }
         }
