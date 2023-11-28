@@ -25,6 +25,7 @@ public class CameraControlTrigger : MonoBehaviour
     private void Start()
     {
         coll = GetComponent<Collider2D>();
+       folloObjectScript =  GameObject.FindWithTag("CameraFollow").GetComponent<CameraFollowObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

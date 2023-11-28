@@ -170,7 +170,7 @@ public class Jump : MonoBehaviour
         if (auxVelY >= 0 && myRigidbody.velocity.y < 0)
         {
             myRigidbody.velocity += new Vector2(0, -descendingImpulse);
-            Debug.Log("ABAJO ESPAÑA");
+            //Debug.Log("ABAJO ESPAÑA");
         }
         auxVelY = myRigidbody.velocity.y;
     }

@@ -70,10 +70,8 @@ public abstract class AHookable : MonoBehaviour
         if (parryKnockbackTimer > 0)
         {
             parryKnockbackTimer -= Time.fixedDeltaTime;
-            GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch += 0.01f;
             if (parryKnockbackTimer < 0)
             {
-                GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch = 1f;
                 Unhook();
             }
         }
@@ -98,7 +96,6 @@ public abstract class AHookable : MonoBehaviour
     protected virtual void HookingInteraction()
     {
         vectorToHookGun = hookGun.position - transform.position;
-        GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch -= 0.01f;
         if (Physics2D.Distance(myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
         {
             TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance / hookingSpeed + 0.2f);
@@ -124,7 +121,6 @@ public abstract class AHookable : MonoBehaviour
     {
         if (!isHooked) return;
 
-        GameObject.FindWithTag("Music Manager").GetComponent<AudioSource>().pitch = 1f;
 
         //if (isParried)
         gameObject.layer = normalLayer;
