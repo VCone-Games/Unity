@@ -33,8 +33,8 @@ public class HealthPlayerManager : HealthManager
         hook = GetComponent<Hook>();
 
         GameObject ui = GameObject.FindGameObjectWithTag("UI Manager");
-        HealthUI hUI = ui.GetComponent<HealthUI>();
-        hUI.EventInitialiteUI?.Invoke();
+       // HealthUI hUI = ui.GetComponent<HealthUI>();
+       // hUI.EventInitialiteUI?.Invoke();
     }
     public void Restore()
     {
