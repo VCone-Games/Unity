@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: whiteBoxingTexture
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 1ff9d4d34d936c2448b2c56c0ca45ad9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_Transform:
     e00: 1
     e01: 0

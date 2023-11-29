@@ -68,24 +68,6 @@ public class SceneChanger : MonoBehaviour
             MusicManager.Instance.ChangeMusic(zoneId);
         }
 
-        switch (zoneId)
-        {
-            case 0: 
-                MusicManager.Instance.ChangeFootstepsClip(0);
-                break;
-            case 1:
-                MusicManager.Instance.ChangeFootstepsClip(2);
-                break;
-            case 3:
-            case 4:
-            case 5:
-                MusicManager.Instance.ChangeFootstepsClip(3);
-                break;
-            case 6:
-                MusicManager.Instance.ChangeFootstepsClip(1);
-                break;
-
-        }
 
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<Jump>().DisableBonusAirTime();

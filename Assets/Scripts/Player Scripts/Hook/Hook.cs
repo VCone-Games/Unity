@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 
 public class Hook : MonoBehaviour
@@ -32,6 +33,7 @@ public class Hook : MonoBehaviour
     //AIM REPRESENTATION
     [Header("AIM REPRESENTATION")]
     [SerializeField] public GameObject aimRepresentation;
+    private bool mouseOrGamepad;
 
     //MOUSE COORDINATES
     [Header("Mouse Coordinates")]
@@ -102,7 +104,16 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
-
+        if (!mouseOrGamepad)
+        {
+            mousePositionInScreen = Input.mousePosition;
+            mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
+            aimRepresentation.GetComponent<Transform>().position = new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, aimRepresentation.GetComponent<Transform>().position.z);
+        }
+        else
+        {
+            aimRepresentation.GetComponent<Transform>().localPosition = new Vector3((shootDirection.normalized * hookingRange).x, (shootDirection.normalized * hookingRange).y, 10);
+        }
     }
     void FixedUpdate()
     {
@@ -131,7 +142,7 @@ public class Hook : MonoBehaviour
         controllerAim = context.ReadValue<Vector2>();
         //controllerAim = new Vector2((float)Math.Round(controllerAim.x, 2), (float)Math.Round(controllerAim.y, 2));
 
-
+        mouseOrGamepad = true;
         shootDirection = controllerAim;
         Vector2 position = shootDirection.normalized * hookingRange;
         aimRepresentation.GetComponent<Transform>().localPosition = new Vector3(position.x, position.y, 10);
@@ -154,9 +165,8 @@ public class Hook : MonoBehaviour
     {
         if (!disableAim)
         {
-            mousePositionInScreen = Input.mousePosition;
-            mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
-            aimRepresentation.GetComponent<Transform>().position = new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, aimRepresentation.GetComponent<Transform>().position.z);
+            mouseOrGamepad = false;
+            
         }
     }
 
