@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 {
 
-    [SerializeField] protected float chaseTimer;
+	[SerializeField] protected float chaseTime;
+	[SerializeField] protected float lostTime;
 	protected enum TState { PATROL, CHASE, ATTACK }
 	[Header("State params")]
 	[SerializeField] protected TState tState;
@@ -13,9 +14,10 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	[SerializeField] protected float attackRange;
 
 	[Header("Control ground IA chase")]
-    [SerializeField] protected float chaseTime;
+    
     [SerializeField] protected bool isPlayerInSight;
-
+	[SerializeField] protected float chaseTimer;
+	[SerializeField] protected float lostTimer;
 	protected void Chase()
 	{
 		// Persigue al jugador
@@ -33,31 +35,57 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 			facingRight = false;
 		}
 
-		Debug.Log("Chase state");
+		//Debug.Log("Chase state");
 	}
 
 	protected override void CheckState()
 	{
-		isPlayerInSight = Physics2D.Raycast(myCollider2D.bounds.center, Vector2.left, myCollider2D.bounds.extents.y + visionRange, playerLayer) ||
-			Physics2D.Raycast(myCollider2D.bounds.center, Vector2.right, myCollider2D.bounds.extents.y + visionRange, playerLayer);
-		if (myAnimator.GetBool("isAttacking")) return;
-
-		if (isPlayerInSight)
+		if (lostTimer > 0.0f)
 		{
-			chaseTimer = chaseTime;
+			lostTimer -= Time.deltaTime;
+			return;
 		}
-		if (Vector3.Distance(transform.position, playerObject.transform.position) <= attackRange)
+		// Cacheo de variables
+		bool isAttacking = myAnimator.GetBool("isAttacking");
+		Vector3 playerPosition = playerObject.transform.position;
+
+		// Determinar la dirección del raycast basado en la posición relativa del jugador
+		Vector2 raycastDirection = (playerPosition.x < transform.position.x) ? Vector2.left : Vector2.right;
+
+		// Raycast para detectar al jugador
+		isPlayerInSight = Physics2D.Raycast(myCollider2D.bounds.center, raycastDirection,
+							myCollider2D.bounds.extents.y + visionRange, playerLayer);
+
+
+		// Si está atacando, salir temprano del método
+		if (isAttacking || !canAttack) return;
+
+		if (isPlayerInSight) chaseTimer = chaseTime;
+		// Calcula la distancia al cuadrado para optimizar
+		float distanceToPlayerSquared = (playerPosition - transform.position).magnitude;
+
+		if (distanceToPlayerSquared <= attackRange)
 		{
-			if (!canAttack) return;
+			// Si el jugador está dentro del rango de ataque, cambiar al estado de ataque
 			tState = TState.ATTACK;
 		}
 		else if (isPlayerInSight || chaseTimer > 0.0f)
 		{
+			// Si el jugador está en la vista o se está persiguiendo, cambiar al estado de persecución
 			tState = TState.CHASE;
 		}
 		else
 		{
+			// Si no, volver al estado de patrulla
 			tState = TState.PATROL;
+		}
+		
+		// Evitar cambiar a PATROL si no hay edgeDetector y está en estado CHASE
+		if (!edgeDetector && tState == TState.CHASE)
+		{
+			tState = TState.PATROL;
+			lostTimer = lostTime;
+			chaseTimer = 0.0f;
 		}
 	}
 	public override void StopAttack()
@@ -72,6 +100,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 		base.FixedUpdate();
         if (isBeingHooked || isDead) return;
 
+		
         switch (tState)
 		{
 			case TState.PATROL:

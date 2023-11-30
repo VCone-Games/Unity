@@ -15,9 +15,4 @@ public class SceneManagerScript : MonoBehaviour
 		}
 		DontDestroyOnLoad(gameObject);
 	}
-
-	public void SceneStartGame()
-	{
-		SceneManager.LoadScene("0. Tutorial");
-	}
 }

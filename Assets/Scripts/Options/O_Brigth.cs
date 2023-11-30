@@ -9,22 +9,20 @@ public class O_Brigth : MonoBehaviour
 	[SerializeField] private Slider brightSlider;
 	[SerializeField] private Image brightPanel;
 
-	[Header("Control variables")]
-	[SerializeField] private float sliderValue;
-	[SerializeField] private float maxValue;
+	public float sliderValue;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		maxValue = brightSlider.maxValue;
-		brightSlider.value = PlayerPrefs.GetFloat("Bright");
+		sliderValue = PlayerPrefs.GetFloat("Bright", 0.5f);
 		brightPanel.color = new Color(brightPanel.color.r, brightPanel.color.g, brightPanel.color.b, brightSlider.value);
 	}
 
-	public void ChangeSlider(float value)
+	public void ChangeSlider(float valor)
 	{
-		sliderValue = (maxValue - value);
+		sliderValue = valor;
 		PlayerPrefs.SetFloat("Bright", sliderValue);
-		brightPanel.color = new Color(brightPanel.color.r, brightPanel.color.g, brightPanel.color.b, sliderValue);
+		brightPanel.color = new Color(brightPanel.color.r, brightPanel.color.g, brightPanel.color.b, brightSlider.value);
+		//Debug.Log("Transparencia: " + brightPanel.color);
 	}
 }

@@ -9,12 +9,8 @@ using UnityEngine.UI;
 
 public class O_ShowOptions : MonoBehaviour
 {
-    [Header("Scenes")]
-    [SerializeField] private SceneAsset mainScene;
-
     [Header("UI Component")]
     [SerializeField] GameObject pauseUI;
-    [SerializeField] GameObject mainUI;
 
     [Header("Input action")]
     [SerializeField] InputActionReference pauseReference;
@@ -27,44 +23,23 @@ public class O_ShowOptions : MonoBehaviour
 
 	private void OnPressed(InputAction.CallbackContext context)
 	{
-        Debug.Log("Pulsado");
-        if (mainScene.name == SceneManager.GetActiveScene().name)
-        {
-            if (pauseUI.activeSelf)
-            {
-                mainUI.SetActive(true);
-                pauseUI.SetActive(false);
-            }
-            return;
-        }
-
-        if (pauseUI.activeSelf)
-        {
-            //Si esta activada, la desactiva
-            Time.timeScale = 1.0f;
-            pauseUI.SetActive(false);
-        }
-        else
-        {
-			//Si esta desactivada, la activa
-			Time.timeScale = 0.0f;
-            pauseUI.SetActive(true);
-        }
+		ShowMenu();
 	}
 
-    public void OnButtonPressed()
+    public void ShowMenu()
     {
-        if (mainScene.name == SceneManager.GetActiveScene().name)
-        {
-            //Estamos en la escena del men�, la primera, antes de empezar partida
-            mainUI.SetActive(true);
-            pauseUI.SetActive(false);
-        } else
-        {
-            //Estamos jugando (no en la escena principal)
+		if (pauseUI.activeSelf)
+		{
+			//Si esta activada, la desactiva
 			Time.timeScale = 1.0f;
 			pauseUI.SetActive(false);
-        }
-    }
+		}
+		else
+		{
+			//Si esta desactivada, la activa
+			Time.timeScale = 0.0f;
+			pauseUI.SetActive(true);
+		}
+	}
 
 }

@@ -14,6 +14,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -63,13 +64,14 @@ public class SceneChanger : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if(MusicManager.Instance.actualClip != zoneId)
+        /*if(MusicManager.Instance.actualClip != zoneId)
         {
             MusicManager.Instance.ChangeMusic(zoneId);
-        }
+        }*/
 
 
         GameObject player = GameObject.FindWithTag("Player");
+        if (player == null) return;
         player.GetComponent<Jump>().DisableBonusAirTime();
         player.GetComponent<Hook>().DisableHookInput();
         player.GetComponent<HorizontalMovement>().DisableMovementInput();

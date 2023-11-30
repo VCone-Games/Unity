@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JengibreDialogueNPC : AInteractable, ITalkable
+public class JengibreDialogueNPC : BaseDialogueNPC
 {
-	[SerializeField] private int currentText = 0;
 	[SerializeField] private List<DialogueText> _dialogueBase;
 	[SerializeField] private List<DialogueText> _dialogueAzafran;
 	[SerializeField] private List<DialogueText> _dialogueCurcuma;
 	[SerializeField] private List<DialogueText> _dialogueBothBosses;
-
-	[SerializeField] List<DialogueText> _dialoguesList;
-	[SerializeField] private DialogueController dialogueController;
 
 	[Header("Test bools")]
 	[SerializeField] bool _CanDialogueBase = true;
@@ -31,29 +27,7 @@ public class JengibreDialogueNPC : AInteractable, ITalkable
 	[SerializeField] bool _AzafranDefeated;
 	[SerializeField] bool _BothDefeated;
 
-	protected override void Start()
-	{
-		base.Start();
-		dialogueController = GameObject.FindGameObjectWithTag("Dialogue Box").
-			GetComponent<DialogueController>();
-	}
-	public override void Interact()
-	{
-		base.Interact();
-		bool startedTalking = myAnimator.GetBool("StartTalk");
-		bool isTalking = myAnimator.GetBool("isTalking");
-
-
-		if (!startedTalking && !isTalking)
-			myAnimator.SetBool("StartTalk", true);
-		if (isTalking)
-		{
-			Talk(_dialoguesList[currentText]);
-		}
-	}
-
-
-	public void OnAnimation_StartTalk()
+	protected override void OnAnimation_StartTalk()
 	{
 
 		myAnimator.SetBool("isTalking", true);
@@ -95,18 +69,10 @@ public class JengibreDialogueNPC : AInteractable, ITalkable
 
 	}
 
-	public void Talk(DialogueText dialogueText)
-	{
-		dialogueController.DisplayNexParagraph(dialogueText, this);
-	}
-
 	public override void EndInteraction()
 	{
-		Debug.Log("TERMINANDO INTERACCION      *");
-		base.EndInteraction();
-
 		CheckEndDialogue();
-		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
+		base.EndInteraction();
 	}
 
 	private void CheckEndDialogue()

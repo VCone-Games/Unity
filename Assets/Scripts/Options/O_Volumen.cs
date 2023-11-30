@@ -9,22 +9,20 @@ public class O_Volumen : MonoBehaviour
 	[SerializeField] private Slider volumeSlider;
 	[SerializeField] private Toggle toggleMuteAudio;
 
-	[Header("Control variables")]
-	[SerializeField] private float sliderValue;
-
+	[Header("Global volumen")]
+	[SerializeField] private AudioSource audioSource;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		volumeSlider.value = PlayerPrefs.GetFloat("volumeAudio");
-		AudioListener.volume = volumeSlider.value;
+		audioSource.volume = volumeSlider.value;
 	}
 
-	public void ChangeSlider(float value)
+	public void ChangeSlider()
 	{
-		sliderValue = value;
-		PlayerPrefs.SetFloat("volumeAudio", sliderValue);
-		AudioListener.volume = volumeSlider.value;
+		PlayerPrefs.SetFloat("volumeAudio", volumeSlider.value);
+		audioSource.volume = volumeSlider.value;
 	}
 	
 	public void OnTogglePressed(bool pressed)
@@ -33,12 +31,13 @@ public class O_Volumen : MonoBehaviour
 		{
 			// Se silencia el sonido en el juego
 			AudioListener.volume = 0;
+			
 		}
-		else
+		else if (!pressed)
 		{
 			// Se vuelve ha activar el sonido
-			AudioListener.volume = 1;
-
+			audioSource.volume = volumeSlider.value;
+			
 		}
 
 	}
