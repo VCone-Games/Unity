@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 {
 
-	[SerializeField] protected float chaseTime;
-	[SerializeField] protected float lostTime;
+	[SerializeField] protected float chaseTime = 3.0f;
+	[SerializeField] protected float lostTime = 0.5f;
 	protected enum TState { PATROL, CHASE, ATTACK }
 	[Header("State params")]
 	[SerializeField] protected TState tState;
