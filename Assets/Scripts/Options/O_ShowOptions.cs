@@ -67,4 +67,11 @@ public class O_ShowOptions : MonoBehaviour
         }
     }
 
+    public void returnToMainMenu()
+    {
+        // Despues de volver al menu no se puede interactuar con los botones
+        pauseUI.SetActive(false);
+        SceneManager.LoadScene("MainScene");
+    }
+
 }
