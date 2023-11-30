@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
+	public static HealthUI HealthUISingleton;
 
 	public Action EventAddHeartUI;
 	public Action EventRemoveHeartUI;
 	public Action EventInitialiteUI;
+	public Action EventResetUI;
 
 	public EventHandler<int> EventUpdateUI;
 	[Header("External GameObjects")]
@@ -42,11 +44,24 @@ public class HealthUI : MonoBehaviour
 
 	void Awake()
 	{
+		if (HealthUISingleton == null)
+			HealthUISingleton = this;
+
 		EventAddHeartUI += AddHearth;
 		EventRemoveHeartUI += RemoveHearth;
 		EventInitialiteUI += LateStart;
+		EventResetUI += ResetLifes;
 	}
 
+	private void ResetLifes()
+	{
+		foreach(var hearth in AllHearthsGameObject)
+		{
+			Destroy(hearth);
+		}
+		currentRow = 0;
+		currentColumn = 0;
+	}
 	private void LateStart()
 	{
 		playerGameObject = GameObject.FindGameObjectWithTag("Player");
