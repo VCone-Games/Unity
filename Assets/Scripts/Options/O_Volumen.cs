@@ -9,18 +9,20 @@ public class O_Volumen : MonoBehaviour
 	[SerializeField] private Slider volumeSlider;
 	[SerializeField] private Toggle toggleMuteAudio;
 
+	[Header("Global volumen")]
+	[SerializeField] private AudioSource audioSource;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		volumeSlider.value = PlayerPrefs.GetFloat("volumeAudio");
-		AudioListener.volume = volumeSlider.value;
+		audioSource.volume = volumeSlider.value;
 	}
 
-	public void ChangeSlider(float value)
+	public void ChangeSlider()
 	{
-		PlayerPrefs.SetFloat("volumeAudio", value);
-		AudioListener.volume = value;
+		PlayerPrefs.SetFloat("volumeAudio", volumeSlider.value);
+		audioSource.volume = volumeSlider.value;
 	}
 	
 	public void OnTogglePressed(bool pressed)
@@ -34,7 +36,7 @@ public class O_Volumen : MonoBehaviour
 		else if (!pressed)
 		{
 			// Se vuelve ha activar el sonido
-			AudioListener.volume = volumeSlider.value;
+			audioSource.volume = volumeSlider.value;
 			
 		}
 

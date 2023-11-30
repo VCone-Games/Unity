@@ -32,8 +32,8 @@ public class HealthUI : MonoBehaviour
 
 	[Header("Control UI")]
 	[SerializeField] private List<GameObject> AllHearthsGameObject;
-	[SerializeField] private float offSetX = 40;
-	[SerializeField] private float offSetY = 40;
+	[SerializeField] private float offSetX = 90;
+	[SerializeField] private float offSetY = 90;
 	[SerializeField] private int maxHearthsPerRow = 10;
 
 	[Header("Control variables")]
