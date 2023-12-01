@@ -29,6 +29,8 @@ public class CameraManager : MonoBehaviour
     public bool IsLerpingYDamping { get; private set; }
     public bool LerpedFromPlayerFalling { get; set; }
 
+    public CinemachineVirtualCamera CurrentCamera { get { return currentCamera; } }
+
     private void Awake()
     {
 
@@ -51,6 +53,16 @@ public class CameraManager : MonoBehaviour
 
         startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
 
+    }
+
+    public void DisableCamera()
+    {
+        currentCamera.enabled = false;
+    }
+
+    public void EnableCamera()
+    {
+        currentCamera.enabled = true;
     }
 
     #region Lerp the Y Damping

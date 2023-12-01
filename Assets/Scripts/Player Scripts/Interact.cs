@@ -9,6 +9,11 @@ public class Interact : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private InputActionReference interactReference;
     [SerializeField] private InputActionReference interactMOBILEReference;
+
+    [SerializeField] private InputActionReference nextLineReference;
+    [SerializeField] private InputActionReference nextLineMOBILEReference;
+
+
     [SerializeField] private bool MOBILE;
 
     private Jump jumpComponent;
@@ -29,14 +34,21 @@ public class Interact : MonoBehaviour
     }
     private void Start()
     {
-        if(MOBILE)
+        if (MOBILE)
         {
             interactMOBILEReference.action.performed += OnInteract;
             interactMOBILEReference.action.Disable();
-        }else
+
+            nextLineMOBILEReference.action.performed += OnInteract;
+            nextLineMOBILEReference.action.Disable();
+        }
+        else
         {
             interactReference.action.performed += OnInteract;
             interactReference.action.Disable();
+
+            nextLineReference.action.performed += OnInteract;
+            nextLineReference.action.Disable();
         }
 
         jumpComponent = GetComponent<Jump>();
@@ -49,8 +61,18 @@ public class Interact : MonoBehaviour
             Debug.Log("No hay interactable cerca");
             return;
         }
+        nextLineMOBILEReference.action.Enable();
+        nextLineReference.action.Enable();
+
         interactable.Interact();
+        GetComponent<Animator>().SetBool("Running", false);
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+    }
+
+    public void EndInteraction()
+    {
+        nextLineReference.action.Disable();
+        nextLineMOBILEReference.action.Disable();
     }
 
 
@@ -65,8 +87,8 @@ public class Interact : MonoBehaviour
 
     public void OnInteractableExit(IInteractable collision)
     {
-		Debug.Log("\t\tInteractuable cerca");
-		interactable = collision;
+        Debug.Log("\t\tInteractuable cerca");
+        interactable = collision;
         interactReference.action.Disable();
         interactable.InInteractionRange(false);
         interactable = null;

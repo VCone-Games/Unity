@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -10,17 +11,25 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	[SerializeField] protected List<DialogueText> _dialoguesList;
 	[SerializeField] protected DialogueController dialogueController;
 
-	protected override void Start()
+	private CinemachineVirtualCamera npcCamera;
+
+
+    protected override void Start()
 	{
 		base.Start();
 		GameObject dialogueCanvas = GameObject.FindGameObjectWithTag("Dialogue Box");
 		dialogueController = dialogueCanvas.transform.GetChild(0).GetComponent<DialogueController>();
+		npcCamera = GameObject.FindWithTag("Camera NPC").GetComponent<CinemachineVirtualCamera>();
 	}
 	public override void Interact()
 	{
 		base.Interact();
 		bool startedTalking = myAnimator.GetBool("StartTalk");
 		bool isTalking = myAnimator.GetBool("isTalking");
+
+		CameraManager.Instance.DisableCamera();
+		npcCamera.enabled = true;
+		npcCamera.Follow = transform;
 
 		if (!startedTalking && !isTalking)
 			myAnimator.SetBool("StartTalk", true);
@@ -47,6 +56,8 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 		base.EndInteraction();
 		Debug.Log("TERMINANDO INTERACCION      *");
 		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
-
-	}
+        playerGameObject.GetComponent<Interact>().EndInteraction();
+        npcCamera.enabled = false;
+        CameraManager.Instance.EnableCamera();
+    }
 }

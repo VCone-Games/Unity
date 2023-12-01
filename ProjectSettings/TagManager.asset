@@ -16,6 +16,8 @@ TagManager:
   - Parry Aim 2
   - Music Manager
   - Dialogue Box
+  - Hearth Canvas
+  - Camera NPC
   layers:
   - Default
   - TransparentFX
