@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionSprite: {fileID: 3586250007957393518}
+  myAnimator: {fileID: 0}
   spawnPoint: {fileID: 6784336872308267925}
   StartSpawnPoint: 0
   ID: 1
