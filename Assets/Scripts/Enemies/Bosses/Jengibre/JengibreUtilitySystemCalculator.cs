@@ -31,16 +31,16 @@ public class JengibreUtilitySystemCalculator
 		get { return distanceToPlayer; }
 		set { distanceToPlayer = value; }
 	}
-	public int PlayerHealth
-	{
-		get { return playerHealth; }
-		set { playerHealth = value; }
-	}
-	public int OwnHealth
-	{
-		get { return ownHealth; }
-		set { ownHealth = value; }
-	}
+//	public int PlayerHealth
+//	{
+//		get { return playerHealth; }
+//		set { playerHealth = value; }
+//	}
+//	public int OwnHealth
+//	{
+//		get { return ownHealth; }
+//		set { ownHealth = value; }
+//	}
 	public bool PlayerIsParrying
 	{
 		get { return playerIsParrying; }

@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -330,7 +330,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Mobile
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6543608268636019808
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpReferenceMOBILE: {fileID: -4045844339835721240, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   jumpReferencePC: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
   myCollider: {fileID: 5271503091895005485}
   grabWallComponent: {fileID: 870136086859879188}
@@ -393,7 +393,7 @@ MonoBehaviour:
   DISABLED: 0
   wallJumpMobileReference: {fileID: -7997410708706200520, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   wallJumpPCReference: {fileID: 7738735177705242144, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
   myCollider: {fileID: 5271503091895005485}
   jumpComponent: {fileID: 6543608268636019808}
@@ -430,7 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashReferenceMobile: {fileID: -5092177443420182477, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   dashReferencePC: {fileID: 3004927181886084796, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
   jumpReference: {fileID: 6543608268636019808}
   horizontalMovementComponent: {fileID: 4920769700691029718}
@@ -462,7 +462,7 @@ MonoBehaviour:
   DISABLED: 0
   movementMOBILEActionReference: {fileID: 5090440381330581355, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   movementPCActionReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   movementSpeed: 7
   moving: 0
   movementDirection: 0
@@ -500,7 +500,7 @@ MonoBehaviour:
   hookAimGamepadReference: {fileID: -7025021694697865410, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   hookShootMOBILEReference: {fileID: -3388280924800566048, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   hookAimMOBILEReference: {fileID: 2639359938628381130, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
   horizontalMovementComponent: {fileID: 4920769700691029718}
   dashComponent: {fileID: 966488937148112256}
@@ -555,7 +555,7 @@ MonoBehaviour:
   hookAimGamepadReference: {fileID: -7025021694697865410, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   parryMOBILEReference: {fileID: -901901147067995993, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   hookAimMOBILEReference: {fileID: 2639359938628381130, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
-  MOBILE: 1
+  MOBILE: 0
   dashComponent: {fileID: 966488937148112256}
   jumpComponent: {fileID: 6543608268636019808}
   horizontalMovementComponent: {fileID: 4920769700691029718}
@@ -1439,6 +1439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  interactMOBILEReference: {fileID: -4106608112481754333, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
+  MOBILE: 0
 --- !u!1 &4704654943847754631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1515,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a66a24f2bb85f5e4c957e014ab27a994, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.05724919, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1660,7 +1662,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a66a24f2bb85f5e4c957e014ab27a994, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.06267528, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1718,7 +1720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2776405451042316320
 Transform:
   m_ObjectHideFlags: 0

@@ -127,8 +127,8 @@ public class Parry : MonoBehaviour
             }
             else if(hookableWeight == 2)
             {
-                parryAim1.transform.position = transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
-                parryAim1.transform.right = shootDirection.normalized;
+                parryAim2.transform.position = transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim2.transform.right = shootDirection.normalized;
             }
         }
     }
@@ -149,18 +149,21 @@ public class Parry : MonoBehaviour
         hookableComponent = hookedObject.GetComponent<AHookable>();
         if (hookedObject.GetComponent<LightHookable>() != null)
         {
+            parryAimSprite1.enabled = true;
             hookableWeight = 0;
         }
         if (hookedObject.GetComponent<MediumHookable>() != null)
         {
+            parryAimSprite1.enabled = true;
             parryAimSprite2.enabled = true;
             hookableWeight = 1;
         }
         if (hookedObject.GetComponent<HeavyHookable>() != null)
         {
+            parryAimSprite2.enabled = true;
             hookableWeight = 2;
         }
-        parryAimSprite1.enabled = true;
+
         aimRepresentation.GetComponent<SpriteRenderer>().enabled = false;
 
     }
