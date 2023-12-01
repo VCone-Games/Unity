@@ -8,7 +8,8 @@ public class Interact : MonoBehaviour
 {
     [Header("Input Actions")]
     [SerializeField] private InputActionReference interactReference;
-
+    [SerializeField] private InputActionReference interactMOBILEReference;
+    [SerializeField] private bool MOBILE;
 
     private Jump jumpComponent;
 
@@ -28,8 +29,16 @@ public class Interact : MonoBehaviour
     }
     private void Start()
     {
-        interactReference.action.performed += OnInteract;
-        interactReference.action.Disable();
+        if(MOBILE)
+        {
+            interactMOBILEReference.action.performed += OnInteract;
+            interactMOBILEReference.action.Disable();
+        }else
+        {
+            interactReference.action.performed += OnInteract;
+            interactReference.action.Disable();
+        }
+
         jumpComponent = GetComponent<Jump>();
     }
 
@@ -65,5 +74,6 @@ public class Interact : MonoBehaviour
     private void OnDestroy()
     {
         interactReference.action.performed -= OnInteract;
+        interactMOBILEReference.action.performed -= OnInteract;
     }
 }

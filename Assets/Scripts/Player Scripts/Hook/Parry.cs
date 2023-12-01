@@ -15,6 +15,10 @@ public class Parry : MonoBehaviour
     [SerializeField] private InputActionReference hookAimMouseReference;
     [SerializeField] private InputActionReference hookAimGamepadReference;
 
+    [SerializeField] private InputActionReference parryMOBILEReference;
+    [SerializeField] private InputActionReference hookAimMOBILEReference;
+    [SerializeField]private bool MOBILE;
+
 
     [Header("Player Components")]
     [SerializeField] private Dash dashComponent;
@@ -78,10 +82,18 @@ public class Parry : MonoBehaviour
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
-        parryReference.action.performed += OnParry;
+        if (MOBILE)
+        {
+            parryMOBILEReference.action.performed += OnParry;
+            hookAimMOBILEReference.action.performed += OnControllerAim;
+        }else
+        {
+            parryReference.action.performed += OnParry;
+            hookAimMouseReference.action.performed += OnMouseMovement;
+            hookAimGamepadReference.action.performed += OnControllerAim;
+        }
 
-        hookAimMouseReference.action.performed += OnMouseMovement;
-        hookAimGamepadReference.action.performed += OnControllerAim;
+
 
         hookingRange = GetComponent<Hook>().hookingRange;
 
@@ -115,8 +127,8 @@ public class Parry : MonoBehaviour
             }
             else if(hookableWeight == 2)
             {
-                parryAim1.transform.position = transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
-                parryAim1.transform.right = shootDirection.normalized;
+                parryAim2.transform.position = transform.position + new Vector3(shootDirection.x, shootDirection.y, 0).normalized * 3;
+                parryAim2.transform.right = shootDirection.normalized;
             }
         }
     }
@@ -137,18 +149,21 @@ public class Parry : MonoBehaviour
         hookableComponent = hookedObject.GetComponent<AHookable>();
         if (hookedObject.GetComponent<LightHookable>() != null)
         {
+            parryAimSprite1.enabled = true;
             hookableWeight = 0;
         }
         if (hookedObject.GetComponent<MediumHookable>() != null)
         {
+            parryAimSprite1.enabled = true;
             parryAimSprite2.enabled = true;
             hookableWeight = 1;
         }
         if (hookedObject.GetComponent<HeavyHookable>() != null)
         {
+            parryAimSprite2.enabled = true;
             hookableWeight = 2;
         }
-        parryAimSprite1.enabled = true;
+
         aimRepresentation.GetComponent<SpriteRenderer>().enabled = false;
 
     }
@@ -211,8 +226,8 @@ public class Parry : MonoBehaviour
     {
         animator.SetTrigger("Parry");
         soundManager.PlayParry();
-        
-        horizontalMovementComponent.IsFacingRight = facingRight;
+
+        horizontalMovementComponent.SpriteFlipManager(facingRight);
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;

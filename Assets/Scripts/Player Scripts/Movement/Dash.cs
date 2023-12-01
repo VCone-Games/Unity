@@ -14,7 +14,9 @@ public class Dash : MonoBehaviour
     private bool DISABLED;
 
     [Header("Input system")]
-    [SerializeField] InputActionReference dashReference;
+    [SerializeField] InputActionReference dashReferenceMobile;
+    [SerializeField] InputActionReference dashReferencePC;
+    [SerializeField] private bool MOBILE;
 
     [Header("Player Components")]
     [SerializeField] private Rigidbody2D myRigidbody;
@@ -45,7 +47,7 @@ public class Dash : MonoBehaviour
     [Header("Camera Shake")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
-
+    private bool CheckOnce;
     public bool HasParred { set { hasParred = value; } }
 
     public bool DashUnlocked { set { dashUnlocked = value; } }
@@ -61,7 +63,9 @@ public class Dash : MonoBehaviour
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
-        dashReference.action.performed += OnDashing;
+        if (MOBILE) dashReferenceMobile.action.performed += OnDashing;
+        else dashReferencePC.action.performed += OnDashing;
+
         normalGravityScale = myRigidbody.gravityScale;
         horizontalMovementComponent.enabled = false;
         horizontalMovementComponent.enabled = true;
@@ -73,6 +77,7 @@ public class Dash : MonoBehaviour
         if(!dashUnlocked) return;
         if ((!hasDashed || hasParred) && coolDownTimer <= 0)
         {
+            CheckOnce = true;
             interactComponent.enabled = false;
             horizontalMovementComponent.DisableMovementInput();
             wallGrabComponent.DisableWallGrabInput();
@@ -119,7 +124,7 @@ public class Dash : MonoBehaviour
 
             dashTimer -= Time.deltaTime;
         }
-        else if (dashTimer <= 0.0f)
+        else if (dashTimer <= 0.0f && CheckOnce)
         {
             myRigidbody.gravityScale = normalGravityScale;
             isDashing = false;
@@ -127,17 +132,14 @@ public class Dash : MonoBehaviour
 
             horizontalMovementComponent.EnableMovementInput();
             wallGrabComponent.EnableWallGrabInput();
+            interactComponent.enabled = true;
             animator.SetBool("Is Dashing", false);
+            CheckOnce = false;
         }
 
-        if (dashTimer <= 0.0f && (jumpReference.IsGrounded || wallGrabComponent.IsGrabbingWall))
+        if (!isDashing && (jumpReference.IsGrounded || wallGrabComponent.IsGrabbingWall))
         {
-            isDashing = false;
             hasDashed = false;
-
-            interactComponent.enabled = true;
-            horizontalMovementComponent.EnableMovementInput();
-            wallGrabComponent.EnableWallGrabInput();
         }
 
 
@@ -158,18 +160,21 @@ public class Dash : MonoBehaviour
 
     public void DisableDashInput()
     {
-        dashReference.action.Disable();
+        dashReferenceMobile.action.Disable();
+        dashReferencePC.action.Disable();
         DISABLED = true;
     }
     public void EnableDashInput()
     {
-        dashReference.action.Enable();
+        dashReferenceMobile.action.Enable();
+        dashReferencePC.action.Enable();
         DISABLED = false;
     }
 
     private void OnDestroy()
     {
 
-        dashReference.action.performed -= OnDashing;
+        dashReferenceMobile.action.performed -= OnDashing;
+        dashReferencePC.action.performed -= OnDashing;
     }
 }

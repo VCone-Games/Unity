@@ -15,7 +15,9 @@ public class Jump : MonoBehaviour
     private bool disableBonusAirTime;
 
     [Header("Input system")]
-    [SerializeField] private InputActionReference jumpReference;
+    [SerializeField] private InputActionReference jumpReferenceMOBILE;
+    [SerializeField] private InputActionReference jumpReferencePC;
+    [SerializeField] private bool MOBILE;
 
     [Header("Player Components")]
     [SerializeField] private Rigidbody2D myRigidbody;
@@ -89,8 +91,17 @@ public class Jump : MonoBehaviour
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
-        jumpReference.action.performed += OnJump;
-        jumpReference.action.canceled += OnJumpCanceled;
+        if (MOBILE)
+        {
+            jumpReferenceMOBILE.action.performed += OnJump;
+            jumpReferenceMOBILE.action.canceled += OnJumpCanceled;
+        }
+        else
+        {
+            jumpReferencePC.action.performed += OnJump;
+            jumpReferencePC.action.canceled += OnJumpCanceled;
+        }
+
 
         normalGravityScale = myRigidbody.gravityScale;
         fallSpeedYDumpingChangeThreshold = CameraManager.Instance.fallSpeedDampingChangeThreshhold;
@@ -268,12 +279,14 @@ public class Jump : MonoBehaviour
 
     public void DisableJumpInput()
     {
-        jumpReference.action.Disable();
+        jumpReferenceMOBILE.action.Disable();
+        jumpReferencePC.action.Disable();
         DISABLED = true;
     }
     public void EnableJumpInput()
     {
-        jumpReference.action.Enable();
+        jumpReferenceMOBILE.action.Enable();
+        jumpReferencePC.action.Enable();
         DISABLED = false;
     }
 
@@ -288,7 +301,9 @@ public class Jump : MonoBehaviour
 
     private void OnDestroy()
     {
-        jumpReference.action.performed -= OnJump;
-        jumpReference.action.canceled -= OnJumpCanceled;
+        jumpReferenceMOBILE.action.performed -= OnJump;
+        jumpReferencePC.action.performed -= OnJump;
+        jumpReferenceMOBILE.action.canceled -= OnJumpCanceled;
+        jumpReferencePC.action.performed -= OnJumpCanceled;
     }
 }
