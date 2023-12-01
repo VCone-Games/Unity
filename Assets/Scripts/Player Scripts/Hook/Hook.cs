@@ -47,6 +47,7 @@ public class Hook : MonoBehaviour
     //JOYSTICK AIM COORDINATES
     [Header("Controller Aim Variables")]
     [SerializeField] private Vector2 controllerAim;
+    private Vector2 positionController;
 
 
     //HOOK PARAMETERS
@@ -116,7 +117,7 @@ public class Hook : MonoBehaviour
 
     void Update()
     {
-        if (!mouseOrGamepad)
+        if (!mouseOrGamepad && !MOBILE)
         {
             mousePositionInScreen = Input.mousePosition;
             mousePositionInWorld = Camera.main.ScreenToWorldPoint(mousePositionInScreen);
@@ -124,7 +125,8 @@ public class Hook : MonoBehaviour
         }
         else
         {
-            aimRepresentation.GetComponent<Transform>().localPosition = new Vector3((shootDirection.normalized * hookingRange).x, (shootDirection.normalized * hookingRange).y, 10);
+           positionController= shootDirection.normalized * hookingRange;
+            aimRepresentation.GetComponent<Transform>().localPosition = new Vector3(positionController.x, positionController.y, 10);
         }
     }
     void FixedUpdate()
@@ -156,8 +158,7 @@ public class Hook : MonoBehaviour
 
         mouseOrGamepad = true;
         shootDirection = controllerAim;
-        Vector2 position = shootDirection.normalized * hookingRange;
-        aimRepresentation.GetComponent<Transform>().localPosition = new Vector3(position.x, position.y, 10);
+       
 
 
 
