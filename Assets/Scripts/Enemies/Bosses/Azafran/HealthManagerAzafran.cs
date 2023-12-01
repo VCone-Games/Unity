@@ -17,13 +17,18 @@ public class HealthManagerAzafran : HealthManager
 
 		if (!SecondPhase && current_health <= 0)
 		{
-			SecondPhase = true;
-			myAnimator.SetBool("secondPhase", true);
-			current_health = max_health;
-			canTakeDamage = false;
+			ActivateSecondPhase();
 		}
 
 		Debug.Log("Damage received " + current_health);
+	}
+
+	void ActivateSecondPhase()
+	{
+		SecondPhase = true;
+		myAnimator.SetBool("secondPhase", true);
+		current_health = max_health;
+		canTakeDamage = false;
 	}
 
 	void DamageReceived()

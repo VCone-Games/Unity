@@ -24,6 +24,9 @@ public class SecondPhaseAzafran : MonoBehaviour
     {
         tileMapGround = GameObject.FindGameObjectWithTag("Ground");
         myAnimator = GetComponent<Animator>();
+        MusicManager.Instance.PhirstPhaseAzafran = false;
+        MusicManager.Instance.PlayAzafranSecondPhase();
+
         InvokeRepeating("Advance", advanceTime, advanceTime);
         InvokeRepeating("SpawnAttack", spawnStonesTime, spawnStonesTime);
     }

@@ -89,7 +89,7 @@ public class Hook : MonoBehaviour
     [Header("Audio Management")]
     [SerializeField] private PlayerSoundManager soundManager;
 
-
+    public bool ShootingHook { get { return shootingHook; } } 
     void Start()
     {
         if (MOBILE)

@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
+	public static HealthUI HealthUISingleton;
 
 	public Action EventAddHeartUI;
 	public Action EventRemoveHeartUI;
 	public Action EventInitialiteUI;
+	public Action EventResetUI;
 
 	public EventHandler<int> EventUpdateUI;
 	[Header("External GameObjects")]
@@ -32,8 +34,8 @@ public class HealthUI : MonoBehaviour
 
 	[Header("Control UI")]
 	[SerializeField] private List<GameObject> AllHearthsGameObject;
-	[SerializeField] private float offSetX = 40;
-	[SerializeField] private float offSetY = 40;
+	[SerializeField] private float offSetX = 90;
+	[SerializeField] private float offSetY = 90;
 	[SerializeField] private int maxHearthsPerRow = 10;
 
 	[Header("Control variables")]
@@ -42,11 +44,24 @@ public class HealthUI : MonoBehaviour
 
 	void Awake()
 	{
+		if (HealthUISingleton == null)
+			HealthUISingleton = this;
+
 		EventAddHeartUI += AddHearth;
 		EventRemoveHeartUI += RemoveHearth;
 		EventInitialiteUI += LateStart;
+		EventResetUI += ResetLifes;
 	}
 
+	private void ResetLifes()
+	{
+		foreach(var hearth in AllHearthsGameObject)
+		{
+			Destroy(hearth);
+		}
+		currentRow = 0;
+		currentColumn = 0;
+	}
 	private void LateStart()
 	{
 		playerGameObject = GameObject.FindGameObjectWithTag("Player");

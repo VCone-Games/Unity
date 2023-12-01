@@ -321,6 +321,8 @@ public class FirstPhaseAzafran : Enemy
 
 	void InAnimation_SecondPhaseAnimationBegin()
 	{
+		Debug.Log("Activando segunda fase...");
+		MusicManager.Instance.PlayAzafranInterlude();
 		secondPhaseActivated = true;
 		shootCount = maxShoots;
 

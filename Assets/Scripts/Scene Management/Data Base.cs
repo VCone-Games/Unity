@@ -11,10 +11,10 @@ public class DataBase : MonoBehaviour
     private Dictionary<string, bool> dataBoss = new Dictionary<string, bool>();
     private List<string> bossNames = new List<string>
     { "Curcuma", "Azafran", "Perejil", "Jengibre" };
-    private float timerGame;
+    [SerializeField] private float timerGame;
     private float startedTimerGame;
-    private string username = "Username";
-    private int deathCount = 0;
+    [SerializeField] private string username = "Username";
+    [SerializeField] private int deathCount = 0;
 
     public Dictionary<string, bool> DataBoss {  get { return dataBoss; } }
     public float TimerGame {  get { return timerGame; } set {  timerGame = value; } }

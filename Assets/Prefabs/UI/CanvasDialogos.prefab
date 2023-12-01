@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 204666418359638647}
   m_Layer: 5
   m_Name: CanvasDialogos
-  m_TagString: Untagged
+  m_TagString: Dialogue Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -18,7 +18,8 @@ public class HealthPlayerManager : HealthManager
     private Hook hook;
     private CinemachineImpulseSource impulseSource;
 
-    [Header("Audio Management")]
+
+	[Header("Audio Management")]
     [SerializeField] private PlayerSoundManager soundManager;
 
     protected override void Start()
@@ -32,9 +33,7 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
 
-        GameObject ui = GameObject.FindGameObjectWithTag("UI Manager");
-       // HealthUI hUI = ui.GetComponent<HealthUI>();
-       // hUI.EventInitialiteUI?.Invoke();
+		HealthUI.HealthUISingleton.EventInitialiteUI?.Invoke();
     }
     public void Restore()
     {
@@ -110,12 +109,13 @@ public class HealthPlayerManager : HealthManager
     {
         myAnimator.SetTrigger("Dead");
 
-        //DataBase.Singleton.DeathCount++;
+		DataBase.Singleton.DeathCount++;
         PlayerInfo.Instance.IsDead = true;
     }
 
     protected void EndDieAnimation()
     {
+		HealthUI.HealthUISingleton.EventResetUI?.Invoke();
         SceneChanger.Instance.ChangeSceneByDeath();
     }
 }

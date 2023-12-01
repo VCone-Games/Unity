@@ -320,12 +320,14 @@ MonoBehaviour:
   edgeDetector: 0
   isGrounded: 0
   canAttack: 1
-  chaseTimer: 2
+  chaseTime: 2
+  lostTime: 0.5
   tState: 0
   visionRange: 5
   attackRange: 2
-  chaseTime: 2
   isPlayerInSight: 0
+  chaseTimer: 2
+  lostTimer: 0
 --- !u!95 &3489160124212780780
 Animator:
   serializedVersion: 5
@@ -439,6 +441,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 11
   noPlayerLayer: 9
 --- !u!114 &8741190311023317851
