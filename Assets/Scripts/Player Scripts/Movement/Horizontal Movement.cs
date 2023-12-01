@@ -13,7 +13,10 @@ public class HorizontalMovement : MonoBehaviour
     [SerializeField] private bool DISABLED;
 
     [Header("Input system")]
-    [SerializeField] private InputActionReference movementActionReference;
+    [SerializeField] private InputActionReference movementMOBILEActionReference;
+    [SerializeField] private InputActionReference movementPCActionReference;
+    [SerializeField] private bool MOBILE;
+
 
 
     [Header("Movement params")]
@@ -48,6 +51,9 @@ public class HorizontalMovement : MonoBehaviour
     [Header("Camera Management")]
     [SerializeField] public CameraFollowObject cameraFollow;
 
+    private bool flipped;
+    private bool checkOnce;
+
     public bool IsFacingRight
     {
         get { return facingRight; }
@@ -56,8 +62,17 @@ public class HorizontalMovement : MonoBehaviour
 
     void Start()
     {
-        movementActionReference.action.performed += OnPressed;
-        movementActionReference.action.canceled += OnRelease;
+        if (MOBILE)
+        {
+            movementMOBILEActionReference.action.performed += OnPressed;
+            movementMOBILEActionReference.action.canceled += OnRelease;
+        }
+        else
+        {
+            movementPCActionReference.action.performed += OnPressed;
+            movementPCActionReference.action.canceled += OnRelease;
+        }
+
 
         initialGunPosition = hookGun.transform.localPosition;
         invertedGunPosition = initialGunPosition;
@@ -84,7 +99,8 @@ public class HorizontalMovement : MonoBehaviour
 	private void OnPressed(InputAction.CallbackContext context)
     {
         moving = true;
-        movementDirection = movementActionReference.action.ReadValue<float>();
+        checkOnce = true;
+        movementDirection = context.action.ReadValue<float>();
         movementDirection = (isConfused) ? -movementDirection : movementDirection;
         
         if (movementDirection < 0)
@@ -101,22 +117,24 @@ public class HorizontalMovement : MonoBehaviour
     {
         facingRight = isFacingRight;
         cameraFollow.CallTurn(facingRight);
+        flipped = true;
     }
 
     private void OnRelease(InputAction.CallbackContext context)
     {
         moving = false;
+
     }
 
     public void DisableMovementInput()
     {
         soundManager.StoptFootsteps();
-        movementActionReference.action.Disable();
+        movementMOBILEActionReference.action.Disable();
         DISABLED = true;
     }
     public void EnableMovementInput()
     {
-        movementActionReference.action.Enable();
+        movementMOBILEActionReference.action.Enable();
         DISABLED = false;
     }
 
@@ -136,20 +154,24 @@ public class HorizontalMovement : MonoBehaviour
     void FixedUpdate()
     {
         ConfuseLogic();
-
-        if (facingRight)
+        if(flipped)
         {
-            Vector3 rotator = new Vector3(0, 0, 0);
-            transform.rotation = Quaternion.Euler(rotator);
+            if (facingRight)
+            {
+                Vector3 rotator = new Vector3(0, 0, 0);
+                transform.rotation = Quaternion.Euler(rotator);
 
+            }
+            else
+            {
+                Vector3 rotator = new Vector3(0, 180, 0);
+                transform.rotation = Quaternion.Euler(rotator);
+                //spriteRenderer.flipX = true;
+                //hookGun.transform.localPosition = invertedGunPosition;
+            }
+            flipped = false;
         }
-        else
-        {
-            Vector3 rotator = new Vector3(0, 180, 0);
-            transform.rotation = Quaternion.Euler(rotator);
-            //spriteRenderer.flipX = true;
-            //hookGun.transform.localPosition = invertedGunPosition;
-        }
+        
 
         if (DISABLED) return;
         if (moving)
@@ -157,41 +179,34 @@ public class HorizontalMovement : MonoBehaviour
             if(jumpComponent.IsGrounded)
             {
                 animator.SetBool("Running", true);
-                animationTimer = animationCancelTime;
                 soundManager.PlayFootsteps();
             }else
             {
                 soundManager.StoptFootsteps();
             }
             myRigidbody.velocity = new Vector2(movementSpeed * movementDirection, myRigidbody.velocity.y);
-            animator.SetBool("MovingAir", true);
-            animationTimer = animationCancelTime;
         }
         else
         {
-            soundManager.StoptFootsteps();
+            if(checkOnce)
+            {
+                soundManager.StoptFootsteps();
+                animator.SetBool("Running", false);
+                checkOnce = false;
+            }
+
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 
         }
     }
 
-    private void Update()
-    {
-        if (animationTimer > 0)
-        {
-            animationTimer -= Time.deltaTime;
-            if (animationTimer < 0)
-            {
-                animator.SetBool("MovingAir", false);
-                animator.SetBool("Running", false);
-
-            }
-        }
-    }
 
     private void OnDestroy()
     {
-        movementActionReference.action.performed -= OnPressed;
-        movementActionReference.action.canceled -= OnRelease;
+        movementMOBILEActionReference.action.performed -= OnPressed;
+        movementMOBILEActionReference.action.canceled -= OnRelease;
+
+        movementPCActionReference.action.performed -= OnPressed;
+        movementPCActionReference.action.canceled -= OnRelease;
     }
 }

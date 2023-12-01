@@ -17,6 +17,10 @@ public class Hook : MonoBehaviour
     [SerializeField] private InputActionReference hookShootGamepadReference;
     [SerializeField] private InputActionReference hookAimGamepadReference;
 
+    [SerializeField] private InputActionReference hookShootMOBILEReference;
+    [SerializeField] private InputActionReference hookAimMOBILEReference;
+    [SerializeField] private bool MOBILE;
+
     //PLAYER COMPONENTS
     [Header("Player Components")]
     [SerializeField] private Rigidbody2D myRigidbody;
@@ -87,12 +91,20 @@ public class Hook : MonoBehaviour
 
     void Start()
     {
-        hookAimMouseReference.action.performed += OnMouseMovement;
-        hookShootMouseReference.action.performed += OnMouseShoot;
+        if (MOBILE)
+        {
+            hookShootMOBILEReference.action.performed += OnControllerShoot;
+            hookAimMOBILEReference.action.performed += OnControllerAim;
+        }else
+        {
+            hookAimMouseReference.action.performed += OnMouseMovement;
+            hookShootMouseReference.action.performed += OnMouseShoot;
 
-        hookAimGamepadReference.action.performed += OnControllerAim;
-        hookShootGamepadReference.action.performed += OnControllerShoot;
+            hookAimGamepadReference.action.performed += OnControllerAim;
+            hookShootGamepadReference.action.performed += OnControllerShoot;
+        }
 
+        
         interactComponent = GetComponent<Interact>();
 
         aimRepresentation = GameObject.FindWithTag("AimRepresentation");
@@ -188,6 +200,7 @@ public class Hook : MonoBehaviour
 
     private void Shoot(Vector2 shootDirection)
     {
+        animator.SetBool("Running", false);
         Time.timeScale = 0.75f;
         soundManager.PlayHook();
         Debug.Log("AYUDAA");
@@ -195,13 +208,13 @@ public class Hook : MonoBehaviour
 
         if (shootDirection.x < 0)
         {
-            horizontalMovementComponent.IsFacingRight = false;
+            horizontalMovementComponent.SpriteFlipManager( false);
             
         }
         else if (shootDirection.x > 0)
         {
-            horizontalMovementComponent.IsFacingRight = true;
-            
+            horizontalMovementComponent.SpriteFlipManager(true);
+
         }
 
 
@@ -290,5 +303,8 @@ public class Hook : MonoBehaviour
 
         hookAimGamepadReference.action.performed -= OnControllerAim;
         hookShootGamepadReference.action.performed -= OnControllerShoot;
+
+        hookAimMOBILEReference.action.performed -= OnControllerAim;
+        hookShootMOBILEReference.action.performed -= OnControllerShoot;
     }
 }

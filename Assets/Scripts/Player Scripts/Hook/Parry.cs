@@ -15,6 +15,10 @@ public class Parry : MonoBehaviour
     [SerializeField] private InputActionReference hookAimMouseReference;
     [SerializeField] private InputActionReference hookAimGamepadReference;
 
+    [SerializeField] private InputActionReference parryMOBILEReference;
+    [SerializeField] private InputActionReference hookAimMOBILEReference;
+    [SerializeField]private bool MOBILE;
+
 
     [Header("Player Components")]
     [SerializeField] private Dash dashComponent;
@@ -78,10 +82,18 @@ public class Parry : MonoBehaviour
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
-        parryReference.action.performed += OnParry;
+        if (MOBILE)
+        {
+            parryMOBILEReference.action.performed += OnParry;
+            hookAimMOBILEReference.action.performed += OnControllerAim;
+        }else
+        {
+            parryReference.action.performed += OnParry;
+            hookAimMouseReference.action.performed += OnMouseMovement;
+            hookAimGamepadReference.action.performed += OnControllerAim;
+        }
 
-        hookAimMouseReference.action.performed += OnMouseMovement;
-        hookAimGamepadReference.action.performed += OnControllerAim;
+
 
         hookingRange = GetComponent<Hook>().hookingRange;
 
@@ -211,8 +223,8 @@ public class Parry : MonoBehaviour
     {
         animator.SetTrigger("Parry");
         soundManager.PlayParry();
-        
-        horizontalMovementComponent.IsFacingRight = facingRight;
+
+        horizontalMovementComponent.SpriteFlipManager(facingRight);
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;

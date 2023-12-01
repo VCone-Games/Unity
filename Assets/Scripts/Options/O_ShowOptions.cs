@@ -1,70 +1,70 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-public class O_ShowOptions : MonoBehaviour
-{
-    [Header("Scenes")]
-    [SerializeField] private SceneAsset mainScene;
-
-    [Header("UI Component")]
-    [SerializeField] GameObject pauseUI;
-    [SerializeField] GameObject mainUI;
-
-    [Header("Input action")]
-    [SerializeField] InputActionReference pauseReference;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-		pauseReference.action.performed += OnPressed;
-    }
-
-	private void OnPressed(InputAction.CallbackContext context)
-	{
-        Debug.Log("Pulsado");
-        if (mainScene.name == SceneManager.GetActiveScene().name)
-        {
-            if (pauseUI.activeSelf)
-            {
-                mainUI.SetActive(true);
-                pauseUI.SetActive(false);
-            }
-            return;
-        }
-
-        if (pauseUI.activeSelf)
-        {
-            //Si esta activada, la desactiva
-            Time.timeScale = 1.0f;
-            pauseUI.SetActive(false);
-        }
-        else
-        {
-			//Si esta desactivada, la activa
-			Time.timeScale = 0.0f;
-            pauseUI.SetActive(true);
-        }
-	}
-
-    public void OnButtonPressed()
-    {
-        if (mainScene.name == SceneManager.GetActiveScene().name)
-        {
-            //Estamos en la escena del men�, la primera, antes de empezar partida
-            mainUI.SetActive(true);
-            pauseUI.SetActive(false);
-        } else
-        {
-            //Estamos jugando (no en la escena principal)
-			Time.timeScale = 1.0f;
-			pauseUI.SetActive(false);
-        }
-    }
-
-}
+//using System;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEditor;
+//using UnityEngine;
+//using UnityEngine.InputSystem;
+//using UnityEngine.SceneManagement;
+//using UnityEngine.UI;
+//
+//public class O_ShowOptions : MonoBehaviour
+//{
+//    [Header("Scenes")]
+//    //[SerializeField] private SceneAsset mainScene;
+//
+//    [Header("UI Component")]
+//    [SerializeField] GameObject pauseUI;
+//    [SerializeField] GameObject mainUI;
+//
+//    [Header("Input action")]
+//    [SerializeField] InputActionReference pauseReference;
+//
+//    // Start is called before the first frame update
+//    void Start()
+//    {
+//		pauseReference.action.performed += OnPressed;
+//    }
+//
+//	private void OnPressed(InputAction.CallbackContext context)
+//	{
+//        Debug.Log("Pulsado");
+//        if (mainScene.name == SceneManager.GetActiveScene().name)
+//        {
+//            if (pauseUI.activeSelf)
+//            {
+//                mainUI.SetActive(true);
+//                pauseUI.SetActive(false);
+//            }
+//            return;
+//        }
+//
+//        if (pauseUI.activeSelf)
+//        {
+//            //Si esta activada, la desactiva
+//            Time.timeScale = 1.0f;
+//            pauseUI.SetActive(false);
+//        }
+//        else
+//        {
+//			//Si esta desactivada, la activa
+//			Time.timeScale = 0.0f;
+//            pauseUI.SetActive(true);
+//        }
+//	}
+//
+//    public void OnButtonPressed()
+//    {
+//        if (mainScene.name == SceneManager.GetActiveScene().name)
+//        {
+//            //Estamos en la escena del men�, la primera, antes de empezar partida
+//            mainUI.SetActive(true);
+//            pauseUI.SetActive(false);
+//        } else
+//        {
+//            //Estamos jugando (no en la escena principal)
+//			Time.timeScale = 1.0f;
+//			pauseUI.SetActive(false);
+//        }
+//    }
+//
+//}

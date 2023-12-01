@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,9 @@ public class WallGrab : MonoBehaviour
     [SerializeField] private bool DISABLED;
 
     [Header("Input system")]
-    [SerializeField] InputActionReference wallJumpReference;
+    [SerializeField] InputActionReference wallJumpMobileReference;
+    [SerializeField] InputActionReference wallJumpPCReference;
+    [SerializeField] private bool MOBILE;
 
     [Header("Player Components")]
     [SerializeField] private Rigidbody2D myRigidbody;
@@ -58,7 +61,8 @@ public class WallGrab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wallJumpReference.action.performed += WallJump;
+        if (MOBILE) wallJumpMobileReference.action.performed += WallJump;
+        else wallJumpPCReference.action.performed += WallJump;
         normalGravityScale = myRigidbody.gravityScale;
     }
 
@@ -99,7 +103,7 @@ public class WallGrab : MonoBehaviour
         leftWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, distanceMax + myCollider.bounds.extents.x, wallLayer);
         rightWall = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, distanceMax + myCollider.bounds.extents.x, wallLayer);
 
-        animator.SetBool("isGrabbingWall", isGrabbingWall);
+
 
         if (!jumpComponent.IsGrounded && (leftWall || rightWall))
         {
@@ -107,11 +111,12 @@ public class WallGrab : MonoBehaviour
             myRigidbody.gravityScale = wallGravity;
             jumpComponent.DisableBonusAirTime();
             isGrabbingWall = true;
+            animator.SetBool("isGrabbingWall", isGrabbingWall);
 
-            if(!jumpComponent.jumpInputPressed || !jumpComponent.IsJumping)
+            if (!jumpComponent.jumpInputPressed || !jumpComponent.IsJumping)
             {
-                if (leftWall) horizontalMovementReference.IsFacingRight = true;
-                if (rightWall) horizontalMovementReference.IsFacingRight = false;
+                if (leftWall) horizontalMovementReference.SpriteFlipManager(true);
+                if (rightWall) horizontalMovementReference.SpriteFlipManager(false);
             }
         }
         else if(isGrabbingWall) 
@@ -120,6 +125,7 @@ public class WallGrab : MonoBehaviour
             leftWall = false;
             rightWall = false;
             isGrabbingWall = false;
+            animator.SetBool("isGrabbingWall", isGrabbingWall);
             jumpComponent.EnableBonusAirTime();
             if (!jumpWall && !horizontalMovementReference.moving)
             {
@@ -157,17 +163,20 @@ public class WallGrab : MonoBehaviour
 
     public void DisableWallGrabInput()
     {
-        wallJumpReference.action.Disable();
+        wallJumpMobileReference.action.Disable();
+        wallJumpPCReference.action.Disable();
         DISABLED = true;
     }
     public void EnableWallGrabInput()
     {
-        wallJumpReference.action.Enable();
+        wallJumpMobileReference.action.Enable();
+        wallJumpPCReference.action.Enable();
         DISABLED = false;
     }
 
     private void OnDestroy()
     {
-        wallJumpReference.action.performed -= WallJump;
+        wallJumpMobileReference.action.performed -= WallJump;
+        wallJumpPCReference.action.performed -= WallJump;
     }
 }
