@@ -31,15 +31,15 @@ public class JengibreUtilitySystemCalculator
 		get { return distanceToPlayer; }
 		set { distanceToPlayer = value; }
 	}
-	public int PlayerHealth
+	public float PlayerHealthPercentage
 	{
-		get { return playerHealth; }
-		set { playerHealth = value; }
+		get { return playerHealthPercentage; }
+		set { playerHealthPercentage = value; }
 	}
-	public int OwnHealth
+	public float OwnHealthPercentage
 	{
-		get { return ownHealth; }
-		set { ownHealth = value; }
+		get { return ownHealthPercentage; }
+		set { ownHealthPercentage = value; }
 	}
 	public bool PlayerIsParrying
 	{
@@ -61,6 +61,7 @@ public class JengibreUtilitySystemCalculator
 	private float Calculate_DROP_STONES()
 	{
 		float chance = 0;
+		//S
 
 		return chance;
 	}
