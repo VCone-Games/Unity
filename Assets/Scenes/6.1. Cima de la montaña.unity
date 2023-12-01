@@ -67689,6 +67689,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1750224816}
     m_Modifications:
+    - target: {fileID: 1478810224610852838, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+      propertyPath: patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478810224610852838, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+      propertyPath: patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 2017814551}
+    - target: {fileID: 1478810224610852838, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+      propertyPath: patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 589006254}
     - target: {fileID: 2626390297814565703, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
       propertyPath: m_Name
       value: Maceta
@@ -67733,6 +67745,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6675534994554730612, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 46.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675534994554730612, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67740,7 +67760,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
 --- !u!4 &1548551835 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4238247840370952045, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6675534994554730612, guid: 6f22b6ed3d9072f41b478bd9d98ad35a, type: 3}
   m_PrefabInstance: {fileID: 1548551834}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559182427
@@ -67872,9 +67892,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1548551835}
   - {fileID: 1291783340}
   - {fileID: 2032462937}
+  - {fileID: 1548551835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1853500622
