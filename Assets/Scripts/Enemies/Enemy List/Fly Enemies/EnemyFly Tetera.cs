@@ -17,7 +17,7 @@ public class EnemyFlyTetera : IAFlyPatrol
 
     private void SummonLighting()
     {
-        Instantiate(prefabThunder, spawnAttack);
+        Instantiate(prefabThunder, spawnAttack.transform.position, Quaternion.identity);
         Debug.Log("Spawn lighting");
     }
 }
