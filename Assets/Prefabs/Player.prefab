@@ -520,10 +520,10 @@ MonoBehaviour:
   mousePositionInWorld: {x: 0, y: 0}
   controllerAim: {x: 0, y: 0}
   hookingRange: 8
-  hookProjectileSpeed: 30
+  hookProjectileSpeed: 40
   hookingSpeed: 17
   hookingMaxDuration: 1
-  hookCooldDown: 1.75
+  hookCooldDown: 1
   unhookDistance: 0.9
   hookingUnstuckTimer: 0
   hookCoolDownTimer: 0
@@ -1440,6 +1440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   interactMOBILEReference: {fileID: -4106608112481754333, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
+  nextLineReference: {fileID: -3124695116967206662, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
+  nextLineMOBILEReference: {fileID: 4656581022867906792, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   MOBILE: 0
 --- !u!1 &4704654943847754631
 GameObject:
@@ -1720,7 +1722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2776405451042316320
 Transform:
   m_ObjectHideFlags: 0
@@ -1731,7 +1733,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.8259983, y: 4.8259983, z: 4.8259983}
+  m_LocalScale: {x: 3.9302447, y: 3.9302447, z: 3.9302447}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1926100107549445966}
@@ -1778,7 +1780,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.0048110485, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.004898548, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -56,6 +56,7 @@ public class OnSceneLoad : MonoBehaviour
         }
 
         SetPowers();
+        SetFootstepsAudio();
     }
 
     private void SetPowers()
@@ -63,5 +64,10 @@ public class OnSceneLoad : MonoBehaviour
         playerObject.GetComponent<Jump>().MaxJumps = playerInfo.CanDoubleJump ? 2 : 1;
         playerObject.GetComponent<Dash>().DashUnlocked = playerInfo.CanDash;
         playerObject.GetComponent<WallGrab>().WallGrabUnlocked = playerInfo.CanWallGrab;
+    }
+
+    private void SetFootstepsAudio()
+    {
+        playerObject.GetComponent<PlayerSoundManager>().SetGroundMaterial(playerInfo.footstepsId);
     }
 }

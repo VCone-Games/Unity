@@ -29,7 +29,7 @@ public class PlayerSoundManager : MonoBehaviour
     [SerializeField] private float[] footStepsVOLUME;
 
     [Header("Footsteps Control Variables")]
-    [SerializeField] private int currentMaterialId;
+    [SerializeField] public int currentMaterialId;
     [SerializeField] private bool footstepsPlaying;
 
     [Header("Landing Sounds: 0-Metal, 1-Snow, 2-Grass, 3-Stone")]
