@@ -127,10 +127,10 @@ public class WallGrab : MonoBehaviour
             isGrabbingWall = false;
             animator.SetBool("isGrabbingWall", isGrabbingWall);
             jumpComponent.EnableBonusAirTime();
-            if (!jumpWall && !horizontalMovementReference.moving)
-            {
-                horizontalMovementReference.IsFacingRight = !horizontalMovementReference.IsFacingRight;
-            }
+           if (!jumpWall)
+           {
+               horizontalMovementReference.LeaveWall();
+           }
 
         }
 
@@ -157,6 +157,7 @@ public class WallGrab : MonoBehaviour
             isJumpingRight = false;
             horizontalMovementReference.EnableMovementInput();
             airDashMovementReference.EnableDashInput();
+            horizontalMovementReference.LeaveWall();
         }
     }
 

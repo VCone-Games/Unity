@@ -90,19 +90,19 @@ public class HorizontalMovement : MonoBehaviour
 
     }
 
-	private void HittedWithConfused(object sender, int timer)
-	{
+    private void HittedWithConfused(object sender, int timer)
+    {
         confuseTime = timer;
         isConfused = true;
-	}
+    }
 
-	private void OnPressed(InputAction.CallbackContext context)
+    private void OnPressed(InputAction.CallbackContext context)
     {
         moving = true;
         checkOnce = true;
         movementDirection = context.action.ReadValue<float>();
         movementDirection = (isConfused) ? -movementDirection : movementDirection;
-        
+
         if (movementDirection < 0)
         {
             SpriteFlipManager(false);
@@ -140,21 +140,21 @@ public class HorizontalMovement : MonoBehaviour
 
     void ConfuseLogic()
     {
-		if (isConfused)
-		{
-			confuseTime -= Time.deltaTime;
-		}
-		if (confuseTime < 0.0f)
-		{
-			isConfused = false;
-		}
-	}
+        if (isConfused)
+        {
+            confuseTime -= Time.deltaTime;
+        }
+        if (confuseTime < 0.0f)
+        {
+            isConfused = false;
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         ConfuseLogic();
-        if(flipped)
+        if (flipped)
         {
             if (facingRight)
             {
@@ -171,16 +171,17 @@ public class HorizontalMovement : MonoBehaviour
             }
             flipped = false;
         }
-        
+
 
         if (DISABLED) return;
         if (moving)
         {
-            if(jumpComponent.IsGrounded)
+            if (jumpComponent.IsGrounded)
             {
                 animator.SetBool("Running", true);
                 soundManager.PlayFootsteps();
-            }else
+            }
+            else
             {
                 soundManager.StoptFootsteps();
             }
@@ -188,7 +189,7 @@ public class HorizontalMovement : MonoBehaviour
         }
         else
         {
-            if(checkOnce)
+            if (checkOnce)
             {
                 soundManager.StoptFootsteps();
                 animator.SetBool("Running", false);
@@ -197,6 +198,21 @@ public class HorizontalMovement : MonoBehaviour
 
             myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 
+        }
+    }
+
+    public void LeaveWall()
+    {
+        if (moving)
+        {
+            if (movementDirection > 0 && !IsFacingRight)
+            {
+                SpriteFlipManager(true);
+            }
+            else if (movementDirection < 0 && IsFacingRight)
+            {
+                SpriteFlipManager(false);
+            }
         }
     }
 
