@@ -377,8 +377,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionSprite: {fileID: 5024107232573124353}
   myAnimator: {fileID: 0}
-  _dialoguesList: []
+  _dialoguesList:
+  - {fileID: 11400000, guid: bc0a08324f75e664c869eccc62e23cc8, type: 2}
+  - {fileID: 11400000, guid: 485378c5a642e2047a116bb239e2ba81, type: 2}
+  - {fileID: 11400000, guid: d9ebe68853f6c34409962ce1da2775d7, type: 2}
+  - {fileID: 11400000, guid: 27699e45052a91742960626ee6064fe8, type: 2}
+  - {fileID: 11400000, guid: 683fda3f05a04f2488e20dfbfe639eaa, type: 2}
+  - {fileID: 11400000, guid: c4169cebe88b25546823a43f96f620ff, type: 2}
   dialogueController: {fileID: 0}
+  nameNPC: Panda
   _dialogueBase:
   - {fileID: 11400000, guid: bc0a08324f75e664c869eccc62e23cc8, type: 2}
   - {fileID: 11400000, guid: 485378c5a642e2047a116bb239e2ba81, type: 2}

@@ -116,7 +116,7 @@ public class Jump : MonoBehaviour
         bufferTimer = bufferTime;
         if (jumpCount == 0)
             jumpCount++;
-        Debug.Log(jumpCount);
+        
         if (!IsGrounded)
         {
             jumpCount++;

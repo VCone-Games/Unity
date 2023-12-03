@@ -55,10 +55,9 @@ public class HealthUI : MonoBehaviour
 		if (AllHearthsGameObject.Count > 0) ResetUI();
 		healthPlayerManager.EventUpdateHealthUI += UpdateHealUI;
 		int max_player_health = healthPlayerManager.MaxHealth;
-		Debug.Log(max_player_health);
+
 		for (int i = 0; i < max_player_health; i++)
 		{
-			Debug.Log("Añadiendo corazón...");
 			GameObject currentHearth = Instantiate(prefab_hearth_full, hearthList);
 			AllHearthsGameObject.Add(currentHearth);
 			RectTransform currentRectTransform = currentHearth.GetComponent<RectTransform>();
@@ -84,7 +83,6 @@ public class HealthUI : MonoBehaviour
 	{
 		foreach(var hearth in AllHearthsGameObject)
 		{
-			Debug.Log("Destruyendo corazon en reset...");
 			Destroy(hearth);
 		}
 		AllHearthsGameObject.Clear();
@@ -94,10 +92,8 @@ public class HealthUI : MonoBehaviour
 
 	void UpdateHealUI(object sender, int currentHealth)
 	{
-		Debug.Log("Updating heal...");
 		for (int i = 0; i < AllHearthsGameObject.Count; i++)
 		{
-			Debug.Log("Updateo una vez");
 			RawImage hearthImage = AllHearthsGameObject[i].GetComponent<RawImage>();
 
 			if (i < currentHealth) hearthImage.texture = hearth_sprite_full.texture;

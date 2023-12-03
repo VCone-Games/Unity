@@ -11,6 +11,7 @@ public class O_Volumen : MonoBehaviour
 
 	[Header("Global volumen")]
 	[SerializeField] private AudioSource audioSource;
+	bool muted;
 
 	// Start is called before the first frame update
 	void Start()
@@ -25,20 +26,18 @@ public class O_Volumen : MonoBehaviour
 		audioSource.volume = volumeSlider.value;
 	}
 	
-	public void OnTogglePressed(bool pressed)
+	public void OnTogglePressed()
 	{
-		if (pressed)
+		muted = !muted;
+		if (muted)
 		{
 			// Se silencia el sonido en el juego
-			AudioListener.volume = 0;
-			
+			audioSource.volume = 0;
 		}
-		else if (!pressed)
+		else if (!muted)
 		{
 			// Se vuelve ha activar el sonido
 			audioSource.volume = volumeSlider.value;
-			
 		}
-
 	}
 }
