@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
 
-    [SerializeField] private CinemachineVirtualCamera[] allVirtualCameras;
+    [SerializeField] public CinemachineVirtualCamera[] allVirtualCameras;
 
     [Header("Controls for lerping the Y Damping during player jump/fall")]
     [SerializeField] private float fallPanAmount = 0.25f;
@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
     private Coroutine panCameraCoroutine;
 
     private CinemachineFramingTransposer framingTransposer;
-    private CinemachineVirtualCamera currentCamera;
+    public CinemachineVirtualCamera currentCamera;
 
     private float normYPanAmount;
 
