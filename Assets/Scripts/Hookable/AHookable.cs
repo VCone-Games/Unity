@@ -18,7 +18,7 @@ public abstract class AHookable : MonoBehaviour
     [SerializeField] protected Enemy enemyComponent;
 
     [Header("Parry variables")]
-    [SerializeField] protected bool isParried;
+    [SerializeField] public bool isParried;
     [SerializeField] protected bool parrying;
     [SerializeField] protected float parryKnockbackTime;
     [SerializeField] public float parryKnockbackTimer;

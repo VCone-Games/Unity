@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: af30cbc29f562ec40b5fe3f90b9aa1e3, type: 3}
   mySpriteRenderer: {fileID: 0}
   myRigidbody2D: {fileID: 0}
-  fallingSpeed: 0
+  fallingSpeed: 10
   CanDamageBoss: 0
   hooked: 0
   skinChanged: 0
@@ -169,11 +169,11 @@ MonoBehaviour:
   playerGO: {fileID: 0}
   hookGun: {fileID: 0}
   myRigidbody: {fileID: 8184095978476913573}
-  myCollider: {fileID: 0}
+  myCollider: {fileID: 7965915441002869642}
   enemyComponent: {fileID: 0}
   isParried: 0
   parrying: 0
-  parryKnockbackTime: 0.3
+  parryKnockbackTime: 10
   parryKnockbackTimer: 0
   stopTimeDistance: 0
   timeScale: 0
@@ -221,7 +221,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.48
+  m_Radius: 0.36
 --- !u!58 &4398667517220587744
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -256,4 +256,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.58
+  m_Radius: 0.41
