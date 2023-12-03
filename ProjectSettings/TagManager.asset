@@ -18,6 +18,7 @@ TagManager:
   - Dialogue Box
   - Hearth Canvas
   - Camera NPC
+  - spawn
   layers:
   - Default
   - TransparentFX
