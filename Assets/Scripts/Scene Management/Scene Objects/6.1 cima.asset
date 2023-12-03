@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: "6.1. Cima de la monta\xF1a"
   EnterPositions:
-  - {x: -18.077068, y: 0.6747451, z: 0}
+  - {x: -18.077068, y: 1.674745, z: 0}
   - {x: -47.827072, y: 0.76474524, z: 0}
   - {x: 34.79293, y: 26.254745, z: 0}
   - {x: 85.06293, y: 17.454746, z: 0}
