@@ -16,14 +16,14 @@ public class BulletController : MonoBehaviour
 
     private Rigidbody2D myRigidbody2D;
 
-	private void Start()
-	{
-		myRigidbody2D = GetComponent<Rigidbody2D>();
-	}
+    private void Start()
+    {
+        myRigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
-	private void OnCollisionStay2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
             healthManager = collision.gameObject.GetComponent<HealthPlayerManager>();
             if (healthManager == null) return;
@@ -34,11 +34,21 @@ public class BulletController : MonoBehaviour
 
             healthManager.EventDamageTaken(this, damageContactPoint);
         }
-        Destroy(gameObject);
-	}
+         if (!(collision.gameObject.CompareTag("Projectile") && GetComponent<LightHookable>().isHooked))
+         {
+            GetComponent<LightHookable>().Unhook();
+             Destroy(gameObject);
+         }
 
-	private void FixedUpdate()
-	{
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (GetComponent<LightHookable>().isHooked)
+        {
+            return;
+        }
         if (!startedMoving)
         {
             direction = playerObject.transform.position - transform.position;
@@ -46,6 +56,6 @@ public class BulletController : MonoBehaviour
         }
 
         myRigidbody2D.velocity = direction.normalized * speed;
-	}
+    }
 
 }

@@ -136,6 +136,7 @@ public class HorizontalMovement : MonoBehaviour
     {
         movementMOBILEActionReference.action.Enable();
         DISABLED = false;
+        CheckDirection();
     }
 
     void ConfuseLogic()
@@ -201,7 +202,7 @@ public class HorizontalMovement : MonoBehaviour
         }
     }
 
-    public void LeaveWall()
+    public void CheckDirection()
     {
         if (moving)
         {

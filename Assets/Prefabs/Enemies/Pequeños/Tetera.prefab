@@ -187,7 +187,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 30
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
@@ -284,7 +284,6 @@ MonoBehaviour:
   tState: 0
   attackRange: 3
   patrolPoints:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   currentPatrolPoint: 0
@@ -403,6 +402,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 11
   noPlayerLayer: 9
 --- !u!114 &961367487660812986
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 690743018787521123}
-  maxSpeed: 20
+  maxSpeed: 25
   dashComponent: {fileID: 0}
 --- !u!114 &4212287201317763585
 MonoBehaviour:

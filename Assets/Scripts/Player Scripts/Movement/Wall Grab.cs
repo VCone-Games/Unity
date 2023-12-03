@@ -129,7 +129,7 @@ public class WallGrab : MonoBehaviour
             jumpComponent.EnableBonusAirTime();
            if (!jumpWall)
            {
-               horizontalMovementReference.LeaveWall();
+               horizontalMovementReference.CheckDirection();
            }
 
         }
@@ -157,7 +157,7 @@ public class WallGrab : MonoBehaviour
             isJumpingRight = false;
             horizontalMovementReference.EnableMovementInput();
             airDashMovementReference.EnableDashInput();
-            horizontalMovementReference.LeaveWall();
+            horizontalMovementReference.CheckDirection();
         }
     }
 

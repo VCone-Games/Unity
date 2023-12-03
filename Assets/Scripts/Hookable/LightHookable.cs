@@ -15,6 +15,8 @@ public class LightHookable : AHookable
 
         base.ParryingAction();
 
+       
+
     }
 
     protected override void HookingInteraction()

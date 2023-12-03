@@ -6,12 +6,14 @@ public class HeavyHookable : AHookable
 {
     protected override void ParryingAction()
     {
+        gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
         playerRigidbody.velocity = parryDirection;
         if (Mathf.Abs(parryDirection.normalized.x) > 0.95)
         {
             playerRigidbody.velocity += new Vector2(0, 8);
         }
         base.ParryingAction();
+
     }
 
     protected override void HookingInteraction()

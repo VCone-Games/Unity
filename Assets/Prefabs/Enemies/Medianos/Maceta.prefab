@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5424274166639469992}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpawnAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,9 @@ GameObject:
   - component: {fileID: 4174741074323353797}
   - component: {fileID: 7416266500217709843}
   - component: {fileID: 918689365185586549}
-  m_Layer: 0
+  - component: {fileID: 3052912503636802227}
+  - component: {fileID: 1243955884552367846}
+  m_Layer: 11
   m_Name: Maceta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,9 +209,9 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
-  DamageKnockbackVector: {x: 0, y: 0}
-  DamageKnockbackForce: 0
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &8293170476287996776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +259,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 0
+  unhookTime: 1
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -270,7 +272,10 @@ MonoBehaviour:
   reachedEndOfPath: 0
   tState: 0
   attackRange: 5
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentPatrolPoint: 0
   patrolDistance: 0.2
   spawnAttack: {fileID: 5424274166639469992}
@@ -287,8 +292,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 100
+  m_LinearDrag: 1.8
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -334,7 +339,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08181858, y: 0.22456601}
+  m_Offset: {x: -0.073406994, y: 0.2133506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -345,7 +350,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3803451, y: 1.5474639}
+  m_Size: {x: 1.4420298, y: 1.6259717}
   m_EdgeRadius: 0
 --- !u!114 &918689365185586549
 MonoBehaviour:
@@ -360,3 +365,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &3052912503636802227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509818105444627018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1dd4efdc8128d844bc3154a9cd9370c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  parryComponent: {fileID: 0}
+  playerCollider: {fileID: 0}
+  playerGO: {fileID: 0}
+  hookGun: {fileID: 0}
+  myRigidbody: {fileID: 4174741074323353797}
+  myCollider: {fileID: 7261448908023271867}
+  enemyComponent: {fileID: 0}
+  isParried: 0
+  parrying: 0
+  parryKnockbackTime: 0
+  parryKnockbackTimer: 0
+  stopTimeDistance: 0
+  timeScale: 0
+  timeScaleRecoveryRatio: 0
+  isHooked: 0
+  vectorToHookGun: {x: 0, y: 0, z: 0}
+  hookProjectile: {fileID: 0}
+  hookingSpeed: 0
+  parryDirection: {x: 0, y: 0, z: 0}
+  timeStopped: 0
+  failedParryTimer: 0
+  normalLayer: 11
+  noPlayerLayer: 9
+--- !u!114 &1243955884552367846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509818105444627018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e584af69eac97c24e8f913380b8b3c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 4174741074323353797}
+  maxSpeed: 25
+  dashComponent: {fileID: 0}
