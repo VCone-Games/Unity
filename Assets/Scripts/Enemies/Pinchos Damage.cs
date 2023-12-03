@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering;
 
 public class PinchosDamage : Damage
 {
-    [SerializeField] private float warpTime;
+     private float warpTime = 0.25f;
     private float warpTimer;
 
     private GameObject player;
