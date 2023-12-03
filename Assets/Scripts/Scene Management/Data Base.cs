@@ -9,6 +9,10 @@ public class DataBase : MonoBehaviour
     public static DataBase Singleton;
 
     private Dictionary<string, bool> dataBoss = new Dictionary<string, bool>();
+    private Dictionary<string, int> npcTalked = new Dictionary<string, int>();
+    private List<bool> pandaInteractions = new List<bool>() { true, true, true, true, false, false };
+    List<DialogueText> dialogueListPanda;
+
     private List<string> bossNames = new List<string>
     { "Curcuma", "Azafran", "Perejil", "Jengibre" };
     [SerializeField] private float timerGame;
@@ -20,6 +24,9 @@ public class DataBase : MonoBehaviour
     [SerializeField] private int coleccionables = 0;
 
     public Dictionary<string, bool> DataBoss {  get { return dataBoss; } }
+    public Dictionary<string, int> NpcTalked {  get { return npcTalked; } }
+    public List<bool> PandaInteractions { get { return pandaInteractions; } }
+    public List<DialogueText> DialogueListPanda { get { return dialogueListPanda; } set { dialogueListPanda = value; } }
     public float TimerGame {  get { return timerGame; } set {  timerGame = value; } }
     public string Username { get { return username;} set { username = value; } }
     public int DeathCount { get { return deathCount; } set {  deathCount = value; } }
