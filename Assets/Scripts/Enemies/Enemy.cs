@@ -24,14 +24,13 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] public float unhookTimer;
     [SerializeField] public bool isDead;
 
-
-
     protected virtual void Die()
     {
         isDead = true;
         myAnimator.SetBool("isDead", true);
         // myRigidbody2D.velocity = Vector2.zero;
         myRigidbody2D.isKinematic = false;
+        DataBase.Singleton.DeathCount++;
     }
 
     protected virtual void Disappear()

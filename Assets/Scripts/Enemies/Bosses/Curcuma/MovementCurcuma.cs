@@ -121,7 +121,10 @@ public class MovementCurcuma : IAFlyPatrol
 
 	protected override void Die()
 	{
-		base.Die();
+		isDead = true;
+		myAnimator.SetBool("isDead", true);
+		// myRigidbody2D.velocity = Vector2.zero;
+		myRigidbody2D.isKinematic = false;
 		DataBase.Singleton.OnDeathBoss("Curcuma");
 		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(); ;
 	}

@@ -417,7 +417,10 @@ public class FirstPhaseAzafran : Enemy
 
 	protected override void Die()
 	{
-		base.Die();
+		isDead = true;
+		myAnimator.SetBool("isDead", true);
+		// myRigidbody2D.velocity = Vector2.zero;
+		myRigidbody2D.isKinematic = false;
 		DataBase.Singleton.OnDeathBoss("Azafran");
 	}
 }

@@ -111,7 +111,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21db3de56fb96754d974a9e7a71f5117, type: 3}
   mySpriteRenderer: {fileID: 1362591824214498051}
   myRigidbody2D: {fileID: 2710354800001022695}
-  fallingSpeed: 15
+  fallingSpeed: 10
   distanceFall: 100
   playerFirstDetected: 0
   skinChanged: 1
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3806425227949655440}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -141,7 +141,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &8705923366585723433
 BoxCollider2D:
@@ -172,7 +172,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

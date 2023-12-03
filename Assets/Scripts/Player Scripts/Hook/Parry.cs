@@ -225,6 +225,7 @@ public class Parry : MonoBehaviour
     public void parryEffects(bool facingRight)
     {
         animator.SetTrigger("Parry");
+        DataBase.Singleton.ParriedTimes++;
         soundManager.PlayParry();
 
         horizontalMovementComponent.SpriteFlipManager(facingRight);

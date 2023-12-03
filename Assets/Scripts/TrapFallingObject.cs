@@ -27,13 +27,13 @@ public class TrapFallingObject : MonoBehaviour
     {
 		mySpriteRenderer = GetComponent<SpriteRenderer>();
 		myRigidbody2D = GetComponent<Rigidbody2D>();
-		myRigidbody2D.isKinematic = true;
 		int selSprite = Random.Range(0, spritesBase.Count);
 		mySpriteRenderer.sprite = spritesBase[selSprite];
     }
 
-	/*private void OnCollisionEnter2D(Collision2D collision)
+	private void OnCollisionEnter2D(Collision2D collision)
 	{
+	    if (!playerFirstDetected) { return; }
 		if (collision.gameObject.CompareTag("Player"))
 		{
 			HealthManager healthManager = collision.gameObject.GetComponent<HealthPlayerManager>();
@@ -46,9 +46,9 @@ public class TrapFallingObject : MonoBehaviour
 			healthManager.EventDamageTaken(this, damageContactPoint);
 		}
 		Destroy(gameObject);
-	}*/
+	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	/*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!playerFirstDetected) { return; }
 		if (collision.gameObject.CompareTag("Player"))
@@ -62,8 +62,9 @@ public class TrapFallingObject : MonoBehaviour
 
             healthManager.EventDamageTaken(this, damageContactPoint);
         }
+		Debug.Log(collision.gameObject);
         Destroy(gameObject);
-    }
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
