@@ -361,6 +361,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 0
   noPlayerLayer: 0
 --- !u!114 &-8310491789114577193

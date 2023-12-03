@@ -8,8 +8,15 @@ public class HealthManagerCurcuma : HealthManager
 	public EventHandler EventSecondPhase;
 	[Header("Phases")]
 	[SerializeField] private bool SecondPhase = false;
+	public TPPLAYERBACK tpplayer;
+
 
     // Start is called before the first frame update
+
+    protected override void Start()
+    {
+        base.Start();
+    }
     protected override void TakeDamage(object sender, Vector3 damage)
     {
 		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
@@ -26,13 +33,11 @@ public class HealthManagerCurcuma : HealthManager
 		if (current_health <= 0)
 		{
 			EventDie?.Invoke();
-		}
+			tpplayer.CurcumaDeath();
+        }
 
 		Debug.Log("CURCUUUUUUUMAAAAA::: Damage received " + current_health);
 	}
 
-	void FixedUpdate()
-	{
-		if (Input.GetKey(KeyCode.F)) EventDamageTaken(this, new Vector3(4, 0, 0));
-	}
+	
 }

@@ -36,13 +36,13 @@ public class DataBase : MonoBehaviour
     public int DeathEnemies { get { return deathEnemies; } set { deathEnemies = value; } }
     public int Coleccionables { get { return coleccionables; } set { coleccionables = value; } }
 
-	private void Awake()
-	{
-		if (Singleton == null)
-			Singleton = this;
-	}
-	// Start is called before the first frame update
-	void Start()
+    private void Awake()
+    {
+        if (Singleton == null)
+            Singleton = this;
+    }
+    // Start is called before the first frame update
+    void Start()
     {
         foreach (var name in bossNames)
         {
@@ -58,12 +58,12 @@ public class DataBase : MonoBehaviour
     {
         timerGame = Time.time - startedTimerGame;
 
-		int minutos = Mathf.FloorToInt(timerGame / 60);
-		int segundos = Mathf.FloorToInt(timerGame % 60);
+        int minutos = Mathf.FloorToInt(timerGame / 60);
+        int segundos = Mathf.FloorToInt(timerGame % 60);
 
-		// Muestra el tiempo transcurrido en la consola
-		//Debug.Log("Tiempo transcurrido: " + minutos.ToString("00") + ":" + segundos.ToString("00"));
-	}
+        // Muestra el tiempo transcurrido en la consola
+        //Debug.Log("Tiempo transcurrido: " + minutos.ToString("00") + ":" + segundos.ToString("00"));
+    }
 
     public void OnDeathBoss(string nameBoss)
     {
@@ -72,11 +72,18 @@ public class DataBase : MonoBehaviour
         if (dataBoss.ContainsKey(nameBoss))
         {
             Debug.Log("El nombre del boss esta en el diccionario. Se muere.");
-			dataBoss[nameBoss] = true;
-		}
-		else
+            dataBoss[nameBoss] = true;
+        }
+        else
         {
             Debug.Log("El nombre del boss no se encuentra en el diccionario.");
         }
+    }
+
+    public bool IsBossDead(string nameBoss)
+    {
+
+        return dataBoss[nameBoss];
+
     }
 }

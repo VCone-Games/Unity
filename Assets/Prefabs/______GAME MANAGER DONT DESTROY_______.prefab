@@ -1275,6 +1275,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d8fa877f2ebbbc489cc6f19d1190a2d, type: 3}
   - {fileID: 8300000, guid: 931d79dda8b32a448b990fdac944d126, type: 3}
   - {fileID: 8300000, guid: 036ecb9660f2a1b40881c43134910a1d, type: 3}
+  - {fileID: 8300000, guid: 28b569c3731878b469a6d480bc65f346, type: 3}
   AzafranAudioClips: []
   actualClip: 0
 --- !u!114 &8942382680132334724

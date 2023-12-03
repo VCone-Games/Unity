@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3441310618707360602}
   - component: {fileID: 7858560354401498659}
   - component: {fileID: 2494506469297907016}
-  - component: {fileID: 6698011940632476954}
   - component: {fileID: 7854418761613355245}
   m_Layer: 11
   m_Name: Energy Crow
@@ -282,19 +281,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6698011940632476954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664349279408210146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09254c9ee0ec17a40b7c917889bbe147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!61 &7854418761613355245
 BoxCollider2D:
   m_ObjectHideFlags: 0
