@@ -19,14 +19,19 @@ public class OnSceneLoad : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        if (!playerInfo.Firstspawn)
+        HealthPlayerManager healthPlayerManager = playerObject.GetComponent<HealthPlayerManager>();
+
+		if (!playerInfo.FirstSpawn)
         {
-            playerInfo.Firstspawn = true;
+            playerInfo.FirstSpawn = true;
             foreach (CheckpointSaver go in GameObject.FindObjectsOfType<CheckpointSaver>())
             {
                 if (go.StartSpawnPoint)
                 {
-                    playerInfo.SetCheckpoint(SceneManager.GetActiveScene().name, go.spawnPoint.position, go.ID);
+					healthPlayerManager.MaxHealth = playerInfo.MaxHealth;
+					healthPlayerManager.CurrentHealth = playerInfo.MaxHealth;
+
+					playerInfo.SetCheckpoint(SceneManager.GetActiveScene().name, go.spawnPoint.position, go.ID);
                     playerObject.transform.position = playerInfo.CheckPointPosition;
                     go.Initialize();
                     go.SpawnPlayer();
@@ -37,7 +42,7 @@ public class OnSceneLoad : MonoBehaviour
         else if (playerInfo.IsDead)
         {
             playerInfo.IsDead = false;
-            playerObject.GetComponent<HealthPlayerManager>().Restore();
+			healthPlayerManager.Restore();
             playerObject.transform.position = playerInfo.CheckPointPosition;
             foreach (CheckpointSaver go in GameObject.FindObjectsOfType<CheckpointSaver>())
             {
@@ -51,7 +56,6 @@ public class OnSceneLoad : MonoBehaviour
         }
         else
         {
-            playerObject.GetComponent<HealthPlayerManager>().CurrentHealth = playerInfo.CurrentHealth;
             playerObject.transform.position = playerInfo.SpawnPosition;
         }
 

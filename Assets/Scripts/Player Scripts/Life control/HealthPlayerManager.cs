@@ -33,11 +33,16 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
 
-		HealthUI.HealthUISingleton.EventInitialiteUI?.Invoke();
-    }
-    public void Restore()
+        max_health = PlayerInfo.Instance.MaxHealth;
+		current_health = PlayerInfo.Instance.CurrentHealth;
+
+		HealthUI.HealthUISingleton.EventInitialiteUI?.Invoke(this, this);
+	}
+	public void Restore()
     {
+        Debug.Log($"Restoring.../CurrentHealth: {current_health} /MaxHealth {max_health}");
         current_health = max_health;
+        PlayerInfo.Instance.CurrentHealth = max_health;
         EventUpdateHealthUI?.Invoke(this, current_health);
     }
 
@@ -61,8 +66,6 @@ public class HealthPlayerManager : HealthManager
             hook.hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
         hook.HookDestroyed();
         hook.DisableHookInput();
-
-
 
         base.TakeDamage(sender, damageContactPoint);
         if (OnlyTakeDmgOnce) return;

@@ -10,9 +10,8 @@ public class HealthUI : MonoBehaviour
 
 	public Action EventAddHeartUI;
 	public Action EventRemoveHeartUI;
-	public Action EventInitialiteUI;
+	public EventHandler<HealthPlayerManager> EventInitialiteUI;
 
-	public EventHandler<int> EventUpdateUI;
 	[Header("External GameObjects")]
 	[SerializeField] private Transform hearthList;
 	[SerializeField] private GameObject playerGameObject;
@@ -51,26 +50,11 @@ public class HealthUI : MonoBehaviour
 		EventInitialiteUI += LateStart;
 	}
 
-	private void ResetUI()
-	{
-		foreach(var hearth in AllHearthsGameObject)
-		{
-			Destroy(hearth);
-		}
-		currentRow = 0;
-		currentColumn = 0;
-	}
-	private void LateStart()
+	private void LateStart(object sender, HealthPlayerManager healthPlayerManager)
 	{
 		if (AllHearthsGameObject.Count > 0) ResetUI();
-
-		playerGameObject = GameObject.FindGameObjectWithTag("Player");
-
-		healthManagerComponent = playerGameObject.GetComponent<HealthPlayerManager>();
-
-		healthManagerComponent.EventUpdateHealthUI += UpdateHealUI;
-
-		int max_player_health = healthManagerComponent.MaxHealth;
+		healthPlayerManager.EventUpdateHealthUI += UpdateHealUI;
+		int max_player_health = healthPlayerManager.MaxHealth;
 		Debug.Log(max_player_health);
 		for (int i = 0; i < max_player_health; i++)
 		{
@@ -93,8 +77,19 @@ public class HealthUI : MonoBehaviour
 				currentColumn = 0;
 			}
 		}
+		UpdateHealUI(this, healthPlayerManager.CurrentHealth);
+	}
 
-		EventUpdateUI?.Invoke(this, healthManagerComponent.CurrentHealth);
+	private void ResetUI()
+	{
+		foreach(var hearth in AllHearthsGameObject)
+		{
+			Debug.Log("Destruyendo corazon en reset...");
+			Destroy(hearth);
+		}
+		AllHearthsGameObject.Clear();
+		currentRow = 0;
+		currentColumn = 0;
 	}
 
 	void UpdateHealUI(object sender, int currentHealth)
