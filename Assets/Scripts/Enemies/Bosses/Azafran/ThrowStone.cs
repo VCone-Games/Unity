@@ -53,6 +53,7 @@ public class ThrowStone : MonoBehaviour
 
         if (!collision.gameObject.CompareTag("Projectile"))
         {
+            GetComponent<PiedraAzafran>().Unhook();
             Destroy(gameObject);
         }
 

@@ -37,6 +37,7 @@ public class SecondPhaseAzafran : MonoBehaviour
         
         if (currentStep == maxSteps)
         {
+            GetComponent<HealthManagerAzafran>().EventDie.Invoke();
             Debug.Log("Fin del combate");
             canMove = false;
             myAnimator.SetBool("isDead", true);

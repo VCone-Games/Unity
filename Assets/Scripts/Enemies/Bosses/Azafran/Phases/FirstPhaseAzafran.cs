@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FirstPhaseAzafran : Enemy
 {
+	[SerializeField] private GameObject tpPlayer;
 	[SerializeField] private bool isDisabled = false;
 	public bool IsDisabled { get { return isDisabled; } set { isDisabled = value; } }
 	[Header("Player params")]
@@ -422,5 +423,7 @@ public class FirstPhaseAzafran : Enemy
 		// myRigidbody2D.velocity = Vector2.zero;
 		myRigidbody2D.isKinematic = false;
 		DataBase.Singleton.OnDeathBoss("Azafran");
+		tpPlayer.GetComponent<TPPLAYERBACK>().CurcumaDeath();
+		Debug.Log("AZAFRAN MUERE JODER");
 	}
 }

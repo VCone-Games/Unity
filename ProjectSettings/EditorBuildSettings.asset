@@ -59,5 +59,11 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/6.3. Cima de la monta\xF1a este.unity"
     guid: 6489f47b4a7e505428bfa28203822984
+  - enabled: 1
+    path: Assets/Scenes/Bosses/Curcuma.unity
+    guid: ae6b8ba99de99774291327153d6ca9b5
+  - enabled: 1
+    path: Assets/Scenes/Bosses/Azafran.unity
+    guid: 7d42d5a980046914b994536405dbb2a9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c93d4e0caba931e48aae4fec96740ecb, type: 2}
