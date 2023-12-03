@@ -23,6 +23,12 @@ public class O_ShowOptions : MonoBehaviour
 
 	private void OnPressed(InputAction.CallbackContext context)
 	{
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		player.GetComponent<Jump>().DisableJumpInput();
+		player.GetComponent<HorizontalMovement>().DisableMovementInput();
+		player.GetComponent<Hook>().DisableHookInput();
+		player.GetComponent<WallGrab>().DisableWallGrabInput();
+		player.GetComponent<Dash>().DisableDashInput();
 		ShowMenu();
 	}
 
@@ -30,12 +36,26 @@ public class O_ShowOptions : MonoBehaviour
     {
 		if (pauseUI.activeSelf)
 		{
+			GameObject player = GameObject.FindGameObjectWithTag("Player");
+			player.GetComponent<Jump>().EnableJumpInput();
+			player.GetComponent<HorizontalMovement>().EnableMovementInput();
+			player.GetComponent<Hook>().EnableHookInput();
+			player.GetComponent<WallGrab>().EnableWallGrabInput();
+			player.GetComponent<Dash>().EnableDashInput();
+
 			//Si esta activada, la desactiva
 			Time.timeScale = 1.0f;
 			pauseUI.SetActive(false);
 		}
 		else
 		{
+			GameObject player = GameObject.FindGameObjectWithTag("Player");
+			player.GetComponent<Jump>().DisableJumpInput();
+			player.GetComponent<HorizontalMovement>().DisableMovementInput();
+			player.GetComponent<Hook>().DisableHookInput();
+			player.GetComponent<WallGrab>().DisableWallGrabInput();
+			player.GetComponent<Dash>().DisableDashInput();
+
 			//Si esta desactivada, la activa
 			Time.timeScale = 0.0f;
 			pauseUI.SetActive(true);

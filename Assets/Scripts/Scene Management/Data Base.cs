@@ -15,11 +15,17 @@ public class DataBase : MonoBehaviour
     private float startedTimerGame;
     [SerializeField] private string username = "Username";
     [SerializeField] private int deathCount = 0;
+    [SerializeField] private int parriedTimes = 0;
+    [SerializeField] private int deathEnemies = 0;
+    [SerializeField] private int coleccionables = 0;
 
     public Dictionary<string, bool> DataBoss {  get { return dataBoss; } }
     public float TimerGame {  get { return timerGame; } set {  timerGame = value; } }
     public string Username { get { return username;} set { username = value; } }
     public int DeathCount { get { return deathCount; } set {  deathCount = value; } }
+    public int ParriedTimes { get { return parriedTimes; } set { parriedTimes = value; } }
+    public int DeathEnemies { get { return deathEnemies; } set { deathEnemies = value; } }
+    public int Coleccionables { get { return coleccionables; } set { coleccionables = value; } }
 
 	private void Awake()
 	{

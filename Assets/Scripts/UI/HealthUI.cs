@@ -132,7 +132,6 @@ public class HealthUI : MonoBehaviour
 		healthManagerComponent.CurrentHealth++;
 
 		UpdateHealUI(this, healthManagerComponent.CurrentHealth);
-
 	}
 
 	void RemoveHearth()
@@ -149,8 +148,6 @@ public class HealthUI : MonoBehaviour
 		if (healthManagerComponent.MaxHealth < healthManagerComponent.CurrentHealth)
 			healthManagerComponent.CurrentHealth = healthManagerComponent.MaxHealth;
 
-		UpdateHealUI(this, healthManagerComponent.CurrentHealth);
-
 		if (currentColumn == 0)
 		{
 			currentRow--;
@@ -160,7 +157,6 @@ public class HealthUI : MonoBehaviour
 		{
 			currentColumn--;
 		}
+		UpdateHealUI(this, healthManagerComponent.CurrentHealth);
 	}
-
-
 }

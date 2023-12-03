@@ -68,10 +68,9 @@ public class TrapFallingObject : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-		playerFirstDetected = Physics2D.Raycast(transform.position, Vector2.down, distanceFall, playerMask);
+		if (!playerFirstDetected) playerFirstDetected = Physics2D.Raycast(transform.position, Vector2.down, distanceFall, playerMask);
 		if (playerFirstDetected)
 		{
-			playerFirstDetected = false;
 			myRigidbody2D.velocity = new Vector2(0.0f, -fallingSpeed);
 			if (!skinChanged)
 			{
