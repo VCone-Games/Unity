@@ -14,6 +14,7 @@ public class Jengibre : Enemy
 	JengibreUtilitySystemCalculator utilitySystem;
 	[Header("Jengibre params")]
 	[SerializeField] private float UpdateUtilitySystemTime;
+	[SerializeField] private float ActionTime;
 
 
 	[Header("Control variables")]
@@ -33,6 +34,7 @@ public class Jengibre : Enemy
 		playerHook = playerObject.GetComponent<Hook>();
 
 		InvokeRepeating("UpdateUtilitySystem", UpdateUtilitySystemTime, UpdateUtilitySystemTime);
+		InvokeRepeating("Attack", ActionTime, ActionTime);
 	}
 
 	void UpdateUtilitySystem()
@@ -48,36 +50,62 @@ public class Jengibre : Enemy
 			playerHealthPercentage, ownHealthPercentage, hookingSomething);
 	}
 
+	protected override void Attack()
+	{
+		base.Attack();
+		myAnimator.SetBool("isIDLE", false);
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
-		SelectAttack();
 	}
+	
+	
 
-	void SelectAttack()
+	void ONANIMATION_SelectAttack()
 	{
 		if (ActionInProgress) return;
 		ActionInProgress = true;
 		switch (utilitySystem.action)
 		{
 			case JengibreUtilitySystemCalculator.CharacterAction.DROP_STONES:
+				myAnimator.SetTrigger("ATK_DropStones");
 				break;
 			case JengibreUtilitySystemCalculator.CharacterAction.THROW_STONES:
+				myAnimator.SetTrigger("ATK_ThrowStones");
 				break;
 			case JengibreUtilitySystemCalculator.CharacterAction.PROTECT:
+				myAnimator.SetTrigger("ATK_Protect");
 				break;
 			case JengibreUtilitySystemCalculator.CharacterAction.ENERGY_BALL:
+				myAnimator.SetTrigger("ATK_EnergyBall");
 				break;
 			case JengibreUtilitySystemCalculator.CharacterAction.PHYSICAL_ATTACK:
+				myAnimator.SetTrigger("ATK_PhysicalAttack");
 				break;
 		}
 	}
-	void RETURN_TO_IDLE()
+	void ONANIMATION_RETURN_TO_IDLE()
 	{
+		myAnimator.SetBool("isIDLE", true);
 		ActionInProgress = false;
 	}
-	void DROP_STONES_ACTION()
+	void ONANIMATION_DROPSTONES_ACTION()
 	{
 		Debug.Log("Drop_Stones");
 	}
+	void ONANIMATION_THROWSTONES_ACTION()
+	{
+
+	}
+	void ONANIMATION_PROTECT_ACTION()
+	{
+
+	}
+	void ONANIMATION_ENERGYBALL_ACTION()
+	{
+
+	}
+
 }

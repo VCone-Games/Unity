@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1972532447758284275}
   - component: {fileID: 2710354800001022695}
   - component: {fileID: 8705923366585723433}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Estalactita_Falling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

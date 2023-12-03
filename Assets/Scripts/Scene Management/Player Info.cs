@@ -6,10 +6,11 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo Instance;
 
-    public bool Firstspawn;
+    private bool firstSpawn = false;
+    [SerializeField] private int InitialHealthPlayer = 5;
 
-    //CHECKPOINT MANAGEMENT
-    private string sceneNameCheckpoint = "0. Tutorial";
+	//CHECKPOINT MANAGEMENT
+	private string sceneNameCheckpoint = "0. Tutorial";
     private Vector3 checkPointPosition = Vector3.zero;
     private bool isDead;
     private int checkpointID;
@@ -20,12 +21,14 @@ public class PlayerInfo : MonoBehaviour
     private bool canWallGrab = true;
 
     //BETWEEN SCENES VARIABLES
+    private int maxHealth;
     private int currentHealth;
     private string sceneNameObjective;
     private Vector3 spawnPosition;
     public int footstepsId;
-
-    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
+	public bool FirstSpawn { get { return firstSpawn; } set { firstSpawn = value; } }
+	public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
+	public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
 
     public Vector3 CheckPointPosition { get { return checkPointPosition; } set { checkPointPosition = value; } }
@@ -48,6 +51,8 @@ public class PlayerInfo : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        maxHealth = InitialHealthPlayer;
+        currentHealth = maxHealth;
     }
 
     public void SetCheckpoint(string sceneName, Vector3 checkPointPosition, int checkpointID)
@@ -57,9 +62,11 @@ public class PlayerInfo : MonoBehaviour
         this.checkpointID = checkpointID;
     }
 
-    public void OnSceneChange(int currentHealth, string sceneName, Vector3 spawnPosition, int footstepsId)
+    public void OnSceneChange(int currentHealth, int maxHealth,
+        string sceneName, Vector3 spawnPosition, int footstepsId)
     {
         this.currentHealth = currentHealth;
+        this.maxHealth = maxHealth;
         this.sceneNameObjective = sceneName;
         this.spawnPosition = spawnPosition;
         this.footstepsId = footstepsId;

@@ -33,11 +33,16 @@ public class HealthPlayerManager : HealthManager
         jumpComponent = GetComponent<Jump>();
         hook = GetComponent<Hook>();
 
-		HealthUI.HealthUISingleton.EventInitialiteUI?.Invoke();
-    }
-    public void Restore()
+        max_health = PlayerInfo.Instance.MaxHealth;
+		current_health = PlayerInfo.Instance.CurrentHealth;
+
+		HealthUI.HealthUISingleton.EventInitialiteUI?.Invoke(this, this);
+	}
+	public void Restore()
     {
+        Debug.Log($"Restoring.../CurrentHealth: {current_health} /MaxHealth {max_health}");
         current_health = max_health;
+        PlayerInfo.Instance.CurrentHealth = max_health;
         EventUpdateHealthUI?.Invoke(this, current_health);
     }
 
@@ -62,8 +67,6 @@ public class HealthPlayerManager : HealthManager
         hook.HookDestroyed();
         hook.DisableHookInput();
 
-
-
         base.TakeDamage(sender, damageContactPoint);
         if (OnlyTakeDmgOnce) return;
         OnlyTakeDmgOnce = true;
@@ -73,10 +76,6 @@ public class HealthPlayerManager : HealthManager
         EventUpdateHealthUI?.Invoke(this, current_health);
 
         gameObject.layer = 11;
-        //Debug.Log("Damaging..." + current_health);
-
-
-
     }
 
     public override void EndDamaging()
@@ -86,8 +85,6 @@ public class HealthPlayerManager : HealthManager
         jumpComponent.EnableJumpInput();
         hook.EnableHookInput();
         base.EndDamaging();
-
-
     }
 
 
@@ -115,7 +112,6 @@ public class HealthPlayerManager : HealthManager
 
     protected void EndDieAnimation()
     {
-		HealthUI.HealthUISingleton.EventResetUI?.Invoke();
         SceneChanger.Instance.ChangeSceneByDeath();
     }
 }

@@ -31,8 +31,10 @@ public class SceneChanger : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         PlayerInfo.Instance.CanDoubleJump = true;
         PlayerInfo.Instance.CanDash = true;
+        HealthPlayerManager healthPlayer = player.GetComponent<HealthPlayerManager>();
 
-        PlayerInfo.Instance.OnSceneChange(player.GetComponent<HealthPlayerManager>().CurrentHealth, scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
+		PlayerInfo.Instance.OnSceneChange(healthPlayer.CurrentHealth,healthPlayer.MaxHealth,
+            scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
 
         zoneId = scene.zone;
 

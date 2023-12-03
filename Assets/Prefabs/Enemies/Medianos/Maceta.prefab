@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71faffa9850bea743a11d002a0ba88b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   facingRight: 1
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}

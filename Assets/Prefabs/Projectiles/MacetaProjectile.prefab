@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8184095978476913573}
   - component: {fileID: 7988099910712723898}
   - component: {fileID: 6285919909486480773}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MacetaProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
