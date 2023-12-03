@@ -52,7 +52,12 @@ public class FallingStone : MonoBehaviour
             }
         }
 
-        if (!(collision.gameObject.CompareTag("Projectile") && GetComponent<LightHookable>().isHooked))
+        if (!collision.gameObject.CompareTag("Projectile") && !GetComponent<LightHookable>().isHooked)
+        {
+            GetComponent<LightHookable>().Unhook();
+            Destroy(gameObject);
+        }
+        if (GetComponent<LightHookable>().parryKnockbackTimer > 0f)
         {
             GetComponent<LightHookable>().Unhook();
             Destroy(gameObject);

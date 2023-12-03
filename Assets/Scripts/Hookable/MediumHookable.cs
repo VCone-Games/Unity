@@ -6,7 +6,7 @@ public class MediumHookable : AHookable
 {
     protected override void ParryingAction()
     {
-        gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
+
         myRigidbody.velocity = parryDirection * 0.85f;
         playerRigidbody.velocity = -parryDirection * 0.85f;
 

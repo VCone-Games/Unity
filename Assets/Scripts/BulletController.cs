@@ -34,11 +34,16 @@ public class BulletController : MonoBehaviour
 
             healthManager.EventDamageTaken(this, damageContactPoint);
         }
-         if (!(collision.gameObject.CompareTag("Projectile") && GetComponent<LightHookable>().isHooked))
-         {
+        if (!collision.gameObject.CompareTag("Projectile") && !GetComponent<LightHookable>().isHooked)
+        {
             GetComponent<LightHookable>().Unhook();
-             Destroy(gameObject);
-         }
+            Destroy(gameObject);
+        }
+        if (GetComponent<LightHookable>().parryKnockbackTimer > 0f)
+        {
+            GetComponent<LightHookable>().Unhook();
+            Destroy(gameObject);
+        }
 
 
     }
