@@ -11,7 +11,6 @@ public class HealthUI : MonoBehaviour
 	public Action EventAddHeartUI;
 	public Action EventRemoveHeartUI;
 	public Action EventInitialiteUI;
-	public Action EventResetUI;
 
 	public EventHandler<int> EventUpdateUI;
 	[Header("External GameObjects")]
@@ -50,10 +49,9 @@ public class HealthUI : MonoBehaviour
 		EventAddHeartUI += AddHearth;
 		EventRemoveHeartUI += RemoveHearth;
 		EventInitialiteUI += LateStart;
-		EventResetUI += ResetLifes;
 	}
 
-	private void ResetLifes()
+	private void ResetUI()
 	{
 		foreach(var hearth in AllHearthsGameObject)
 		{
@@ -64,6 +62,8 @@ public class HealthUI : MonoBehaviour
 	}
 	private void LateStart()
 	{
+		if (AllHearthsGameObject.Count > 0) ResetUI();
+
 		playerGameObject = GameObject.FindGameObjectWithTag("Player");
 
 		healthManagerComponent = playerGameObject.GetComponent<HealthPlayerManager>();

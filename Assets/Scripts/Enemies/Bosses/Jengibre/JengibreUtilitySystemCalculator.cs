@@ -92,7 +92,11 @@ public class JengibreUtilitySystemCalculator
 
 	public CharacterAction ChooseBestAction()
 	{
-
+		float chanceDropStones = Calculate_DROP_STONES();
+		float chanceThrowStones = Calculate_THROW_STONES();
+		float chanceProtect = Calculate_PROTECT();
+		float chanceEnergyBall = Calculate_ENERGY_BALL();
+		float chancePhysicalAttack = Calculate_PHYSICAL_ATTACK();
 		return action;
 	}
 }

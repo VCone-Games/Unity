@@ -73,10 +73,6 @@ public class HealthPlayerManager : HealthManager
         EventUpdateHealthUI?.Invoke(this, current_health);
 
         gameObject.layer = 11;
-        //Debug.Log("Damaging..." + current_health);
-
-
-
     }
 
     public override void EndDamaging()
@@ -86,8 +82,6 @@ public class HealthPlayerManager : HealthManager
         jumpComponent.EnableJumpInput();
         hook.EnableHookInput();
         base.EndDamaging();
-
-
     }
 
 
@@ -115,7 +109,6 @@ public class HealthPlayerManager : HealthManager
 
     protected void EndDieAnimation()
     {
-		HealthUI.HealthUISingleton.EventResetUI?.Invoke();
         SceneChanger.Instance.ChangeSceneByDeath();
     }
 }
