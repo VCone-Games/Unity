@@ -32,7 +32,7 @@ public class TrapFallingObject : MonoBehaviour
 		mySpriteRenderer.sprite = spritesBase[selSprite];
     }
 
-	private void OnCollisionStay2D(Collision2D collision)
+	/*private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
@@ -46,10 +46,27 @@ public class TrapFallingObject : MonoBehaviour
 			healthManager.EventDamageTaken(this, damageContactPoint);
 		}
 		Destroy(gameObject);
-	}
+	}*/
 
-	// Update is called once per frame
-	void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!playerFirstDetected) { return; }
+		if (collision.gameObject.CompareTag("Player"))
+        {
+            HealthManager healthManager = collision.gameObject.GetComponent<HealthPlayerManager>();
+            if (healthManager == null) return;
+
+            Vector2 contactPoint = myRigidbody2D.ClosestPoint(transform.position);
+            contactPoint = contactPoint - new Vector2(collision.transform.position.x, collision.transform.position.y);
+            Vector3 damageContactPoint = new Vector3(damage, contactPoint.x, contactPoint.y);
+
+            healthManager.EventDamageTaken(this, damageContactPoint);
+        }
+        Destroy(gameObject);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
 		playerFirstDetected = Physics2D.Raycast(transform.position, Vector2.down, distanceFall, playerMask);
 		if (playerFirstDetected)

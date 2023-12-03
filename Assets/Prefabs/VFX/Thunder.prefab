@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5460325182860703133}
   - component: {fileID: 9125760448431216277}
   - component: {fileID: 7885970087843088772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thunder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

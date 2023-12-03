@@ -32,7 +32,7 @@ public class SceneChanger : MonoBehaviour
         PlayerInfo.Instance.CanDoubleJump = true;
         PlayerInfo.Instance.CanDash = true;
 
-        PlayerInfo.Instance.OnSceneChange(player.GetComponent<HealthPlayerManager>().CurrentHealth, scene.sceneName, scene.EnterPositions[EnterPoint]);
+        PlayerInfo.Instance.OnSceneChange(player.GetComponent<HealthPlayerManager>().CurrentHealth, scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
 
         zoneId = scene.zone;
 

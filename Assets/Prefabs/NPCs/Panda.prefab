@@ -377,7 +377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionSprite: {fileID: 5024107232573124353}
   myAnimator: {fileID: 0}
-  currentText: 0
+  _dialoguesList: []
+  dialogueController: {fileID: 0}
   _dialogueBase:
   - {fileID: 11400000, guid: bc0a08324f75e664c869eccc62e23cc8, type: 2}
   - {fileID: 11400000, guid: 485378c5a642e2047a116bb239e2ba81, type: 2}
@@ -387,8 +388,6 @@ MonoBehaviour:
   _dialogueSecondBoss:
   - {fileID: 11400000, guid: 683fda3f05a04f2488e20dfbfe639eaa, type: 2}
   - {fileID: 11400000, guid: c4169cebe88b25546823a43f96f620ff, type: 2}
-  _dialoguesList: []
-  dialogueController: {fileID: 0}
   _CanDialogueBase: 1
   _CanDialogueFirstBoss: 0
   _CanDialogueSecondBoss: 0

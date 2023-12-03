@@ -16,6 +16,8 @@ TagManager:
   - Parry Aim 2
   - Music Manager
   - Dialogue Box
+  - Hearth Canvas
+  - Camera NPC
   layers:
   - Default
   - TransparentFX
@@ -61,6 +63,9 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 2058994375
+    locked: 0
+  - name: NIEBLA
+    uniqueID: 919982771
     locked: 0
   - name: UI
     uniqueID: 766271993

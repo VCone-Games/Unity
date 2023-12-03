@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/-1. Main Menu.unity
     guid: ad59bb4a261af3a4a9a911b3f7b041c7
   - enabled: 1
@@ -17,46 +17,46 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1. Pre pueblo.unity
     guid: d9d4b0c31f8e29d41a62c94a43068cfc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/2. Pueblo.unity
     guid: 0d9f1508afbf409408ec908a09620247
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/3.1. Cueva de la monta\xF1a oeste.unity"
     guid: 829c872d376258a43ae7878c2a38eddf
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/3.2. Cueva de la monta\xF1a este.unity"
     guid: 12c7cb1f2dbeb274f8c7515b9f3c587e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/4.0. Cueva Caliente Oeste.unity
     guid: 96c425be9319c7e45ba00692b2e23d1d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/4.1. Cueva Caliente Medio.unity
     guid: 2513ec08e756cab469af5ea621883ce5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/4.2. Cueva Caliente Este.unity
     guid: 9948284ce37070e439e36e90a39a279c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5.0. Mina profunda Norte.unity
     guid: 95864ca32875f8d4a92a990e29c272f1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5.1. Mina Profunda Medio Oeste.unity
     guid: e7cd8bef0df77c149ae0b6d4b71a1feb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5.2.Mina Profunda Oeste.unity
     guid: 44d7ef7df136a734491f0a06050e896d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5.3. Mina Profunda Medio.unity
     guid: c577f41d9e35cca419ad3473d05bf1fe
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/5.4. Mina Profunda Este.unity
     guid: 3774827700094aa4ea8ea5823a239126
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/6.1. Cima de la monta\xF1a.unity"
     guid: c1888b9090c7f6747aa39abc0de6e219
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/6.2. Cima de la monta\xF1a oeste.unity"
     guid: 3450099b7448d5d429df0da9eb29b3c7
-  - enabled: 0
+  - enabled: 1
     path: "Assets/Scenes/6.3. Cima de la monta\xF1a este.unity"
     guid: 6489f47b4a7e505428bfa28203822984
   m_configObjects:

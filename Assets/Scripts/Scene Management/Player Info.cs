@@ -23,6 +23,7 @@ public class PlayerInfo : MonoBehaviour
     private int currentHealth;
     private string sceneNameObjective;
     private Vector3 spawnPosition;
+    public int footstepsId;
 
     public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
     public bool IsDead { get { return isDead; } set { isDead = value; } }
@@ -36,6 +37,7 @@ public class PlayerInfo : MonoBehaviour
     public string CheckpointSceneName { get { return sceneNameCheckpoint; } }
 
     public int CheckpointID { get { return checkpointID; } }
+
 
     private void Awake()
     {
@@ -55,11 +57,12 @@ public class PlayerInfo : MonoBehaviour
         this.checkpointID = checkpointID;
     }
 
-    public void OnSceneChange(int currentHealth, string sceneName, Vector3 spawnPosition)
+    public void OnSceneChange(int currentHealth, string sceneName, Vector3 spawnPosition, int footstepsId)
     {
         this.currentHealth = currentHealth;
-        sceneNameObjective = sceneName;
+        this.sceneNameObjective = sceneName;
         this.spawnPosition = spawnPosition;
+        this.footstepsId = footstepsId;
     }
 
 }
