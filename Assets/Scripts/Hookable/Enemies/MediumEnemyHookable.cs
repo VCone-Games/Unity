@@ -6,9 +6,10 @@ public class MediumEnemyHookable : MediumHookable
 {
     protected override void ParryingAction()
     {
+        gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
         base.ParryingAction();
 
-      //  gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
+       
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }

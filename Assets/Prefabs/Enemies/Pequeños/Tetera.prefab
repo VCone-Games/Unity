@@ -286,7 +286,6 @@ MonoBehaviour:
   patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   currentPatrolPoint: 0
   patrolDistance: 1
   spawnAttack: {fileID: 409053439485125421}
@@ -419,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 690743018787521123}
-  maxSpeed: 20
+  maxSpeed: 25
   dashComponent: {fileID: 0}
 --- !u!114 &4212287201317763585
 MonoBehaviour:

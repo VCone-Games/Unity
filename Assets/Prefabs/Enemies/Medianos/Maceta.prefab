@@ -209,9 +209,9 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
-  DamageKnockbackVector: {x: 0, y: 0}
-  DamageKnockbackForce: 0
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 2, y: 4}
+  DamageKnockbackForce: 10
 --- !u!114 &8293170476287996776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 0
+  unhookTime: 1
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -272,7 +272,10 @@ MonoBehaviour:
   reachedEndOfPath: 0
   tState: 0
   attackRange: 5
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentPatrolPoint: 0
   patrolDistance: 0.2
   spawnAttack: {fileID: 5424274166639469992}
@@ -412,5 +415,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 4174741074323353797}
-  maxSpeed: 20
+  maxSpeed: 25
   dashComponent: {fileID: 0}

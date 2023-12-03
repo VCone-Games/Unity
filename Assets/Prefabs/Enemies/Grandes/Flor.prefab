@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 3571038383504458260}
-  maxSpeed: 17
+  maxSpeed: 25
   dashComponent: {fileID: 0}
 --- !u!61 &1079474242068876607
 BoxCollider2D:

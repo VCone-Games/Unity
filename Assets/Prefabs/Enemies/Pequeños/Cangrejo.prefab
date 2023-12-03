@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 272334867494358344}
-  maxSpeed: 20
+  maxSpeed: 25
   dashComponent: {fileID: 0}
 --- !u!114 &7407844217373936521
 MonoBehaviour:
@@ -621,6 +621,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 11
   noPlayerLayer: 9
 --- !u!82 &4053624299780553366

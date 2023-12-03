@@ -209,7 +209,7 @@ Rigidbody2D:
   m_Mass: 100
   m_LinearDrag: 1.8
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: c0fc517930142354787450274fd77895, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -305,7 +305,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 1
+  unhookTime: 1.5
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 612743806529208769}
-  maxSpeed: 20
+  maxSpeed: 25
   dashComponent: {fileID: 0}
 --- !u!82 &2735015501321193498
 AudioSource:
