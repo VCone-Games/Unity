@@ -14,6 +14,7 @@ public class Jengibre : Enemy
 	JengibreUtilitySystemCalculator utilitySystem;
 	[Header("Jengibre params")]
 	[SerializeField] private float UpdateUtilitySystemTime;
+	[SerializeField] private float ActionTime;
 
 
 	[Header("Control variables")]
@@ -33,6 +34,7 @@ public class Jengibre : Enemy
 		playerHook = playerObject.GetComponent<Hook>();
 
 		InvokeRepeating("UpdateUtilitySystem", UpdateUtilitySystemTime, UpdateUtilitySystemTime);
+		InvokeRepeating("Attack", ActionTime, ActionTime);
 	}
 
 	void UpdateUtilitySystem()
@@ -46,7 +48,6 @@ public class Jengibre : Enemy
 
 		utilitySystem.SetChances(stonesInGame, distanceToPlayer,
 			playerHealthPercentage, ownHealthPercentage, hookingSomething);
-		Attack();
 	}
 
 	protected override void Attack()

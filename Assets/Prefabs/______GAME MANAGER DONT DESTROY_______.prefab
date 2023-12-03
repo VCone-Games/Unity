@@ -3467,6 +3467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MOBILE INPUTS
       objectReference: {fileID: 0}
+    - target: {fileID: 8270766907846522374, guid: bca9f73b6770dad49afeaa47824587c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3567,6 +3571,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 123756472766276445, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604274323856252116, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
+      propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3407751707757339616, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
