@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo Instance;
+	[SerializeField] private InputActionReference showMetricsReference;
 
-    private bool firstSpawn = false;
+	private bool firstSpawn = false;
     [SerializeField] private int InitialHealthPlayer = 5;
 
 	//CHECKPOINT MANAGEMENT
@@ -53,9 +56,14 @@ public class PlayerInfo : MonoBehaviour
         }
         maxHealth = InitialHealthPlayer;
         currentHealth = maxHealth;
-    }
+		showMetricsReference.action.performed += OnMetricsPressed;
 
-    public void SetCheckpoint(string sceneName, Vector3 checkPointPosition, int checkpointID)
+	}
+	private void OnMetricsPressed(InputAction.CallbackContext context)
+	{
+		SceneManager.LoadScene("Metricas");
+	}
+	public void SetCheckpoint(string sceneName, Vector3 checkPointPosition, int checkpointID)
     {
         sceneNameCheckpoint = sceneName;
         this.checkPointPosition = checkPointPosition;

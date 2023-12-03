@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DataBase : MonoBehaviour
 {
     public static DataBase Singleton;
 
-    private Dictionary<string, bool> dataBoss = new Dictionary<string, bool>();
+	private Dictionary<string, bool> dataBoss = new Dictionary<string, bool>();
     private Dictionary<string, int> npcTalked = new Dictionary<string, int>();
     private List<bool> pandaInteractions = new List<bool>() { true, true, true, true, false, false };
     List<DialogueText> dialogueListPanda;
@@ -17,7 +19,7 @@ public class DataBase : MonoBehaviour
     { "Curcuma", "Azafran", "Perejil", "Jengibre" };
     [SerializeField] private float timerGame;
     private float startedTimerGame;
-    [SerializeField] private string username = "Username";
+    [SerializeField] private string username;
     [SerializeField] private int deathCount = 0;
     [SerializeField] private int parriedTimes = 0;
     [SerializeField] private int deathEnemies = 0;
@@ -46,12 +48,13 @@ public class DataBase : MonoBehaviour
         {
             dataBoss.Add(name, false);
         }
-
 		startedTimerGame = Time.time;
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+	// Update is called once per frame
+	void Update()
     {
         timerGame = Time.time - startedTimerGame;
 

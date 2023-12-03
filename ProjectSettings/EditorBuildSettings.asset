@@ -59,5 +59,8 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/6.3. Cima de la monta\xF1a este.unity"
     guid: 6489f47b4a7e505428bfa28203822984
+  - enabled: 1
+    path: Assets/Scenes/Metricas.unity
+    guid: 4de8c88cce3cd4b43a1f7812540162df
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c93d4e0caba931e48aae4fec96740ecb, type: 2}

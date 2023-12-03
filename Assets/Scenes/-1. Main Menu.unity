@@ -9315,10 +9315,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 3627838063149553020, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
+      propertyPath: showMetricsReference
+      value: 
+      objectReference: {fileID: 4697525368027422115, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
     - target: {fileID: 3744205976977187297, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
       propertyPath: m_Name
       value: ______GAME MANAGER DONT DESTROY_______
       objectReference: {fileID: 0}
+    - target: {fileID: 3758540481491316220, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
+      propertyPath: showMetricsReference
+      value: 
+      objectReference: {fileID: 4697525368027422115, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
     - target: {fileID: 4367703720778188267, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
       propertyPath: m_Camera
       value: 
@@ -9331,7 +9339,12 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    m_RemovedComponents: []
+    - target: {fileID: 8942382680132334724, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
+      propertyPath: nameField
+      value: 
+      objectReference: {fileID: 361205761}
+    m_RemovedComponents:
+    - {fileID: 3758540481491316220, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
