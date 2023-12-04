@@ -1240,6 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc751808904fa8428a06578cf5c38fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showMetricsReference: {fileID: 4697525368027422115, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   InitialHealthPlayer: 5
   footstepsId: 0
 --- !u!114 &8371537564263562272
