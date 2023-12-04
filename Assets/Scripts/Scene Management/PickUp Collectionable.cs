@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpCollectionable : MonoBehaviour
+public class PickUpCollectionable : AInteractable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public override void Interact()
+	{
+		base.Interact();
+        DataBase.Singleton.Coleccionables++;
+		Destroy(gameObject);
+	}
 }
