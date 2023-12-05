@@ -65,6 +65,9 @@ TagManager:
   - name: Front
     uniqueID: 2058994375
     locked: 0
+  - name: Interact Icons
+    uniqueID: 3304021199
+    locked: 0
   - name: NIEBLA
     uniqueID: 919982771
     locked: 0
