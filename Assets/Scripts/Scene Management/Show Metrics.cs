@@ -13,6 +13,8 @@ public class ShowMetrics : MonoBehaviour
         DataBase data = DataBase.Singleton;
         float timer = data.TimerGame;
         string user = data.Username;
+        int age = data.Age;
+        string genre = data.Gender;
         int nDeaths = data.DeathCount;
         int parryTimes = data.ParriedTimes;
         int nEnemies = data.DeathEnemies;
@@ -23,6 +25,9 @@ public class ShowMetrics : MonoBehaviour
 
 		string text =
             $"Usuario: {user}\n" +
+            $"Edad: {age}\n" +
+            $"Genero: {genre}\n" +
+            $"-----------------------\n" +
             $"Tiempo: {minutos.ToString("00")}:{segundos.ToString("00")}\n" +
             $"Numero de muertes: {nDeaths}\n" +
             $"Numero de contraataques: {parryTimes}\n" +
