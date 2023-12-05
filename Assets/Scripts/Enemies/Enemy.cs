@@ -30,12 +30,12 @@ public abstract class Enemy : MonoBehaviour
         myAnimator.SetBool("isDead", true);
         // myRigidbody2D.velocity = Vector2.zero;
         myRigidbody2D.isKinematic = false;
-        DataBase.Singleton.DeathEnemies++;
     }
 
     protected virtual void Disappear()
     {
-        gameObject.SetActive(false);
+		DataBase.Singleton.DeathEnemies++;
+		gameObject.SetActive(false);
         //Destroy(gameObject);
     }
 
