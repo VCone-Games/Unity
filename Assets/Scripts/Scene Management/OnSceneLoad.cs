@@ -63,7 +63,7 @@ public class OnSceneLoad : MonoBehaviour
         SetFootstepsAudio();
     }
 
-    private void SetPowers()
+    public void SetPowers()
     {
         playerObject.GetComponent<Jump>().MaxJumps = playerInfo.CanDoubleJump ? 2 : 1;
         playerObject.GetComponent<Dash>().DashUnlocked = playerInfo.CanDash;

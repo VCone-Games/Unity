@@ -29,8 +29,6 @@ public class SceneChanger : MonoBehaviour
     {
         Time.timeScale = 1;
         GameObject player = GameObject.FindWithTag("Player");
-        PlayerInfo.Instance.CanDoubleJump = true;
-        PlayerInfo.Instance.CanDash = true;
         HealthPlayerManager healthPlayer = player.GetComponent<HealthPlayerManager>();
 
 		PlayerInfo.Instance.OnSceneChange(healthPlayer.CurrentHealth,healthPlayer.MaxHealth,
