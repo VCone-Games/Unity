@@ -32,7 +32,7 @@ public class HealthManagerCurcuma : HealthManager
 		}
 		if (current_health <= 0)
 		{
-			EventDie?.Invoke();
+			EventDie?.Invoke(this, gameObject);
 			tpplayer.CurcumaDeath();
         }
 

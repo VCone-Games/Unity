@@ -27,6 +27,8 @@ public class MovementCurcuma : IAFlyPatrol
 	[SerializeField] private float attackTime;
 	[SerializeField] private bool secondPhase = false;
 
+	private List<GameObject> crowList = new List<GameObject>();
+
 	private GameObject curcumaSkeleton;
 	protected override void Start()
 	{
@@ -107,6 +109,17 @@ public class MovementCurcuma : IAFlyPatrol
 	{
 		GameObject crow = Instantiate(prefab, posicion);
 		crow.AddComponent<DispawnTemporalEnemies>();
+		crow.GetComponent<HealthManager>().EventDie += RemoveCrow;
+		crowList.Add(crow);
+	}
+
+	private void RemoveCrow(object sender, GameObject crow)
+	{
+		Debug.Log("Remove crow");
+		if(crowList.Remove(crow))
+		{
+			Destroy(crow);
+		}
 	}
 
 	private void SecondPhaseActivation(object sender, EventArgs e)
@@ -119,14 +132,21 @@ public class MovementCurcuma : IAFlyPatrol
 		curcumaSkeleton = Instantiate(curcumaSkeletonPrefab, spawnPointCurcumaSkeleton.position, Quaternion.identity);
 	}
 
-	protected override void Die()
+	protected override void Die(object sender, GameObject gameObject)
 	{
 		isDead = true;
 		myAnimator.SetBool("isDead", true);
 		// myRigidbody2D.velocity = Vector2.zero;
 		myRigidbody2D.isKinematic = false;
 		DataBase.Singleton.OnDeathBoss("Curcuma");
-		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(); ;
+		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(this, gameObject);
+		CancelInvoke();
+
+		foreach (var crow in crowList)
+		{
+			crow.GetComponent<HealthManager>().EventDie?.Invoke(this, gameObject);
+		}
+		crowList.Clear();
 	}
 
 }

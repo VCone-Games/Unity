@@ -20,7 +20,7 @@ public class PinchosDamage : Damage
             warpTimer = warpTime;
         }else if(collision.gameObject.GetComponent<HealthManager>() != null)
         {
-            collision.gameObject.GetComponent<HealthManager>().EventDie.Invoke() ;
+            collision.gameObject.GetComponent<HealthManager>().EventDie.Invoke(this, collision.gameObject);
         }
     }
 

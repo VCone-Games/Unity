@@ -416,7 +416,7 @@ public class FirstPhaseAzafran : Enemy
 		Instantiate(prefabStone, spawnAttack.position, Quaternion.identity);
 	}
 
-	protected override void Die()
+	protected override void Die(object sender, GameObject gameObject)
 	{
 		isDead = true;
 		myAnimator.SetBool("isDead", true);
