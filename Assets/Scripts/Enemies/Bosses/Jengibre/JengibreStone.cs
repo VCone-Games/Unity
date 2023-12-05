@@ -53,7 +53,7 @@ public class JengibreStone : MonoBehaviour
 
 	void MoveToTelekinesisPoint()
 	{
-		Vector3 direction = (telekinesisTransform.transform.position - gameObject.transform.position).normalized;
+		Vector3 direction = (telekinesisTransform.position - gameObject.transform.position).normalized;
 
 		myRigidbody2D.velocity = direction * stoneVelocity;
 	}
@@ -61,6 +61,10 @@ public class JengibreStone : MonoBehaviour
 	void MoveToPlayer()
 	{
 		CanDamage = true;
+
+		Vector3 direction = (playerTransform.position - gameObject.transform.position).normalized;
+
+		myRigidbody2D.velocity = direction * stoneVelocity;
 	}
 
 
