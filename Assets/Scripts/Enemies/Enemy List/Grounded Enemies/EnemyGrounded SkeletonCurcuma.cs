@@ -8,11 +8,11 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 {
 	private enum TState { PATROL, FALLING };
 	[Header("State params")]
-	[SerializeField] private TState tState;
+	[SerializeField] private TState tState = TState.FALLING;
 	protected override void CheckState()
 	{
 
-		if (myRigidbody2D.velocity.y < -2.0f)
+		if (myRigidbody2D.velocity.y < -2.0f && !isGrounded)
 		{
 			tState = TState.FALLING;
 		} else

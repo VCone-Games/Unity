@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Jengibre : Enemy
@@ -19,8 +20,16 @@ public class Jengibre : Enemy
 
 	[Header("Control variables")]
 	[SerializeField] private int stonesInGame;
+	[SerializeField] private List<Transform> spawnStonesPoint;
+	[SerializeField] private GameObject prefabStone;
+	
+	[SerializeField] private float offSetX = 2.5f;
+	[SerializeField] private float offSetY = 2.5f;
+
+	[SerializeField] private int stonesPerPoint;
 	[SerializeField] private bool ActionInProgress = false;
 
+	List<GameObject> stoneList = new List<GameObject>();
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -94,7 +103,30 @@ public class Jengibre : Enemy
 	void ONANIMATION_DROPSTONES_ACTION()
 	{
 		Debug.Log("Drop_Stones");
+		for (int i = 0; i < stonesPerPoint; i++)
+		{
+			for (int j = 0; j < spawnStonesPoint.Count; j++)
+			{
+				float valOffSetX = (float)Random.Range(-offSetX, offSetX);
+				float valOffSetY = (float)Random.Range(-offSetY, offSetY);
+
+				Vector3 position = new Vector3(spawnStonesPoint[j].position.x + valOffSetX, spawnStonesPoint[j].position.y + valOffSetY);
+				GameObject stone = Instantiate(prefabStone, position, Quaternion.identity);
+				stoneList.Add(stone);
+			}
+		}
 	}
+
+	void RemoveStone(GameObject stone)
+	{
+		if (stoneList.Remove(stone))
+		{
+			Destroy(stone);
+		}
+	}
+
+
+
 	void ONANIMATION_THROWSTONES_ACTION()
 	{
 
