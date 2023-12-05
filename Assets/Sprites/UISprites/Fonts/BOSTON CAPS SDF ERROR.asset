@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: BOSTON CAPS SDF ERROR
   m_EditorClassIdentifier: 
-  hashCode: 1401255003
+  hashCode: -1801482685
   material: {fileID: 4696833164585138995}
-  materialHashCode: 251227803
+  materialHashCode: 1240210307
   m_Version: 1.1.0
   m_SourceFontFileGUID: c3490f4810a902d4a988ecb813eb968f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: c3490f4810a902d4a988ecb813eb968f, type: 3}
@@ -2574,7 +2574,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 27.857616, g: 27.857616, b: 27.857616, a: 1}
+    - _FaceColor: {r: 4.765199, g: 0.7867073, b: 0.7867073, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}

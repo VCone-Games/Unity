@@ -12,7 +12,7 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 	protected override void CheckState()
 	{
 
-		if (myRigidbody2D.velocity.y < 0)
+		if (myRigidbody2D.velocity.y < -2.0f)
 		{
 			tState = TState.FALLING;
 		} else
