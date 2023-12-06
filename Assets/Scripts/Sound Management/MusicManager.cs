@@ -21,7 +21,8 @@ public class MusicManager: MonoBehaviour
 
     private void Awake()
     {
-        //Screen.SetResolution(1280, 720, true);
+        Debug.Log("720");
+        Screen.SetResolution(1280, 720, true);
 		if (Instance == null)
 		{
 			Instance = this;
