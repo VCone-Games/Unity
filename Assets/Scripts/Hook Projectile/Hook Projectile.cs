@@ -82,8 +82,8 @@ public class HookProjectile : MonoBehaviour
 
     public void DestroyProjectile()
     {
-        Destroy(gameObject);
         hookComponent.HookDestroyed();
+        Destroy(gameObject);
     }
 
     public void Shoot(Vector3 direction, float hookingRange, float unhookDistance, float speed)
