@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public Action EventDie;
+    public EventHandler<GameObject> EventDie;
+
     public EventHandler<Vector3> EventDamageTaken;
 
     [Header("Health params")]
@@ -59,7 +60,7 @@ public class HealthManager : MonoBehaviour
 
         if (current_health <= 0)
         {
-            EventDie?.Invoke();
+            EventDie?.Invoke(this, gameObject);
         }
 
         myAnimator.SetBool("isDamaging", true);

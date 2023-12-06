@@ -8,7 +8,7 @@ public abstract class SimpleFlyingBehaviour : Enemy
 	[SerializeField] protected float circleRadius;
 	[SerializeField] protected LayerMask groundMask;
 	[SerializeField] protected LayerMask wallMask;
-	[SerializeField] protected LayerMask enemyMask;
+	[SerializeField] protected LayerMask terrainMask;
 	[SerializeField] protected float hitTime;
 
 	[Header("Checks collisions")]
@@ -60,10 +60,11 @@ public abstract class SimpleFlyingBehaviour : Enemy
 	{
 		rightTouch = Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, groundMask) ||
 			Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, wallMask) ||
-			Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, enemyMask);
+			Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, terrainMask);
 
 		groundTouch = Physics2D.OverlapCircle(groundCheck.transform.position, circleRadius, groundMask);
-		roofTouch = Physics2D.OverlapCircle(roofCheck.transform.position, circleRadius, groundMask);
+		roofTouch = Physics2D.OverlapCircle(roofCheck.transform.position, circleRadius, groundMask) ||
+			Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, terrainMask);
 	}
 
 	protected override void Start()

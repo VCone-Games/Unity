@@ -32,12 +32,19 @@ public class HealthManagerCurcuma : HealthManager
 		}
 		if (current_health <= 0)
 		{
-			EventDie?.Invoke();
+			EventDie?.Invoke(this, gameObject);
 			tpplayer.CurcumaDeath();
         }
 
 		Debug.Log("CURCUUUUUUUMAAAAA::: Damage received " + current_health);
 	}
 
-	
+	private void Update()
+	{
+		if (Input.GetKey(KeyCode.F))
+		{
+			EventDamageTaken?.Invoke(this, new Vector3(1.0f, 0.0f, 0.0f));
+		}
+	}
+
 }

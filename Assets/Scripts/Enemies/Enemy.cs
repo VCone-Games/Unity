@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
@@ -24,18 +25,18 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] public float unhookTimer;
     [SerializeField] public bool isDead;
 
-    protected virtual void Die()
+    protected virtual void Die(object sender, GameObject gameObject)
     {
         isDead = true;
         myAnimator.SetBool("isDead", true);
         // myRigidbody2D.velocity = Vector2.zero;
         myRigidbody2D.isKinematic = false;
-        DataBase.Singleton.DeathEnemies++;
     }
 
     protected virtual void Disappear()
     {
-        gameObject.SetActive(false);
+		DataBase.Singleton.DeathEnemies++;
+		gameObject.SetActive(false);
         //Destroy(gameObject);
     }
 

@@ -102,7 +102,7 @@ public class HealthPlayerManager : HealthManager
         }
     }
 
-    protected void Die()
+    protected void Die(object sender, GameObject gameObject)
     {
         myAnimator.SetTrigger("Dead");
 

@@ -9,6 +9,8 @@ public class DialogueController : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI NPCNameText;
 	[SerializeField] private TextMeshProUGUI NPCDialogueText;
 	[SerializeField] private RawImage NPCIconImage;
+	[SerializeField] private GameObject nextDialogue;
+	[SerializeField] private GameObject finalDialogue;
 	[SerializeField] private float typeSpeed;
 
 	private IInteractable interactable;
@@ -43,14 +45,17 @@ public class DialogueController : MonoBehaviour
 
 		if (!isTyping && !conversationEnded)
 		{
-
+			if (paragraphs.Count == 1)
+			{
+				finalDialogue.SetActive(true);
+				nextDialogue.SetActive(false);
+			}
 			p = paragraphs.Dequeue();
 
 			typeCoroutine = StartCoroutine(TypeDialogue(p));
 
 
 		}
-
 		else
 		{
 			FinishParagraphEarly();
@@ -70,6 +75,8 @@ public class DialogueController : MonoBehaviour
 		if (!gameObject.activeSelf)
 		{
 			gameObject.SetActive(true);
+			nextDialogue.SetActive(true);
+			finalDialogue.SetActive(false);
 		}
 
 		NPCNameText.text = dialogueText.speakerName;

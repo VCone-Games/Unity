@@ -8,11 +8,11 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 {
 	private enum TState { PATROL, FALLING };
 	[Header("State params")]
-	[SerializeField] private TState tState;
+	[SerializeField] private TState tState = TState.FALLING;
 	protected override void CheckState()
 	{
 
-		if (myRigidbody2D.velocity.y < 0)
+		if (myRigidbody2D.velocity.y < -2.0f && !isGrounded)
 		{
 			tState = TState.FALLING;
 		} else
@@ -53,9 +53,9 @@ public class EnemyGroundedSkeletonCurcuma : MovementGroundedIA
 		myAnimator.SetBool("isFalling", false);
 	}
 
-	protected override void Die()
+	protected override void Die(object sender, GameObject gameObject)
 	{
-		base.Die();
+		base.Die(sender, gameObject);
 		myRigidbody2D.velocity = Vector3.zero;
 	}
 }

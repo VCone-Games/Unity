@@ -92,9 +92,9 @@ public class Perejil_Head : Enemy
 		}
 	}
 
-	protected override void Die()
+	protected override void Die(object sender, GameObject gameObject)
 	{
-		base.Die();
+		base.Die(sender, gameObject);
 		DataBase.Singleton.OnDeathBoss("Perejil");
 	}
 }
