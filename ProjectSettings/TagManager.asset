@@ -19,6 +19,7 @@ TagManager:
   - Hearth Canvas
   - Camera NPC
   - spawn
+  - Jengibre
   layers:
   - Default
   - TransparentFX
