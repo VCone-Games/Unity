@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 6803310}
   m_Layer: 7
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1587,7 +1587,7 @@ Transform:
   m_GameObject: {fileID: 1015316982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.86, y: -0.22, z: 0}
+  m_LocalPosition: {x: -3, y: 0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2055,9 +2055,9 @@ GameObject:
   - component: {fileID: 2068417791}
   - component: {fileID: 2068417790}
   - component: {fileID: 2068417789}
-  - component: {fileID: 2068417788}
   - component: {fileID: 2068417787}
   - component: {fileID: 2068417786}
+  - component: {fileID: 2068417793}
   m_Layer: 11
   m_Name: Jengibre boss
   m_TagString: Untagged
@@ -2087,16 +2087,19 @@ MonoBehaviour:
   unhookTime: 0
   unhookTimer: 0
   isDead: 1
+  StoneState: 0
   action: 0
   playerObject: {fileID: 0}
   playerHealth: {fileID: 0}
   playerHook: {fileID: 0}
   TelekinesisTransform: {fileID: 1015316983}
   UpdateUtilitySystemTime: 1
+  ActionInProgress: 0
   ActionTime: 3
-  ProtectTime: 2
-  speedToTelekinesis: 5
-  speedToPlayer: 10
+  ProtectTime: 10
+  speedToTelekinesis: 10
+  speedToPlayer: 30
+  DistanceToChangeStoneState: 0.2
   spawnStonesPoint:
   - {fileID: 1855592043}
   - {fileID: 1290565867}
@@ -2105,11 +2108,10 @@ MonoBehaviour:
   - {fileID: 1749636031}
   prefabStone: {fileID: 1350594124399790066, guid: d5376b6f8818a284286f597a09032af1, type: 3}
   stonesPerPoint: 1
-  stonesInGame: 0
-  protectTimer: 0
   offSetX: 2.5
   offSetY: 2.5
-  ActionInProgress: 0
+  stonesInGame: 0
+  protectTimer: 0
   stoneList: []
   throwingStone: {fileID: 0}
 --- !u!95 &2068417787
@@ -2133,26 +2135,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2068417788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068417785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7edcc8af1c9c7b46811b8000561e835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_health: 0
-  current_health: 0
-  canTakeDamage: 1
-  myAnimator: {fileID: 0}
-  myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
-  DamageKnockbackVector: {x: 0, y: 0}
-  DamageKnockbackForce: 0
 --- !u!212 &2068417789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2286,13 +2268,33 @@ Transform:
   m_GameObject: {fileID: 2068417785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -3.78, z: -4.4931464}
+  m_LocalPosition: {x: 0.24, y: -3.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1015316983}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068417793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068417785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc63411512df24a419c9cd694345505f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 5
+  current_health: 0
+  canTakeDamage: 1
+  myAnimator: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  InvulnerabilityTime: 1
+  DamageKnockbackVector: {x: 0, y: 0}
+  DamageKnockbackForce: 0
 --- !u!114 &204613481126786010
 MonoBehaviour:
   m_ObjectHideFlags: 0

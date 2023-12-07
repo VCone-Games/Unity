@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fa94fa50a2eeb041b7bea4fa648365c
+guid: 35de0fe3b3eb6d349a78ed21d9f0a527
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_0
+      name: Jengibre_Atk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcd2da20c97d78041ab6a1fec0f4cbea
-      internalID: 950888604
+      spriteID: 5e551e1d416d6754498922c1eb0730c4
+      internalID: 862991199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_1
+      name: Jengibre_Atk_1
       rect:
         serializedVersion: 2
         x: 288
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1b34597f7d03694d809e7598650b7a8
-      internalID: -2143908896
+      spriteID: 97b4735c9695ab4479db5ba30ea1ee20
+      internalID: 2501167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_2
+      name: Jengibre_Atk_2
       rect:
         serializedVersion: 2
         x: 576
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f83bb3230bcb7f4a82eb30c3e54487e
-      internalID: -412332366
+      spriteID: 308094f028242b64caf882df6674c0d1
+      internalID: 1689483919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_3
+      name: Jengibre_Atk_3
       rect:
         serializedVersion: 2
         x: 864
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0a8425d51ba9a940b5f750be7d69502
-      internalID: 1978966532
+      spriteID: b2abb5a071927524b83d5e4739e7ce47
+      internalID: -602065244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_4
+      name: Jengibre_Atk_4
       rect:
         serializedVersion: 2
         x: 1152
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bec8d487a518aee4187a9460a3c4e6cf
-      internalID: -1680851766
+      spriteID: f63ed9acb00ef614c9d997a0787c399f
+      internalID: 1638853123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_5
+      name: Jengibre_Atk_5
       rect:
         serializedVersion: 2
         x: 1440
@@ -242,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b6c63702ab725847a901e90b8c2c290
-      internalID: -314023147
+      spriteID: 659a620155ac34e4fb19de7335b6b361
+      internalID: 1016032163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_6
+      name: Jengibre_Atk_6
       rect:
         serializedVersion: 2
         x: 1728
@@ -263,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89aea8c78dfbfe343841251725e64e12
-      internalID: -404998699
+      spriteID: 12b5cfabc9d586b43910faabde3fbb72
+      internalID: 994985723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_Die_Unfinished_7
+      name: Jengibre_Atk_7
       rect:
         serializedVersion: 2
         x: 2016
@@ -284,8 +284,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68ce01b85bdd46043a7988548da53884
-      internalID: 1979916468
+      spriteID: bf214ac47f97ee3478f7edccd60bd08f
+      internalID: 1418071566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_8
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba4642d14f840b4da9f950fa5046153
+      internalID: -438787900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_9
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 244e97e64b443004c9376efbfb272565
+      internalID: -2121492291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_10
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6dd4ead21a6544ab95f4286922fcdb
+      internalID: -1102505859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_11
+      rect:
+        serializedVersion: 2
+        x: 3168
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a06346dcef585df4bb57ec8c9c28dd22
+      internalID: -460326206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_12
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89e2b84a5bbfcb4f86200f9e43719f3
+      internalID: 859838021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jengibre_Atk_13
+      rect:
+        serializedVersion: 2
+        x: 3744
+        y: 0
+        width: 288
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59731be089119b34db1e7b7ddbf20732
+      internalID: -5585003
       vertices: []
       indices: 
       edges: []
@@ -301,14 +427,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jengibre_Die_Unfinished_0: 950888604
-      Jengibre_Die_Unfinished_1: -2143908896
-      Jengibre_Die_Unfinished_2: -412332366
-      Jengibre_Die_Unfinished_3: 1978966532
-      Jengibre_Die_Unfinished_4: -1680851766
-      Jengibre_Die_Unfinished_5: -314023147
-      Jengibre_Die_Unfinished_6: -404998699
-      Jengibre_Die_Unfinished_7: 1979916468
+      Jengibre_Atk_0: 862991199
+      Jengibre_Atk_1: 2501167
+      Jengibre_Atk_10: -1102505859
+      Jengibre_Atk_11: -460326206
+      Jengibre_Atk_12: 859838021
+      Jengibre_Atk_13: -5585003
+      Jengibre_Atk_2: 1689483919
+      Jengibre_Atk_3: -602065244
+      Jengibre_Atk_4: 1638853123
+      Jengibre_Atk_5: 1016032163
+      Jengibre_Atk_6: 994985723
+      Jengibre_Atk_7: 1418071566
+      Jengibre_Atk_8: -438787900
+      Jengibre_Atk_9: -2121492291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

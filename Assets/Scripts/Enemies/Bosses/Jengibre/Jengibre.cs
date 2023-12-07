@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Jengibre : Enemy
 {
-	private enum TStateStone { GOING_JENGIBRE, ATTACK_PLAYER, PROTECT, NONE };
-	private TStateStone StoneState;
+	public enum TStateStone { GOING_JENGIBRE, ATTACK_PLAYER, PROTECT, NONE };
+	public TStateStone StoneState;
 
 
 	public enum CharacterAction
@@ -28,27 +28,30 @@ public class Jengibre : Enemy
 	[SerializeField] private Hook playerHook;
 
 	JengibreUtilitySystemCalculator utilitySystem;
-	[Header("Jengibre params")]
+	[Header("Jengibre GameObjects")]
 	[SerializeField] private Transform TelekinesisTransform;
+
+	[Header("Timers")]
 	[SerializeField] private float UpdateUtilitySystemTime;
+	[SerializeField] private bool ActionInProgress = false;
 	[SerializeField] private float ActionTime;
 	[SerializeField] private float ProtectTime;
+
+	[Header("Speeds and distance")]
 	[SerializeField] private float speedToTelekinesis;
 	[SerializeField] private float speedToPlayer;
+	[SerializeField] private float DistanceToChangeStoneState;
+
+	[Header("Stone logic")]
 	[SerializeField] private List<Transform> spawnStonesPoint;
 	[SerializeField] private GameObject prefabStone;
 	[SerializeField] private int stonesPerPoint;
-
-	[Header("Control variables")]
-	[SerializeField] private int stonesInGame;
-
-	[SerializeField] private float protectTimer;
-
-
 	[SerializeField] private float offSetX = 2.5f;
 	[SerializeField] private float offSetY = 2.5f;
 
-	[SerializeField] private bool ActionInProgress = false;
+	[Header("Control variables")]
+	[SerializeField] private int stonesInGame;
+	[SerializeField] private float protectTimer;
 
 	[SerializeField] List<GameObject> stoneList = new List<GameObject>();
 	[SerializeField] GameObject throwingStone;
@@ -59,6 +62,7 @@ public class Jengibre : Enemy
 		base.Start();
 		utilitySystem = new JengibreUtilitySystemCalculator();
 		myHealthManager = GetComponent<HealthManager>();
+		myHealthManager.EventDamageTaken += OnDamageReceived;
 
 		playerObject = GameObject.FindGameObjectWithTag("Player");
 		playerHealth = playerObject.GetComponent<HealthPlayerManager>();
@@ -66,6 +70,11 @@ public class Jengibre : Enemy
 
 		//InvokeRepeating("UpdateUtilitySystem", UpdateUtilitySystemTime, UpdateUtilitySystemTime);
 		InvokeRepeating("Attack", ActionTime, ActionTime);
+	}
+
+	private void OnDamageReceived(object sender, Vector3 e)
+	{
+		ActionInProgress = false;
 	}
 
 	void UpdateUtilitySystem()
@@ -83,7 +92,14 @@ public class Jengibre : Enemy
 
 	protected override void Attack()
 	{
+		if (ActionInProgress) return;
 		base.Attack();
+	}
+
+	protected override void Die(object sender, GameObject gameObject)
+	{
+		base.Die(sender, gameObject);
+		DataBase.Singleton.OnDeathBoss("Jengibre");
 	}
 
 	// Update is called once per frame
@@ -124,7 +140,9 @@ public class Jengibre : Enemy
 	private void GoingTelekinesisPoint()
 	{
 		throwingStone.GetComponent<JengibreStone>().GoJengibre(TelekinesisTransform, speedToTelekinesis);
-		if (Vector3.Distance(throwingStone.transform.position, TelekinesisTransform.position) < 0.5f)
+		float distance = (throwingStone.transform.position - TelekinesisTransform.position).magnitude;
+		Debug.Log(distance);
+		if (distance < DistanceToChangeStoneState)
 		{
 			//StoneState = (utilitySystem.action == JengibreUtilitySystemCalculator.CharacterAction.THROW_STONES) ?
 			StoneState = (action == CharacterAction.THROW_STONES) ?
@@ -173,6 +191,7 @@ public class Jengibre : Enemy
 				break;
 		}*/
 
+		Debug.Log("ESTOY EN SELECT ATTACK: " + action);
 		
 		switch (action)
 		{
@@ -203,6 +222,8 @@ public class Jengibre : Enemy
 	{
 		Debug.Log("Liberar ataque");
 		ActionInProgress = false;
+		myAnimator.SetBool("isAttacking", false);
+
 	}
 
 	void ONANIMATION_DROPSTONES_ACTION()
@@ -233,7 +254,7 @@ public class Jengibre : Enemy
 		if(StoneState != TStateStone.NONE)
 		{
 			StoneState = TStateStone.NONE;
-			LIBERATE_ATTACK();
+			ActionInProgress = false;
 		}
 	}
 
