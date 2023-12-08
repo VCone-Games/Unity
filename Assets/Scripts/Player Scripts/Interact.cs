@@ -10,8 +10,6 @@ public class Interact : MonoBehaviour
     [SerializeField] private InputActionReference interactReference;
     [SerializeField] private InputActionReference interactMOBILEReference;
 
-    [SerializeField] private InputActionReference nextLineReference;
-    [SerializeField] private InputActionReference nextLineMOBILEReference;
 
 
     [SerializeField] private bool MOBILE;
@@ -37,22 +35,14 @@ public class Interact : MonoBehaviour
         if (MOBILE)
         {
             interactMOBILEReference.action.performed += OnInteract;
-
-
-            nextLineMOBILEReference.action.performed += OnInteract;
-          
+        
         }
         else
         {
             interactReference.action.performed += OnInteract;
-            
-
-            nextLineReference.action.performed += OnInteract;
 
         }
-        nextLineReference.action.Disable();
         interactReference.action.Disable();
-        nextLineMOBILEReference.action.Disable();
         interactMOBILEReference.action.Disable();
         jumpComponent = GetComponent<Jump>();
     }
@@ -64,19 +54,12 @@ public class Interact : MonoBehaviour
             Debug.Log("No hay interactable cerca");
             return;
         }
-        nextLineMOBILEReference.action.Enable();
-        nextLineReference.action.Enable();
 
         interactable.Interact();
         GetComponent<Animator>().SetBool("Running", false);
         GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 
-    public void EndInteraction()
-    {
-        nextLineReference.action.Disable();
-        nextLineMOBILEReference.action.Disable();
-    }
 
 
     public void OnInteractableEnter(IInteractable collision)

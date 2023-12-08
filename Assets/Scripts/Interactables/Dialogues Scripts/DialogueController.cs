@@ -102,6 +102,18 @@ public class DialogueController : MonoBehaviour
 		}
 	}
 
+	public void EndAbruptly()
+	{
+        paragraphs.Clear();
+
+        conversationEnded = false;
+
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 	private IEnumerator TypeDialogue(string p)
 	{
 		isTyping = true;

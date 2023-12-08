@@ -582,7 +582,7 @@ MonoBehaviour:
   parryTime: 0.3
   parryKnockbackTime: 0.3
   stopTimeDistance: 1.75
-  timeScale: 0.01
+  timeScale: 0.03
   timeScaleRecoveryRatio: 1.5
   parryTimer: 0
   Disabled: 0
@@ -1450,8 +1450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactReference: {fileID: -2109357291517571636, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   interactMOBILEReference: {fileID: -4106608112481754333, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
-  nextLineReference: {fileID: -3124695116967206662, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
-  nextLineMOBILEReference: {fileID: 4656581022867906792, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   MOBILE: 0
 --- !u!1 &4704654943847754631
 GameObject:

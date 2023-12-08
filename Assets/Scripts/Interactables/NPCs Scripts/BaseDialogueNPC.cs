@@ -64,7 +64,7 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 		Debug.Log("TERMINANDO INTERACCION      *");
 		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
 		DataBase.Singleton.NpcTalked[nameNPC] = currentText;
-        playerGameObject.GetComponent<Interact>().EndInteraction();
+		dialogueController.EndAbruptly();
         npcCamera.enabled = false;
         CameraManager.Instance.EnableCamera();
     }
