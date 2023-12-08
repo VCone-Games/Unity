@@ -151,7 +151,7 @@ public class Dash : MonoBehaviour
         if (!isDashing) return;
         if (collision.gameObject.layer != 14)
         {
-            Debug.Log("AAAAAAAA ME VENGOOO");
+            //Debug.Log("AAAAAAAA ME VENGOOO");
             myRigidbody.velocity = Vector2.zero;
             dashTimer = -1;
         }

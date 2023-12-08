@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e05a647b86ded20489101aac3c25bc7b
+guid: 9a918f57b0cbc10418aec267e3326f35
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_0
+      name: Jengibre_Hurt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78ae45692d68c004290c4d4545c10996
-      internalID: 255392623
+      spriteID: 5536acadaf875cc428fda4d7d7433761
+      internalID: 1193298100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_1
+      name: Jengibre_Hurt_1
       rect:
         serializedVersion: 2
         x: 288
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be0094c3edcee824682d9d0b3e3f055e
-      internalID: 1159870172
+      spriteID: 0cd545d9ba36ec24bad4593180cb4c7e
+      internalID: 1248714876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_2
+      name: Jengibre_Hurt_2
       rect:
         serializedVersion: 2
         x: 576
@@ -179,92 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e98eb1d9a669984894b5f97f7015133
-      internalID: 313183384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_3
-      rect:
-        serializedVersion: 2
-        x: 864
-        y: 0
-        width: 288
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d93d83c39a2ceee479c5fe68a2f09e83
-      internalID: -434345999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_4
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 288
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c86be159213e4b94fa7338fe6a034934
-      internalID: 687156323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_5
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 0
-        width: 288
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44e735796464db148bbb3be70db4233b
-      internalID: -1495942822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jengibre_PrepareAtk_Unfinished_6
-      rect:
-        serializedVersion: 2
-        x: 1728
-        y: 0
-        width: 288
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b0f2d11c7f2eaf4fa9aad595fd573ee
-      internalID: 237917307
+      spriteID: 3d528920fce42524599cbe05586259b6
+      internalID: 1979345324
       vertices: []
       indices: 
       edges: []
@@ -280,13 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Jengibre_PrepareAtk_Unfinished_0: 255392623
-      Jengibre_PrepareAtk_Unfinished_1: 1159870172
-      Jengibre_PrepareAtk_Unfinished_2: 313183384
-      Jengibre_PrepareAtk_Unfinished_3: -434345999
-      Jengibre_PrepareAtk_Unfinished_4: 687156323
-      Jengibre_PrepareAtk_Unfinished_5: -1495942822
-      Jengibre_PrepareAtk_Unfinished_6: 237917307
+      Jengibre_Hurt_0: 1193298100
+      Jengibre_Hurt_1: 1248714876
+      Jengibre_Hurt_2: 1979345324
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

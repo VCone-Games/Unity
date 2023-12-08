@@ -132,7 +132,7 @@ public class Jump : MonoBehaviour
         }
 
 
-        Debug.Log(jumpCount);
+       // Debug.Log(jumpCount);
         if (jumpCount <= maxJumps || hasParred)
         {
 

@@ -1,93 +1,143 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class JengibreStone : MonoBehaviour
 {
-	[SerializeField] private int damage = 1;
-	[SerializeField] private float stoneVelocity = 3.0f;
-	[SerializeField] private Transform playerTransform;
-	[SerializeField] private Transform telekinesisTransform;
-	
 
+	public EventHandler<GameObject> OnDestroy;
+	[SerializeField] private int damage = 1;
+	[SerializeField] private float fallingSpeedAtSpawn = 5;
+	[SerializeField] private float speedRot = 20;
+	[SerializeField] private float normalGravity;
+	[SerializeField] private float telekinesisGravity = 0;
+
+	float speed;
 	Rigidbody2D myRigidbody2D;
-	bool Initialized;
-	bool CanDamage;
-	bool IsOffensive;
+
+	[SerializeField] Collider2D myCollider2D;
+	[SerializeField] Collider2D myTriggerCollider2D;
+
+	bool FirstSpawn = true;
+	bool GiveOrdered = false;
+	bool Attack;
+	bool CanMove;
+	[SerializeField] bool CanDamage;
+	Vector3 Direction;
+
 
 	void Start()
 	{
 		myRigidbody2D = GetComponent<Rigidbody2D>();
+		normalGravity = myRigidbody2D.gravityScale;
+
+		Direction = Vector3.down;
+		CanMove = true;
+		CanDamage = true;
+		Attack = true;
+		speed = fallingSpeedAtSpawn;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+
+	void StoneDestroy()
 	{
-		if (!CanDamage) return;
-		if (collision.CompareTag("Player"))
+		OnDestroy?.Invoke(this, gameObject);
+		Destroy(gameObject);
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (!CanDamage || !other.gameObject.CompareTag("Player")) return;
+
+		HealthPlayerManager healthManager = other.GetComponent<HealthPlayerManager>();
+		if (healthManager == null) return;
+
+		Rigidbody2D rigidbody2D = other.GetComponent<Rigidbody2D>();
+		if (rigidbody2D != null)
 		{
-			HealthManager healthManager = null;
-			if (collision.CompareTag("Player")) healthManager = collision.GetComponent<HealthPlayerManager>();
+			Vector2 contactPoint = rigidbody2D.ClosestPoint(transform.position) - (Vector2)other.transform.position;
+			Vector3 damageContactPoint = new Vector3(damage, contactPoint.x, contactPoint.y);
+			healthManager.EventDamageTaken(this, damageContactPoint);
+		}
+		Debug.Log("STONEJENGIBRE:\t (triggerPlayer) HE TOCADO: {" + other.gameObject + "}");
+		StoneDestroy();
+	}
 
-			if (healthManager == null) return;
-
-			Rigidbody2D rigidbody2D = collision.GetComponent<Rigidbody2D>();
-			if (rigidbody2D != null)
-			{
-				Vector2 contactPoint = rigidbody2D.ClosestPoint(transform.position);
-				contactPoint = contactPoint - new Vector2(collision.transform.position.x, collision.transform.position.y);
-				Vector3 damageContactPoint = new Vector3(damage, contactPoint.x, contactPoint.y);
-				//if (!collision.gameObject.CompareTag("Player"))
-				//    collision.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 7);
-				healthManager.EventDamageTaken(this, damageContactPoint);
-			}
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (FirstSpawn)
+		{
+			FirstSpawn = false;
+			ResetState();
+		} else
+		{
+			if (!CanMove || (!Attack && collision.gameObject.CompareTag("Ground"))) return;
+            Debug.Log("STONEJENGIBRE:\t (collision) HE TOCADO: {" + collision.gameObject + "}");
+			StoneDestroy();
 		}
 	}
 
-	public void InitStoneMovement(Transform playerPos, Transform telekinesisPoint, bool attack)
+	public void GoJengibre(Transform telekinesisTransform, float speed)
 	{
-		Initialized = true;
-		playerTransform = playerPos;
-		telekinesisTransform = telekinesisPoint;
-		IsOffensive = attack;
+        Debug.Log("STONEJENGIBRE:\tIr a jengibre");
+		Attack = true;
+		CanMove = true;
+
+		myCollider2D.enabled = false;
+		myRigidbody2D.isKinematic = false;
+
+		Direction = (telekinesisTransform.position - transform.position).normalized;
+		this.speed = speed;
 	}
 
-	void MoveToTelekinesisPoint()
+	public void AttackPlayer(Transform player, float speed)
 	{
-		Vector3 direction = (telekinesisTransform.position - gameObject.transform.position).normalized;
+		if (GiveOrdered) return;
+		GiveOrdered = true;
+        Debug.Log("STONEJENGIBRE:\tAtacar a jugador");
+		myRigidbody2D.gravityScale = normalGravity;
 
-		myRigidbody2D.velocity = direction * stoneVelocity;
-	}
+		Attack = true;
+		CanMove = true;
 
-	void MoveToPlayer()
-	{
+		myCollider2D.enabled = true;
+
 		CanDamage = true;
-
-		Vector3 direction = (playerTransform.position - gameObject.transform.position).normalized;
-
-		myRigidbody2D.velocity = direction * stoneVelocity;
+		Direction = (player.position - transform.position).normalized;
+		this.speed = speed;
 	}
 
+	public void Protect()
+	{
+        Debug.Log("STONEJENGIBRE:\tProteger");
+
+		myCollider2D.enabled = true;
+		myRigidbody2D.gravityScale = telekinesisGravity;
+
+		Attack = false;
+		CanMove = true;
+		CanDamage = true;
+	}
+
+	public void ResetState()
+	{
+		myCollider2D.enabled = false;
+
+		CanMove = false;
+		CanDamage = false;
+		myRigidbody2D.isKinematic = true;
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		if (!Initialized) return;
-		if (IsOffensive)
+		if (!CanMove) return;
+		if (Attack) myRigidbody2D.velocity = Direction * speed;
+		else
 		{
-			float Distance = Vector3.Distance(telekinesisTransform.position, gameObject.transform.position);
-			if (Distance < 0.5f)
-			{
-
-			} else
-			{
-				MoveToTelekinesisPoint();
-			}
-
-		} else
-		{
-
+			transform.Rotate(Vector3.forward, speedRot);
+			myRigidbody2D.velocity = Vector2.zero;
 		}
-		
-
 	}
 }
