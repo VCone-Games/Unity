@@ -171,6 +171,7 @@ public class Parry : MonoBehaviour
     public void DisableParry()
     {
         parryReference.action.Disable();
+        parryMOBILEReference.action.Disable();
         hookedObject = null;
         Disabled = true;
         parryReady = false;

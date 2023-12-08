@@ -37,20 +37,23 @@ public class Interact : MonoBehaviour
         if (MOBILE)
         {
             interactMOBILEReference.action.performed += OnInteract;
-            interactMOBILEReference.action.Disable();
+
 
             nextLineMOBILEReference.action.performed += OnInteract;
-            nextLineMOBILEReference.action.Disable();
+          
         }
         else
         {
             interactReference.action.performed += OnInteract;
-            interactReference.action.Disable();
+            
 
             nextLineReference.action.performed += OnInteract;
-            nextLineReference.action.Disable();
-        }
 
+        }
+        nextLineReference.action.Disable();
+        interactReference.action.Disable();
+        nextLineMOBILEReference.action.Disable();
+        interactMOBILEReference.action.Disable();
         jumpComponent = GetComponent<Jump>();
     }
 

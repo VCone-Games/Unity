@@ -252,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026682854, y: -0.10840008}
+  m_Offset: {x: -0.026683807, y: -0.12553164}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -263,8 +263,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7859688, y: 1.7031999}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.6946945, y: 1.6689367}
+  m_EdgeRadius: 0.03
 --- !u!114 &5442839445161033289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 8839203561806422314}
   myCollider: {fileID: 5681375398095889585}
   grabWallComponent: {fileID: 870136086859879188}
-  jumpForce: 12
+  jumpForce: 13
   coyoteTime: 0.1
   bufferTime: 0.25
   maxJumps: 2
@@ -405,7 +405,7 @@ MonoBehaviour:
   wallJumpPCReference: {fileID: 7738735177705242144, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
-  myCollider: {fileID: 5681375398095889585}
+  myCollider: {fileID: 0}
   jumpComponent: {fileID: 6543608268636019808}
   horizontalMovementReference: {fileID: 4920769700691029718}
   airDashMovementReference: {fileID: 966488937148112256}
@@ -581,9 +581,9 @@ MonoBehaviour:
   parryForce: 25
   parryTime: 0.3
   parryKnockbackTime: 0.3
-  stopTimeDistance: 2.25
+  stopTimeDistance: 1.75
   timeScale: 0.01
-  timeScaleRecoveryRatio: 3
+  timeScaleRecoveryRatio: 1.5
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}

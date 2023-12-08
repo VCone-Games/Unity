@@ -156,7 +156,7 @@ public class CameraManager : MonoBehaviour
 
     public void SwapCameraHorizontal(CinemachineVirtualCamera cameraFromLeft_Top, CinemachineVirtualCamera cameraFromRight_Bottom, Vector2 triggerExitDirection)
     {
-        if (currentCamera == cameraFromLeft_Top && triggerExitDirection.x > 0f)
+        if (triggerExitDirection.x > 0f)
         {
             cameraFromRight_Bottom.enabled = true;
 
@@ -167,7 +167,7 @@ public class CameraManager : MonoBehaviour
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
-        if (currentCamera == cameraFromRight_Bottom && triggerExitDirection.x < 0f)
+        if (triggerExitDirection.x < 0f)
         {
             cameraFromLeft_Top.enabled = true;
 
@@ -181,7 +181,7 @@ public class CameraManager : MonoBehaviour
 
     public void SwapCameraVertical(CinemachineVirtualCamera cameraFromLeft_Top, CinemachineVirtualCamera cameraFromRight_Bottom, Vector2 triggerExitDirection)
     {
-        if (currentCamera == cameraFromLeft_Top && triggerExitDirection.y < 0f)
+        if ( triggerExitDirection.y < 0f)
         {
             cameraFromRight_Bottom.enabled = true;
 
@@ -192,7 +192,7 @@ public class CameraManager : MonoBehaviour
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
 
-        if (currentCamera == cameraFromRight_Bottom && triggerExitDirection.y > 0f)
+        if ( triggerExitDirection.y > 0f)
         {
             cameraFromLeft_Top.enabled = true;
 
