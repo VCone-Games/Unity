@@ -49,7 +49,7 @@ public abstract class AHookable : MonoBehaviour
         playerRigidbody = playerGO.GetComponent<Rigidbody2D>();
         hookingSpeed = playerGO.GetComponent<Hook>().hookingSpeed;
         parryComponent = playerGO.GetComponent<Parry>();
-        playerCollider = playerGO.GetComponent<CapsuleCollider2D>();
+        playerCollider = playerGO.GetComponent<Collider2D>();
         enemyComponent = GetComponent<Enemy>();
 
         hookGun = playerGO.transform.GetChild(0).transform;

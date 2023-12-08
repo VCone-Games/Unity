@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1926100107549445966}
   - component: {fileID: 5464425011887657898}
   - component: {fileID: 8839203561806422314}
-  - component: {fileID: 5271503091895005485}
+  - component: {fileID: 5681375398095889585}
   - component: {fileID: 5442839445161033289}
   - component: {fileID: 6543608268636019808}
   - component: {fileID: 870136086859879188}
@@ -220,8 +220,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &5271503091895005485
-CapsuleCollider2D:
+--- !u!61 &5681375398095889585
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -252,9 +252,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.037801027, y: -0.11635369}
-  m_Size: {x: 0.8250108, y: 1.7230672}
-  m_Direction: 0
+  m_Offset: {x: -0.026682854, y: -0.10840008}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 1.92}
+    newSize: {x: 1.92, y: 1.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7859688, y: 1.7031999}
+  m_EdgeRadius: 0
 --- !u!114 &5442839445161033289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +359,7 @@ MonoBehaviour:
   jumpReferencePC: {fileID: -9120107273873698059, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
-  myCollider: {fileID: 5271503091895005485}
+  myCollider: {fileID: 5681375398095889585}
   grabWallComponent: {fileID: 870136086859879188}
   jumpForce: 12
   coyoteTime: 0.1
@@ -395,7 +405,7 @@ MonoBehaviour:
   wallJumpPCReference: {fileID: 7738735177705242144, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   MOBILE: 0
   myRigidbody: {fileID: 8839203561806422314}
-  myCollider: {fileID: 5271503091895005485}
+  myCollider: {fileID: 5681375398095889585}
   jumpComponent: {fileID: 6543608268636019808}
   horizontalMovementReference: {fileID: 4920769700691029718}
   airDashMovementReference: {fileID: 966488937148112256}
@@ -571,9 +581,9 @@ MonoBehaviour:
   parryForce: 25
   parryTime: 0.3
   parryKnockbackTime: 0.3
-  stopTimeDistance: 1.5
-  timeScale: 0.1
-  timeScaleRecoveryRatio: 5
+  stopTimeDistance: 2.25
+  timeScale: 0.01
+  timeScaleRecoveryRatio: 3
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}
@@ -1722,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2776405451042316320
 Transform:
   m_ObjectHideFlags: 0

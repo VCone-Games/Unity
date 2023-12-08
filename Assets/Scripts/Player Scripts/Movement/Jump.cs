@@ -47,6 +47,8 @@ public class Jump : MonoBehaviour
     [SerializeField] private int jumpCount;
     [SerializeField] private bool hasParred;
     [SerializeField] private bool asciende;
+    private Vector3 feet;
+    private Vector3 feet2;
 
     private float auxVelY;
 
@@ -193,8 +195,13 @@ public class Jump : MonoBehaviour
         if (DISABLED) return;
 
         bool auxGrounded = isGrounded;
-        isGrounded = Physics2D.Raycast(myCollider.bounds.center, Vector2.down,
-            myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
+        feet = new Vector3 (myCollider.bounds.center.x - 0.25f, myCollider.bounds.center.y, myCollider.bounds.center.z);
+        
+        feet2 = new Vector3(myCollider.bounds.center.x + 0.25f, myCollider.bounds.center.y, myCollider.bounds.center.z);
+        isGrounded = Physics2D.Raycast(feet, Vector2.down,
+           myCollider.bounds.extents.y + raycastFeetLength, groundLayer) || Physics2D.Raycast(feet2, Vector2.down,
+           myCollider.bounds.extents.y + raycastFeetLength, groundLayer);
+
 
         if (auxGrounded == false && isGrounded == true)
         {
