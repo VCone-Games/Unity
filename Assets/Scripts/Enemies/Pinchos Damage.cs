@@ -5,12 +5,16 @@ using UnityEngine.Experimental.Rendering;
 
 public class PinchosDamage : Damage
 {
-     private float warpTime = 0.25f;
+     private float warpTime = 0.45f;
     private float warpTimer;
 
     private GameObject player;
 
     protected override void OnTriggerStay2D(Collider2D collision)
+    {
+        
+    }
+    protected  void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("ME PINCHO");
         base.OnTriggerStay2D(collision);

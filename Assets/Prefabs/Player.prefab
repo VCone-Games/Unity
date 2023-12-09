@@ -366,7 +366,7 @@ MonoBehaviour:
   bufferTime: 0.25
   maxJumps: 2
   bonusAirTimeInterval: 0.5
-  raycastFeetLength: 0.1
+  raycastFeetLength: 0.07
   bonusAirTimeGravityScale: 10
   normalGravityScale: 4
   descendingImpulse: 5

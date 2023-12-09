@@ -21,6 +21,10 @@ public class CheckpointSaver : AInteractable
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        if(PlayerInfo.Instance.CheckpointID == ID)
+        {
+            animator.SetBool("Active", true);
+        }
     }
     public override void Interact()
     {

@@ -16,7 +16,7 @@ public class PlayerInfo : MonoBehaviour
 	private string sceneNameCheckpoint = "0. Tutorial";
     private Vector3 checkPointPosition = Vector3.zero;
     private bool isDead;
-    private int checkpointID;
+    private int checkpointID = -1;
 
     //PLAYER POWERS
     private bool canDoubleJump = false;

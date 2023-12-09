@@ -95,11 +95,11 @@ public class SceneChanger : MonoBehaviour
 
 
         GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         player.GetComponent<Hook>().EnableHookInput();
         player.GetComponent<HorizontalMovement>().EnableMovementInput();
         player.GetComponent<Dash>().EnableDashInput();
         player.GetComponent<Jump>().EnableJumpInput();
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
 
