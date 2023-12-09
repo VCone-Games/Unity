@@ -165,13 +165,13 @@ public class Jump : MonoBehaviour
         {
             CameraManager.Instance.LerpYDamping(true);
             ShakeOnImpact = true;
-            Debug.Log("shake");
+
         }
 
         if (ShakeOnImpact && myRigidbody.velocity.y < -35f && !SpartaOnImpact)
         {
             SpartaOnImpact = true;
-            Debug.Log("SPARTAAA");
+
         }
 
         else if (myRigidbody.velocity.y >= 0 && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)

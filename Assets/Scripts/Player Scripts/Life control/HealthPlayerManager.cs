@@ -64,14 +64,20 @@ public class HealthPlayerManager : HealthManager
         jumpComponent.DisableJumpInput();
         if (hook.hookProjectile != null)
             hook.hookProjectile.GetComponent<HookProjectile>().DestroyProjectile();
+        GameObject hookedObject = GetComponent<Hook>().HookedObject;
+        if (hookedObject != null)
+        {
+            hookedObject.GetComponent<AHookable>().Unhook();
+        }
         hook.HookDestroyed();
         hook.DisableHookInput();
+        Time.timeScale = 1;
 
         base.TakeDamage(sender, damageContactPoint);
         if (OnlyTakeDmgOnce) return;
         OnlyTakeDmgOnce = true;
 
-        TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
+        TimeStop.instance.StopTime(0.05f, 7f, 0.75f);
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         EventUpdateHealthUI?.Invoke(this, current_health);
 
@@ -104,6 +110,11 @@ public class HealthPlayerManager : HealthManager
 
     protected void Die(object sender, GameObject gameObject)
     {
+        horizontalMovementComponent.DisableMovementInput();
+        dashComponent.DisableDashInput();
+        jumpComponent.DisableJumpInput();
+        hook.DisableHookInput();
+        myRigidbody.velocity = Vector3.zero;
         myAnimator.SetTrigger("Dead");
 
 		DataBase.Singleton.DeathCount++;

@@ -79,6 +79,8 @@ public class Hook : MonoBehaviour
     [Header("Hooked GameObject")]
     [SerializeField] private GameObject hookedObject;
 
+    public GameObject HookedObject { get { return hookedObject; } }
+
     //OTHER VARIABLES
     [Header("Other Variables")]
     [SerializeField] private Vector2 shootDirection;
@@ -204,7 +206,6 @@ public class Hook : MonoBehaviour
         animator.SetBool("Running", false);
         Time.timeScale = 0.75f;
         soundManager.PlayHook();
-        Debug.Log("AYUDAA");
         interactComponent.enabled = false;
 
         if (shootDirection.x < 0)

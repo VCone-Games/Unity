@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -72,6 +73,7 @@ public abstract class Enemy : MonoBehaviour
             if (unhookTimer < 0)
             { 
                 isBeingHooked = false;
+                GetComponent<SpriteRenderer>().color = Color.white ;
                 gameObject.layer = 11;
             }
         }
@@ -80,5 +82,8 @@ public abstract class Enemy : MonoBehaviour
     public void SetUnhookTimer()
     {
         unhookTimer = unhookTime;
+        Color color = Color.white;
+        color.a = 0.85f;
+        GetComponent<SpriteRenderer>().color = color;
     }
 }

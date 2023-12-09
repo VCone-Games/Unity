@@ -92,7 +92,6 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	{
 		base.StopAttack();
 		tState = TState.CHASE;
-		Debug.Log("Cambiando a patrulla");
 	}
 
 	protected override void FixedUpdate()

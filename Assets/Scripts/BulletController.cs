@@ -12,6 +12,7 @@ public class BulletController : MonoBehaviour
     private Vector3 direction;
 
     private bool startedMoving = false;
+    private bool parried;
     public GameObject PlayerObject { get { return playerObject; } set { playerObject = value; } }
 
     private Rigidbody2D myRigidbody2D;
@@ -50,8 +51,9 @@ public class BulletController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GetComponent<LightHookable>().isHooked)
+        if (GetComponent<LightHookable>().isHooked && !parried)
         {
+            parried = true;
             return;
         }
         if (!startedMoving)
@@ -60,7 +62,8 @@ public class BulletController : MonoBehaviour
             startedMoving = true;
         }
 
-        myRigidbody2D.velocity = direction.normalized * speed;
+        if (!parried)
+            myRigidbody2D.velocity = direction.normalized * speed;
     }
 
 }

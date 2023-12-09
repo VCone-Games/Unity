@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Scene", menuName = "Scene/Create Scene")]
+[CreateAssetMenu(fileName = "SceneObjects", menuName = "Scene Object/Create Scene Object")]
 public class SceneObject : ScriptableObject
 {
     public string sceneName;
