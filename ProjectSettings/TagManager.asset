@@ -40,7 +40,7 @@ TagManager:
   - LEVEL LAYOUT
   - Terrain
   - Map
-  - 
+  - Videos
   - 
   - 
   - 
@@ -75,4 +75,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 766271993
+    locked: 0
+  - name: Videos
+    uniqueID: 1634058375
     locked: 0
