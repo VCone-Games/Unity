@@ -15,15 +15,17 @@ public class CheckpointSaver : AInteractable
     protected override void Start()
     {
         base.Start();
-        if (PlayerInfo.Instance.CheckpointID == ID)
-        {
-            animator.SetBool("Active", true);
-        }
+        Initialize();
+
     }
     public void Initialize()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        if (PlayerInfo.Instance.CheckpointID == ID && PlayerInfo.Instance.CheckpointSceneName == SceneManager.GetActiveScene().name && !StartSpawnPoint)
+        {
+            animator.SetBool("Active", true);
+        }
 
     }
     public override void Interact()

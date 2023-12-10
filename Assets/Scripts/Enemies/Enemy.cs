@@ -83,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
     {
         unhookTimer = unhookTime;
         Color color = Color.white;
-        color.a = 0.85f;
+        color.a = 0.65f;
         GetComponent<SpriteRenderer>().color = color;
     }
 }

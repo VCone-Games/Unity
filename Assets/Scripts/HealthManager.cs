@@ -22,7 +22,7 @@ public class HealthManager : MonoBehaviour
     protected bool OnlyTakeDmgOnce;
 
     [SerializeField] protected float InvulnerabilityTime;
-    protected float InvulnerabilityTimer;
+    public float InvulnerabilityTimer;
 
     [SerializeField] protected Vector2 DamageKnockbackVector;
     [SerializeField] protected float DamageKnockbackForce;
