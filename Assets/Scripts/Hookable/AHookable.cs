@@ -84,6 +84,7 @@ public abstract class AHookable : MonoBehaviour
 
     protected virtual void ParryingAction()
     {
+        playerGO.GetComponent<Animator>().SetBool("canParry", false);
         playerGO.GetComponent<Parry>().parryEffects(parryDirection.x > 0);
 
         parrying = false;
@@ -99,6 +100,7 @@ public abstract class AHookable : MonoBehaviour
         if (Physics2D.Distance(myCollider, playerCollider).distance < stopTimeDistance && !timeStopped)
         {
             TimeStop.instance.StopTime(timeScale, timeScaleRecoveryRatio, stopTimeDistance / hookingSpeed + 0.2f);
+            playerGO.GetComponent<Animator>().SetBool("canParry", true);
             timeStopped = true;
         }
         vectorToHookGun.Normalize();
@@ -121,7 +123,7 @@ public abstract class AHookable : MonoBehaviour
     {
         if (!isHooked) return;
 
-
+        playerGO.GetComponent<Animator>().SetBool("canParry", false);
         //if (isParried)
         gameObject.layer = normalLayer;
         isParried = false;

@@ -625,6 +625,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 0.5
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 2, y: 4}
   DamageKnockbackForce: 13
   soundManager: {fileID: 5991962501229497735}
@@ -1730,7 +1731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2776405451042316320
 Transform:
   m_ObjectHideFlags: 0
