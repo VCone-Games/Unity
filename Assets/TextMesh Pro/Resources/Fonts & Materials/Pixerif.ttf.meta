@@ -10,7 +10,9 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Pixerif
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f89d8ec0b634a074cabe0de619d4fd74, type: 3}
+  - {fileID: 12800000, guid: 4ed71d9c02428bc40ad97722e1d90400, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
