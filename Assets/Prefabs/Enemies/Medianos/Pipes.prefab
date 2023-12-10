@@ -94,7 +94,13 @@ PolygonCollider2D:
       - {x: -1.0743494, y: -0.07042548}
       - {x: -1.0963683, y: -1.1172491}
       - {x: -0.53496945, y: -1.1080811}
-      - {x: -0.57469225, y: -0.01691854}
+      - {x: -0.29789412, y: -1.1113365}
+      - {x: -0.24543, y: -0.908042}
+      - {x: -0.23618472, y: -0.40945247}
+      - {x: -0.22573876, y: -0.12445092}
+      - {x: -0.30307794, y: 0.14565235}
+      - {x: -0.3382331, y: 0.55970323}
+      - {x: -0.53303206, y: 0.84512824}
   m_UseDelaunayMesh: 0
 --- !u!1 &7126842558902224438
 GameObject:
@@ -327,10 +333,11 @@ MonoBehaviour:
   lostTime: 0.5
   tState: 0
   visionRange: 5
-  attackRange: 2
+  attackRange: 1.7
   isPlayerInSight: 0
   chaseTimer: 2
   lostTimer: 0
+  afkTimer: 0
 --- !u!95 &3489160124212780780
 Animator:
   serializedVersion: 5

@@ -440,7 +440,7 @@ MonoBehaviour:
   isGrounded: 0
   canAttack: 1
   tState: 0
-  attackRange: 2.3
+  attackRange: 1.7
 --- !u!114 &8062728613001226246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +459,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 1
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 2, y: 4}
   DamageKnockbackForce: 10
 --- !u!114 &2206444323166196726
@@ -913,10 +914,11 @@ PolygonCollider2D:
       - {x: 0.118011236, y: -0.021412373}
       - {x: 0.40147078, y: -0.25453827}
       - {x: 0.76636213, y: -0.6511582}
-      - {x: 0.9291153, y: -0.27223587}
-      - {x: 0.9452089, y: -0.046060324}
-      - {x: 0.78123474, y: 0.20879745}
-      - {x: 0.53875786, y: 0.31927615}
+      - {x: 1.343482, y: -0.66820157}
+      - {x: 1.4208462, y: -0.16839208}
+      - {x: 1.3086622, y: 0.112759575}
+      - {x: 0.99503076, y: 0.35234618}
+      - {x: 0.6273305, y: 0.42922837}
   m_UseDelaunayMesh: 0
 --- !u!114 &254862736887281903
 MonoBehaviour:
