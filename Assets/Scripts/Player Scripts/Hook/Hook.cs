@@ -136,12 +136,17 @@ public class Hook : MonoBehaviour
 
         if (hookingUnstuckTimer > 0)
         {
+            if(hookedObject == null)
+            {
+                HookDestroyed();
+            }
+
             hookingUnstuckTimer -= Time.fixedDeltaTime;
-            if (hookedObject.GetComponent<AHookable>().IsParried())
+            if (hookedObject!= null && hookedObject.GetComponent<AHookable>().IsParried())
             {
                 hookingUnstuckTimer = parryComponent.parryKnockbackTime;
             }
-            if (hookingUnstuckTimer < 0)
+            if (hookingUnstuckTimer < 0 && hookedObject != null)
             {
                 hookedObject.GetComponent<AHookable>().Unhook();
             }

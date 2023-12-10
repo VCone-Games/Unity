@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5905874921321716513}
   m_Layer: 11
   m_Name: Crow C
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 0
+  unhookTime: 1
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -214,7 +214,8 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
+  InvulnerabilityTime: 2
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 0, y: 0}
   DamageKnockbackForce: 0
 --- !u!61 &578497112034355928
@@ -318,8 +319,8 @@ MonoBehaviour:
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
   failedParryTimer: 0
-  normalLayer: 0
-  noPlayerLayer: 0
+  normalLayer: 11
+  noPlayerLayer: 9
 --- !u!114 &8205928032798259530
 MonoBehaviour:
   m_ObjectHideFlags: 0

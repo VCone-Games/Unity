@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7854418761613355245}
   m_Layer: 11
   m_Name: Energy Crow
-  m_TagString: Untagged
+  m_TagString: crow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,8 @@ MonoBehaviour:
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
+  InvulnerabilityTime: 0.1
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 0, y: 0}
   DamageKnockbackForce: 0
 --- !u!61 &3441310618707360602

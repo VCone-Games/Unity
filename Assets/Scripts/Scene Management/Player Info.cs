@@ -19,9 +19,9 @@ public class PlayerInfo : MonoBehaviour
     private int checkpointID = -1;
 
     //PLAYER POWERS
-    private bool canDoubleJump = false;
-    private bool canDash = false;
-    private bool canWallGrab = false;
+    private bool canDoubleJump = true;
+    private bool canDash = true;
+    private bool canWallGrab = true;
 
     //BETWEEN SCENES VARIABLES
     private int maxHealth;

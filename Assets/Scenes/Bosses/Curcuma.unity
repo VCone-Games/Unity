@@ -3110,10 +3110,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3627838063149553020, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
-      propertyPath: InitialHealthPlayer
-      value: 99
-      objectReference: {fileID: 0}
     - target: {fileID: 3744205976977187297, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
       propertyPath: m_Name
       value: ______GAME MANAGER DONT DESTROY_______
@@ -18460,7 +18456,7 @@ Transform:
   m_GameObject: {fileID: 6744861288683008224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2118287, y: 1.4575052, z: -7.50453}
+  m_LocalPosition: {x: -3.2118375, y: 1.4575052, z: -7.50453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

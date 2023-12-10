@@ -18,6 +18,7 @@ public abstract class IAFlyChase : MovementFlyIA
 
 	protected override void FixedUpdate()
 	{
+		base.FixedUpdate();
 		if (isBeingHooked || isDead) return;
 		CheckState();
 		if (tState == TState.ATTACK) return;
