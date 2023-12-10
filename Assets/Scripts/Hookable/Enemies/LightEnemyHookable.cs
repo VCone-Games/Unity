@@ -6,10 +6,11 @@ public class LightEnemyHookable : LightHookable
 {
     protected override void ParryingAction()
     {
-
+        if (!gameObject.CompareTag("crow"))
+        {
             gameObject.GetComponent<HealthManager>().EventDamageTaken?.Invoke(this, new Vector3(1, 0, 0));
-
-
+        }
+            
         base.ParryingAction();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;

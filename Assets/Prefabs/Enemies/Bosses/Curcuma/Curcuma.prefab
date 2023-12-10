@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7347278446769727460}
   - component: {fileID: 5497218216755711081}
   - component: {fileID: 6026377061677919260}
+  - component: {fileID: 6969174747307012508}
   m_Layer: 11
   m_Name: Curcuma
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7399783, y: 1.7399783, z: 1.7399783}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7513897044999758547}
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aff0b741475d6840835152468ee9248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 4
   facingRight: 1
   myRigidbody2D: {fileID: 0}
   myCollider2D: {fileID: 0}
@@ -224,17 +225,17 @@ MonoBehaviour:
   patrolDistance: 1
   tStateAttack: 0
   probAttacks:
-  - 0.3
-  - 0.3
-  - 0.3
+  - 0.7
+  - 0.7
+  - 0.7
   - 0.1
   probAttacksSecondPhase:
   - 0.2
   - 0.2
   - 0.2
   - 0.3
-  attackTimer: 5
-  attackTimerSecondPhase: 45
+  attackTimer: 8
+  attackTimerSecondPhase: 6
   spawnList:
   - {fileID: 0}
   - {fileID: 0}
@@ -249,7 +250,7 @@ MonoBehaviour:
   spawnPointCurcumaSkeleton: {fileID: 7513897044999758547}
   curcumaSkeletonPrefab: {fileID: 6330249763131439790, guid: f9a8145e10ec86044a22cb49a0a83e58, type: 3}
   attackTime: 0
-  secondPhase: 0
+  secondPhase: 1
 --- !u!114 &7347278446769727460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,15 +263,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8c68a40ea0cf943ac57cc4c4b29bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_health: 2
+  max_health: 6
   current_health: 0
   canTakeDamage: 1
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
-  InvulnerabilityTime: 0
+  InvulnerabilityTime: 1
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 0, y: 0}
   DamageKnockbackForce: 0
   SecondPhase: 0
+  tpplayer: {fileID: 0}
 --- !u!95 &5497218216755711081
 Animator:
   serializedVersion: 5
@@ -327,6 +330,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.02
+--- !u!114 &6969174747307012508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6659681253205171668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09254c9ee0ec17a40b7c917889bbe147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &7563654530002214090
 GameObject:
   m_ObjectHideFlags: 0

@@ -189,7 +189,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 1
+  unhookTime: 2
   unhookTimer: 0
   isDead: 0
   circleRadius: 0.5
