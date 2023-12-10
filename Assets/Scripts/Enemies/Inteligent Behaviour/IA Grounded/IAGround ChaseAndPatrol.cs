@@ -13,6 +13,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 	[SerializeField] protected float visionRange;
 	[SerializeField] protected float attackRange;
 
+
 	[Header("Control ground IA chase")]
     
     [SerializeField] protected bool isPlayerInSight;
@@ -40,6 +41,8 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 
 	protected override void CheckState()
 	{
+		TState previousState = tState;
+
 		if (lostTimer > 0.0f)
 		{
 			lostTimer -= Time.deltaTime;
@@ -71,6 +74,9 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 		}
 		else if (isPlayerInSight || chaseTimer > 0.0f)
 		{
+			//Si el estado anterior NO era CHASE
+
+
 			// Si el jugador está en la vista o se está persiguiendo, cambiar al estado de persecución
 			tState = TState.CHASE;
 		}
