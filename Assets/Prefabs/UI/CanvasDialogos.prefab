@@ -303,6 +303,8 @@ MonoBehaviour:
   NPCNameText: {fileID: 3104750038305924804}
   NPCDialogueText: {fileID: 6785148571903251889}
   NPCIconImage: {fileID: 8797900561729625920}
+  nextDialogue: {fileID: 0}
+  finalDialogue: {fileID: 0}
   typeSpeed: 2
 --- !u!1 &1568354144133908716
 GameObject:
@@ -372,7 +374,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: new text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -397,8 +399,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -436,7 +438,7 @@ MonoBehaviour:
   m_margin: {x: -32.376175, y: -1.4956665, z: -173.86412, w: -8.216663}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7882990234426642085
@@ -454,6 +456,8 @@ MonoBehaviour:
   NPCNameText: {fileID: 0}
   NPCDialogueText: {fileID: 0}
   NPCIconImage: {fileID: 0}
+  nextDialogue: {fileID: 0}
+  finalDialogue: {fileID: 0}
   typeSpeed: 0
 --- !u!1 &1793639707054088224
 GameObject:
@@ -522,7 +526,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: new text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -547,8 +551,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -586,7 +590,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 83.063225, w: 29.665407}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2441228675184169563
