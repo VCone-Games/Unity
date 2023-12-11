@@ -56,7 +56,7 @@ public class DatabaseManager : MonoBehaviour
 
     void LoadCredentials()
     {
-        string configPath = "Assets/DataBase/config.js";
+        string configPath = "Assets/______DataBase/config.js";
 
         if (File.Exists(configPath))
         {
