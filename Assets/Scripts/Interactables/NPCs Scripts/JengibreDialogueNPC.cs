@@ -10,23 +10,25 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 	[SerializeField] private List<DialogueText> _dialogueBothBosses;
 
 	[Header("Test bools")]
-	[SerializeField] bool _CanDialogueBase = true;
-	[SerializeField] bool _CanDialogueCurcumaBoss;
-	[SerializeField] bool _CanDialogueAzafranBoss;
-	[SerializeField] bool _CanDialogueBothBoss;
-
-	[SerializeField] bool _DialogueBaseAssing = true;
-	[SerializeField] bool _DialogueCurcumaAssing = true;
-	[SerializeField] bool _DialogueAzafranAssing = true;
-	[SerializeField] bool _DialogueBothAssing = true;
-
-	[SerializeField] bool _AzafranReached;
-	[SerializeField] bool _CurcumaReached;
-
 	[SerializeField] bool _CurcumaDefeated;
 	[SerializeField] bool _AzafranDefeated;
 	[SerializeField] bool _BothDefeated;
 
+	protected override void Start()
+	{
+		base.Start();
+
+		DatabaseMetrics database = DatabaseMetrics.Singleton;
+		_AzafranDefeated = (database.DataBoss["Azafran"]);
+		_CurcumaDefeated = (database.DataBoss["Curcuma"]);
+
+		_BothDefeated = (_AzafranDefeated && _CurcumaDefeated);
+
+		if (dialogueManager.JengibreCanDialogueList[0]) _dialoguesList = _dialogueBase;
+		else if (dialogueManager.JengibreCanDialogueList[3] && _BothDefeated) _dialoguesList = _dialogueBothBosses;
+		else if (dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated) _dialoguesList = _dialogueAzafran;
+		else if (dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated) _dialoguesList = _dialogueCurcuma;
+	}
 	protected override void OnAnimation_StartTalk()
 	{
 
@@ -38,31 +40,36 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 	}
 	void SelectTalk()
 	{
-		//_AzafranDefeated = DataBase.Singleton.DataBoss["Azafran"];
-		//_CurcumaDefeated = DataBase.Singleton.DataBoss["Curcuma"];
 		
-		_BothDefeated = (_AzafranDefeated && _CurcumaReached);
 
-		if (_CanDialogueBase && _DialogueBaseAssing)
+		if (dialogueManager.JengibreCanDialogueList[0] && dialogueManager.JengibreFirstAssingsList[0])
 		{
-			_DialogueBaseAssing = false;
+			Debug.Log("Asignando PRIMER dialogo");			
+			dialogueManager.JengibreFirstAssingsList[0] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueBase;
 		}
-		if (_CanDialogueAzafranBoss && _AzafranDefeated && _DialogueAzafranAssing)
+		if (dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated && dialogueManager.JengibreCanDialogueList[2])
 		{
-			_DialogueAzafranAssing = false;
+			Debug.Log("Asignando AZAFRAN DERROTADO dialogo");
+			dialogueManager.JengibreCanDialogueList[2] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueAzafran;
-		} else	if (_CanDialogueCurcumaBoss && _CurcumaDefeated && _DialogueCurcumaAssing)
+		} else	if (dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated && dialogueManager.JengibreCanDialogueList[1])
 		{
-			_DialogueCurcumaAssing = false;
+			Debug.Log("Asignando CURCUMA DERROTADO dialogo");
+			dialogueManager.JengibreCanDialogueList[1] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueCurcuma;
 		}
-		if(_CanDialogueBothBoss && _BothDefeated && _DialogueBothAssing)
+		if(dialogueManager.JengibreCanDialogueList[3] && _BothDefeated && dialogueManager.JengibreCanDialogueList[3])
 		{
-			_DialogueBothAssing = false;
+			Debug.Log("Asignando AMBOS DERROTADOS dialogo");
+			dialogueManager.JengibreCanDialogueList[3] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueBothBosses;
 		}
@@ -78,24 +85,30 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 	private void CheckEndDialogue()
 	{
 		bool DialogoTerminado = (currentText + 1) == _dialoguesList.Count;
-		if (DialogoTerminado && _CanDialogueBase)
+		if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[0])
 		{
-			_CanDialogueAzafranBoss = true;
-			_CanDialogueCurcumaBoss = true;
-			_CanDialogueBase = false;
+			Debug.Log("Fin del dialogo. HABILITANDO FIRST/SECOND BOSS");
+			dialogueManager.JengibreCanDialogueList[2] = true;
+			dialogueManager.JengibreCanDialogueList[1] = true;
+			dialogueManager.JengibreCanDialogueList[0] = false;
 		}
-		else if (DialogoTerminado && _CanDialogueAzafranBoss && _AzafranDefeated)
+		else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated)
 		{
-			_AzafranReached = true;
-			_CanDialogueAzafranBoss = false;
-		} else if (DialogoTerminado && _CanDialogueCurcumaBoss && _CurcumaDefeated)
+			Debug.Log("Fin del dialogo AZAFRAN. HABILITANDO END");
+			dialogueManager._AzafranEndConversationReached = true;
+			dialogueManager.JengibreCanDialogueList[2] = false;
+		} else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated)
 		{
-			_CurcumaReached = true;
-			_CanDialogueCurcumaBoss = false;
+			Debug.Log("Fin del dialogo CURCUMA. HABILITANDO END");
+			dialogueManager._CurcmuaEndConversationReached = true;
+			dialogueManager.JengibreCanDialogueList[1] = false;
 		}
-		if (DialogoTerminado && _AzafranReached && _CurcumaReached && _BothDefeated)
+		if (DialogoTerminado &&
+			dialogueManager._AzafranEndConversationReached && dialogueManager._CurcmuaEndConversationReached &&
+			_BothDefeated)
 		{
-			_CanDialogueBothBoss = true;
+			Debug.Log("Fin del dialogo BOTH-");
+			dialogueManager.JengibreCanDialogueList[3] = true;
 		}
 	}
 }

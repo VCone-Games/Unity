@@ -99,7 +99,7 @@ public class Jengibre : Enemy
 	protected override void Die(object sender, GameObject gameObject)
 	{
 		base.Die(sender, gameObject);
-		DataBase.Singleton.OnDeathBoss("Jengibre");
+		DatabaseMetrics.Singleton.OnDeathBoss("Jengibre");
 	}
 
 	// Update is called once per frame

@@ -10,7 +10,7 @@ public class ShowMetrics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DataBase data = DataBase.Singleton;
+        /*DataBase data = DataBase.Singleton;
         float timer = data.TimerGame;
         string user = data.Username;
         int age = data.Age;
@@ -33,6 +33,6 @@ public class ShowMetrics : MonoBehaviour
             $"Numero de contraataques: {parryTimes}\n" +
             $"Numero de enemigos derrotados: {nEnemies}\n" +
             $"Coleccionables recogidos: {coleccionables}";
-        metricsText.text = text;
+        metricsText.text = text;*/
     }
 }

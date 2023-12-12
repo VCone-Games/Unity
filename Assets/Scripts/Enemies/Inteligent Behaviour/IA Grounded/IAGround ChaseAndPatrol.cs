@@ -99,7 +99,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
 
             if (tState != TState.PATROL && tState != TState.DEFAULT)
             {
-                Debug.Log("SPAWN INTERROGACION");
+                //Debug.Log("SPAWN INTERROGACION");
                 afkTimer = 1f;
                 myRigidbody2D.velocity = Vector2.zero;
                 GetComponentInChildren<Interrogation>().Spawn();
@@ -116,7 +116,7 @@ public abstract class IAGroundChaseAndPatrol : MovementGroundedIA
             tState = TState.PATROL;
             lostTimer = lostTime + 0.25f ;
             chaseTimer = 0.0f;
-            Debug.Log("SPAWN INTERROGACION");
+            //Debug.Log("SPAWN INTERROGACION");
             myRigidbody2D.velocity = Vector2.zero;
             GetComponentInChildren<Interrogation>().Spawn();
         }

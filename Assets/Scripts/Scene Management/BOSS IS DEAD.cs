@@ -25,7 +25,7 @@ public class BOSSISDEAD : MonoBehaviour
 
         }
 
-        if (DataBase.Singleton.IsBossDead(bossName))
+        if (DatabaseMetrics.Singleton.IsBossDead(bossName))
         {
             tpToBoss.SetActive(false);
             tpAfterBoss.SetActive(true);

@@ -138,7 +138,7 @@ public class MovementCurcuma : IAFlyPatrol
 		myAnimator.SetBool("isDead", true);
 		// myRigidbody2D.velocity = Vector2.zero;
 		myRigidbody2D.isKinematic = false;
-		DataBase.Singleton.OnDeathBoss("Curcuma");
+		DatabaseMetrics.Singleton.OnDeathBoss("Curcuma");
 		curcumaSkeleton.GetComponent<HealthManager>().EventDie?.Invoke(this, gameObject);
 		CancelInvoke();
 

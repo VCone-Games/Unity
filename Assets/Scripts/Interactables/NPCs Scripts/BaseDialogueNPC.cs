@@ -13,21 +13,26 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	[SerializeField] protected string nameNPC;
 
 	private CinemachineVirtualCamera npcCamera;
+	protected DialoguePersistManager dialogueManager;
 
-    protected override void Start()
+	protected override void Start()
 	{
 		base.Start();
-		if (!DataBase.Singleton.NpcTalked.ContainsKey(nameNPC))
+
+		dialogueManager = DialoguePersistManager.instance;
+		if (!dialogueManager.NPCCurrentText.ContainsKey(nameNPC))
 		{
 			Debug.Log("NPC NO EXISTE, CREANDO");
-			DataBase.Singleton.NpcTalked.Add(nameNPC, 0);
+			dialogueManager.NPCCurrentText.Add(nameNPC, 0);
 		}
-		currentText = DataBase.Singleton.NpcTalked[nameNPC];
+		currentText = dialogueManager.NPCCurrentText[nameNPC];
+
 		Debug.Log("current text: " + currentText);
 		GameObject dialogueCanvas = GameObject.FindGameObjectWithTag("Dialogue Box");
 		dialogueController = dialogueCanvas.transform.GetChild(0).GetComponent<DialogueController>();
 		npcCamera = GameObject.FindWithTag("Camera NPC").GetComponent<CinemachineVirtualCamera>();
 	}
+
 	public override void Interact()
 	{
 		base.Interact();
@@ -40,6 +45,7 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 
 		if (!startedTalking && !isTalking)
 			myAnimator.SetBool("StartTalk", true);
+
 		if (isTalking)
 		{
 			Talk(_dialoguesList[currentText]);
@@ -61,9 +67,11 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	public override void EndInteraction()
 	{
 		base.EndInteraction();
-		Debug.Log("TERMINANDO INTERACCION      *");
+		//Debug.Log("TERMINANDO INTERACCION      *");
 		currentText = ((currentText + 1) < _dialoguesList.Count) ? currentText + 1 : currentText;
-		DataBase.Singleton.NpcTalked[nameNPC] = currentText;
+		dialogueManager.NPCCurrentText[nameNPC] = currentText;
+
+		myAnimator.SetBool("isTalking", false);
 		dialogueController.EndAbruptly();
         npcCamera.enabled = false;
         CameraManager.Instance.EnableCamera();

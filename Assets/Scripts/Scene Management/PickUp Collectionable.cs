@@ -7,7 +7,7 @@ public class PickUpCollectionable : AInteractable
 	public override void Interact()
 	{
 		base.Interact();
-        DataBase.Singleton.Coleccionables++;
+        //DataBase.Singleton.Coleccionables++;
 		Destroy(gameObject);
 	}
 }

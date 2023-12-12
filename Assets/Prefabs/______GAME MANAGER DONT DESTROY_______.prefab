@@ -1268,6 +1268,7 @@ GameObject:
   - component: {fileID: 8942382680132334724}
   - component: {fileID: 9067117027992125508}
   - component: {fileID: 3758540481491316220}
+  - component: {fileID: 2640761924569964273}
   m_Layer: 0
   m_Name: ______GAME MANAGER DONT DESTROY_______
   m_TagString: Game Manager
@@ -1407,6 +1408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showMetricsReference: {fileID: 4697525368027422115, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   InitialHealthPlayer: 5
+  sceneMusicId: 0
   footstepsId: 0
 --- !u!114 &8371537564263562272
 MonoBehaviour:
@@ -1420,6 +1422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449ca2124135c9b48bdaea02893349be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoneId: 0
+  sceneId: 0
 --- !u!114 &4661763514531532123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,10 +1498,18 @@ MonoBehaviour:
   username: Username
   age: 0
   gender: 0
-  deathCount: 0
-  parriedTimes: 0
-  deathEnemies: 0
-  coleccionables: 0
+--- !u!114 &2640761924569964273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744205976977187297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de69c93a474d43e46b8e2947b9852c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3960895666466918104
 GameObject:
   m_ObjectHideFlags: 0
