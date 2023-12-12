@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Disappear()
     {
-		DataBase.Singleton.DeathEnemies++;
+		//DataBase.Singleton.DeathEnemies++;
 		gameObject.SetActive(false);
         //Destroy(gameObject);
     }

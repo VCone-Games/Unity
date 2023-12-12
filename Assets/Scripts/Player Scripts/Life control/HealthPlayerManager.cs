@@ -117,7 +117,7 @@ public class HealthPlayerManager : HealthManager
         myRigidbody.velocity = Vector3.zero;
         myAnimator.SetTrigger("Dead");
 
-		DataBase.Singleton.DeathCount++;
+		//DataBase.Singleton.DeathCount++;
         PlayerInfo.Instance.IsDead = true;
     }
 
