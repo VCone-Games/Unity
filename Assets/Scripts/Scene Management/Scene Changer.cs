@@ -37,7 +37,6 @@ public class SceneChanger : MonoBehaviour
             scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
 
         zoneId = scene.zone;
-        sceneId = SceneManager.GetSceneByName(scene.sceneName).buildIndex;
 
         Instance.StartCoroutine(FadeOutThenChangeScene(scene.sceneName));
 
@@ -61,6 +60,10 @@ public class SceneChanger : MonoBehaviour
             yield return null;
         }
 
+        sceneId = SceneManager.GetSceneByName(sceneName).buildIndex;
+
+        //LLAMAR AL METODO QUE HAGA ++ A ENTRAR EN ESCENA "Y" EL NOMBRE DE LA ESCENA "y" ES sceneName
+        //DATABASE CODIGO PARA SUMAR VECES ENTRADAS A LA ZONA
 
         SceneManager.LoadScene(sceneName);
     }

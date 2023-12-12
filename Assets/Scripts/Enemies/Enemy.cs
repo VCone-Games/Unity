@@ -37,6 +37,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Disappear()
     {
 		DataBase.Singleton.DeathEnemies++;
+        GameObject.FindWithTag("Player").GetComponent<HealthPlayerManager>().EventHealing.Invoke(this, 1);
 		gameObject.SetActive(false);
         //Destroy(gameObject);
     }
