@@ -11,6 +11,7 @@ public class SceneChanger : MonoBehaviour
 {
     public static SceneChanger Instance;
     public int zoneId;
+    public int sceneId;
     private bool dead;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class SceneChanger : MonoBehaviour
             scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
 
         zoneId = scene.zone;
+        sceneId = SceneManager.GetSceneByName(scene.sceneName).buildIndex;
 
         Instance.StartCoroutine(FadeOutThenChangeScene(scene.sceneName));
 
