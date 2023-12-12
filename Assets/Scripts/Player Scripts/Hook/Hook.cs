@@ -229,7 +229,7 @@ public class Hook : MonoBehaviour
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-
+        horizontalMovementComponent.disableFlipping = true;
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         wallGrabComponent.DisableWallGrabInput();
@@ -248,6 +248,7 @@ public class Hook : MonoBehaviour
 
         animator.SetBool("Hooking", false);
 
+        horizontalMovementComponent.disableFlipping = false;
         horizontalMovementComponent.EnableMovementInput();
         dashComponent.EnableDashInput();
         wallGrabComponent.EnableWallGrabInput();

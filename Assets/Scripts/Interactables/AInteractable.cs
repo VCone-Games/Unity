@@ -29,7 +29,7 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 
     public virtual void Interact()
     {
-
+        horizontalMovementComponent.disableFlipping = true;
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         jumpComponent.DisableJumpInput();
@@ -38,8 +38,8 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
 
     public virtual void EndInteraction()
     {
-
-		horizontalMovementComponent.EnableMovementInput();
+        horizontalMovementComponent.disableFlipping = false;
+        horizontalMovementComponent.EnableMovementInput();
         dashComponent.EnableDashInput();
         jumpComponent.EnableJumpInput();
         hook.EnableHookInput();

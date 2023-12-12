@@ -11,6 +11,7 @@ public class HorizontalMovement : MonoBehaviour
     public EventHandler<int> EventConfused;
     [Header("Is Disabled")]
     [SerializeField] private bool DISABLED;
+    public bool disableFlipping;
 
     [Header("Input system")]
     [SerializeField] private InputActionReference movementMOBILEActionReference;
@@ -155,7 +156,7 @@ public class HorizontalMovement : MonoBehaviour
     void FixedUpdate()
     {
         ConfuseLogic();
-        if (flipped)
+        if (!disableFlipping && flipped)
         {
             if (facingRight)
             {
