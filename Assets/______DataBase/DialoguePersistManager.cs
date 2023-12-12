@@ -8,7 +8,13 @@ public class DialoguePersistManager : MonoBehaviour
 
     private Dictionary<string, int> npcCurrentText = new Dictionary<string, int>();
 
+    [SerializeField] private List<bool> pandaFirstAssingsList = new List<bool>() { true, true, true };
+	[SerializeField] private List<bool> pandaCanDialogueList = new List<bool>() { true, false, false };
+
+
     public Dictionary<string, int> NPCCurrentText { get { return npcCurrentText; } }
+    public List<bool> PandaFirstAssingsList { get { return pandaFirstAssingsList; } }
+    public List<bool> PandaCanDialogueList { get { return pandaCanDialogueList; } }
 
 	private void Awake()
 	{

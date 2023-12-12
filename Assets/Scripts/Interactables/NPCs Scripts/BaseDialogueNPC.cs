@@ -13,7 +13,7 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	[SerializeField] protected string nameNPC;
 
 	private CinemachineVirtualCamera npcCamera;
-	DialoguePersistManager dialogueManager;
+	protected DialoguePersistManager dialogueManager;
 
 	protected override void Start()
 	{

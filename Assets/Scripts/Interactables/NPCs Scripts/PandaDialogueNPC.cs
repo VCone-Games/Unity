@@ -11,16 +11,21 @@ public class PandaDialogueNPC : BaseDialogueNPC
 
 
 	[Header("Test bools")]
-	[SerializeField] bool _CanDialogueBase = true;
-	[SerializeField] bool _CanDialogueFirstBoss;
-	[SerializeField] bool _CanDialogueSecondBoss;
-
-	[SerializeField] bool _DialogueBaseAssing = true;
-	[SerializeField] bool _DialogueFirstAssing = true;
-	[SerializeField] bool _DialogueSecondAssing = true;
-
 	[SerializeField] bool _firstBossDefeated;
 	[SerializeField] bool _secondBossDefeated;
+
+	protected override void Start()
+	{
+		base.Start();
+
+		DatabaseMetrics database = DatabaseMetrics.Singleton;
+		_firstBossDefeated = (database.DataBoss["Azafran"]) || (database.DataBoss["Curcuma"]);
+		_secondBossDefeated = (database.DataBoss["Azafran"]) && (database.DataBoss["Curcuma"]);
+
+		if (dialogueManager.PandaCanDialogueList[0]) _dialoguesList = _dialogueBase;
+		else if (dialogueManager.PandaCanDialogueList[1] && _firstBossDefeated) _dialoguesList = _dialogueFirstBoss;
+		else if (dialogueManager.PandaCanDialogueList[2] && _secondBossDefeated) _dialoguesList = _dialogueSecondBoss;
+	}
 	protected override void OnAnimation_StartTalk()
 	{
 
@@ -32,24 +37,28 @@ public class PandaDialogueNPC : BaseDialogueNPC
 	}
 	void SelectTalk()
 	{
-		//_firstBossDefeated = (DataBase.Singleton.DataBoss["Azafran"]) || (DataBase.Singleton.DataBoss["Curcuma"]);
-		//_secondBossDefeated = (DataBase.Singleton.DataBoss["Azafran"]) && (DataBase.Singleton.DataBoss["Curcuma"]);
-
-		if (_CanDialogueBase && _DialogueBaseAssing)
+		
+		if (dialogueManager.PandaCanDialogueList[0] && dialogueManager.PandaFirstAssingsList[0])
 		{
-			_DialogueBaseAssing = false;
+			Debug.Log("Asignando PRIMER dialogo");
+			dialogueManager.PandaFirstAssingsList[0] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueBase;
 		}
-		if (_CanDialogueFirstBoss && _firstBossDefeated && _DialogueFirstAssing)
+		if (dialogueManager.PandaCanDialogueList[1] && _firstBossDefeated && dialogueManager.PandaFirstAssingsList[1])
 		{
-			_DialogueFirstAssing = false;
+			Debug.Log("Asignando SEGUNDO dialogo");
+			dialogueManager.PandaFirstAssingsList[1] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueFirstBoss;
 		}
-		if (_CanDialogueSecondBoss && _secondBossDefeated && _DialogueSecondAssing)
+		if (dialogueManager.PandaCanDialogueList[2] && _secondBossDefeated && dialogueManager.PandaFirstAssingsList[2])
 		{
-			_DialogueSecondAssing = false;
+			Debug.Log("Asignando TERCER dialogo");
+			dialogueManager.PandaFirstAssingsList[2] = false;
+			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueSecondBoss;
 		}
@@ -65,14 +74,16 @@ public class PandaDialogueNPC : BaseDialogueNPC
 	private void CheckEndDialogue()
 	{
 		bool DialogoTerminado = (currentText + 1) == _dialoguesList.Count;
-		if (DialogoTerminado && _CanDialogueBase)
+		if (DialogoTerminado && dialogueManager.PandaCanDialogueList[0])
 		{
-			_CanDialogueFirstBoss = true;
-			_CanDialogueBase = false;
-		} else if (DialogoTerminado && _CanDialogueFirstBoss && _firstBossDefeated)
+			Debug.Log("Fin del dialogo. HABILITANDO FIRST BOSS");
+			dialogueManager.PandaCanDialogueList[1] = true;
+			dialogueManager.PandaCanDialogueList[0] = false;
+		} else if (DialogoTerminado && dialogueManager.PandaCanDialogueList[1] && _firstBossDefeated)
 		{
-			_CanDialogueSecondBoss = true;
-			_CanDialogueFirstBoss = false;
+			Debug.Log("Fin del dialogo. HABILITANDO SEGUNDO BOSS");
+			dialogueManager.PandaCanDialogueList[2] = true;
+			dialogueManager.PandaCanDialogueList[1] = false;
 		} 
 	}
 }
