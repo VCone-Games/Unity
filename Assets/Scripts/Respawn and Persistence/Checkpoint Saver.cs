@@ -32,6 +32,7 @@ public class CheckpointSaver : AInteractable
     {
         base.Interact();
         PlayerInfo.Instance.SetCheckpoint(SceneManager.GetActiveScene().name, spawnPoint.position, ID);
+        PlayerInfo.Instance.sceneMusicId = SceneChanger.Instance.zoneId;
         foreach (CheckpointSaver go in GameObject.FindObjectsOfType<CheckpointSaver>())
         {
             if(go != this)

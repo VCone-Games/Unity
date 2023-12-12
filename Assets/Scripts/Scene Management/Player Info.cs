@@ -14,6 +14,7 @@ public class PlayerInfo : MonoBehaviour
 
 	//CHECKPOINT MANAGEMENT
 	private string sceneNameCheckpoint = "0. Tutorial";
+    public int sceneMusicId;
     private Vector3 checkPointPosition = Vector3.zero;
     private bool isDead;
     private int checkpointID = -1;

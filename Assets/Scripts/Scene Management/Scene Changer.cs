@@ -10,7 +10,8 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public static SceneChanger Instance;
-    private int zoneId;
+    public int zoneId;
+    private bool dead;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class SceneChanger : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         HealthPlayerManager healthPlayer = player.GetComponent<HealthPlayerManager>();
 
-		PlayerInfo.Instance.OnSceneChange(healthPlayer.CurrentHealth,healthPlayer.MaxHealth,
+        PlayerInfo.Instance.OnSceneChange(healthPlayer.CurrentHealth, healthPlayer.MaxHealth,
             scene.sceneName, scene.EnterPositions[EnterPoint], player.GetComponent<PlayerSoundManager>().currentMaterialId);
 
         zoneId = scene.zone;
@@ -45,6 +46,7 @@ public class SceneChanger : MonoBehaviour
     public void ChangeSceneByDeath()
     {
         Time.timeScale = 1;
+        dead = true;
         Instance.StartCoroutine(FadeOutThenChangeScene(PlayerInfo.Instance.CheckpointSceneName));
     }
 
@@ -64,10 +66,15 @@ public class SceneChanger : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if(MusicManager.Instance.actualClip != zoneId)
+        if (dead)
+        {
+            MusicManager.Instance.ChangeMusic(PlayerInfo.Instance.sceneMusicId);
+        }
+        else if (zoneId == 0 || MusicManager.Instance.actualClip != zoneId)
         {
             MusicManager.Instance.ChangeMusic(zoneId);
         }
+
 
 
         GameObject player = GameObject.FindWithTag("Player");
