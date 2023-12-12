@@ -224,12 +224,12 @@ public class Hook : MonoBehaviour
 
         }
 
+        horizontalMovementComponent.Flip();
 
         shootDirection.Normalize();
 
         myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        horizontalMovementComponent.disableFlipping = true;
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         wallGrabComponent.DisableWallGrabInput();
@@ -238,6 +238,7 @@ public class Hook : MonoBehaviour
         hookProjectile = Instantiate(hookPrefab, hookGunPosition.position, Quaternion.identity);
         hookedRigidBody = hookProjectile.GetComponent<Rigidbody2D>();
         hookProjectile.GetComponent<HookProjectile>().Shoot(shootDirection, hookingRange, unhookDistance, hookProjectileSpeed);
+        horizontalMovementComponent.disableFlipping = true;
     }
 
     public void HookDestroyed()

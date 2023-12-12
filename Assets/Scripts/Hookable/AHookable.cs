@@ -125,7 +125,6 @@ public abstract class AHookable : MonoBehaviour
 
         playerGO.GetComponent<Animator>().SetBool("canParry", false);
         //if (isParried)
-        gameObject.layer = normalLayer;
         isParried = false;
 
         if (hookProjectile != null)

@@ -222,7 +222,7 @@ public class Parry : MonoBehaviour
         }
     }
 
-
+   
     public void parryEffects(bool facingRight)
     {
         animator.SetTrigger("Parry");
@@ -230,6 +230,7 @@ public class Parry : MonoBehaviour
         soundManager.PlayParry();
 
         horizontalMovementComponent.SpriteFlipManager(facingRight);
+        horizontalMovementComponent.Flip();
         CameraShakeManager.instance.CameraShake(impulseSource, new Vector3(1, 0.2f, 0));
         TimeStop.instance.StopTime(0.05f, 10f, 0.5f);
         dashComponent.HasParred = true;
