@@ -95,6 +95,6 @@ public class Perejil_Head : Enemy
 	protected override void Die(object sender, GameObject gameObject)
 	{
 		base.Die(sender, gameObject);
-		DataBase.Singleton.OnDeathBoss("Perejil");
+		DatabaseMetrics.Singleton.OnDeathBoss("Perejil");
 	}
 }

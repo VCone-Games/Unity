@@ -81,10 +81,11 @@ public class StartGame : MonoBehaviour
 	void LoadGame(int age, string gender)
 	{
 		SceneManager.LoadScene("0. Tutorial");
-		gameObject.AddComponent<DataBase>();
-		DataBase.Singleton.Username = nameField.text;
-		DataBase.Singleton.Age = age;
-		DataBase.Singleton.Gender = gender;
+		DatabaseMetrics dataBase = gameObject.AddComponent<DatabaseMetrics>();
+
+		dataBase.Username = nameField.text;
+		dataBase.Age = age;
+		dataBase.Gender = gender;
 
 		Destroy(this);
 	}

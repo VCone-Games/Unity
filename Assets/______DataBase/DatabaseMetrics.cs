@@ -8,9 +8,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class DataBase : MonoBehaviour
+public class DatabaseMetrics : MonoBehaviour
 {
-	public static DataBase Singleton;
+	public static DatabaseMetrics Singleton;
 
 	private Dictionary<int, SceneMetrics> dictionarySceneMetrics = new Dictionary<int, SceneMetrics>();
 
@@ -192,7 +192,7 @@ public class DataBase : MonoBehaviour
 		for (int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
 		{
 			dictionarySceneMetrics.Add(i, new SceneMetrics());
-			Debug.Log($"Escena: {i}, nombre:  { SceneManager.GetSceneByBuildIndex(i).name }");
+			//Debug.Log($"Escena: {i}, nombre:  { SceneManager.GetSceneByBuildIndex(i).name }");
 		}
 
 		startedTimerGame = Time.time;
