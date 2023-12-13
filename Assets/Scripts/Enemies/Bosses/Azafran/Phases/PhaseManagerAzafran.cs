@@ -42,7 +42,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 	void ActivateSecondPhase()
 	{
 		firstPhaseComponent.IsDisabled = true;
-        
+		
         myAnimator.SetBool("isTransicion", false);
 		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;

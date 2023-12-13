@@ -330,7 +330,6 @@ public class FirstPhaseAzafran : Enemy
 		MusicManager.Instance.PlayAzafranInterlude();
 		secondPhaseActivated = true;
 		shootCount = maxShoots;
-
 	}
 	void InAnimation_SecondPhaseAnimationEnd()
 	{
@@ -338,6 +337,7 @@ public class FirstPhaseAzafran : Enemy
 
 		if (tState == TStateAttack.SHOOTING)
 		{
+			myAnimator.SetBool("isAttacking", false);
 			tState = TStateAttack.DIGGING_BACK;
 			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
 		}
@@ -390,6 +390,7 @@ public class FirstPhaseAzafran : Enemy
 
 	void Shoot()
 	{
+		
 		if (shootTimer < 0.0f)
 		{
 			if (shootCount != maxShoots)

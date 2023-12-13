@@ -25196,11 +25196,11 @@ PrefabInstance:
       objectReference: {fileID: 179585168}
     - target: {fileID: 5378154078558679182, guid: fea6a70e68c9b2c478b7c42197900386, type: 3}
       propertyPath: probList.Array.data[0]
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5378154078558679182, guid: fea6a70e68c9b2c478b7c42197900386, type: 3}
       propertyPath: probList.Array.data[1]
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5378154078558679182, guid: fea6a70e68c9b2c478b7c42197900386, type: 3}
       propertyPath: digPlaces.Array.data[0]
