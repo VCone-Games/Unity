@@ -47,8 +47,6 @@ public class PhaseManagerAzafran : MonoBehaviour
 		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;
 		Debug.Log("Cambio de fase");
-
-
     }
 
 	private void FixedUpdate()

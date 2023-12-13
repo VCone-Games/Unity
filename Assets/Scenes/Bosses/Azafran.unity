@@ -24384,7 +24384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changingScene: {fileID: 11400000, guid: 3412df4b4b243244594d1bb7e413721a, type: 2}
-  EnterPosition: 5
+  EnterPosition: 6
 --- !u!4 &1881621589
 Transform:
   m_ObjectHideFlags: 0
