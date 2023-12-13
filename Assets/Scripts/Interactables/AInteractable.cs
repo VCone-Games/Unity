@@ -54,7 +54,6 @@ public abstract class AInteractable : MonoBehaviour, IInteractable
         else
         {
             interactionSprite.SetActive(false);
-            EndInteraction();
         }
     }
 
