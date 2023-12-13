@@ -112,6 +112,10 @@ public class Dash : MonoBehaviour
         if (coolDownTimer > 0)
         {
             coolDownTimer -= Time.fixedDeltaTime;
+            if(coolDownTimer < 0)
+            {
+                animator.SetBool("Is Dashing", false);
+            }
         }
 
         if (dashTimer > 0.0f)
