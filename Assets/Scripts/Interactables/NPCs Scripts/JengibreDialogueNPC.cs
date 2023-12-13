@@ -50,25 +50,27 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 			currentText = 0;
 			_dialoguesList = _dialogueBase;
 		}
-		if (dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated && dialogueManager.JengibreCanDialogueList[2])
+		if (dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated && dialogueManager.JengibreFirstAssingsList[2] && !dialogueManager._DialogueBossOccupied)
 		{
 			Debug.Log("Asignando AZAFRAN DERROTADO dialogo");
-			dialogueManager.JengibreCanDialogueList[2] = false;
+			dialogueManager._DialogueBossOccupied = true;
+			dialogueManager.JengibreFirstAssingsList[2] = false;
 			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueAzafran;
-		} else	if (dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated && dialogueManager.JengibreCanDialogueList[1])
+		} else	if (dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated && dialogueManager.JengibreFirstAssingsList[1] && !dialogueManager._DialogueBossOccupied)
 		{
 			Debug.Log("Asignando CURCUMA DERROTADO dialogo");
-			dialogueManager.JengibreCanDialogueList[1] = false;
+			dialogueManager._DialogueBossOccupied = true;
+			dialogueManager.JengibreFirstAssingsList[1] = false;
 			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueCurcuma;
 		}
-		if(dialogueManager.JengibreCanDialogueList[3] && _BothDefeated && dialogueManager.JengibreCanDialogueList[3])
+		if(dialogueManager.JengibreCanDialogueList[3] && _BothDefeated && dialogueManager.JengibreFirstAssingsList[3])
 		{
 			Debug.Log("Asignando AMBOS DERROTADOS dialogo");
-			dialogueManager.JengibreCanDialogueList[3] = false;
+			dialogueManager.JengibreFirstAssingsList[3] = false;
 			dialogueManager.NPCCurrentText[nameNPC] = 0;
 			currentText = 0;
 			_dialoguesList = _dialogueBothBosses;
@@ -97,12 +99,14 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 			dialogueManager.JengibreCanDialogueList[2] = true;
 			dialogueManager.JengibreCanDialogueList[1] = true;
 			dialogueManager.JengibreCanDialogueList[0] = false;
+			dialogueManager._DialogueBossOccupied = false;
 		}
 		else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[2] && _AzafranDefeated)
 		{
 			Debug.Log("Fin del dialogo AZAFRAN. HABILITANDO END");
 			dialogueManager._AzafranEndConversationReached = true;
 			dialogueManager.JengibreCanDialogueList[2] = false;
+			dialogueManager._DialogueBossOccupied = false;
 		} else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[1] && _CurcumaDefeated)
 		{
 			Debug.Log("Fin del dialogo CURCUMA. HABILITANDO END");
