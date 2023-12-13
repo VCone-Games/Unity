@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialoguePersistManager : MonoBehaviour
+public class DataPersistManager : MonoBehaviour
 {
-    public static DialoguePersistManager instance;
+    public static DataPersistManager instance;
 
+
+	/// <summary>
+	/// DIALOGOS
+	/// </summary>
     private Dictionary<string, int> npcCurrentText = new Dictionary<string, int>();
 
     [SerializeField] private List<bool> pandaFirstAssingsList = new List<bool>() { true, true, true };
@@ -27,21 +31,24 @@ public class DialoguePersistManager : MonoBehaviour
 	public bool _AzafranEndConversationReached { get { return azafranReached; } set { azafranReached = value; } }
 	public bool _CurcmuaEndConversationReached { get { return curcumaReached; } set { curcumaReached = value; } }
 
+	/// <summary>
+	/// INTERACTABLES
+	/// </summary>
+	private Dictionary<int, bool> interactablesActive = new Dictionary<int, bool>();
+	public Dictionary<int, bool> InteractablesActive {  get { return interactablesActive; } }
+
+
 	private void Awake()
 	{
 		if (instance == null)
 			instance = this;
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
+	public bool CheckActiveIDInteractable(int id)
+	{
+		if (!interactablesActive.ContainsKey(id))
+			interactablesActive.Add(id, true);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		return interactablesActive[id];
+	}
 }
