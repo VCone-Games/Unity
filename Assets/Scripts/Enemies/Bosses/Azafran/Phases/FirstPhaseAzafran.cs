@@ -338,8 +338,7 @@ public class FirstPhaseAzafran : Enemy
 		if (tState == TStateAttack.SHOOTING)
 		{
 			myAnimator.SetBool("isAttacking", false);
-			tState = TStateAttack.DIGGING_BACK;
-			tStateMoving = TStateMovingToDigPoint.PLATAFORM;
+			myAnimator.SetBool("beginDigging", true);
 		}
 
 	}

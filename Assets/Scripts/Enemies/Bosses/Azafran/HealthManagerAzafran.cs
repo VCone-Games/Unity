@@ -10,7 +10,7 @@ public class HealthManagerAzafran : HealthManager
 
 	protected override void TakeDamage(object sender, Vector3 damage)
 	{
-		if (!canTakeDamage || myAnimator.GetBool("isDamaging")) return;
+		if (!canTakeDamage || myAnimator.GetBool("isDamaging") || SecondPhase) return;
 		myAnimator.SetBool("isDamaging", true);
 		int objetiveHealth = current_health - (int)damage.x;
 		current_health = (objetiveHealth < 0) ? 0 : objetiveHealth;

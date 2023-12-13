@@ -39,7 +39,7 @@ public class PhaseManagerAzafran : MonoBehaviour
 		//musicManager.PlayFirst();
     }
 
-	void ActivateSecondPhase()
+	void ONANIMATION_ActivateSecondPhase()
 	{
 		firstPhaseComponent.IsDisabled = true;
 		
