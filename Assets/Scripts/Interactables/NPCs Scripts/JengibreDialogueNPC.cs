@@ -85,6 +85,12 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 	private void CheckEndDialogue()
 	{
 		bool DialogoTerminado = (currentText + 1) == _dialoguesList.Count;
+		if (currentText == 0 && dialogueManager.JengibreCanDialogueList[0])
+		{
+			PlayerInfo.Instance.CanWallGrab = true;
+			GameObject.FindObjectOfType<OnSceneLoad>().SetPowers();
+		}
+
 		if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[0])
 		{
 			Debug.Log("Fin del dialogo. HABILITANDO FIRST/SECOND BOSS");
