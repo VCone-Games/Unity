@@ -427,7 +427,7 @@ public class FirstPhaseAzafran : Enemy
 		// myRigidbody2D.velocity = Vector2.zero;
 		myRigidbody2D.isKinematic = false;
 		DatabaseMetrics.Singleton.OnDeathBoss("Azafran");
-		tpPlayer.GetComponent<TPPLAYERBACK>().CurcumaDeath();
+		tpPlayer.GetComponent<TPPLAYERBACK>().TeleportBack();
 		Debug.Log("AZAFRAN MUERE JODER");
 	}
 }

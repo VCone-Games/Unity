@@ -8,6 +8,7 @@ public class TPPLAYERBACK : MonoBehaviour
     [SerializeField] private GameObject DENSE_FOG2;
     [SerializeField] private GameObject DENSE_FOG3;
     [SerializeField] private GameObject triggerScene;
+    [SerializeField] private GameObject TO_GENGIBRE;
     private float tpTimer;
 
     private void FixedUpdate()
@@ -16,7 +17,7 @@ public class TPPLAYERBACK : MonoBehaviour
         {
             tpTimer -= Time.fixedDeltaTime;
 
-            if(tpTimer < 4)
+            if (tpTimer < 4)
             {
                 DENSE_FOG1.SetActive(true);
             }
@@ -32,13 +33,21 @@ public class TPPLAYERBACK : MonoBehaviour
 
             if (tpTimer < 0)
             {
-                triggerScene.SetActive(true);
+                if (DatabaseMetrics.Singleton.IsBossDead("Azafran") && DatabaseMetrics.Singleton.IsBossDead("Curcuma"))
+                {
+                    TO_GENGIBRE.SetActive(true);
+                }
+                else
+                {
+                    triggerScene.SetActive(true);
+                }
+
             }
         }
 
     }
 
-    public void CurcumaDeath()
+    public void TeleportBack()
     {
         tpTimer = 5f;
     }

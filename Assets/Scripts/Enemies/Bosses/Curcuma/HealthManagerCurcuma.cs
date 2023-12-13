@@ -33,7 +33,7 @@ public class HealthManagerCurcuma : HealthManager
 		if (current_health <= 0)
 		{
 			EventDie?.Invoke(this, gameObject);
-			tpplayer.CurcumaDeath();
+			tpplayer.TeleportBack();
         }
 
 		Debug.Log("CURCUUUUUUUMAAAAA::: Damage received " + current_health);

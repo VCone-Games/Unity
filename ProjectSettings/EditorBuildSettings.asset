@@ -68,5 +68,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Metricas.unity
     guid: 4de8c88cce3cd4b43a1f7812540162df
+  - enabled: 1
+    path: Assets/Scenes/Bosses/Jengibre.unity
+    guid: fad21798e99018040af9468bc9a1fd95
+  - enabled: 1
+    path: Assets/Scenes/Bosses/Perejil.unity
+    guid: 6e83b754957b21c428f745616174b964
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c93d4e0caba931e48aae4fec96740ecb, type: 2}
