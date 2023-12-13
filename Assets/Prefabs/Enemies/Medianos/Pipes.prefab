@@ -314,7 +314,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 1.5
+  unhookTime: 2
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}

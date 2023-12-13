@@ -62,7 +62,7 @@ public abstract class AHookable : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if(failedParryTimer > 0)
+        if (failedParryTimer > 0)
         {
             parryKnockbackTimer -= Time.fixedDeltaTime;
         }
@@ -89,7 +89,8 @@ public abstract class AHookable : MonoBehaviour
 
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
-        gameObject.layer = noPlayerLayer;
+        if (GetComponent<Enemy>() != null)
+            gameObject.layer = noPlayerLayer;
         Destroy(hookProjectile);
         playerGO.GetComponent<Interact>().enabled = false;
     }
@@ -125,7 +126,6 @@ public abstract class AHookable : MonoBehaviour
 
         playerGO.GetComponent<Animator>().SetBool("canParry", false);
         //if (isParried)
-        gameObject.layer = normalLayer;
         isParried = false;
 
         if (hookProjectile != null)
@@ -162,7 +162,7 @@ public abstract class AHookable : MonoBehaviour
             {
                 parrying = true;
                 ParryingAction();
-  
+
             }
         }
 

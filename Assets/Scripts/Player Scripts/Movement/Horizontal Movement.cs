@@ -119,6 +119,24 @@ public class HorizontalMovement : MonoBehaviour
         facingRight = isFacingRight;
         cameraFollow.CallTurn(facingRight);
         flipped = true;
+ 
+    }
+
+    public void Flip()
+    {
+        if (facingRight)
+        {
+            Vector3 rotator = new Vector3(0, 0, 0);
+            transform.rotation = Quaternion.Euler(rotator);
+
+        }
+        else
+        {
+            Vector3 rotator = new Vector3(0, 180, 0);
+            transform.rotation = Quaternion.Euler(rotator);
+            //spriteRenderer.flipX = true;
+            //hookGun.transform.localPosition = invertedGunPosition;
+        }
     }
 
     private void OnRelease(InputAction.CallbackContext context)

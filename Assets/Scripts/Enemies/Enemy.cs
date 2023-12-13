@@ -28,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Die(object sender, GameObject gameObject)
     {
+        gameObject.layer = 9;
         isDead = true;
         myAnimator.SetBool("isDead", true);
         // myRigidbody2D.velocity = Vector2.zero;

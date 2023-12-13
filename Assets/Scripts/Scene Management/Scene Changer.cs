@@ -79,7 +79,7 @@ public class SceneChanger : MonoBehaviour
         {
             MusicManager.Instance.ChangeMusic(zoneId);
         }
-
+        Time.timeScale = 1;
 
 
         GameObject player = GameObject.FindWithTag("Player");

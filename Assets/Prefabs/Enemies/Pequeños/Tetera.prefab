@@ -270,7 +270,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 1.5
+  unhookTime: 2
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -308,6 +308,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 1
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 2, y: 4}
   DamageKnockbackForce: 10
 --- !u!114 &5664000718872885197
