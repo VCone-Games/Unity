@@ -163,9 +163,13 @@ public class FirstPhaseAzafran : Enemy
 	void ChargeLogic()
 	{
 		myRigidbody2D.velocity = new Vector2(directionCharge.x * moveSpeed, 0);
+		bool RayCast;
+		if (gameObject.transform.rotation.eulerAngles.y == 0) RayCast = Physics2D.Raycast(rightCheck.position, Vector2.right, circleRadius, wallMask);
+		else RayCast = Physics2D.Raycast(rightCheck.position, Vector2.left, circleRadius, wallMask);
 
-		if (Physics2D.OverlapCircle(rightCheck.position, circleRadius, wallMask))
+		if (RayCast)
 		{
+			Debug.Log("/////////////////////////PARED ENCONTRADA");
 			myAnimator.SetBool("isCharging", false);
 			GetComponent<PhaseManagerAzafran>().summonFallingStone?.Invoke(this, stonesSummoned);
 			tState = TStateAttack.IDLE;
