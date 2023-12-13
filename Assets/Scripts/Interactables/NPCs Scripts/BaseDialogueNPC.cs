@@ -13,13 +13,13 @@ public class BaseDialogueNPC : AInteractable, ITalkable
 	[SerializeField] protected string nameNPC;
 
 	private CinemachineVirtualCamera npcCamera;
-	protected DialoguePersistManager dialogueManager;
+	protected DataPersistManager dialogueManager;
 
 	protected override void Start()
 	{
 		base.Start();
 
-		dialogueManager = DialoguePersistManager.instance;
+		dialogueManager = DataPersistManager.instance;
 		if (!dialogueManager.NPCCurrentText.ContainsKey(nameNPC))
 		{
 			Debug.Log("NPC NO EXISTE, CREANDO");

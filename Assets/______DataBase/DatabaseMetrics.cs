@@ -95,6 +95,13 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public float TimeInScene
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.timeInScene;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -104,6 +111,13 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int TimesEntered
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.timesEntered;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -112,7 +126,15 @@ public class DatabaseMetrics : MonoBehaviour
 		}
 	}
 	public int DeathCount {
-		set {
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.deathCount;
+		}
+
+		set
+		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
 			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
 			currentScene.deathCount = value;
@@ -120,6 +142,13 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int ObjectsHookeds
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.objectsHookeds;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -129,6 +158,13 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int objectsParried
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.objectsParried;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -138,6 +174,13 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int LifesLosts
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.lifesLosts;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -147,15 +190,31 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int CollectionablePickeds
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.collectionablePickeds;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
 			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
 			currentScene.collectionablePickeds = value;
+
+			Debug.Log($"Collectionable picked, {sceneID}, {value}");
 		}
 	}
 	public int TotalCollecionables
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.totalCollecionables;
+		}
+
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -165,6 +224,12 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 	public int DefeatedEnemies
 	{
+		get
+		{
+			int sceneID = SceneManager.GetActiveScene().buildIndex;
+			SceneMetrics currentScene = dictionarySceneMetrics[sceneID];
+			return currentScene.defeatedEnemies;
+		}
 		set
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
