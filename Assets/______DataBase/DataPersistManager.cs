@@ -18,6 +18,7 @@ public class DataPersistManager : MonoBehaviour
 
 	[SerializeField] private List<bool> jengibreFirstAssingsList = new List<bool>() { true, true, true, true };
 	[SerializeField] private List<bool> jengibreCanDialogueList = new List<bool>() { true, false, false, false };
+	private bool dialogueOccuped;
 	private bool azafranReached;
 	private bool curcumaReached;
 
@@ -30,6 +31,8 @@ public class DataPersistManager : MonoBehaviour
 
 	public bool _AzafranEndConversationReached { get { return azafranReached; } set { azafranReached = value; } }
 	public bool _CurcmuaEndConversationReached { get { return curcumaReached; } set { curcumaReached = value; } }
+	public bool _DialogueBossOccupied {  get { return dialogueOccuped; } set { dialogueOccuped = value; } }
+
 
 	/// <summary>
 	/// INTERACTABLES
