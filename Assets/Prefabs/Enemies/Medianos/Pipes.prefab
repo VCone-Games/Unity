@@ -314,7 +314,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   hookableComponent: {fileID: 0}
   isBeingHooked: 0
-  unhookTime: 2
+  unhookTime: 1.25
   unhookTimer: 0
   isDead: 0
   playerObject: {fileID: 0}
@@ -702,7 +702,7 @@ Transform:
   m_GameObject: {fileID: 7499623873382056904}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.61, y: -1.104, z: 0}
+  m_LocalPosition: {x: 0.61, y: -1.101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
