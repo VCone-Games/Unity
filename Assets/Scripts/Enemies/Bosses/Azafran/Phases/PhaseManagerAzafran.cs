@@ -39,16 +39,14 @@ public class PhaseManagerAzafran : MonoBehaviour
 		//musicManager.PlayFirst();
     }
 
-	void ActivateSecondPhase()
+	void ONANIMATION_ActivateSecondPhase()
 	{
 		firstPhaseComponent.IsDisabled = true;
-        
+		
         myAnimator.SetBool("isTransicion", false);
 		myAnimator.SetBool("isWalking", true);
 		firstPhaseEnded = true;
 		Debug.Log("Cambio de fase");
-
-
     }
 
 	private void FixedUpdate()

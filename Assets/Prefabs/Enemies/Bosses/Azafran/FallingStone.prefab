@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8108228443693999531}
   - component: {fileID: 1632748818433143386}
   - component: {fileID: 1996238730542659738}
-  m_Layer: 11
+  m_Layer: 19
   m_Name: FallingStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,6 +243,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 0
   noPlayerLayer: 9
   forceMultiplicator: 2
