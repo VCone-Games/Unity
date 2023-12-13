@@ -65,6 +65,7 @@ public class PlayerSoundManager : MonoBehaviour
         footstepsSource.clip = footSteps[material];
         landingSource.clip = landingSounds[material];
         currentMaterialId = material;
+        StoptFootsteps();
     }
 
     public void PlayLanding()

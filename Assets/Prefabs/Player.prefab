@@ -181,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1336837753
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1897044046, guid: 7d23758d787a7444f82dac4c43677ca5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -365,11 +365,11 @@ MonoBehaviour:
   coyoteTime: 0.1
   bufferTime: 0.25
   maxJumps: 2
-  bonusAirTimeInterval: 0.5
-  raycastFeetLength: 0.07
+  bonusAirTimeInterval: 0.75
+  raycastFeetLength: 0.05
   bonusAirTimeGravityScale: 10
   normalGravityScale: 4
-  descendingImpulse: 5
+  descendingImpulse: 6
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -470,10 +470,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DISABLED: 0
+  disableFlipping: 0
   movementMOBILEActionReference: {fileID: 5090440381330581355, guid: cffeef81d3af64c4c8086f7dc5215207, type: 3}
   movementPCActionReference: {fileID: 2118462498132195054, guid: 29ec1a5745c95414fbf40e89c45e507d, type: 3}
   MOBILE: 0
-  movementSpeed: 7
+  movementSpeed: 7.5
   moving: 0
   movementDirection: 0
   facingRight: 1
@@ -583,7 +584,7 @@ MonoBehaviour:
   parryKnockbackTime: 0.3
   stopTimeDistance: 1.75
   timeScale: 0.03
-  timeScaleRecoveryRatio: 1.5
+  timeScaleRecoveryRatio: 2.5
   parryTimer: 0
   Disabled: 0
   hookedObject: {fileID: 0}
