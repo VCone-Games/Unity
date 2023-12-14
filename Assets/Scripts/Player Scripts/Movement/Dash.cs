@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour
 {
-    private bool dashUnlocked = true;
+    private bool dashUnlocked = false;
 
     [Header("Is Disabled by need")]
     private bool DISABLED;

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class WallGrab : MonoBehaviour
 {
-    private bool wallGrabUnlocked = true;
+    private bool wallGrabUnlocked = false;
     public bool WallGrabUnlocked { set { wallGrabUnlocked = value; } }
 
     [Header("Is Disabled")]

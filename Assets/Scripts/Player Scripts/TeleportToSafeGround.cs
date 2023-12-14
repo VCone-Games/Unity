@@ -25,6 +25,7 @@ public class TeleportToSafeGround : MonoBehaviour
     {
         if ((whatIsCheckPoint.value & (1 << collision.gameObject.layer)) > 0)
         {
+            if (GetComponent<Animator>().GetBool("isDamaging")) return;
             //LLAMAR AL EVENTO DE CHECKPOINT
             SafeGroundLocation = new Vector2(collision.bounds.center.x, collision.bounds.min.y + safeSpotYOffset);
             Debug.Log(SafeGroundLocation);

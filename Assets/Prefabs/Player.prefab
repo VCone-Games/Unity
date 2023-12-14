@@ -263,7 +263,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6946945, y: 1.6689367}
+  m_Size: {x: 0.6, y: 1.6689367}
   m_EdgeRadius: 0.03
 --- !u!114 &5442839445161033289
 MonoBehaviour:
@@ -364,7 +364,7 @@ MonoBehaviour:
   jumpForce: 13
   coyoteTime: 0.1
   bufferTime: 0.25
-  maxJumps: 2
+  maxJumps: 1
   bonusAirTimeInterval: 0.75
   raycastFeetLength: 0.05
   bonusAirTimeGravityScale: 10
@@ -531,7 +531,7 @@ MonoBehaviour:
   mousePositionInWorld: {x: 0, y: 0}
   controllerAim: {x: 0, y: 0}
   hookingRange: 8
-  hookProjectileSpeed: 40
+  hookProjectileSpeed: 50
   hookingSpeed: 17
   hookingMaxDuration: 1
   hookCooldDown: 1
