@@ -89,8 +89,7 @@ public abstract class AHookable : MonoBehaviour
 
         parrying = false;
         parryKnockbackTimer = parryKnockbackTime;
-        if (GetComponent<Enemy>() != null)
-            gameObject.layer = noPlayerLayer;
+        gameObject.layer = noPlayerLayer;
         Destroy(hookProjectile);
         playerGO.GetComponent<Interact>().enabled = false;
     }
@@ -142,6 +141,7 @@ public abstract class AHookable : MonoBehaviour
         hookingSpeed = 0;
         isHooked = false;
         if (enemyComponent != null) enemyComponent.SetUnhookTimer();
+        else gameObject.layer = normalLayer;
 
         timeStopped = false;
         playerGO.GetComponent<Interact>().enabled = true;

@@ -33,9 +33,6 @@ public class TeleportToSafeGround : MonoBehaviour
 
     public void WarpPlayerToSafeGround()
     {
-        CameraManager.Instance.DisableCamera();
-        CameraManager.Instance.currentCamera = CameraManager.Instance.allVirtualCameras[0].GetComponent<CinemachineVirtualCamera>();
-        CameraManager.Instance.allVirtualCameras[0].GetComponent<CinemachineVirtualCamera>().enabled = true;
         transform.position = SafeGroundLocation;
         GetComponent<HealthManager>().InvulnerabilityTimer = 0.01f;
     }
