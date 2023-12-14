@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4261487371986578725}
   - component: {fileID: -524349848775328805}
-  - component: {fileID: 6291424048609410566}
+  - component: {fileID: -4041375736331431757}
+  - component: {fileID: 7322456934560089886}
   m_Layer: 0
   m_Name: Libro
   m_TagString: Untagged
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6291424048609410566
+--- !u!114 &-4041375736331431757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,11 +96,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 419030335256947034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd948c56ebcfb2499f45259e18bab71, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f93e3e5efd35454cbbe710552b7b830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionSprite: {fileID: 6600620927628770842}
   myAnimator: {fileID: 2888219351691639550}
+  id: 0
+  active: 0
+--- !u!61 &7322456934560089886
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419030335256947034}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 1.2}
+    newSize: {x: 0.96, y: 1.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.96, y: 1.2}
+  m_EdgeRadius: 0
 --- !u!1 &6600620927628770842
 GameObject:
   m_ObjectHideFlags: 0
