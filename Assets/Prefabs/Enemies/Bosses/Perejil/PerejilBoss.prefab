@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6871383717418700155}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PerejilBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,6 +850,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 0
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 0, y: 0}
   DamageKnockbackForce: 0
 --- !u!1 &7990539134848494579

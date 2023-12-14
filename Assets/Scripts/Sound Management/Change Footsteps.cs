@@ -7,6 +7,7 @@ public class ChangeFootsteps : MonoBehaviour
     [SerializeField] private int footsteps;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        MusicManager.Instance.ChangeFootstepsClip(footsteps);
+        if (collision.gameObject.CompareTag("Player"))
+            MusicManager.Instance.ChangeFootstepsClip(footsteps);
     }
 }

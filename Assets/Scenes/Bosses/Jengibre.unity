@@ -28053,15 +28053,15 @@ PrefabInstance:
       objectReference: {fileID: 1671313191}
     - target: {fileID: 7350598909648915491, guid: 91b2f5a4b3208354f83d8ce2af792a33, type: 3}
       propertyPath: _BothDefeated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7350598909648915491, guid: 91b2f5a4b3208354f83d8ce2af792a33, type: 3}
       propertyPath: _AzafranDefeated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7350598909648915491, guid: 91b2f5a4b3208354f83d8ce2af792a33, type: 3}
       propertyPath: _CurcumaDefeated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28646,7 +28646,7 @@ Transform:
   m_GameObject: {fileID: 6744861289251466812}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.599285, y: 3.953091, z: -7.504529}
+  m_LocalPosition: {x: 8.594208, y: 3.953091, z: -7.504529}
   m_LocalScale: {x: 0.99116, y: 0.99116, z: 0.99116}
   m_ConstrainProportionsScale: 0
   m_Children:

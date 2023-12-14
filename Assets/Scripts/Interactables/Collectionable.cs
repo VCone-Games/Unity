@@ -16,6 +16,7 @@ public class Collectionable : AInteractable
         DataPersistManager.instance.InteractablesActive[id] = active;
         DatabaseMetrics.Singleton.CollectionablePickeds++;
         gameObject.SetActive(active);
+        EndInteraction();
 
 	}
 

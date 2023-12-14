@@ -33,7 +33,7 @@ public class TPPLAYERBACK : MonoBehaviour
 
             if (tpTimer < 0)
             {
-                if (DatabaseMetrics.Singleton.IsBossDead("Azafran") && DatabaseMetrics.Singleton.IsBossDead("Curcuma"))
+                if (DatabaseMetrics.Singleton.IsBossDead("Azafran") && DatabaseMetrics.Singleton.IsBossDead("Curcuma") && TO_GENGIBRE != null)
                 {
                     TO_GENGIBRE.SetActive(true);
                 }
