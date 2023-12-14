@@ -46,4 +46,14 @@ public class Perejil_RightHand : MonoBehaviour
 	{
 		myAnimator.SetBool("isStomp", false);
 	}
+
+	public void Die()
+	{
+		myAnimator.SetBool("isDead", true);
+	}
+
+	public void Dissapear()
+	{
+		gameObject.SetActive(false);
+	}
 }

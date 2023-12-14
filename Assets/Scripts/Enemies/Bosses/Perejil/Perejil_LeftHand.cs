@@ -38,4 +38,14 @@ public class Perejil_LeftHand : MonoBehaviour
 	{
 		myAnimator.SetBool("isSweep", false);
 	}
+
+	public void Die()
+	{
+		myAnimator.SetBool("isDead", true);
+	}
+
+	public void Dissapear()
+	{
+		gameObject.SetActive(false);
+	}
 }

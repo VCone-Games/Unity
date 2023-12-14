@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class Perejil_Head : Enemy
@@ -80,6 +81,9 @@ public class Perejil_Head : Enemy
 	protected override void Disappear()
 	{
 		base.Disappear();
+		SceneManager.LoadScene("Creditos");
+		HealthUI.HealthUISingleton.HearthList.SetActive(false);
+
 	}
 
 	public void LoadData(GameData data)
@@ -96,5 +100,8 @@ public class Perejil_Head : Enemy
 	{
 		base.Die(sender, gameObject);
 		DatabaseMetrics.Singleton.OnDeathBoss("Perejil");
+
+		_leftHand.Die();
+		_rightHand.Die();
 	}
 }
