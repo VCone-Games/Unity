@@ -24,6 +24,10 @@ public class O_Volumen : MonoBehaviour
 	{
 		PlayerPrefs.SetFloat("volumeAudio", volumeSlider.value);
 		audioSource.volume = volumeSlider.value;
+		if (toggleMuteAudio != null)
+		{
+			toggleMuteAudio.isOn = false;
+		}
 	}
 	
 	public void OnTogglePressed()

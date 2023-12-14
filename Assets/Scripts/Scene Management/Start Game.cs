@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,21 +9,19 @@ public class StartGame : MonoBehaviour
 {
 	[Header("UI Components")]
 	[SerializeField] private InputField nameField;
-	[SerializeField] private InputField ageField;
+	[SerializeField] private TMP_Dropdown ageDrowpdown;
 	[SerializeField] private Toggle maleToggle;
 	[SerializeField] private Toggle femToggle;
 	[SerializeField] private Toggle otherToggle;
 
 	[Header("Error texts")]
 	[SerializeField] private GameObject errorName;
-	[SerializeField] private GameObject errorAge;
 	[SerializeField] private GameObject errorGender;
 
 	string gender;
 
 	public void OnButtonPressed_StartGame()
 	{
-		int age;
 
 		bool validToggle = maleToggle.isOn || femToggle.isOn || otherToggle.isOn;
 		if (!validToggle)
@@ -33,15 +32,13 @@ public class StartGame : MonoBehaviour
 		if (nameField.text.Length == 0)
 		{
 			if (!errorName.activeSelf) errorName.SetActive(true);
+			return;
 		}
-		if (int.TryParse(ageField.text, out age))
-		{
-			LoadGame(age, gender);
-		}
-		else
-		{
-			errorAge.SetActive(true);
-		}
+
+		int age = ageDrowpdown.value;
+		LoadGame(age, gender);
+		
+
 	}
 
 	public void INPUTFIELD_checkName()

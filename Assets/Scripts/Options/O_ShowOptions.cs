@@ -11,6 +11,7 @@ public class O_ShowOptions : MonoBehaviour
 {
     [Header("UI Component")]
     [SerializeField] GameObject pauseUI;
+    [SerializeField] GameObject confirmPanel;
 
     [Header("Input action")]
     [SerializeField] InputActionReference pauseReference;
@@ -45,7 +46,12 @@ public class O_ShowOptions : MonoBehaviour
 
 			//Si esta activada, la desactiva
 			Time.timeScale = 1.0f;
+			if (confirmPanel.activeSelf)
+			{
+				confirmPanel.SetActive(false);
+			}
 			pauseUI.SetActive(false);
+
 		}
 		else
 		{
@@ -60,6 +66,12 @@ public class O_ShowOptions : MonoBehaviour
 			Time.timeScale = 0.0f;
 			pauseUI.SetActive(true);
 		}
+	}
+
+	public void OnReturnMenu()
+	{
+		SceneManager.LoadScene("-1. Main Menu");
+		Destroy(gameObject);
 	}
 
 }
