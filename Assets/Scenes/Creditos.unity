@@ -243,8 +243,8 @@ MonoBehaviour:
 
     T.U.R:r'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1766910d61adbd649b34d7339d7cc0e7, type: 2}
-  m_sharedMaterial: {fileID: 4696833164585138995, guid: 1766910d61adbd649b34d7339d7cc0e7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
+  m_sharedMaterial: {fileID: 8472600918818752484, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -567,39 +567,40 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\n\n\n\n\n\n\n\n\n\n\nDirecci\xF3n de equipo \u2013 Andr\xE9s Gonzalez
-    Antohi\r\n\nProgramaci\xF3n:\r\nComportamiento de enemigos - Enrique Tamaj\xF3n
-    Castilla\r\nComportamiento de jefes - Enrique Tamaj\xF3n Castilla\r\nProgramaci\xF3n
-    de mec\xE1nicas - Marco S\xE1nchez Nishimura y Enrique Tamaj\xF3n Castilla\r\nConstrucci\xF3n
-    de escenarios y elementos en \xE9l \u2013 Marco S\xE1nchez Nishimura y Andr\xE9s
-    Gonzalez Antohi\r\nprogramaci\xF3n de efectos - Marco S\xE1nchez Nishimura\r\nprogramaci\xF3n
-    de combate - Marco S\xE1nchez Nishimura\r\nprogramaci\xF3n de la c\xE1mara -
-    Marco S\xE1nchez Nishimura\r\nimplementaci\xF3n de animaciones - Marco S\xE1nchez
-    Nishimura y Enrique Tamaj\xF3n Castilla\r\nElementos interactuables y NPCs \u2013
-    Andr\xE9s Gonzalez Antohi, Marco S\xE1nchez Nishimura, Enrique Tamaj\xF3n Castilla\r\nMen\xFAs
-    - Enrique Tamaj\xF3n Castilla, Marco S\xE1nchez Nishimura y Mohamed El Kanboui
-    Bouaacha\r\nProgramaci\xF3n del jugador - Marco S\xE1nchez Nishimura y Enrique
-    Tamaj\xF3n Castilla\r\nImplementaci\xF3n del sonido - Marco S\xE1nchez Nishimura
-    y Andr\xE9s Gonzalez Antohi\r\n\r\nConcepto del juego:\r\nHistoria y guion \u2013
-    Andr\xE9s Gonzalez Antohi\r\nConceptos de personajes - Andr\xE9s Gonzalez Antohi\r\nMec\xE1nicas
-    - Andr\xE9s Gonzalez Antohi y Marco S\xE1nchez Nishimura\r\nSupervisi\xF3n del
-    proyecto - Andr\xE9s Gonzalez Antohi\r\nDise\xF1o de escenarios - Andr\xE9s Gonzalez
-    Antohi\r\n\r\nArte:\r\nArte final de personajes \u2013 Alexander Tercero Moreno\r\nAnimaciones
-    \u2013 Alexander Tercero Moreno\r\nTiles \u2013 Alejandro Vargas Lugo y Alexander
-    Tercero Moreno\r\nElementos del escenario - Mohamed El Kanboui Bouaacha y Alexander
-    Tercero Moreno\r\nFondos - Andr\xE9s Gonzalez Antohi\r\nSupervisi\xF3n e implementaci\xF3n
-    de tiles - Marco S\xE1nchez Nishimura y Andr\xE9s Gonzalez Antohi\r\nElementos
-    extras - Alexander Tercero Moreno\r\nInterfaces - Mohamed El Kanboui Bouaacha
-    y Alexander Tercero Moreno, Rodrigo Hervada Llahosa\r\nEfectos VFX \u2013 Alexander
-    Tercero Moreno y Andr\xE9s Gonzalez Antohi\r\nSupervisi\xF3n de arte - Alexander
-    Tercero Moreno, Marco S\xE1nchez Nishimura y Andr\xE9s Gonzalez Antohi\r\nProps
-    - Mohamed El Kanboui Bouaacha\r\n\r\nM\xFAsica y Efectos de sonido:\r\nDark Pursuit
-    (Tema de Azafr\xE1n) \u2013 Carlos Aznar Olivares\r\nInterludio Dark Pursuit
-    \u2013 Carlos Aznar Olivares\r\nDark Pursuit Segunda Fase - Carlos Aznar Olivares\r\nImplementaci\xF3n
-    de Pistas musicales y efectos de sonido - Andr\xE9s Gonzalez Antohi\r\n\r\n"
+  m_text: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDirecci\xF3n de Equipo\r\nAndr\xE9s
+    Gonz\xE1lez Antohi\r\n\r\nProgramaci\xF3n\r\nComportamiento de Enemigos: Enrique
+    Tamaj\xF3n Castilla\r\nComportamiento de Jefes: Enrique Tamaj\xF3n Castilla\r\nProgramaci\xF3n
+    de Mec\xE1nicas: Marco S\xE1nchez Nishimura y Enrique Tamaj\xF3n Castilla\r\nProgramaci\xF3n
+    de Efectos: Marco S\xE1nchez Nishimura\r\nProgramaci\xF3n de Combate: Marco S\xE1nchez
+    Nishimura\r\nProgramaci\xF3n de la C\xE1mara: Marco S\xE1nchez Nishimura\r\nImplementaci\xF3n
+    de Animaciones: Marco S\xE1nchez Nishimura y Enrique Tamaj\xF3n Castilla\r\nElementos
+    Interactuables y NPCs: Andr\xE9s Gonz\xE1lez Antohi, Marco S\xE1nchez Nishimura,
+    Enrique Tamaj\xF3n Castilla\r\nMen\xFAs: Enrique Tamaj\xF3n Castilla, Marco S\xE1nchez
+    Nishimura, Mohamed El Kanboui Bouaacha\r\nProgramaci\xF3n del Jugador: Marco
+    S\xE1nchez Nishimura y Enrique Tamaj\xF3n Castilla\r\nImplementaci\xF3n del Sonido:
+    Marco S\xE1nchez Nishimura y Andr\xE9s Gonz\xE1lez Antohi\r\n\r\nConcepto del
+    Juego\r\nHistoria y Guion: Andr\xE9s Gonz\xE1lez Antohi\r\nConceptos de Personajes:
+    Andr\xE9s Gonz\xE1lez Antohi\r\nMec\xE1nicas: Andr\xE9s Gonz\xE1lez Antohi y
+    Marco S\xE1nchez Nishimura\r\nSupervisi\xF3n del Proyecto: Andr\xE9s Gonz\xE1lez
+    Antohi\r\nDise\xF1o de Escenarios: Andr\xE9s Gonz\xE1lez Antohi\r\n\r\nArte\r\nArte
+    Final de Personajes: Alexander Tercero Moreno\r\nAnimaciones: Alexander Tercero
+    Moreno\r\nTiles: Alejandro Vargas Lugo y Alexander Tercero Moreno\r\nElementos
+    del Escenario: Mohamed El Kanboui Bouaacha y Alexander Tercero Moreno\r\nFondos:
+    Andr\xE9s Gonz\xE1lez Antohi\r\nSupervisi\xF3n e Implementaci\xF3n de Tiles:
+    Marco S\xE1nchez Nishimura y Andr\xE9s Gonz\xE1lez Antohi\r\nElementos Extras:
+    Alexander Tercero Moreno\r\nInterfaces: Mohamed El Kanboui Bouaacha, Alexander
+    Tercero Moreno, Rodrigo Hervada Llahosa\r\nEfectos VFX: Alexander Tercero Moreno
+    y Andr\xE9s Gonz\xE1lez Antohi\r\nSupervisi\xF3n de Arte: Alexander Tercero Moreno,
+    Marco S\xE1nchez Nishimura y Andr\xE9s Gonz\xE1lez Antohi\r\nProps: Mohamed El
+    Kanboui Bouaacha, Alexander Tercero Moreno, Andr\xE9s Gonz\xE1lez Antohi\r\n\r\nM\xFAsica
+    y Efectos de Sonido\r\nDark Pursuit (Tema de Azafr\xE1n): Carlos Aznar Olivares\r\nInterludio
+    Dark Pursuit: Carlos Aznar Olivares\r\nDark Pursuit Segunda Fase: Carlos Aznar
+    Olivares\r\nImplementaci\xF3n de Pistas Musicales y Efectos de Sonido: Andr\xE9s
+    Gonz\xE1lez Antohi, Marco S\xE1nchez Nishimura y Enrique Tamaj\xF3n Castilla\r\n\n\nGracias
+    por jugar"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1766910d61adbd649b34d7339d7cc0e7, type: 2}
-  m_sharedMaterial: {fileID: 4696833164585138995, guid: 1766910d61adbd649b34d7339d7cc0e7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
+  m_sharedMaterial: {fileID: 8472600918818752484, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1179,6 +1180,7 @@ MonoBehaviour:
   fallPanAmount: 0.25
   fallYPanTime: 0.25
   fallSpeedDampingChangeThreshhold: -22.5
+  currentCamera: {fileID: 0}
 --- !u!212 &7442544637899475307
 SpriteRenderer:
   m_ObjectHideFlags: 0
