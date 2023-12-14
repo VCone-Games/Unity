@@ -14,6 +14,8 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 	[SerializeField] bool _AzafranDefeated;
 	[SerializeField] bool _BothDefeated;
 
+	[SerializeField] private GameObject toPerejil;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -122,6 +124,7 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 		} else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[3])
 		{
 			Debug.Log("He llegado al ultimo dialogo. UwU");
+			toPerejil.GetComponent<TPPLAYERBACK>().TeleportBack();
 		}
 	}
 }

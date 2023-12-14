@@ -51,6 +51,10 @@ public class HologramadeOro : LightHookable
 
     protected  void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
         if (collision.gameObject.GetComponent<Perejil_Head>() != null)
             Destroy(gameObject);
     }
