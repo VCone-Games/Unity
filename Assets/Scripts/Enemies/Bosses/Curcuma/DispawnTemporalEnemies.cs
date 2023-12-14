@@ -5,7 +5,7 @@ using UnityEngine;
 public class DispawnTemporalEnemies : MonoBehaviour
 {
     [Header("Params")]
-    [SerializeField] private float DeathTimer = 25.0f;
+    [SerializeField] private float DeathTimer = 10f;
 
     [Header("Components")]
     [SerializeField] private HealthManager healthManager;

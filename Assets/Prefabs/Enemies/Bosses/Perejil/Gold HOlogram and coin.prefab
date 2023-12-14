@@ -123,6 +123,7 @@ MonoBehaviour:
   hookingSpeed: 0
   parryDirection: {x: 0, y: 0, z: 0}
   timeStopped: 0
+  failedParryTimer: 0
   normalLayer: 0
   noPlayerLayer: 9
   forceMultiplicator: 2
@@ -224,7 +225,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.56
 --- !u!114 &2903393139982126360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +410,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   myRigidbody: {fileID: 0}
   InvulnerabilityTime: 0
+  InvulnerabilityTimer: 0
   DamageKnockbackVector: {x: 0, y: 0}
   DamageKnockbackForce: 0
 --- !u!50 &6664431257781351863
