@@ -15,6 +15,6 @@ MonoBehaviour:
   sceneName: Jengibre
   EnterPositions:
   - {x: 21.72, y: -3.43, z: 0}
-  - {x: 61.61, y: -3.43, z: 0}
+  - {x: 47.36, y: -3.35, z: 0}
   isFacingRight: 0101
   zone: 2
