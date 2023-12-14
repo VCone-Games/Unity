@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 4661763514531532123}
   - component: {fileID: 9067117027992125508}
   - component: {fileID: 2640761924569964273}
-  - component: {fileID: 5196389452730449998}
+  - component: {fileID: 2559233194243589747}
   m_Layer: 0
   m_Name: ______GAME MANAGER DONT DESTROY_______
   m_TagString: Game Manager
@@ -1613,7 +1613,7 @@ MonoBehaviour:
   pandaCanDialogueList: 010000
   jengibreFirstAssingsList: 01010101
   jengibreCanDialogueList: 01000000
---- !u!114 &5196389452730449998
+--- !u!114 &2559233194243589747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1622,13 +1622,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3744205976977187297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 078e6bee9a3aaf941a618480fb8f1adb, type: 3}
+  m_Script: {fileID: 11500000, guid: 50318fe2f472adc4a9a5ad018fbc5874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerGame: 0
-  username: 
-  age: 0
-  gender: 0
+  nameField: {fileID: 0}
+  ageDrowpdown: {fileID: 0}
+  maleToggle: {fileID: 0}
+  femToggle: {fileID: 0}
+  otherToggle: {fileID: 0}
+  errorName: {fileID: 0}
+  errorGender: {fileID: 0}
 --- !u!1 &3960895666466918104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,6 +4735,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 123756472766276445, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320769841464653029, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1514770949426661443, guid: cea7c66a87edf2943976b026bffd6dd4, type: 3}
