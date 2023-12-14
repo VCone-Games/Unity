@@ -115,10 +115,13 @@ public class JengibreDialogueNPC : BaseDialogueNPC
 		}
 		if (DialogoTerminado &&
 			dialogueManager._AzafranEndConversationReached && dialogueManager._CurcmuaEndConversationReached &&
-			_BothDefeated)
+			_BothDefeated && !dialogueManager.JengibreCanDialogueList[3])
 		{
-			Debug.Log("Fin del dialogo BOTH-");
+			Debug.Log("Fin del dialogo. HABILITANDO BOTH-");
 			dialogueManager.JengibreCanDialogueList[3] = true;
+		} else if (DialogoTerminado && dialogueManager.JengibreCanDialogueList[3])
+		{
+			Debug.Log("He llegado al ultimo dialogo. UwU");
 		}
 	}
 }
