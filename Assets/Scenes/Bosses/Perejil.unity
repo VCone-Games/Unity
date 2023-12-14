@@ -9277,7 +9277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2808798380517856015, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2963826459276611533, guid: d7b3c84547c03eb4687cc0dd77f53481, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18078,7 +18078,7 @@ Transform:
   m_GameObject: {fileID: 6744861289251466812}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.8311615, y: 2.047526, z: -7.504529}
+  m_LocalPosition: {x: -5.820839, y: 2.047526, z: -7.504529}
   m_LocalScale: {x: 0.99116, y: 0.99116, z: 0.99116}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18516,7 +18516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4170643206137988310, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
       propertyPath: max_health
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4170643206137988310, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
       propertyPath: InvulnerabilityTime

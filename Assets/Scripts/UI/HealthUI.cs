@@ -40,6 +40,8 @@ public class HealthUI : MonoBehaviour
 	[SerializeField] private int currentRow;
 	[SerializeField] private int currentColumn;
 
+	public GameObject HearthList { get { return hearthList.gameObject; } }
+
 	void Awake()
 	{
 		if (HealthUISingleton == null)
