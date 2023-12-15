@@ -21,6 +21,7 @@ TagManager:
   - spawn
   - Jengibre
   - crow
+  - OnSceneLoad
   layers:
   - Default
   - TransparentFX

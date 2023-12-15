@@ -58,6 +58,7 @@ public class HealthPlayerManager : HealthManager
 
     protected override void TakeDamage(object sender, Vector3 damageContactPoint)
     {
+        DatabaseMetrics.Singleton.LifesLosts++;
         soundManager.PlayHit();
         horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
@@ -110,14 +111,16 @@ public class HealthPlayerManager : HealthManager
 
     protected void Die(object sender, GameObject gameObject)
     {
-        horizontalMovementComponent.DisableMovementInput();
+		DatabaseMetrics.Singleton.DeathCount++;
+
+		horizontalMovementComponent.DisableMovementInput();
         dashComponent.DisableDashInput();
         jumpComponent.DisableJumpInput();
         hook.DisableHookInput();
         myRigidbody.velocity = Vector3.zero;
         myAnimator.SetTrigger("Dead");
 
-		//DataBase.Singleton.DeathCount++;
+		
         PlayerInfo.Instance.IsDead = true;
     }
 

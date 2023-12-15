@@ -9620,7 +9620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Begin
+  m_text: Comenzar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
   m_sharedMaterial: {fileID: 8472600918818752484, guid: 1bc8fae62843d404a954cebe9f1f4d38, type: 2}
