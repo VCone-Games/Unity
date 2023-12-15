@@ -77450,7 +77450,7 @@ GameObject:
   - component: {fileID: 4230990167458151283}
   m_Layer: 0
   m_Name: ______ON SCENE LOAD________
-  m_TagString: Untagged
+  m_TagString: OnSceneLoad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77464,7 +77464,7 @@ Transform:
   m_GameObject: {fileID: 6744861288480843049}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.39493, y: -2.2333255, z: -7.50453}
+  m_LocalPosition: {x: -13.150747, y: -2.2333255, z: -7.50453}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
