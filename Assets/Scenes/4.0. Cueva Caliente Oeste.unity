@@ -74320,7 +74320,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2228542091902752967, guid: 4009525bb05136646a23bc9bd058ab6f, type: 3}
       propertyPath: id
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2228542091902752967, guid: 4009525bb05136646a23bc9bd058ab6f, type: 3}
       propertyPath: myAnimator
