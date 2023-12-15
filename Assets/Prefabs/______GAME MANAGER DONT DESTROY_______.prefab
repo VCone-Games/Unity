@@ -1580,7 +1580,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 036ecb9660f2a1b40881c43134910a1d, type: 3}
   - {fileID: 8300000, guid: 28b569c3731878b469a6d480bc65f346, type: 3}
   - {fileID: 8300000, guid: 9ad8aadb57118ab43835b9564d21a128, type: 3}
-  AzafranAudioClips: []
+  AzafranAudioClips:
+  - {fileID: 8300000, guid: fb4b0968e104eac47b47203f04712cf2, type: 3}
+  - {fileID: 8300000, guid: ed60ec8c4cd3a3a459caf3da6f2087c5, type: 3}
+  - {fileID: 8300000, guid: 931d79dda8b32a448b990fdac944d126, type: 3}
+  - {fileID: 8300000, guid: 7d5948693a4969c4a9a4949d80ea3ab9, type: 3}
+  - {fileID: 8300000, guid: 34049d82ac82bce47ab342c264bb9732, type: 3}
   actualClip: 0
 --- !u!114 &9067117027992125508
 MonoBehaviour:
