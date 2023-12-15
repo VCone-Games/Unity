@@ -2,6 +2,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using static DatabaseMetrics;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -16,10 +17,14 @@ public class DatabaseManager : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(SendPostRequest());
     }
 
-    string CreateJSON(string tabla, string name, int edad, string gender)
+    public void ChargeMetricsOnCloud()
+    {
+		StartCoroutine(SendPostRequest());
+	}
+
+	string CreateJSON(string tabla, string name, int edad, string gender, string date, string timePlayed, SceneMetrics sceneMetrics)
     {
         //Construye JSON para la petición REST         
         string json = $@"{{
@@ -29,7 +34,18 @@ public class DatabaseManager : MonoBehaviour
             ""data"": {{
                 ""Nombre"": ""{name}"",
                 ""Edad"": ""{edad}"",
-                ""Genero"": ""{gender}""
+                ""Genero"": ""{gender}"",
+                ""Fecha de inicio"": ""{date}"",
+                ""Tiempo jugado"": ""{timePlayed}"",
+                ""ID Zona"": ""{sceneMetrics.zoneID}"",
+                ""Tiempo en escena"": ""{sceneMetrics.timeInScene}"",
+                ""Numero de entradas a la escena"": ""{sceneMetrics.timesEntered}"",
+                ""Muertes del jugador"": ""{sceneMetrics.deathCount}"",
+                ""Objetos enganchados"": ""{sceneMetrics.objectsHookeds}"",
+                ""Contraataques realizados"": ""{sceneMetrics.objectsParried}"",
+                ""Vidas perdidas"": ""{sceneMetrics.lifesLosts}"",
+                ""Coleccionables"": ""{sceneMetrics.collectionablePickeds}/{sceneMetrics.totalCollecionables}"",
+                ""Enemigos derrotados"": ""{sceneMetrics.defeatedEnemies}""
             }}
         }}";
 
@@ -37,20 +53,31 @@ public class DatabaseManager : MonoBehaviour
     }
     IEnumerator SendPostRequest()
     {
-        string data = CreateJSON("prueba", "Pepe", 10, "Hombre");
+        DatabaseMetrics metrics = DatabaseMetrics.Singleton;
+        string namePlayer = metrics.Username;
+        int agePlayer = metrics.Age;
+        string gender = metrics.Gender;
+        string date = metrics.Date;
+        string timePlayed = metrics.TimerGameString;
 
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, data, contentType))
+        foreach (var sceneMetric in metrics.DictionarySceneMetrics)
         {
-            yield return www.SendWebRequest();
+            SceneMetrics currentScene = sceneMetric.Value;
 
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                print("Error: " + www.error);
-            }
-            else
-            {
-                print("Respuesta: " + www.downloadHandler.text);
-            }
+			string data = CreateJSON("TURr_01", namePlayer, agePlayer, gender, date, timePlayed, currentScene);
+			using (UnityWebRequest www = UnityWebRequest.Post(uri, data, contentType))
+			{
+				yield return www.SendWebRequest();
+
+				if (www.result != UnityWebRequest.Result.Success)
+				{
+					print("Error: " + www.error);
+				}
+				else
+				{
+					print("Respuesta: " + www.downloadHandler.text);
+				}
+			}
         }
     }
 

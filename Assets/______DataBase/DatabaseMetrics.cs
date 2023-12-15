@@ -26,6 +26,7 @@ public class DatabaseMetrics : MonoBehaviour
 	[SerializeField] private string username;
 	[SerializeField] private int age;
 	[SerializeField] private GenderState gender;
+	[SerializeField] private string date;
 	public float TimerGame { get { return Time.time - startedTimerGame; } set { timerGame = value; } }
 	public string TimerGameString
 	{
@@ -67,12 +68,14 @@ public class DatabaseMetrics : MonoBehaviour
 			}
 		}
 	}
+	public string Date { get { return date; } set { date = value; } }
 
 	//METRICAS DE ESCENA
-	private class SceneMetrics
+	public class SceneMetrics
 	{
-		public SceneMetrics()
+		public SceneMetrics(string zoneID)
 		{
+			this.zoneID = zoneID;
 			timeInScene = 0.0f;
 			timesEntered = 0;
 			deathCount = 0;
@@ -83,6 +86,7 @@ public class DatabaseMetrics : MonoBehaviour
 			totalCollecionables = 0;
 			defeatedEnemies = 0;
 		}
+		public string zoneID;
 		public float timeInScene;
 		public int timesEntered;
 		public int deathCount;
@@ -125,7 +129,8 @@ public class DatabaseMetrics : MonoBehaviour
 			currentScene.timesEntered = value;
 		}
 	}
-	public int DeathCount {
+	public int DeathCount
+	{
 		get
 		{
 			int sceneID = SceneManager.GetActiveScene().buildIndex;
@@ -240,8 +245,14 @@ public class DatabaseMetrics : MonoBehaviour
 
 	public Dictionary<string, bool> DataBoss { get { return dataBoss; } }
 
+	public Dictionary<int, SceneMetrics> DictionarySceneMetrics { get { return dictionarySceneMetrics; } }
+	
 	[SerializeField] private List<int> nCollectionablesPerScene = new List<int> { 1, 1, 0, 2, 2, 1, 1, 0, 1, 1, 2, 0, 1, 0, 1, 1, 0, 0, 0, 0 };
 
+	[SerializeField]
+	private List<string> zoneID = new List<string> { "0T", "1PP", "2P", "3CMO", "4CME", "5CCO", "6CCM", "7CCE",
+				"8MPN", "9MPMO", "10MPO", "11MPM", "12MPE", "13CM", "14CMO", "15CME", "16BC", "17BA",
+				"18BJ", "19BP" };
 	private void Awake()
 	{
 		if (Singleton == null)
@@ -256,11 +267,18 @@ public class DatabaseMetrics : MonoBehaviour
 		}
 
 
-		for (int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
+		for (int i = 1; i < SceneManager.sceneCountInBuildSettings - 2; i++)
 		{
-			dictionarySceneMetrics.Add(i, new SceneMetrics());
-			dictionarySceneMetrics[i].totalCollecionables = nCollectionablesPerScene[i];
+			dictionarySceneMetrics.Add(i, new SceneMetrics(zoneID[i - 1]));
+			dictionarySceneMetrics[i].totalCollecionables = nCollectionablesPerScene[i - 1];
 			//Debug.Log($"Escena: {i}, nombre:  { SceneManager.GetSceneByBuildIndex(i).name }");
+			//Debug.Log($"En diccionario: {i}, zoneID:  {dictionarySceneMetrics[i].zoneID}");
+		}
+
+		foreach (var var in dictionarySceneMetrics)
+		{
+			Debug.Log(var);
+			Debug.Log(var.Key);
 		}
 
 		startedTimerGame = Time.time;
