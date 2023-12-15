@@ -156,7 +156,7 @@ public class DatabaseMetrics : MonoBehaviour
 			currentScene.objectsHookeds = value;
 		}
 	}
-	public int objectsParried
+	public int ObjectsParried
 	{
 		get
 		{

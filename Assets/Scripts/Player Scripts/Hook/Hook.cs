@@ -272,6 +272,7 @@ public class Hook : MonoBehaviour
         //TimeStop.instance.StopTime(0.05f, 15f, 1f);
 
         animator.SetBool("Hooking", true);
+        DatabaseMetrics.Singleton.ObjectsHookeds++;
 
         hookingUnstuckTimer = -1;
         this.hookedObject = hookedObject;

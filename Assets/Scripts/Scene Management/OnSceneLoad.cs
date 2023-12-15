@@ -9,15 +9,21 @@ public class OnSceneLoad : MonoBehaviour
     private PlayerInfo playerInfo;
     private GameObject playerObject;
 
+    private float totalTimeAtEntered;
+    public float TotalTimeAtEntered {  get { return totalTimeAtEntered; } }
+
     private void Awake()
     {
         gameManager = GameObject.FindWithTag("Game Manager");
         playerInfo = gameManager.GetComponent<PlayerInfo>();
         playerObject = GameObject.FindWithTag("Player");
-        SpawnPlayer();
+		DatabaseMetrics.Singleton.TimesEntered++;
+
+		totalTimeAtEntered = Time.time;
+		SpawnPlayer();
     }
 
-    private void SpawnPlayer()
+	private void SpawnPlayer()
     {
         HealthPlayerManager healthPlayerManager = playerObject.GetComponent<HealthPlayerManager>();
 

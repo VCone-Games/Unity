@@ -65,11 +65,20 @@ public class SceneChanger : MonoBehaviour
         //LLAMAR AL METODO QUE HAGA ++ A ENTRAR EN ESCENA "Y" EL NOMBRE DE LA ESCENA "y" ES sceneName
         //DATABASE CODIGO PARA SUMAR VECES ENTRADAS A LA ZONA
 
+        CalculateTimeInScene();
+
         SceneManager.LoadScene(sceneName);
     }
 
+	private void CalculateTimeInScene()
+	{
+        OnSceneLoad onSceneLoad = GameObject.FindGameObjectWithTag("OnSceneLoad").GetComponent<OnSceneLoad>();
+        float timeInScene = Time.time - onSceneLoad.TotalTimeAtEntered;
+        DatabaseMetrics.Singleton.TimeInScene += timeInScene;
+        Debug.Log($"***********Setting time total en escena: {SceneManager.GetActiveScene().name}, {DatabaseMetrics.Singleton.TimeInScene}");
+	}
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+	private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (dead)
         {
