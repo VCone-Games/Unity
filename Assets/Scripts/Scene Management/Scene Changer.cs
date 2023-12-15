@@ -75,7 +75,7 @@ public class SceneChanger : MonoBehaviour
         OnSceneLoad onSceneLoad = GameObject.FindGameObjectWithTag("OnSceneLoad").GetComponent<OnSceneLoad>();
         float timeInScene = Time.time - onSceneLoad.TotalTimeAtEntered;
         DatabaseMetrics.Singleton.TimeInScene += timeInScene;
-        Debug.Log($"***********Setting time total en escena: {SceneManager.GetActiveScene().name}, {DatabaseMetrics.Singleton.TimeInScene}");
+        //Debug.Log($"***********Setting time total en escena: {SceneManager.GetActiveScene().name}, {DatabaseMetrics.Singleton.TimeInScene}");
 	}
 
 	private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

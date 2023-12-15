@@ -240,6 +240,8 @@ public class DatabaseMetrics : MonoBehaviour
 
 	public Dictionary<string, bool> DataBoss { get { return dataBoss; } }
 
+	[SerializeField] private List<int> nCollectionablesPerScene = new List<int> { 1, 1, 0, 2, 2, 1, 1, 0, 1, 1, 2, 0, 1, 0, 1, 1, 0, 0, 0, 0 };
+
 	private void Awake()
 	{
 		if (Singleton == null)
@@ -257,6 +259,7 @@ public class DatabaseMetrics : MonoBehaviour
 		for (int i = 1; i < SceneManager.sceneCountInBuildSettings - 1; i++)
 		{
 			dictionarySceneMetrics.Add(i, new SceneMetrics());
+			dictionarySceneMetrics[i].totalCollecionables = nCollectionablesPerScene[i];
 			//Debug.Log($"Escena: {i}, nombre:  { SceneManager.GetSceneByBuildIndex(i).name }");
 		}
 
