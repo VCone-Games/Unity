@@ -15,6 +15,7 @@ public class Perejil_Head : Enemy
 	[Header("State params")]
 	[SerializeField] private TStateBody tStateBody;
 	[SerializeField] private TStateSummon tStateSummon;
+	[SerializeField] private float unsummonTime = 25.0f;
 
 	[Header("Summons prefab")]
 	[SerializeField] private GameObject normalHologram;
@@ -67,17 +68,22 @@ public class Perejil_Head : Enemy
 				break;
 			case TStateSummon.GOLD_HOLOGRAM:
 				Debug.Log("Gold");
-				InsantiateHologram(goldHologram, summonPlaces[selPlace]);
+				InsantiateGoldHologram(goldHologram, summonPlaces[selPlace]);
 				break;
 		}
 	}
 
+
 	private void InsantiateHologram(GameObject prefabHologram, Transform position)
 	{
 		GameObject hologram = Instantiate(prefabHologram, position.position, Quaternion.identity);
-		hologram.AddComponent<DispawnTemporalEnemies>();
+		hologram.AddComponent<DispawnTemporalEnemies>().InitializeDeathTimer(unsummonTime);
 	}
-
+	private void InsantiateGoldHologram(GameObject goldHologram, Transform position)
+	{
+		GameObject hologram = Instantiate(goldHologram, position.position, Quaternion.identity);
+		hologram.transform.GetChild(0).gameObject.AddComponent<DispawnTemporalEnemies>().InitializeDeathTimer(unsummonTime);
+	}
 	protected override void Disappear()
 	{
 		base.Disappear();

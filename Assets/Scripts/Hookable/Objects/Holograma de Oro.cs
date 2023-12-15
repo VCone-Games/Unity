@@ -35,7 +35,7 @@ public class HologramadeOro : LightHookable
 
     public override void Hooked(GameObject hookProjectile, float hookingSpeed)
     {
-        hologramaDeOro.GetComponent<EnemyFlyGoldHologram>().DieNoCOin();
+        hologramaDeOro.GetComponent<EnemyFlyGoldHologram>().DieNoCoin();
         GetComponent<SpriteRenderer>().enabled = true;
         base.Hooked(hookProjectile, hookingSpeed);
         Stop = true;

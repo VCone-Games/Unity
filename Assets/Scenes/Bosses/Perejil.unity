@@ -18532,6 +18532,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8762157557408459366, guid: c37758ba60cf0a9419aec880533878af, type: 3}
     - target: {fileID: 4211898933687043210, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
+      propertyPath: unsummonTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211898933687043210, guid: f55d87b3510bc3b4dbbf62a59b492823, type: 3}
       propertyPath: summonPlaces.Array.data[0]
       value: 
       objectReference: {fileID: 378229572}

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class EnemyFlyGoldHologram : IAFlyChase
 {
+	[SerializeField] private GameObject ownCoin;
+
 	protected override void UpdatePath()
 	{
 		if (seeker.IsDone())
@@ -33,7 +35,6 @@ public class EnemyFlyGoldHologram : IAFlyChase
 		Vector3 playerPosition = playerObject.transform.position;
 
 		Vector3 direction = (myPosition - playerPosition).normalized + myPosition;
-		Debug.Log(direction);
 		seeker.StartPath(myRigidbody2D.position, direction, OnPathComplete);
 
 	}
@@ -62,9 +63,20 @@ public class EnemyFlyGoldHologram : IAFlyChase
 		myAnimator.SetBool("isDeadTimer", true);
 	}
 
-	public void DieNoCOin()
+	public void DieNoCoin()
 	{
         isDead = true;
         myAnimator.SetBool("isDead", true);
     }
+
+	public void DisapearWithCoin()
+	{
+		gameObject.SetActive(false);
+		ownCoin.SetActive(false);
+	}
+
+	public void DesactivateCoin()
+	{
+		ownCoin.SetActive(false);
+	}
 }

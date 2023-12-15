@@ -14,6 +14,7 @@ public class MovementCurcuma : IAFlyPatrol
 	[SerializeField] private List<float> probAttacksSecondPhase;
 	[SerializeField] private Dictionary<TStateAttack, float> stateDictionary;
 	[SerializeField] private Dictionary<TStateAttack, float> stateDictionarySecondPhase;
+	[SerializeField] private float unsummonTime = 45.0f;
 	[SerializeField] private float attackTimer;
 	[SerializeField] private float attackTimerSecondPhase;
 
@@ -108,7 +109,7 @@ public class MovementCurcuma : IAFlyPatrol
 	private void SpawnCuervo(Transform posicion, GameObject prefab)
 	{
 		GameObject crow = Instantiate(prefab, posicion);
-		crow.AddComponent<DispawnTemporalEnemies>();
+		crow.AddComponent<DispawnTemporalEnemies>().InitializeDeathTimer(unsummonTime);
 		crow.GetComponent<HealthManager>().EventDie += RemoveCrow;
 		crowList.Add(crow);
 	}

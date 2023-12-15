@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2519053630490874245}
   - component: {fileID: 5816881826114423669}
   - component: {fileID: 2903393139982126360}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,6 +472,7 @@ MonoBehaviour:
   reachedEndOfPath: 0
   tState: 0
   attackRange: 10
+  ownCoin: {fileID: 140121527000960579}
 --- !u!95 &4937309391791055121
 Animator:
   serializedVersion: 5
