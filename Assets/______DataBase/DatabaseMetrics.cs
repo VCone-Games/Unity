@@ -24,7 +24,7 @@ public class DatabaseMetrics : MonoBehaviour
 	[SerializeField] private float timerGame;
 	private float startedTimerGame;
 	[SerializeField] private string username;
-	[SerializeField] private int age;
+	[SerializeField] private string age;
 	[SerializeField] private GenderState gender;
 	[SerializeField] private string date;
 	public float TimerGame { get { return Time.time - startedTimerGame; } set { timerGame = value; } }
@@ -39,7 +39,7 @@ public class DatabaseMetrics : MonoBehaviour
 		}
 	}
 	public string Username { get { return username; } set { username = value; } }
-	public int Age { get { return age; } set { age = value; } }
+	public string Age { get { return age; } set { age = value; } }
 	public string Gender
 	{
 		get
@@ -96,6 +96,16 @@ public class DatabaseMetrics : MonoBehaviour
 		public int collectionablePickeds;
 		public int totalCollecionables;
 		public int defeatedEnemies;
+
+		public string TimeInSceneString { 
+			get 
+			{
+				int minutos = Mathf.FloorToInt(timeInScene / 60);
+				int segundos = Mathf.FloorToInt(timeInScene % 60);
+
+				return minutos.ToString("00") + ":" + segundos.ToString("00");
+			}
+		}
 	}
 	public float TimeInScene
 	{
@@ -244,7 +254,6 @@ public class DatabaseMetrics : MonoBehaviour
 	}
 
 	public Dictionary<string, bool> DataBoss { get { return dataBoss; } }
-
 	public Dictionary<int, SceneMetrics> DictionarySceneMetrics { get { return dictionarySceneMetrics; } }
 	
 	[SerializeField] private List<int> nCollectionablesPerScene = new List<int> { 1, 1, 0, 2, 2, 1, 1, 0, 1, 1, 2, 0, 1, 0, 1, 1, 0, 0, 0, 0 };
@@ -256,7 +265,7 @@ public class DatabaseMetrics : MonoBehaviour
 	private void Awake()
 	{
 		if (Singleton == null)
-			Singleton = this;
+			Singleton = this;		
 	}
 	// Start is called before the first frame update
 	void Start()

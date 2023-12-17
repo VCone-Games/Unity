@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -35,9 +36,54 @@ public class StartGame : MonoBehaviour
 			return;
 		}
 
-		int age = ageDrowpdown.value;
+		int option = ageDrowpdown.value;
+		string age = "7";
+		switch (option)
+		{
+			case 0:
+				age = "7";
+				break;
+			case 1:
+				age = "8";
+				break;
+			case 2:
+				age = "9";
+				break;
+			case 3:
+				age = "10";
+				break;
+			case 4:
+				age = "11";
+				break;
+			case 5:
+				age = "12";
+				break;
+			case 6:
+				age = "13";
+				break;
+			case 7:
+				age = "14";
+				break;
+			case 8:
+				age = "15";
+				break;
+			case 9:
+				age = "16";
+				break;
+			case 10:
+				age = "17";
+				break;
+			case 11:
+				age = "18";
+				break;
+			case 12:
+				age = "+18";
+				break;
+
+		}
+
 		LoadGame(age, gender);
-		
+
 
 	}
 
@@ -75,7 +121,7 @@ public class StartGame : MonoBehaviour
 	}
 
 
-	void LoadGame(int age, string gender)
+	void LoadGame(string age, string gender)
 	{
 		SceneManager.LoadScene("0. Tutorial");
 		DatabaseMetrics dataBase = gameObject.AddComponent<DatabaseMetrics>();
@@ -83,6 +129,9 @@ public class StartGame : MonoBehaviour
 		dataBase.Username = nameField.text;
 		dataBase.Age = age;
 		dataBase.Gender = gender;
+		dataBase.Date = DateTime.Now.ToString();
+
+		gameObject.AddComponent<DatabaseManager>();
 
 		Destroy(this);
 	}

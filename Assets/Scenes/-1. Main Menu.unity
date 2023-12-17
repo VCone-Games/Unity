@@ -15690,6 +15690,7 @@ GameObject:
   - component: {fileID: 908437515697958477}
   - component: {fileID: 6190878304507261176}
   - component: {fileID: 5966017133158230138}
+  - component: {fileID: 6372054200806498757}
   m_Layer: 0
   m_Name: ______GAME MANAGER DONT DESTROY_______
   m_TagString: Game Manager
@@ -16722,6 +16723,18 @@ Transform:
   - {fileID: 8649650236231890406}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6372054200806498757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4808052753707552744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b003319206bc4f8cee6d86dd99524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6403807554749456595
 MonoBehaviour:
   m_ObjectHideFlags: 0
