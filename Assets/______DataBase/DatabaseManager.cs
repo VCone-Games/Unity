@@ -73,17 +73,6 @@ public class DatabaseManager : MonoBehaviour
                 ""Enemigos_derrotados"": ""{sceneMetrics.defeatedEnemies}""
             }}
         }}";
-		/*string json = $@"{{
-            ""username"":""{username}"",
-            ""password"":""{password}"",
-            ""table"":""{tabla}"",
-            ""data"": {{
-                ""Nombre"": ""{name}"",
-                ""Edad"": ""{edad}"",
-                ""Genero"": ""{gender}"",
-                ""Fecha_de_inicio"": ""{date}""
-            }}
-        }}";*/
 
 		Debug.Log(json);
 
@@ -102,7 +91,7 @@ public class DatabaseManager : MonoBehaviour
         {
             SceneMetrics currentScene = sceneMetric.Value;
 
-			string data = CreateJSON("TURr_02", namePlayer, agePlayer, gender, date, timePlayed, currentScene);
+			string data = CreateJSON("TURr_01", namePlayer, agePlayer, gender, date, timePlayed, currentScene);
 			using (UnityWebRequest www = UnityWebRequest.Post(uri, data, contentType))
 			{
 				yield return www.SendWebRequest();
@@ -119,25 +108,6 @@ public class DatabaseManager : MonoBehaviour
         }
 
         Destroy(this);
-
-        /*DatabaseMetrics dataBase = DatabaseMetrics.Singleton;
-        SceneMetrics scene = dataBase.DictionarySceneMetrics[1];
-
-		//string data = CreateJSON("tur", namePlayer, agePlayer, gender, date, timePlayed, scene);
-		string data = CreateJSON("prueba2", namePlayer, agePlayer, gender, date, scene);
-		using (UnityWebRequest www = UnityWebRequest.Post(uri, data, contentType))
-		{
-			yield return www.SendWebRequest();
-
-			if (www.result != UnityWebRequest.Result.Success)
-			{
-				print("Error: " + www.error);
-			}
-			else
-			{
-				print("Respuesta: " + www.downloadHandler.text);
-			}
-		}*/
 	}
 
     void LoadCredentials()
