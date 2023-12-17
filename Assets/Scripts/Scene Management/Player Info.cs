@@ -62,7 +62,7 @@ public class PlayerInfo : MonoBehaviour
 	}
 	private void OnMetricsPressed(InputAction.CallbackContext context)
 	{
-		SceneManager.LoadScene("Metricas");
+		SceneManager.LoadScene("Creditos");
 	}
 	public void SetCheckpoint(string sceneName, Vector3 checkPointPosition, int checkpointID)
     {

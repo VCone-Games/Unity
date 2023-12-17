@@ -8,6 +8,7 @@ public class Creditos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DatabaseManager.Singleton.ChargeMetricsOnCloud();
         Invoke("WaitForEnd", 30);
     }
 
