@@ -112,21 +112,23 @@ public class DatabaseManager : MonoBehaviour
 
     void LoadCredentials()
     {
-        string configPath = "Assets/______DataBase/config.js";
+        username = "GavialisGangeticus";
+        password = "GRUudpxzcKWQY6aJ";
+        uri = "https://corsproxy.io/?https://jwrsdb.etsii.urjc.es/insert";
 
-        if (File.Exists(configPath))
-        {
-            string configJson = File.ReadAllText(configPath);
-            var config = JsonUtility.FromJson<Credentials>(configJson);
-
-            username = config.username;
-            password = config.password;
-            uri = config.uri;
-        }
-        else
-        {
-            Debug.LogError("Config file not found!");
-        }
+        //string configPath = "Assets/______DataBase/config.js";
+        //
+        //if (File.Exists(configPath))
+        //{
+        //    string configJson = File.ReadAllText(configPath);
+        //    var config = JsonUtility.FromJson<Credentials>(configJson);
+        //
+        //    
+        //}
+        //else
+        //{
+        //    Debug.LogError("Config file not found!");
+        //}
     }
 
     [System.Serializable]

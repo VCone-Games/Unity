@@ -74,5 +74,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Creditos.unity
     guid: 6c647dbd159670649b8adca58155f280
+  - enabled: 0
+    path: Assets/Scenes/MARCO.unity
+    guid: a474eff1191b4ea49a0dec055b213a75
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c93d4e0caba931e48aae4fec96740ecb, type: 2}
